@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}홈 - 보훈 병원 관리 시스템{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="hero-content">
+        <h1>위탁병원 위치 확인 및 연도별 현황 분석</h1>
+        <p>전국 보훈 병원 정보를 효율적으로 관리하고 시각화합니다.</p>
+    </div>
+</div>
+
+<div class="features-section">
+    <div class="container">
+        <h2>주요 기능</h2>
+        <div class="features-grid">
+            <a href="/hospital_crud" class="feature-card">
+                <div class="feature-icon">🔍</div>
+                
+                <h3>위탁병원 검색</h3>
+                <p>병원명, 위치, 진료과목으로 빠르게 검색 할 수 있읍니다.</p>
+            </a>
+            <a href="/folium-map" class="feature-card">
+                <div class="feature-icon">🗺️</div>
+                <h3>위탁병원 위치확인</h3>
+                <p>위탁병원 위치를 지도에서 직관적으로 확인할 수 있습니다.</p>
+            </a>
+            <a href="/hospital_crud" class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>위탁병원 검색</h3>
+                <p>병원명, 위치, 진료과목으로 빠르게 검색할 수 있습니다.</p>
+            </a>
+            <a href="/hospitals" class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>위탁병원 현황분석</h3>
+                <p>위탁병원 현황을 연도별, 지역별로 분석하여 시각화합니다.</p>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

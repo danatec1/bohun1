@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+
+{% block title %}병원 목록 - 보훈 병원 관리 시스템{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+{% endblock %}
+
+{% block content %}
+<div class="hospitals-page">
+    <!-- 연도별, 지자체별 위탁병원수 현황 차트 -->
+    <div class="chart-section">
+        <h2>📊 연도별, 지자체별 위탁병원수 현황 </h2>
+        <div class="chart-container">
+            <canvas id="yearlyChart"></canvas>
+        </div>
+    </div>
+
+    <div class="hospitals-container">
+        <div class="hospitals-list">
+            <div class="list-header">
+                <h3>병원 목록</h3>
+                <span class="hospital-count">총 {{ hospitals|length }}개 병원</span>
+            </div>
+            
+            <div id="hospitalsList" class="hospitals-grid">
+                {% for hospital in hospitals %}
+                <div class="hospital-card" data-hospital-id="{{ hospital.hospital_id }}">
+                    <div class="hospital-info">
+                        <h4>{{ hospital.name }}</h4>
+                        <p class="address">{{ hospital.address }}</p>
+                        <div class="departments">
+                            {% for dept in hospital.medical_departments %}
+                                <span class="dept-tag">{{ dept }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="hospital-actions">
+                        <button class="btn-small btn-view" onclick="viewHospital({{ hospital.hospital_id }})">
+                            보기
+                        </button>
+                        <button class="btn-small btn-edit" onclick="editHospital({{ hospital.hospital_id }})">
+                            편집
+                        </button>
+                        <button class="btn-small btn-delete" onclick="deleteHospital({{ hospital.hospital_id }})">
+                            삭제
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="map-container">
+            <div id="hospitalMap" style="height: 600px;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- 병원 추가/편집 모달 -->
+<div id="hospitalModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modalTitle">새 병원 추가</h3>
+            <span class="close" onclick="closeModal()">&times;</span>
+        </div>
+        <form id="hospitalForm">
+            <div class="form-group">
+                <label for="hospitalName">병원명</label>
+                <input type="text" id="hospitalName" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="hospitalAddress">주소</label>
+                <input type="text" id="hospitalAddress" name="address" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="hospitalLat">위도</label>
+                    <input type="number" id="hospitalLat" name="latitude" step="any">
+                </div>
+                <div class="form-group">
+                    <label for="hospitalLng">경도</label>
+                    <input type="number" id="hospitalLng" name="longitude" step="any">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="hospitalDepts">진료과목 (쉼표로 구분)</label>
+                <input type="text" id="hospitalDepts" name="medical_departments" 
+                       placeholder="내과, 외과, 정형외과">
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">취소</button>
+                <button type="submit" class="btn btn-primary">저장</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="/static/js/hospitals.js"></script>
+<script>
+// 연도별, 지자체별 위탁병원수 현황 차트 (Grafana 스타일)
+document.addEventListener('DOMContentLoaded', async function() {
+    try {
+        // API에서 연도별 통계 데이터 가져오기
+        const response = await fetch('/api/statistics/yearly');
+        const result = await response.json();
+        
+        if (!result.success) {
+            console.error('데이터 로드 실패:', result.error);
+            return;
+        }
+        
+        const data = result.data;
+        console.log('연도별 데이터:', data);
+        
+        // 데이터 가공 (시도별, 연도별로 그룹화)
+        const provinceYearData = {};
+        const years = ['2022년12월', '2023년12월', '2024년12월'];
+        
+        data.forEach(row => {
+            const province = row['광역지자체'];
+            if (!province) return;
+            
+            provinceYearData[province] = {
+                '2022년12월': parseInt(row['2022년12월'] || 0),
+                '2023년12월': parseInt(row['2023년12월'] || 0),
+                '2024년12월': parseInt(row['2024년12월'] || 0)
+            };
+        });
+        
+        // 시도 정렬 (병원 수 합계 기준)
+        const provinces = Object.keys(provinceYearData).sort((a, b) => {
+            const sumA = Object.values(provinceYearData[a]).reduce((sum, val) => sum + val, 0);
+            const sumB = Object.values(provinceYearData[b]).reduce((sum, val) => sum + val, 0);
+            return sumB - sumA;
+        }).slice(0, 17); // 상위 17개 시도
+        
+        // 데이터셋 생성
+        const colors = [
+            { bg: 'rgba(115, 191, 105, 0.8)', border: 'rgba(115, 191, 105, 1)' },  // 초록
+            { bg: 'rgba(250, 222, 42, 0.8)', border: 'rgba(250, 222, 42, 1)' },     // 노랑
+            { bg: 'rgba(82, 148, 226, 0.8)', border: 'rgba(82, 148, 226, 1)' }      // 파랑
+        ];
+        
+        const datasets = years.map((year, index) => ({
+            label: `SUM(${year})`,
+            data: provinces.map(province => provinceYearData[province][year] || 0),
+            backgroundColor: colors[index % colors.length].bg,
+            borderColor: colors[index % colors.length].border,
+            borderWidth: 0,
+            barThickness: 8
+        }));
+        
+        // 차트 생성 (Grafana 스타일 - 가로 막대)
+        const ctx = document.getElementById('yearlyChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: provinces,
+                datasets: datasets
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: {
+                    padding: { left: 10, right: 20, top: 10, bottom: 10 }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        align: 'end',
+                        labels: {
+                            color: '#d8d9da',
+                            font: { size: 11, family: 'Roboto, sans-serif' },
+                            boxWidth: 12,
+                            boxHeight: 12,
+                            padding: 10
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(23, 23, 23, 0.95)',
+                        titleColor: '#ffffff',
+                        bodyColor: '#d8d9da',
+                        borderColor: 'rgba(255, 255, 255, 0.1)',
+                        borderWidth: 1,
+                        padding: 12,
+                        callbacks: {
+                            label: (context) => context.dataset.label + ': ' + context.parsed.x + '개'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(128, 128, 128, 0.15)', drawBorder: false },
+                        ticks: { color: '#d8d9da', font: { size: 11 }, stepSize: 20 },
+                        border: { display: false }
+                    },
+                    y: {
+                        grid: { display: false, drawBorder: false },
+                        ticks: { color: '#d8d9da', font: { size: 12, weight: '500' }, padding: 8 },
+                        border: { display: false }
+                    }
+                },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+    } catch (error) {
+        console.error('차트 생성 오류:', error);
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}보훈 병원 관리 시스템{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css?v=20251009002">
+    {% block styles %}{% endblock %}
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <img src="/static/images/logo.png" alt="보훈 병원 시스템" class="logo-image">
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">홈</a></li>
+                <li><a href="/hospitals">병원 목록</a></li>
+                <li><a href="/folium-map">지도</a></li>
+                <li><a href="/admin">관리</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 보훈 병원 관리 시스템. All rights reserved.</p>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

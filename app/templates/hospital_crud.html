@@ -1,0 +1,694 @@
+{% extends "base.html" %}
+
+{% block title %}병원 관리 - 보훈 병원 시스템{% endblock %}
+
+{% block content %}
+<div class="crud-page">
+    <div class="crud-header">
+        <h1>🏥 병원 정보 관리</h1>
+        <button class="btn btn-primary" onclick="openAddModal()">+ 새 병원 추가</button>
+    </div>
+
+    <!-- 검색 및 필터 -->
+    <div class="search-section">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="병원명, 주소, 전화번호로 검색..." onkeyup="searchHospitals()">
+            <select id="filterType" onchange="filterHospitals()">
+                <option value="">전체 종별</option>
+                <option value="종합병원">종합병원</option>
+                <option value="병원">병원</option>
+                <option value="의원">의원</option>
+                <option value="요양병원">요양병원</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- 병원 목록 테이블 -->
+    <div class="table-container">
+        <table class="hospital-table">
+            <thead>
+                <tr>
+                    <th>연번</th>
+                    <th>시군구</th>
+                    <th>요양기관명</th>
+                    <th>종별</th>
+                    <th>병상수</th>
+                    <th>진료과수</th>
+                    <th>전화번호</th>
+                    <th>주소</th>
+                    <th>작업</th>
+                </tr>
+            </thead>
+            <tbody id="hospitalTableBody">
+                <!-- 데이터가 JavaScript로 동적으로 로드됩니다 -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 페이지네이션 -->
+    <div class="pagination" id="pagination">
+        <!-- JavaScript로 동적 생성 -->
+    </div>
+</div>
+
+<!-- 추가/수정 모달 -->
+<div id="hospitalModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">병원 정보 추가</h2>
+            <span class="close" onclick="closeModal()">&times;</span>
+        </div>
+        <form id="hospitalForm" onsubmit="saveHospital(event)">
+            <input type="hidden" id="hospitalId" name="연번">
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="sigungu">시군구 <span class="required">*</span></label>
+                    <input type="text" id="sigungu" name="시군구" required maxlength="8">
+                </div>
+
+                <div class="form-group">
+                    <label for="hospitalName">요양기관명 <span class="required">*</span></label>
+                    <input type="text" id="hospitalName" name="요양기관명" required maxlength="32">
+                </div>
+
+                <div class="form-group">
+                    <label for="hospitalType">종별 <span class="required">*</span></label>
+                    <select id="hospitalType" name="종별" required>
+                        <option value="">선택하세요</option>
+                        <option value="종합병원">종합병원</option>
+                        <option value="병원">병원</option>
+                        <option value="의원">의원</option>
+                        <option value="요양병원">요양병원</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="bedCount">병상수 <span class="required">*</span></label>
+                    <input type="number" id="bedCount" name="병상수" required min="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="deptCount">진료과수 <span class="required">*</span></label>
+                    <input type="number" id="deptCount" name="진료과수" required min="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">전화번호 <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="전화번호" required maxlength="16" placeholder="02-1234-5678">
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="address">주소 <span class="required">*</span></label>
+                    <input type="text" id="address" name="주소" required maxlength="64">
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="detailAddress">상세주소</label>
+                    <input type="text" id="detailAddress" name="상세주소" maxlength="64">
+                </div>
+
+                <div class="form-group">
+                    <label for="longitude">경도 <span class="required">*</span></label>
+                    <input type="number" id="longitude" name="경도" required step="0.000001" placeholder="127.123456">
+                </div>
+
+                <div class="form-group">
+                    <label for="latitude">위도 <span class="required">*</span></label>
+                    <input type="number" id="latitude" name="위도" required step="0.000001" placeholder="37.123456">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">취소</button>
+                <button type="submit" class="btn btn-primary">저장</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 삭제 확인 모달 -->
+<div id="deleteModal" class="modal">
+    <div class="modal-content modal-small">
+        <div class="modal-header">
+            <h2>삭제 확인</h2>
+            <span class="close" onclick="closeDeleteModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p>정말로 이 병원 정보를 삭제하시겠습니까?</p>
+            <p class="text-danger">이 작업은 되돌릴 수 없습니다.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="closeDeleteModal()">취소</button>
+            <button type="button" class="btn btn-danger" onclick="confirmDelete()">삭제</button>
+        </div>
+    </div>
+</div>
+
+<style>
+.crud-page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.crud-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.crud-header h1 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.search-section {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.search-bar {
+    display: flex;
+    gap: 1rem;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.search-bar select {
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 1rem;
+    min-width: 150px;
+}
+
+.table-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.hospital-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.hospital-table thead {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+
+.hospital-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.hospital-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.hospital-table tbody tr:hover {
+    background: #f7fafc;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.875rem;
+}
+
+.btn-success {
+    background: #48bb78;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #38a169;
+}
+
+.btn-danger {
+    background: #f56565;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #e53e3e;
+}
+
+/* 모달 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 12px;
+    max-width: 800px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    animation: slideDown 0.3s;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-small {
+    max-width: 500px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.close {
+    color: #a0aec0;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover {
+    color: #2d3748;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.required {
+    color: #f56565;
+}
+
+.form-group input,
+.form-group select {
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.page-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid #e2e8f0;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.page-btn:hover {
+    background: #f7fafc;
+    border-color: #667eea;
+}
+
+.page-btn.active {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border-color: transparent;
+}
+
+.text-danger {
+    color: #f56565;
+    font-weight: 600;
+}
+
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: #a0aec0;
+}
+
+.no-data {
+    text-align: center;
+    padding: 3rem;
+    color: #a0aec0;
+}
+
+.no-data h3 {
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+}
+
+/* 배지 스타일 */
+.badge {
+    display: inline-block;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.badge-종합병원 {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+
+.badge-병원 {
+    background: linear-gradient(135deg, #48bb78, #38a169);
+    color: white;
+}
+
+.badge-의원 {
+    background: linear-gradient(135deg, #4299e1, #3182ce);
+    color: white;
+}
+
+.badge-요양병원 {
+    background: linear-gradient(135deg, #ed8936, #dd6b20);
+    color: white;
+}
+</style>
+
+<script>
+let hospitals = [];
+let originalHospitals = []; // 원본 데이터 보관
+let currentPage = 1;
+let itemsPerPage = 10;
+let deleteTargetId = null;
+
+// 페이지 로드 시 데이터 가져오기
+document.addEventListener('DOMContentLoaded', function() {
+    loadHospitals();
+});
+
+// 병원 데이터 로드
+async function loadHospitals() {
+    try {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+        const filterType = document.getElementById('filterType').value;
+        
+        // API 호출 (검색 및 필터 파라미터 포함)
+        let url = '/api/hospitals/crud?';
+        if (searchTerm) {
+            url += `search=${encodeURIComponent(searchTerm)}&`;
+        }
+        if (filterType) {
+            url += `filter_type=${encodeURIComponent(filterType)}`;
+        }
+        
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('서버 응답 오류');
+        }
+        
+        originalHospitals = await response.json();
+        hospitals = [...originalHospitals];
+        currentPage = 1;
+        renderTable();
+    } catch (error) {
+        console.error('데이터 로드 실패:', error);
+        document.getElementById('hospitalTableBody').innerHTML = `
+            <tr><td colspan="9" class="no-data">
+                <h3>❌ 데이터를 불러올 수 없습니다</h3>
+                <p>${error.message}</p>
+            </td></tr>
+        `;
+    }
+}
+
+// 테이블 렌더링
+function renderTable() {
+    const tbody = document.getElementById('hospitalTableBody');
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const pageData = hospitals.slice(start, end);
+    
+    if (pageData.length === 0) {
+        tbody.innerHTML = `
+            <tr><td colspan="9" class="no-data">
+                <h3>📋 등록된 병원이 없습니다</h3>
+                <p>새 병원 추가 버튼을 클릭하여 병원을 등록하세요</p>
+            </td></tr>
+        `;
+        return;
+    }
+    
+    tbody.innerHTML = pageData.map(hospital => `
+        <tr>
+            <td>${hospital.연번}</td>
+            <td>${hospital.시군구}</td>
+            <td><strong>${hospital.요양기관명}</strong></td>
+            <td><span class="badge badge-${hospital.종별}">${hospital.종별}</span></td>
+            <td>${hospital.병상수}병상</td>
+            <td>${hospital.진료과수}과</td>
+            <td>${hospital.전화번호}</td>
+            <td>${hospital.주소}</td>
+            <td class="action-buttons">
+                <button class="btn btn-success btn-small" onclick="editHospital(${hospital.연번})">수정</button>
+                <button class="btn btn-danger btn-small" onclick="openDeleteModal(${hospital.연번})">삭제</button>
+            </td>
+        </tr>
+    `).join('');
+    
+    renderPagination();
+}
+
+// 페이지네이션 렌더링
+function renderPagination() {
+    const totalPages = Math.ceil(hospitals.length / itemsPerPage);
+    const pagination = document.getElementById('pagination');
+    
+    let html = '';
+    
+    // 이전 버튼
+    html += `<button class="page-btn" onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>이전</button>`;
+    
+    // 페이지 번호
+    for (let i = 1; i <= totalPages; i++) {
+        html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+    }
+    
+    // 다음 버튼
+    html += `<button class="page-btn" onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>다음</button>`;
+    
+    pagination.innerHTML = html;
+}
+
+// 페이지 변경
+function changePage(page) {
+    const totalPages = Math.ceil(hospitals.length / itemsPerPage);
+    if (page < 1 || page > totalPages) return;
+    currentPage = page;
+    renderTable();
+}
+
+// 검색
+function searchHospitals() {
+    loadHospitals(); // API 재호출
+}
+
+// 필터
+function filterHospitals() {
+    loadHospitals(); // API 재호출
+}
+
+// 모달 열기 (추가)
+function openAddModal() {
+    document.getElementById('modalTitle').textContent = '병원 정보 추가';
+    document.getElementById('hospitalForm').reset();
+    document.getElementById('hospitalId').value = '';
+    document.getElementById('hospitalModal').style.display = 'block';
+}
+
+// 모달 열기 (수정)
+function editHospital(id) {
+    const hospital = hospitals.find(h => h.연번 === id);
+    if (!hospital) return;
+    
+    document.getElementById('modalTitle').textContent = '병원 정보 수정';
+    document.getElementById('hospitalId').value = hospital.연번;
+    document.getElementById('sigungu').value = hospital.시군구;
+    document.getElementById('hospitalName').value = hospital.요양기관명;
+    document.getElementById('hospitalType').value = hospital.종별;
+    document.getElementById('bedCount').value = hospital.병상수;
+    document.getElementById('deptCount').value = hospital.진료과수;
+    document.getElementById('phone').value = hospital.전화번호;
+    document.getElementById('address').value = hospital.주소;
+    document.getElementById('detailAddress').value = hospital.상세주소;
+    document.getElementById('longitude').value = hospital.경도;
+    document.getElementById('latitude').value = hospital.위도;
+    
+    document.getElementById('hospitalModal').style.display = 'block';
+}
+
+// 모달 닫기
+function closeModal() {
+    document.getElementById('hospitalModal').style.display = 'none';
+}
+
+// 저장
+async function saveHospital(event) {
+    event.preventDefault();
+    
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData.entries());
+    
+    try {
+        const method = data.연번 ? 'PUT' : 'POST';
+        const url = data.연번 ? `/api/hospitals/${data.연번}` : '/api/hospitals';
+        
+        const response = await fetch(url, {
+            method: method,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        
+        if (!response.ok) {
+            throw new Error('서버 응답 오류');
+        }
+        
+        alert('저장되었습니다!');
+        closeModal();
+        loadHospitals();
+    } catch (error) {
+        console.error('저장 실패:', error);
+        alert('저장에 실패했습니다: ' + error.message);
+    }
+}
+
+// 삭제 모달 열기
+function openDeleteModal(id) {
+    deleteTargetId = id;
+    document.getElementById('deleteModal').style.display = 'block';
+}
+
+// 삭제 모달 닫기
+function closeDeleteModal() {
+    deleteTargetId = null;
+    document.getElementById('deleteModal').style.display = 'none';
+}
+
+// 삭제 확인
+async function confirmDelete() {
+    if (!deleteTargetId) return;
+    
+    try {
+        const response = await fetch(`/api/hospitals/${deleteTargetId}`, {
+            method: 'DELETE'
+        });
+        
+        if (!response.ok) {
+            throw new Error('서버 응답 오류');
+        }
+        
+        alert('삭제되었습니다!');
+        closeDeleteModal();
+        loadHospitals();
+    } catch (error) {
+        console.error('삭제 실패:', error);
+        alert('삭제에 실패했습니다: ' + error.message);
+    }
+}
+
+// 모달 외부 클릭 시 닫기
+window.onclick = function(event) {
+    const modal = document.getElementById('hospitalModal');
+    const deleteModal = document.getElementById('deleteModal');
+    if (event.target === modal) {
+        closeModal();
+    }
+    if (event.target === deleteModal) {
+        closeDeleteModal();
+    }
+}
+</script>
+{% endblock %}

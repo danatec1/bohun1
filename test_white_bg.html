@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배경색 테스트</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-section {
+            background: #fefefe;
+            padding: 4rem 0;
+            text-align: center;
+            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-section h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+        
+        .card {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #e8e8e8;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .info-panel {
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="hero-section">
+            <h1>🎨 배경색 테스트 페이지</h1>
+            <p>순수 흰색 배경이 적용되었습니다</p>
+        </div>
+        
+        <div class="card">
+            <h2>테스트 카드</h2>
+            <p>이 카드의 배경색은 순수 흰색 (#ffffff)입니다.</p>
+            <p>테두리는 매우 연한 회색 (#e8e8e8)입니다.</p>
+        </div>
+        
+        <div class="info-panel">
+            <h3>정보 패널</h3>
+            <p>이 패널의 배경색은 #fafafa (매우 밝은 회색)입니다.</p>
+            <p>전체 body 배경색은 순수 흰색 (#ffffff)입니다.</p>
+        </div>
+        
+        <div style="margin-top: 2rem; padding: 2rem; background: #f5f5f5; border-radius: 8px;">
+            <h3>현재 적용된 배경색:</h3>
+            <ul style="line-height: 2;">
+                <li><strong>body 배경:</strong> #ffffff (순수 흰색)</li>
+                <li><strong>히어로 섹션:</strong> #fefefe (거의 흰색)</li>
+                <li><strong>카드:</strong> #ffffff (순수 흰색)</li>
+                <li><strong>정보 패널:</strong> #fafafa (매우 밝은 회색)</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

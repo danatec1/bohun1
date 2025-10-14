@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>병원 위치 및 데이터 시각화 시스템</title>
+  <style>
+    :root{
+      --bg:#edf4ef;
+      --fg:#111827;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --accent:#16a34a;
+      --accent-weak:#a7f3d0;
+      --ring:#d1fae5;
+      --shadow:0 10px 25px rgba(0,0,0,.06), 0 2px 6px rgba(0,0,0,.04);
+      --radius:18px;
+      --maxw:1040px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+      color:var(--fg);
+      background:
+        linear-gradient(0deg, rgba(255,255,255,.8), rgba(255,255,255,.8)),
+        repeating-linear-gradient(0deg, transparent 0 39px, rgba(0,0,0,.03) 39px 40px),
+        repeating-linear-gradient(90deg, transparent 0 39px, rgba(0,0,0,.03) 39px 40px),
+        var(--bg);
+    }
+    .wrap{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:64px 20px 40px;
+      display:flex;
+      flex-direction:column;
+      min-height:100%;
+    }
+    header{
+      text-align:center;
+      padding-top:32px;
+      padding-bottom:28px;
+    }
+    h1{
+      font-weight:800;
+      letter-spacing:-.02em;
+      margin:0 0 14px;
+      font-size: clamp(28px, 4.2vw, 44px);
+    }
+    .subtitle{
+      color:var(--muted);
+      font-size:clamp(13px,1.6vw,15px);
+      display:inline-block;
+      position:relative;
+    }
+    .divider{
+      width:80px;
+      height:3px;
+      background:linear-gradient(90deg, transparent, var(--accent), transparent);
+      border-radius:999px;
+      margin:18px auto 0;
+      opacity:.9;
+    }
+    .pill-row{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top:34px;
+    }
+    .pill{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background:var(--card);
+      padding:14px 16px;
+      border-radius:12px;
+      box-shadow:var(--shadow);
+      border:1px solid #e5e7eb;
+      min-width:220px;
+    }
+    .pill svg{
+      flex:0 0 auto;
+      width:22px;height:22px;
+      color:var(--accent);
+    }
+    .pill .txt{ font-weight:600; font-size:14px; }
+    main{
+      flex:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    footer{
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      padding:16px 0 8px;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .date-badge{
+      border:1px solid #e5e7eb;
+      padding:6px 10px;
+      border-radius:10px;
+      background:#fff;
+      box-shadow:0 2px 6px rgba(0,0,0,.04);
+    }
+
+    /* small screens: stack nicely */
+    @media (max-width:640px){
+      .pill{min-width:unset;width:100%}
+      .wrap{padding-top:36px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header role="banner" aria-label="페이지 헤더">
+      <h1>병원 위치 및 데이터 시각화 시스템</h1>
+      <div class="subtitle">
+        MySQL 데이터베이스 + Python Flask/Folium 지도 서비스 + Grafana 데이터 분석
+      </div>
+      <div class="divider" aria-hidden="true"></div>
+
+      <div class="pill-row" aria-label="핵심 구성요소">
+        <div class="pill" title="MySQL 데이터 저장">
+          <!-- database icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <ellipse cx="12" cy="5" rx="8" ry="3"></ellipse>
+            <path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"></path>
+            <path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"></path>
+          </svg>
+          <span class="txt">MySQL 데이터 저장</span>
+        </div>
+
+        <div class="pill" title="Flask/Folium 지도 서비스">
+          <!-- map icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6z"></path>
+            <path d="M9 3v15M15 6v15"></path>
+          </svg>
+          <span class="txt">Flask/Folium 지도 서비스</span>
+        </div>
+
+        <div class="pill" title="Grafana 데이터 분석">
+          <!-- chart icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 3v18h18"></path>
+            <path d="M7 15l3-3 4 4 5-7"></path>
+          </svg>
+          <span class="txt">Grafana 데이터 분석</span>
+        </div>
+      </div>
+    </header>
+
+    <main aria-label="본문">
+      <!-- Optional hero image placeholder; user can swap src to their own -->
+      <figure style="max-width:920px;margin:0 auto;border-radius:16px;overflow:hidden;border:1px solid #e5e7eb;box-shadow:var(--shadow)">
+        <img src="슬라이드1.png" alt="시스템 개요 슬라이드" style="display:block;width:100%;height:auto;background:#f3f4f6" />
+      </figure>
+    </main>
+
+    <footer>
+      <span class="date-badge" id="today"></span>
+    </footer>
+  </div>
+
+  <script>
+    // YYYY-MM-DD 로 표시
+    (function (){
+      const d = new Date();
+      const y = d.getFullYear();
+      const m = String(d.getMonth()+1).padStart(2,'0');
+      const day = String(d.getDate()).padStart(2,'0');
+      document.getElementById('today').textContent = y + '-' + m + '-' + day;
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>🏥 병원 위치 지도 - 보훈 병원 관리 시스템</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        body { 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: #f5f5f5;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 1001;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .header .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-1px);
+        }
+        
+        #map { 
+            height: calc(100vh - 70px); 
+            width: 100%; 
+        }
+        
+        .info-panel {
+            position: absolute;
+            top: 80px;
+            right: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            max-width: 280px;
+            font-size: 14px;
+        }
+        
+        .info-panel h3 {
+            margin: 0 0 15px 0;
+            font-size: 18px;
+            text-align: center;
+        }
+        
+        .info-panel .stat {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+        }
+        
+        .info-panel .usage {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        
+        .hospital-popup {
+            max-width: 350px;
+        }
+        
+        .hospital-popup h3 {
+            margin: 0 0 10px 0;
+            color: #d32f2f;
+            font-size: 16px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        
+        .hospital-popup .coord {
+            background: #f8f9fa;
+            padding: 8px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        
+        .hospital-popup .detail {
+            margin: 5px 0;
+            font-size: 13px;
+        }
+        
+        .hospital-popup .detail strong {
+            color: #333;
+            min-width: 80px;
+            display: inline-block;
+        }
+        
+        .leaflet-popup-content-wrapper {
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏥 병원 위치 지도</h1>
+        <div class="nav-buttons">
+            <a href="/" class="btn">🏠 홈</a>
+            <a href="/hospitals" class="btn">📋 병원 목록</a>
+        </div>
+    </div>
+    
+    <div id="map"></div>
+    
+    <div class="info-panel">
+        <h3>📊 지도 정보</h3>
+        <div class="stat">
+            <span><strong>총 병원 수:</strong></span>
+            <span>{{ hospitals|length }}개</span>
+        </div>
+        <div class="stat">
+            <span><strong>생성 시간:</strong></span>
+            <span id="currentTime"></span>
+        </div>
+        <div class="usage">
+            <strong>📖 사용법:</strong><br>
+            • 🖱️ 마커 클릭: 병원 정보 보기<br>
+            • 🔍 마우스 휠: 확대/축소<br>
+            • ✋ 드래그: 지도 이동<br>
+            • 📱 모바일: 터치로 조작
+        </div>
+    </div>
+
+    <script>
+        // 현재 시간 표시
+        document.getElementById('currentTime').textContent = new Date().toLocaleString('ko-KR');
+        
+        // 지도 초기화 (한국 중심)
+        var map = L.map('map').setView([36.5, 127.5], 7);
+        
+        // 타일 레이어 추가
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 18
+        }).addTo(map);
+        
+        // 병원 데이터
+        var hospitals = {{ hospitals | tojson }};
+        
+        // 마커 추가
+        hospitals.forEach(function(hospital) {
+            if (hospital.latitude && hospital.longitude) {
+                var marker = L.marker([hospital.latitude, hospital.longitude])
+                    .addTo(map);
+                
+                // 팝업 내용 생성
+                var popupContent = `
+                    <div class="hospital-popup">
+                        <h3>${hospital.name}</h3>
+                        <div class="detail">
+                            <strong>주소:</strong> ${hospital.address || '정보 없음'}
+                        </div>
+                        <div class="detail">
+                            <strong>진료과:</strong> ${(hospital.medical_departments || []).join(', ') || '정보 없음'}
+                        </div>
+                        <div class="coord">
+                            위도: ${hospital.latitude.toFixed(6)}<br>
+                            경도: ${hospital.longitude.toFixed(6)}
+                        </div>
+                    </div>
+                `;
+                
+                marker.bindPopup(popupContent);
+            }
+        });
+        
+        // 모든 마커가 보이도록 지도 뷰 조정
+        if (hospitals.length > 0) {
+            var validHospitals = hospitals.filter(h => h.latitude && h.longitude);
+            if (validHospitals.length > 0) {
+                var group = new L.featureGroup(
+                    validHospitals.map(h => L.marker([h.latitude, h.longitude]))
+                );
+                map.fitBounds(group.getBounds().pad(0.1));
+            }
+        }
+    </script>
+</body>
+</html>

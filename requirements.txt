@@ -1,0 +1,29 @@
+Flask==2.3.3
+Werkzeug==2.3.7
+Jinja2==3.1.2
+SQLAlchemy==2.0.21  # ORM (선택사항)
+python-dotenv==1.0.0
+pytest==7.4.2
+pytest-flask==1.2.0
+pymysql == 1.3.1     # MySQL 드라이버 (선택사항)
+alembic == 1.11.1    # 데이터베이스            마이그레이션 도구 (선택사항)
+flask-migrate == 4.0.4 # Flask와 Alembic 통합 도구 (선택사항)
+flask-wtf == 1.1.1   # 폼 처리 및 CSRF 보호 (선택사항)
+flask-login == 0.6.3 # 사용자 인증 관리 (선택사항)
+flask-cors == 4.1.2  # CORS 지원 (선택사항)
+requests == 2.31.0   # HTTP 요청 라이브러리 (선택사항)
+gunicorn == 20.1.0   # 프로덕션 서버 (선택사항)
+itsdangerous == 2.1.2 # 안전한 데이터 직렬화 (선택사항)
+click == 8.1.7       # 커맨드 라인 인터페이스 (선택사항)
+markupsafe == 2.1.3  # 안전한 문자열 처리 (선택사항)
+# 병원 위치 지도 시각화를 위한 필수 라이브러리
+pandas>=2.0.0
+folium>=0.14.0
+openpyxl>=3.1.0
+numpy>=1.24.0
+
+# 추가 기능을 위한 선택적 라이브러리
+matplotlib>=3.7.0
+seaborn>=0.12.0
+geopandas>=0.13.0
+contextily>=1.4.0

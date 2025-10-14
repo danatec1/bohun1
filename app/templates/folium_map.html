@@ -1,0 +1,248 @@
+{% extends "base.html" %}
+
+{% block title %}위탁병원 지도 - 보훈 병원 관리 시스템{% endblock %}
+
+{% block content %}
+<div class="folium-map-page">
+    <div class="page-header">
+        <div class="header-left">
+            <h2>🗺️ 위탁병원 지도</h2>
+            <span id="mapStatus" class="status">지도 생성 대기 중</span>
+        </div>
+    </div>
+    
+    <div class="map-container">
+        <div id="foliumMapContainer" style="height: 800px; border: 1px solid #ddd;">
+            <div class="map-placeholder">
+                <div class="placeholder-content">
+                    <h3>🗺️ 위탁병원 지도</h3>
+                    <p>현재 등록된 데이터를 활용하여 실시간 지도를 생성합니다.</p>
+                    <button class="btn btn-primary btn-large" onclick="generateMap()">
+                        지도 생성하기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-panel">
+        <h3>📊 데이터 정보</h3>
+        <div class="info-grid">
+            <div class="info-item">
+                <strong>데이터 소스:</strong>
+                <span>MySQL testdb.위탁병원현황</span>
+            </div>
+            <div class="info-item">
+                <strong>총 병원 수:</strong>
+                <span id="hospitalCount">-</span>
+            </div>
+            <div class="info-item">
+                <strong>지도 라이브러리:</strong>
+                <span>Folium (Python)</span>
+            </div>
+            <div class="info-item">
+                <strong>마지막 업데이트:</strong>
+                <span id="lastUpdate">-</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.folium-map-page {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    min-height: 100vh;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+    padding: 8px 20px;
+    border-radius: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.page-header h1,
+.page-header h2 {
+    color: white;
+    margin: 0;
+    font-size: 1.3em;
+}
+
+.status {
+    color: #ffffff;
+    font-style: italic;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 0.85em;
+}
+
+.map-container {
+    margin-bottom: 0;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: none;
+}
+
+.map-placeholder {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+}
+
+.placeholder-content h3 {
+    margin-bottom: 10px;
+    font-size: 2em;
+}
+
+.placeholder-content p {
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.btn-large {
+    padding: 12px 24px;
+    font-size: 1.1em;
+}
+
+.info-panel {
+    background: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.info-panel h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.info-item strong {
+    color: #764ba2;
+    font-weight: 600;
+}
+
+.info-item span {
+    color: #333;
+    font-weight: 500;
+}
+
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '⏳ 생성 중...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 1000;
+}
+</style>
+
+<script>
+let mapGenerated = false;
+
+async function generateMap() {
+    const container = document.getElementById('foliumMapContainer');
+    const status = document.getElementById('mapStatus');
+    
+    try {
+        status.textContent = '지도 생성 중...';
+        container.classList.add('loading');
+        
+        const response = await fetch('/api/map/folium');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            // 지도 HTML을 iframe으로 표시
+            container.innerHTML = `
+                <iframe src="${result.map_url}" 
+                        width="100%" 
+                        height="800px" 
+                        frameborder="0">
+                </iframe>
+            `;
+            
+            status.textContent = `지도 생성 완료! (${result.hospital_count}개 병원)`;
+            document.getElementById('hospitalCount').textContent = result.hospital_count;
+            document.getElementById('lastUpdate').textContent = new Date().toLocaleString();
+            mapGenerated = true;
+        } else {
+            throw new Error(result.error || '지도 생성 실패');
+        }
+        
+    } catch (error) {
+        console.error('지도 생성 실패:', error);
+        status.textContent = `지도 생성 실패: ${error.message}`;
+        container.innerHTML = `
+            <div class="map-placeholder">
+                <div class="placeholder-content">
+                    <h3>❌ 지도 생성 실패</h3>
+                    <p>${error.message}</p>
+                    <button class="btn btn-primary" onclick="generateMap()">
+                        다시 시도
+                    </button>
+                </div>
+            </div>
+        `;
+    } finally {
+        container.classList.remove('loading');
+    }
+}
+
+// 페이지 로드 시 자동으로 지도 생성
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('위탁병원 지도 페이지 로드됨');
+});
+</script>
+{% endblock %}
