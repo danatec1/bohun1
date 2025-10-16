@@ -11,6 +11,9 @@
 
     <!-- 검색 및 필터 -->
     <div class="search-section">
+        <div class="search-label">
+            <label for="searchInput">🔍 병원명, 주소로 검색</label>
+        </div>
         <div class="search-bar">
             <input type="text" id="searchInput" placeholder="병원명, 주소, 전화번호로 검색..." onkeyup="searchHospitals()">
             <select id="filterType" onchange="filterHospitals()">
@@ -170,6 +173,17 @@
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     margin-bottom: 2rem;
+}
+
+.search-label {
+    margin-bottom: 0.75rem;
+}
+
+.search-label label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2d3748;
+    display: inline-block;
 }
 
 .search-bar {

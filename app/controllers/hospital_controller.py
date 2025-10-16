@@ -9,6 +9,7 @@ from ..repositories.testdb_hospital_repository import TestDBHospitalRepository
 from ..repositories.hospital_crud_repository import HospitalCrudRepository
 from ..services.folium_map_service import FoliumMapService
 import os
+import pymysql
 
 class HospitalController:
     def __init__(self):
@@ -17,6 +18,16 @@ class HospitalController:
         self.service = HospitalService(testdb_repository)
         # CRUD 전용 리포지토리
         self.crud_repository = HospitalCrudRepository()
+        # MySQL 연결 설정
+        import os
+        self.db_config = {
+            'host': 'localhost',
+            'user': 'root',
+            'password': os.environ.get('MYSQL_PASSWORD', '1234'),  # 환경변수 또는 기본값
+            'database': 'testdb',
+            'charset': 'utf8mb4',
+            'cursorclass': pymysql.cursors.DictCursor
+        }
         
     def index(self):
         """병원 목록 페이지"""
@@ -226,17 +237,20 @@ class HospitalController:
             }), 500
     
     def get_yearly_statistics(self):
-        """연도별 병원 통계 데이터 반환"""
+        """연도별 통계 데이터 조회 (위탁병원현황_연도별현황)"""
         try:
-            testdb_repository = TestDBHospitalRepository()
-            statistics = testdb_repository.get_yearly_statistics()
-            
-            return jsonify({
-                'success': True,
-                'data': statistics
-            })
+            connection = pymysql.connect(**self.db_config)
+            with connection.cursor() as cursor:
+                sql = """
+                SELECT 광역지자체, `2022년12월`, `2023년12월`, `2024년12월`
+                FROM 위탁병원현황_연도별현황
+                ORDER BY `2024년12월` DESC
+                """
+                cursor.execute(sql)
+                results = cursor.fetchall()
+                
+            connection.close()
+            return jsonify({'success': True, 'data': results})
         except Exception as e:
-            return jsonify({
-                'success': False,
-                'error': f'연도별 통계 조회 실패: {str(e)}'
-            }), 500
+            print(f"연도별 통계 조회 오류: {e}")
+            return jsonify({'success': False, 'error': str(e)}), 500

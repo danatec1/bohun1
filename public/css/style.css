@@ -490,6 +490,90 @@ form {
 }
 
 /* 차트 섹션 - Grafana 다크 스타일 */
+.chart-section.grafana-style {
+    background: #181B1F;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    border: 1px solid #2b2b2b;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #2b2b2b;
+}
+
+.chart-header h2 {
+    color: #d8d9da;
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    margin: 0;
+}
+
+.chart-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.data-source {
+    color: #9CA3AF;
+    font-size: 0.9rem;
+    font-family: 'Roboto Mono', monospace;
+}
+
+/* 파이 차트 행 */
+.pie-charts-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.pie-chart-card {
+    background: #262626;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+.pie-chart-card h3 {
+    color: #d8d9da;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.pie-chart-card canvas {
+    max-height: 280px;
+}
+
+/* 가로 막대 차트 */
+.bar-chart-container {
+    background: #262626;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+.bar-chart-container h3 {
+    color: #d8d9da;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.bar-chart-container canvas {
+    height: 500px !important;
+}
+
 .chart-section {
     background: #1f1f1f;
     padding: 2rem;
@@ -556,5 +640,16 @@ form {
 
     .search-input {
         width: 100%;
+    }
+    
+    /* 파이 차트 반응형 */
+    .pie-charts-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
     }
 }

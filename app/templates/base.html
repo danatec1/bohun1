@@ -15,9 +15,11 @@
             </div>
             <ul class="nav-links">
                 <li><a href="/">홈</a></li>
-                <li><a href="/hospitals">병원 목록</a></li>
-                <li><a href="/folium-map">지도</a></li>
-                <li><a href="/admin">관리</a></li>
+                {% if session.get('user_id') %}
+                <li><a href="/logout">로그아웃</a></li>
+                {% else %}
+                <li><a href="/login">로그인</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
