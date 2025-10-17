@@ -23,7 +23,7 @@ class HospitalController:
         self.db_config = {
             'host': 'localhost',
             'user': 'root',
-            'password': os.environ.get('MYSQL_PASSWORD', '1234'),  # 환경변수 또는 기본값
+            'password': os.environ.get('MYSQL_PASSWORD', 'zzaaqq'),
             'database': 'testdb',
             'charset': 'utf8mb4',
             'cursorclass': pymysql.cursors.DictCursor
