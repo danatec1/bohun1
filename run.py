@@ -15,8 +15,16 @@ app = create_app(config_name)
 if __name__ == '__main__':
     # 개발 서버 실행
     debug = config_name == 'development'
+    
+    # 소켓 재사용 옵션 설정 (TIME_WAIT 문제 해결)
+    import socket
+    if hasattr(socket, 'SO_REUSEADDR'):
+        app.config['SOCK_OPT_SO_REUSEADDR'] = 1
+    
     app.run(
         host='0.0.0.0',
         port=int(os.environ.get('PORT', 5001)),
-        debug=debug
+        debug=debug,
+        use_reloader=True,
+        threaded=True
     )
