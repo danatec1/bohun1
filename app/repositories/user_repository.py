@@ -4,6 +4,7 @@ User Repository
 """
 
 import pymysql
+import os
 from werkzeug.security import generate_password_hash, check_password_hash
 from typing import Optional
 from ..models.user import User
@@ -11,7 +12,10 @@ from ..models.user import User
 
 class UserRepository:
     def __init__(self, host='localhost', user='root',
-                 password='Admin1', database='testdb'):
+                 password=None, database='testdb'):
+        # 환경변수에서 MySQL 비밀번호 가져오기 (기본값: zzaaqq)
+        if password is None:
+            password = os.environ.get('MYSQL_PASSWORD', 'zzaaqq')
         self.connection_config = {
             'host': host,
             'user': user,
