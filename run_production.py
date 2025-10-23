@@ -28,8 +28,8 @@ if __name__ == '__main__':
     # Waitress 서버 실행
     # threads=4: 4개의 스레드로 동시 요청 처리
     # host='0.0.0.0': 모든 네트워크 인터페이스에서 접속 허용
-    # PORT 환경변수 지원 추가 (기본값 5211)
-    port = int(os.environ.get('PORT', 5211))
+    # PORT 환경변수 지원 추가 (기본값 80)
+    port = int(os.environ.get('PORT', 80))
 
     serve(
         app,

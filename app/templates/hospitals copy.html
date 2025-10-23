@@ -1,0 +1,261 @@
+{% extends "base.html" %}
+
+{% block title %}병원 목록 - 보훈 병원 관리 시스템{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+{% endblock %}
+
+{% block content %}
+<div class="hospitals-page">
+    <!-- 연도별, 지자체별 위탁병원수 현황 차트 (Grafana 스타일) -->
+    <div class="chart-section grafana-style">
+        <div class="chart-header">
+            <h2>📊 연도별, 지자체별 위탁병원수 현황</h2>
+            <div class="chart-info">
+                <span class="data-source">📂 testdb.위탁병원현황_연도별현황</span>
+            </div>
+        </div>
+        
+        <!-- 파이 차트 3개 (연도별) -->
+        <div class="pie-charts-row">
+            <div class="pie-chart-card">
+                <h3>2022년도 파이 차트</h3>
+                <canvas id="pieChart2022"></canvas>
+            </div>
+            <div class="pie-chart-card">
+                <h3>2023년도 파이 차트</h3>
+                <canvas id="pieChart2023"></canvas>
+            </div>
+            <div class="pie-chart-card">
+                <h3>2024년도 파이 차트</h3>
+                <canvas id="pieChart2024"></canvas>
+            </div>
+        </div>
+        
+        <!-- 가로 막대 차트 (시군구별 위탁병원현황 현황 1) -->
+        <div class="bar-chart-container">
+            <h3>시군구별 위탁병원현황 현황 1</h3>
+            <canvas id="yearlyBarChart"></canvas>
+        </div>
+    </div>
+
+    <div class="hospitals-container">
+        <div class="hospitals-list">
+            <div class="list-header">
+                <h3>병원 목록</h3>
+                <span class="hospital-count">총 {{ hospitals|length }}개 병원</span>
+            </div>
+            
+            <div id="hospitalsList" class="hospitals-grid">
+                {% for hospital in hospitals %}
+                <div class="hospital-card" data-hospital-id="{{ hospital.hospital_id }}">
+                    <div class="hospital-info">
+                        <h4>{{ hospital.name }}</h4>
+                        <p class="address">{{ hospital.address }}</p>
+                        <div class="departments">
+                            {% for dept in hospital.medical_departments %}
+                                <span class="dept-tag">{{ dept }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="hospital-actions">
+                        <button class="btn-small btn-view" onclick="viewHospital({{ hospital.hospital_id }})">
+                            보기
+                        </button>
+                        <button class="btn-small btn-edit" onclick="editHospital({{ hospital.hospital_id }})">
+                            편집
+                        </button>
+                        <button class="btn-small btn-delete" onclick="deleteHospital({{ hospital.hospital_id }})">
+                            삭제
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="map-container">
+            <div id="hospitalMap" style="height: 600px;"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="/static/js/hospitals.js"></script>
+<script>
+// Grafana 스타일 차트 생성 (testdb.위탁병원현황_연도별현황 참조)
+document.addEventListener('DOMContentLoaded', async function() {
+    try {
+        // API에서 연도별 통계 데이터 가져오기
+        const response = await fetch('/api/statistics/yearly');
+        const result = await response.json();
+        
+        if (!result.success) {
+            console.error('데이터 로드 실패:', result.error);
+            return;
+        }
+        
+        const data = result.data;
+        console.log('📊 연도별 데이터:', data);
+        
+        // 데이터 가공
+        const provinceYearData = {};
+        const years = ['2022년12월', '2023년12월', '2024년12월'];
+        
+        data.forEach(row => {
+            const province = row['광역지자체'];
+            if (!province) return;
+            
+            provinceYearData[province] = {
+                '2022년12월': parseInt(row['2022년12월'] || 0),
+                '2023년12월': parseInt(row['2023년12월'] || 0),
+                '2024년12월': parseInt(row['2024년12월'] || 0)
+            };
+        });
+        
+        // 시도 정렬
+        const provinces = Object.keys(provinceYearData).sort((a, b) => {
+            const sumA = Object.values(provinceYearData[a]).reduce((sum, val) => sum + val, 0);
+            const sumB = Object.values(provinceYearData[b]).reduce((sum, val) => sum + val, 0);
+            return sumB - sumA;
+        });
+        
+        // === 파이 차트 색상 (Grafana 스타일) ===
+        const pieColors = [
+            '#FADE2A', '#73BF69', '#F2495C', '#5794F2', '#B877D9', '#FFA500',
+            '#FF69B4', '#1E90FF', '#32CD32', '#FFD700', '#FF6347', '#4682B4',
+            '#9370DB', '#20B2AA', '#FF4500', '#00CED1', '#FFB6C1'
+        ];
+        
+        // === 1. 파이 차트 3개 생성 ===
+        years.forEach((year, yearIndex) => {
+            const canvasId = `pieChart${year.substring(0, 4)}`;
+            const ctx = document.getElementById(canvasId);
+            if (!ctx) return;
+            
+            const yearData = provinces.map(p => provinceYearData[p][year]);
+            const total = yearData.reduce((sum, val) => sum + val, 0);
+            
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: provinces,
+                    datasets: [{
+                        data: yearData,
+                        backgroundColor: pieColors,
+                        borderColor: '#181B1F',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(23, 23, 23, 0.95)',
+                            titleColor: '#ffffff',
+                            bodyColor: '#d8d9da',
+                            borderColor: 'rgba(255, 255, 255, 0.1)',
+                            borderWidth: 1,
+                            padding: 12,
+                            callbacks: {
+                                label: (context) => {
+                                    const label = context.label || '';
+                                    const value = context.parsed || 0;
+                                    const percent = ((value / total) * 100).toFixed(1);
+                                    return `${label}: ${value}개 (${percent}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+        
+        // === 2. 가로 막대 차트 (시군구별 위탁병원현황 현황 1) ===
+        const barColors = [
+            { bg: 'rgba(115, 191, 105, 0.8)', border: 'rgba(115, 191, 105, 1)' },  // 초록
+            { bg: 'rgba(250, 222, 42, 0.8)', border: 'rgba(250, 222, 42, 1)' },     // 노랑
+            { bg: 'rgba(82, 148, 226, 0.8)', border: 'rgba(82, 148, 226, 1)' }      // 파랑
+        ];
+        
+        const datasets = years.map((year, index) => ({
+            label: `SUM(${year})`,
+            data: provinces.map(province => provinceYearData[province][year] || 0),
+            backgroundColor: barColors[index].bg,
+            borderColor: barColors[index].border,
+            borderWidth: 0,
+            barThickness: 8
+        }));
+        
+        const barCtx = document.getElementById('yearlyBarChart').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: provinces,
+                datasets: datasets
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: {
+                    padding: { left: 10, right: 20, top: 10, bottom: 10 }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        align: 'end',
+                        labels: {
+                            color: '#d8d9da',
+                            font: { size: 11, family: 'Roboto, sans-serif' },
+                            boxWidth: 12,
+                            boxHeight: 12,
+                            padding: 10
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(23, 23, 23, 0.95)',
+                        titleColor: '#ffffff',
+                        bodyColor: '#d8d9da',
+                        borderColor: 'rgba(255, 255, 255, 0.1)',
+                        borderWidth: 1,
+                        padding: 12,
+                        callbacks: {
+                            label: (context) => context.dataset.label + ': ' + context.parsed.x + '개'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(128, 128, 128, 0.15)', drawBorder: false },
+                        ticks: { color: '#d8d9da', font: { size: 11 }, stepSize: 20 },
+                        border: { display: false }
+                    },
+                    y: {
+                        grid: { display: false, drawBorder: false },
+                        ticks: { color: '#d8d9da', font: { size: 12, weight: '500' }, padding: 8 },
+                        border: { display: false }
+                    }
+                },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+        
+        console.log('✅ Grafana 스타일 차트 생성 완료!');
+    } catch (error) {
+        console.error('❌ 차트 생성 오류:', error);
+    }
+});
+</script>
+{% endblock %}

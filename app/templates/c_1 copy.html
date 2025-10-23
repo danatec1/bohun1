@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>chart 대시보드</title>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* 햄버거 버튼 */
+  .hamburger {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    cursor: pointer;
+    z-index: 100;
+  }
+
+  .bar {
+    width: 30px;
+    height: 4px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+
+  /* 버튼 애니메이션 */
+  .hamburger.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  /* 사이드바 */
+  .sidebar {
+    width: 300px;
+    background-color: #2c3e50;
+    color: white;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: -300px;
+    padding-top: 60px;
+    transition: 0.4s;
+  }
+
+  .sidebar.active {
+    left: 0;
+  }
+
+  .sidebar button {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    background: none;
+    border: none;
+    color: white;
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .sidebar button:hover {
+    background-color: #34495e;
+  }
+
+  /* 콘텐츠 영역 */
+  .content {
+    margin-left: 0;
+    padding: 40px;
+    flex: 1;
+    transition: margin-left 0.4s;
+  }
+
+  .sidebar.active ~ .content {
+    margin-left: 300px;
+  }
+
+  .content-section {
+    display: none;
+  }
+
+  .content-section.active {
+    display: block;
+  }
+  
+  iframe { width: 100%; border: none; border-radius: 5px; }
+
+</style>
+</head>
+<body>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <div class="sidebar" id="sidebar">
+    <button onclick="showSection('sec1')">📊 차트 3: 상관관계 분석</button>
+    <button onclick="showSection('sec2')">📈 차트 4: 연도별 월별 추이</button>
+    <button onclick="showSection('sec3')">📊 차트 5: 지역별 연도별</button>
+    <button onclick="showSection('sec4')">📊 차트 6: 지역별 이용 인원</button>
+    <button onclick="showSection('sec5')">🥧 차트 7: 연도별 비율</button>
+  </div>
+
+  <div class="content">
+    <div id="sec1" class="content-section active">
+      <h2>MySQL 실시간 데이터 기반 산점도 행렬 차트 (Scatter Matrix)</h2>
+      <p>지역별 병원 이용자 현황을 확인할 수 있습니다.</p>
+	   <iframe src="/chart3" height="850px"></iframe>
+    </div>
+
+    <div id="sec2" class="content-section">
+      <h2>MySQL 실시간 데이터 기반 연도별 비교 Area 차트</h2>
+      <p>2024년 상반기: 목표 대비 105% 달성</p>
+	   <iframe src="/chart4" height="650px"></iframe>
+    </div>
+
+    <div id="sec3" class="content-section">
+      <h2>실시간 데이터 기반 광역지자체별 연도별 그룹 막대 차트 (2023년3월~2025년4월)</h2>
+      <p>월별 평균 만족도 점수: 4.5 / 5.0</p>
+	   <iframe src="/chart5" height="650px"></iframe>
+    </div>
+    <div id="sec4" class="content-section">
+      <h2>광역지자체별 이용 인원</h2>
+      <p>MySQL 실시간 데이터 기반 Pivot 막대 차트 (2023년3월~2025년4월)</p>
+      <iframe src="/chart6" height="650px"></iframe>
+    </div>
+
+    <div id="sec5" class="content-section">
+      <h2>연도별 광역지자체별 위탁병원 이용 인원 비율</h2>
+      <p>MySQL 실시간 데이터 기반 연도별 파이차트 서브플롯 (2023년3월~2025년4월)</p>
+      <iframe src="/chart7" height="1050px"></iframe>
+    </div>
+  </div>
+
+<script>
+function toggleMenu() {
+  const sidebar = document.getElementById('sidebar');
+  const burger = document.querySelector('.hamburger');
+  sidebar.classList.toggle('active');
+  burger.classList.toggle('active');
+}
+
+function showSection(id) {
+  const sections = document.querySelectorAll('.content-section');
+  sections.forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+</script>
+
+</body>
+</html>

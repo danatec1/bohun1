@@ -3,7 +3,7 @@ Main Controller
 메인 페이지 관련 HTTP 요청을 처리하는 컨트롤러
 """
 
-from flask import render_template, redirect, url_for, session
+from flask import render_template
 from ..services.hospital_service import HospitalService
 
 class MainController:
@@ -11,11 +11,7 @@ class MainController:
         self.hospital_service = HospitalService()
         
     def index(self):
-        """메인 페이지 - 로그인하지 않은 경우 로그인 페이지로 리다이렉트"""
-        # 로그인 확인
-        if 'user_id' not in session:
-            return redirect(url_for('main.login'))
-        
+        """메인 페이지 - 누구나 접근 가능"""
         try:
             # 통계 데이터 수집
             hospitals = self.hospital_service.get_all_hospitals()

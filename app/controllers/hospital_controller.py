@@ -254,3 +254,31 @@ class HospitalController:
         except Exception as e:
             print(f"연도별 통계 조회 오류: {e}")
             return jsonify({'success': False, 'error': str(e)}), 500
+    
+    def get_yearly_total_trend(self):
+        """연도별 전체 합계 추세 데이터 조회 (Chart 2용)"""
+        try:
+            connection = pymysql.connect(**self.db_config)
+            with connection.cursor() as cursor:
+                sql = """
+                SELECT 
+                    SUM(`2022년12월`) as `2022`,
+                    SUM(`2023년12월`) as `2023`,
+                    SUM(`2024년12월`) as `2024`
+                FROM 위탁병원현황_연도별현황
+                """
+                cursor.execute(sql)
+                result = cursor.fetchone()
+                
+                # 데이터를 배열 형태로 변환
+                trend_data = [
+                    {'year': '2022년12월', 'total': result['2022'] if result['2022'] else 0},
+                    {'year': '2023년12월', 'total': result['2023'] if result['2023'] else 0},
+                    {'year': '2024년12월', 'total': result['2024'] if result['2024'] else 0}
+                ]
+                
+            connection.close()
+            return jsonify({'success': True, 'data': trend_data})
+        except Exception as e:
+            print(f"연도별 합계 조회 오류: {e}")
+            return jsonify({'success': False, 'error': str(e)}), 500

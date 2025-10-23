@@ -23,7 +23,7 @@ if __name__ == '__main__':
     
     app.run(
         host='0.0.0.0',
-        port=int(os.environ.get('PORT', 5211)),
+        port=int(os.environ.get('PORT', 5000)),  # 포트 80 → 5000으로 변경
         debug=debug,
         use_reloader=True,
         threaded=True

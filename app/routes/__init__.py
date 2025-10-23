@@ -3,7 +3,8 @@ Routes Configuration
 Flask 애플리케이션의 라우팅 설정
 """
 
-from flask import Blueprint
+from flask import Blueprint, send_from_directory, current_app, render_template
+import os
 from ..controllers.main_controller import MainController
 from ..controllers.hospital_controller import HospitalController
 from ..controllers.auth_controller import AuthController
@@ -44,6 +45,37 @@ def map_view():
 @main_bp.route('/folium-map')
 def folium_map():
     return main_controller.folium_map()
+
+# 차트 대시보드 페이지 (차트 3,4,5,6,7)
+@main_bp.route('/c')
+def chart_dashboard():
+    return render_template('c.html')
+
+# 차트 대시보드 페이지 (햄버거 메뉴 버전)
+@main_bp.route('/c1')
+def chart_dashboard_v2():
+    return render_template('c_1.html')
+
+# 차트 HTML 파일 라우트
+@main_bp.route('/chart3')
+def chart3():
+    return send_from_directory(os.path.join(current_app.root_path, '../public'), 'chart3_scatter_matrix.html')
+
+@main_bp.route('/chart4')
+def chart4():
+    return send_from_directory(os.path.join(current_app.root_path, '../public'), 'chart4_yearly_area.html')
+
+@main_bp.route('/chart5')
+def chart5():
+    return send_from_directory(os.path.join(current_app.root_path, '../public'), 'chart5_regional_bar.html')
+
+@main_bp.route('/chart6')
+def chart6():
+    return send_from_directory(os.path.join(current_app.root_path, '../public'), 'chart6_pivot_bar.html')
+
+@main_bp.route('/chart7')
+def chart7():
+    return send_from_directory(os.path.join(current_app.root_path, '../public'), 'chart7_pie_subplots.html')
 
 # 병원 CRUD 페이지
 @main_bp.route('/admin')
@@ -101,13 +133,60 @@ def api_export_excel():
 def api_yearly_statistics():
     return hospital_controller.get_yearly_statistics()
 
+@api_bp.route('/statistics/yearly-trend', methods=['GET'])
+def api_yearly_trend():
+    return hospital_controller.get_yearly_total_trend()
+
+# ============================================
+# React 차트 앱 라우트 (하이브리드 배포)
+# ============================================
+
+@main_bp.route('/charts')
+@main_bp.route('/charts/')
+def chart_app():
+    """React 차트 앱의 index.html 서빙"""
+    chart_app_dir = os.path.join(current_app.root_path, 'static', 'chart-app')
+    
+    # chart-app 폴더가 없으면 안내 페이지 표시
+    if not os.path.exists(chart_app_dir):
+        return '''
+        <html>
+        <head><title>차트 앱 설치 필요</title></head>
+        <body style="font-family: Arial; padding: 50px; text-align: center;">
+            <h1>🚀 React 차트 앱이 아직 설치되지 않았습니다</h1>
+            <p>다음 명령어를 실행하여 차트 앱을 빌드하고 배포하세요:</p>
+            <pre style="background: #f5f5f5; padding: 20px; border-radius: 5px; text-align: left; display: inline-block;">
+cd c:\\bohun1\\Chart
+npm run build
+Copy-Item -Path "dist\\*" -Destination "..\\app\\static\\chart-app\\" -Recurse -Force
+            </pre>
+            <p><a href="/">← 메인 페이지로 돌아가기</a></p>
+        </body>
+        </html>
+        ''', 404
+    
+    return send_from_directory(chart_app_dir, 'index.html')
+
+@main_bp.route('/charts/<path:path>')
+def serve_chart_assets(path):
+    """React 앱의 정적 파일들 서빙 (assets, data, Plotly HTML 등)"""
+    chart_app_dir = os.path.join(current_app.root_path, 'static', 'chart-app')
+    
+    # 파일이 존재하는지 확인
+    file_path = os.path.join(chart_app_dir, path)
+    if not os.path.exists(file_path):
+        return {'error': f'파일을 찾을 수 없습니다: {path}'}, 404
+    
+    return send_from_directory(chart_app_dir, path)
+
+# ============================================
+# 기존 생성된 HTML 파일 서빙
+# ============================================
+
 # 생성된 지도 HTML 파일 서빙
 @main_bp.route('/<path:filename>')
 def serve_generated_file(filename):
     """생성된 지도 HTML 파일 제공"""
-    from flask import send_from_directory
-    import os
-    
     # .html 파일만 허용
     if not filename.endswith('.html'):
         return {'error': '페이지를 찾을 수 없습니다'}, 404

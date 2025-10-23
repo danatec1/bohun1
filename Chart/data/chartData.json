@@ -1,0 +1,266 @@
+{
+  "chart1": {
+    "title": "보훈병원 사용 인원현황1",
+    "type": "image",
+    "image_path": "/data/images/1.JPG",
+    "description": "보훈병원 사용 인원현황 분석 차트"
+  },
+  "chart2": {
+    "title": "보훈병원 사용인원현황2",
+    "type": "image",
+    "image_path": "/data/images/2.JPG",
+    "description": "보훈병원 사용인원 상세 현황 차트"
+  },
+  "chart3": {
+    "title": "전국위탁병원 월별 평균이용 인원추이",
+    "type": "pie",
+    "image_path": "/data/images/3.JPG",
+    "data": [
+      {
+        "name": "경기도",
+        "value": 406649,
+        "percentage": 36.7,
+        "fill": "hsl(0, 70%, 50%)"
+      },
+      {
+        "name": "경남",
+        "value": 138747,
+        "percentage": 12.5,
+        "fill": "hsl(72, 70%, 50%)"
+      },
+      {
+        "name": "경북",
+        "value": 158115,
+        "percentage": 14.3,
+        "fill": "hsl(144, 70%, 50%)"
+      },
+      {
+        "name": "부산시",
+        "value": 134027,
+        "percentage": 12.1,
+        "fill": "hsl(216, 70%, 50%)"
+      },
+      {
+        "name": "서울시",
+        "value": 269607,
+        "percentage": 24.4,
+        "fill": "hsl(288, 70%, 50%)"
+      }
+    ]
+  },
+  "chart4": {
+    "title": "전국위탁병원 년도,년월상관관계분석",
+    "type": "area",
+    "image_path": "/data/images/4.JPG",
+    "data": [
+      {
+        "year": "2023년",
+        "total": 668208,
+        "count": 2260
+      },
+      {
+        "year": "2024년",
+        "total": 813452,
+        "count": 2679
+      },
+      {
+        "year": "2025년",
+        "total": 266114,
+        "count": 912
+      }
+    ]
+  },
+  "chart5": {
+    "title": "광역지자체별 연도별 위탁병원 이용인원 프로그램 결과",
+    "type": "radialBar",
+    "image_path": "/data/images/5.JPG",
+    "data": [
+      {
+        "name": "경기도",
+        "value": 406649,
+        "fill": "#8884d8"
+      },
+      {
+        "name": "서울시",
+        "value": 269607,
+        "fill": "#82ca9d"
+      },
+      {
+        "name": "경북",
+        "value": 158115,
+        "fill": "#ffc658"
+      },
+      {
+        "name": "경남",
+        "value": 138747,
+        "fill": "#ff7c7c"
+      },
+      {
+        "name": "부산시",
+        "value": 134027,
+        "fill": "#8dd1e1"
+      }
+    ]
+  },
+  "chart6": {
+    "title": "연도별 광역지자체 코드별 위탁병원이용 비율 파이차트 프로그램결과",
+    "type": "line",
+    "image_path": "/data/images/6.JPG",
+    "data": [
+      {
+        "date": "2023-03",
+        "users": 65083,
+        "year": 2023,
+        "month": 3
+      },
+      {
+        "date": "2023-04",
+        "users": 63783,
+        "year": 2023,
+        "month": 4
+      },
+      {
+        "date": "2023-05",
+        "users": 72917,
+        "year": 2023,
+        "month": 5
+      },
+      {
+        "date": "2023-06",
+        "users": 63897,
+        "year": 2023,
+        "month": 6
+      },
+      {
+        "date": "2023-07",
+        "users": 70486,
+        "year": 2023,
+        "month": 7
+      },
+      {
+        "date": "2023-08",
+        "users": 68175,
+        "year": 2023,
+        "month": 8
+      },
+      {
+        "date": "2023-09",
+        "users": 68342,
+        "year": 2023,
+        "month": 9
+      },
+      {
+        "date": "2023-10",
+        "users": 67103,
+        "year": 2023,
+        "month": 10
+      },
+      {
+        "date": "2023-11",
+        "users": 65104,
+        "year": 2023,
+        "month": 11
+      },
+      {
+        "date": "2023-12",
+        "users": 63318,
+        "year": 2023,
+        "month": 12
+      },
+      {
+        "date": "2024-01",
+        "users": 69629,
+        "year": 2024,
+        "month": 1
+      },
+      {
+        "date": "2024-02",
+        "users": 61651,
+        "year": 2024,
+        "month": 2
+      },
+      {
+        "date": "2024-03",
+        "users": 70520,
+        "year": 2024,
+        "month": 3
+      },
+      {
+        "date": "2024-04",
+        "users": 64267,
+        "year": 2024,
+        "month": 4
+      },
+      {
+        "date": "2024-05",
+        "users": 68090,
+        "year": 2024,
+        "month": 5
+      },
+      {
+        "date": "2024-06",
+        "users": 67261,
+        "year": 2024,
+        "month": 6
+      },
+      {
+        "date": "2024-07",
+        "users": 71978,
+        "year": 2024,
+        "month": 7
+      },
+      {
+        "date": "2024-08",
+        "users": 63992,
+        "year": 2024,
+        "month": 8
+      },
+      {
+        "date": "2024-09",
+        "users": 68296,
+        "year": 2024,
+        "month": 9
+      },
+      {
+        "date": "2024-10",
+        "users": 72151,
+        "year": 2024,
+        "month": 10
+      },
+      {
+        "date": "2024-11",
+        "users": 65112,
+        "year": 2024,
+        "month": 11
+      },
+      {
+        "date": "2024-12",
+        "users": 70505,
+        "year": 2024,
+        "month": 12
+      },
+      {
+        "date": "2025-01",
+        "users": 57770,
+        "year": 2025,
+        "month": 1
+      },
+      {
+        "date": "2025-02",
+        "users": 75080,
+        "year": 2025,
+        "month": 2
+      }
+    ]
+  },
+  "chart7": {
+    "title": "공백",
+    "type": "summary",
+    "data": {
+      "total_users": 1747774,
+      "total_regions": 17,
+      "avg_monthly": 67222,
+      "data_period": "2023-2025"
+    }
+  }
+}
