@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}병원 관리 - 보훈 병원 시스템{% endblock %}
+{% block title %}내 주변 위탁병원 찾기{% endblock %}
 
 {% block content %}
 <div class="crud-page">
     <div class="crud-header">
-        <h1>🏥 병원 정보 관리</h1>
-        <button class="btn btn-primary" onclick="openAddModal()">+ 새 병원 추가</button>
+        <h1>🏥 우리동네 위탁병원 찾기</h1>
+        <!-- <button class="btn btn-primary" onclick="openAddModal()">+ 새 병원 추가</button> -->
     </div>
 
     <!-- 검색 및 필터 -->
@@ -39,7 +39,7 @@
                     <th>진료과수</th>
                     <th>전화번호</th>
                     <th>주소</th>
-                    <th>작업</th>
+                    <!-- <th>작업</th> -->
                 </tr>
             </thead>
             <tbody id="hospitalTableBody">
@@ -511,7 +511,7 @@ async function loadHospitals() {
     } catch (error) {
         console.error('데이터 로드 실패:', error);
         document.getElementById('hospitalTableBody').innerHTML = `
-            <tr><td colspan="9" class="no-data">
+            <tr><td colspan="8" class="no-data">
                 <h3>❌ 데이터를 불러올 수 없습니다</h3>
                 <p>${error.message}</p>
             </td></tr>
@@ -528,7 +528,7 @@ function renderTable() {
     
     if (pageData.length === 0) {
         tbody.innerHTML = `
-            <tr><td colspan="9" class="no-data">
+            <tr><td colspan="8" class="no-data">
                 <h3>📋 등록된 병원이 없습니다</h3>
                 <p>새 병원 추가 버튼을 클릭하여 병원을 등록하세요</p>
             </td></tr>
@@ -546,10 +546,10 @@ function renderTable() {
             <td>${hospital.진료과수}과</td>
             <td>${hospital.전화번호}</td>
             <td>${hospital.주소}</td>
-            <td class="action-buttons">
+            <!-- <td class="action-buttons">
                 <button class="btn btn-success btn-small" onclick="editHospital(${hospital.연번})">수정</button>
                 <button class="btn btn-danger btn-small" onclick="openDeleteModal(${hospital.연번})">삭제</button>
-            </td>
+            </td> -->
         </tr>
     `).join('');
     
