@@ -239,29 +239,152 @@ class FoliumMapService:
         if not filtered_hospitals:
             return None
         
-        # 첫 번째 병원 위치를 중심으로 설정
-        first_hospital = filtered_hospitals[0]
-        center_lat = first_hospital.latitude or 36.5
-        center_lng = first_hospital.longitude or 127.5
+        # 지역별 중심 좌표 및 줌 레벨 설정
+        region_centers = {
+            '서울': (37.5665, 126.9780, 11),
+            '부산': (35.1796, 129.0756, 11),
+            '대구': (35.8714, 128.6014, 11),
+            '인천': (37.4563, 126.7052, 11),
+            '광주': (35.1595, 126.8526, 11),
+            '대전': (36.3504, 127.3845, 11),
+            '울산': (35.5384, 129.3114, 11),
+            '세종': (36.4800, 127.2890, 11),
+            '경기': (37.4138, 127.5183, 9),
+            '강원': (37.8228, 128.1555, 9),
+            '충북': (36.8000, 127.7000, 9),
+            '충남': (36.5184, 126.8000, 9),
+            '전북': (35.7175, 127.1530, 9),
+            '전남': (34.8679, 126.9910, 9),
+            '경북': (36.4919, 128.8889, 9),
+            '경남': (35.4606, 128.2132, 9),
+            '제주': (33.4890, 126.4983, 10)
+        }
+        
+        # 지역에 맞는 중심 좌표와 줌 레벨 가져오기
+        if region and region in region_centers:
+            center_lat, center_lng, zoom_level = region_centers[region]
+        else:
+            # 필터링된 병원들의 평균 위치 계산
+            valid_hospitals = [h for h in filtered_hospitals 
+                             if h.latitude and h.longitude]
+            if valid_hospitals:
+                center_lat = sum(h.latitude for h in valid_hospitals) / len(valid_hospitals)
+                center_lng = sum(h.longitude for h in valid_hospitals) / len(valid_hospitals)
+                zoom_level = 10
+            else:
+                center_lat, center_lng, zoom_level = 36.5, 127.5, 7
         
         # 지도 생성
         m = folium.Map(
             location=[center_lat, center_lng],
-            zoom_start=10,
-            tiles='OpenStreetMap'
+            zoom_start=zoom_level,
+            tiles='OpenStreetMap',
+            attr='OpenStreetMap',
+            prefer_canvas=True
         )
         
-        # 병원 마커 추가
+        # 다양한 타일 레이어 추가
+        folium.TileLayer(
+            tiles='https://map.vworld.kr/tile/Base/{z}/{x}/{y}.png',
+            attr='VWorld 한국지도',
+            name='VWorld 기본지도 (한글)',
+            overlay=False,
+            control=True,
+            show=False
+        ).add_to(m)
+        
+        # 종별 FeatureGroup 생성
+        feature_groups = {
+            '종합병원': folium.FeatureGroup(name='종합병원', show=True),
+            '병원': folium.FeatureGroup(name='병원', show=True),
+            '의원': folium.FeatureGroup(name='의원', show=True),
+            '요양병원': folium.FeatureGroup(name='요양병원', show=True)
+        }
+        
+        # 병원 마커 추가 및 통계
+        hospital_count = 0
+        type_stats = {
+            '종합병원': 0,
+            '병원': 0,
+            '의원': 0,
+            '요양병원': 0,
+            '기타': 0
+        }
+        
         for hospital in filtered_hospitals:
             if hospital.latitude and hospital.longitude:
                 popup_html = self._create_popup_html(hospital)
                 
-                folium.Marker(
+                # 종별 확인
+                hospital_type = hospital.hospital_type if hasattr(hospital, 'hospital_type') else '기타'
+                
+                # 통계 업데이트
+                if hospital_type in type_stats:
+                    type_stats[hospital_type] += 1
+                else:
+                    type_stats['기타'] += 1
+                
+                # 마커 색상 및 아이콘
+                marker_color = self._get_type_marker_color(hospital_type)
+                marker_icon = self._get_type_marker_icon(hospital_type)
+                
+                marker = folium.Marker(
                     location=[hospital.latitude, hospital.longitude],
                     popup=folium.Popup(popup_html, max_width=300),
-                    tooltip=hospital.name,
-                    icon=folium.Icon(color='red', icon='plus')
-                ).add_to(m)
+                    tooltip=f"{hospital.name} ({hospital_type})",
+                    icon=folium.Icon(
+                        color=marker_color,
+                        icon=marker_icon,
+                        prefix='fa',
+                        icon_color='white'
+                    )
+                )
+                
+                # FeatureGroup에 추가
+                if hospital_type in feature_groups:
+                    marker.add_to(feature_groups[hospital_type])
+                else:
+                    marker.add_to(m)
+                
+                hospital_count += 1
+        
+        # FeatureGroup을 지도에 추가
+        for group in feature_groups.values():
+            group.add_to(m)
+        
+        # 레이어 컨트롤 추가
+        folium.LayerControl(position='topright', collapsed=False).add_to(m)
+        
+        # 정보 패널 추가
+        region_text = f" - {region}" if region else ""
+        info_html = f"""
+        <div style="position: fixed; 
+                    top: 10px; left: 50px; width: 280px; 
+                    background-color: white; border:2px solid grey; z-index:9999; 
+                    font-size:13px; padding: 12px; border-radius: 8px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+        <h4 style="margin: 0 0 10px 0;">🏥 위탁병원 지도{region_text}</h4>
+        <p style="margin: 5px 0;"><strong>총 병원 수:</strong> {hospital_count}개</p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 5px 0; font-weight: bold;">📍 종별 현황:</p>
+        <p style="margin: 3px 0;">
+            <span style="color: #d63333; font-weight: bold;">●</span> 종합병원: {type_stats['종합병원']}개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #3498db; font-weight: bold;">●</span> 병원: {type_stats['병원']}개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #38a169; font-weight: bold;">●</span> 의원: {type_stats['의원']}개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #ff8c00; font-weight: bold;">●</span> 요양병원: {type_stats['요양병원']}개
+        </p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 5px 0; font-size: 11px; color: #666;">
+        생성: {datetime.now().strftime('%Y-%m-%d %H:%M')}</p>
+        </div>
+        """
+        m.get_root().html.add_child(folium.Element(info_html))
         
         # 파일 저장
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')

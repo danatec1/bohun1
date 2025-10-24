@@ -193,24 +193,44 @@ class HospitalController:
     def generate_folium_map(self):
         """Folium을 사용한 지도 생성"""
         try:
+            from flask import request
+            
+            # 지역 파라미터 가져오기
+            region = request.args.get('region', '').strip()
+            
             map_service = FoliumMapService()
-            filepath = map_service.create_hospital_map()
+            
+            # 지역별 또는 전국 지도 생성
+            if region:
+                filepath = map_service.create_region_map(region)
+                if not filepath:
+                    return jsonify({
+                        'success': False,
+                        'error': f'{region} 지역의 병원 데이터가 없습니다.'
+                    }), 404
+            else:
+                filepath = map_service.create_hospital_map()
+            
             filename = os.path.basename(filepath)
             
-            # 병원 수 계산
+            # 병원 수 계산 (지역별 필터링 적용)
             hospitals = self.service.get_all_hospitals()
-            hospital_count = len(hospitals)
+            if region:
+                hospital_count = sum(1 for h in hospitals if region in h.address)
+            else:
+                hospital_count = len(hospitals)
             
             # 파일을 URL 경로로 변환 (파일명만 사용)
             map_url = f'/{filename}'
             
             return jsonify({
                 'success': True,
-                'message': '지도가 성공적으로 생성되었습니다.',
+                'message': f'지도가 성공적으로 생성되었습니다. ({region if region else "전국"})',
                 'filepath': filepath,
                 'filename': filename,
                 'map_url': map_url,
-                'hospital_count': hospital_count
+                'hospital_count': hospital_count,
+                'region': region
             })
         except Exception as e:
             return jsonify({

@@ -9,6 +9,28 @@
             <h2>🗺️ 위탁병원 지도</h2>
             <span id="mapStatus" class="status">지도 생성 대기 중</span>
         </div>
+        <div class="header-right">
+            <select id="regionFilter" class="region-select" onchange="filterByRegion()">
+                <option value="">🇰🇷 전국 보기</option>
+                <option value="서울">서울특별시</option>
+                <option value="부산">부산광역시</option>
+                <option value="대구">대구광역시</option>
+                <option value="인천">인천광역시</option>
+                <option value="광주">광주광역시</option>
+                <option value="대전">대전광역시</option>
+                <option value="울산">울산광역시</option>
+                <option value="세종">세종특별자치시</option>
+                <option value="경기">경기도</option>
+                <option value="강원">강원특별자치도</option>
+                <option value="충북">충청북도</option>
+                <option value="충남">충청남도</option>
+                <option value="전북">전북특별자치도</option>
+                <option value="전남">전라남도</option>
+                <option value="경북">경상북도</option>
+                <option value="경남">경상남도</option>
+                <option value="제주">제주특별자치도</option>
+            </select>
+        </div>
     </div>
     
     <div class="map-container">
@@ -72,6 +94,36 @@
     display: flex;
     align-items: center;
     gap: 15px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.region-select {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.95);
+    color: #764ba2;
+    font-weight: 600;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.region-select:hover {
+    background: white;
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.region-select:focus {
+    border-color: white;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
 }
 
 .page-header h1,
@@ -186,16 +238,20 @@
 
 <script>
 let mapGenerated = false;
+let currentRegion = '';
 
-async function generateMap() {
+async function generateMap(region = '') {
     const container = document.getElementById('foliumMapContainer');
     const status = document.getElementById('mapStatus');
     
     try {
-        status.textContent = '지도 생성 중...';
+        const regionText = region ? ` (${region})` : '';
+        status.textContent = `지도 생성 중${regionText}...`;
         container.classList.add('loading');
         
-        const response = await fetch('/api/map/folium');
+        // 지역 파라미터를 쿼리스트링으로 추가
+        const url = region ? `/api/map/folium?region=${encodeURIComponent(region)}` : '/api/map/folium';
+        const response = await fetch(url);
         
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}`);
@@ -213,10 +269,12 @@ async function generateMap() {
                 </iframe>
             `;
             
-            status.textContent = `지도 생성 완료! (${result.hospital_count}개 병원)`;
-            document.getElementById('hospitalCount').textContent = result.hospital_count;
+            const regionDisplay = region ? ` - ${region}` : '';
+            status.textContent = `지도 생성 완료${regionDisplay}! (${result.hospital_count}개 병원)`;
+            document.getElementById('hospitalCount').textContent = result.hospital_count + '개';
             document.getElementById('lastUpdate').textContent = new Date().toLocaleString();
             mapGenerated = true;
+            currentRegion = region;
         } else {
             throw new Error(result.error || '지도 생성 실패');
         }
@@ -229,7 +287,7 @@ async function generateMap() {
                 <div class="placeholder-content">
                     <h3>❌ 지도 생성 실패</h3>
                     <p>${error.message}</p>
-                    <button class="btn btn-primary" onclick="generateMap()">
+                    <button class="btn btn-primary" onclick="generateMap('${region}')">
                         다시 시도
                     </button>
                 </div>
@@ -240,9 +298,20 @@ async function generateMap() {
     }
 }
 
+function filterByRegion() {
+    const select = document.getElementById('regionFilter');
+    const region = select.value;
+    
+    console.log('지역 필터 변경:', region || '전국');
+    
+    // 지도 재생성
+    generateMap(region);
+}
+
 // 페이지 로드 시 자동으로 지도 생성
 document.addEventListener('DOMContentLoaded', function() {
     console.log('위탁병원 지도 페이지 로드됨');
+    // 초기 로드는 버튼 클릭 방식 유지
 });
 </script>
 {% endblock %}
