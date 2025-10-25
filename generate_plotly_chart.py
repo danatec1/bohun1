@@ -406,7 +406,7 @@ def create_pivot_bar_chart(df):
             x=1
         ),
         height=600,
-        width=1100,
+        width=1200,
         hovermode='closest'
     )
     
@@ -461,7 +461,7 @@ def create_yearly_pie_subplots(df):
     fig.update_layout(
         title='연도별 광역지자체코드별 위탁병원 이용 인원 비율 파이차트(이용 기간 : 2023년3월 ~ 2025년4월)',
         height=1000,
-        width=1000
+        width=1200
     )
     
     return fig
