@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_1dbbd8c791897e9ce2b0b806bab7824b {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <div style="position: fixed; 
+                    top: 10px; left: 50px; width: 280px; 
+                    background-color: white; border:2px solid grey; z-index:9999; 
+                    font-size:13px; padding: 12px; border-radius: 8px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+        <h4 style="margin: 0 0 10px 0;">🏥 위탁병원 지도 - 경남</h4>
+        <p style="margin: 5px 0;"><strong>총 병원 수:</strong> 2개</p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 5px 0; font-weight: bold;">📍 종별 현황:</p>
+        <p style="margin: 3px 0;">
+            <span style="color: #d63333; font-weight: bold;">●</span> 종합병원: 0개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #3498db; font-weight: bold;">●</span> 병원: 1개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #38a169; font-weight: bold;">●</span> 의원: 1개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #ff8c00; font-weight: bold;">●</span> 요양병원: 0개
+        </p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 5px 0; font-size: 11px; color: #666;">
+        생성: 2025-10-24 16:31</p>
+        </div>
+        
+    
+            <div class="folium-map" id="map_1dbbd8c791897e9ce2b0b806bab7824b" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_1dbbd8c791897e9ce2b0b806bab7824b = L.map(
+                "map_1dbbd8c791897e9ce2b0b806bab7824b",
+                {
+                    center: [35.4606, 128.2132],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 9,
+  "zoomControl": true,
+  "preferCanvas": true,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_66842f069ced28e42c458a2d2acf23e1 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "OpenStreetMap",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_66842f069ced28e42c458a2d2acf23e1.addTo(map_1dbbd8c791897e9ce2b0b806bab7824b);
+        
+    
+            var tile_layer_65c60e4a1e440ec172004b38a894f1ec = L.tileLayer(
+                "https://map.vworld.kr/tile/Base/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "VWorld \ud55c\uad6d\uc9c0\ub3c4",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var feature_group_4f884b0adc0b38f445853c3b36124682 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            feature_group_4f884b0adc0b38f445853c3b36124682.addTo(map_1dbbd8c791897e9ce2b0b806bab7824b);
+        
+    
+            var feature_group_55747eb4c721cd7b7945bfa67e9eeba5 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_3e91036461d82dfe2d87784a15ba3fa0 = L.marker(
+                [34.86997319, 128.4155098],
+                {
+}
+            ).addTo(feature_group_55747eb4c721cd7b7945bfa67e9eeba5);
+        
+    
+            var icon_bb83c681a599904db4b84aae91c7535c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2df6f80f64e3ef4dabbf2e8da2979be5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_07998c8be168c1a768cecc9244f1176e = $(`<div id="html_07998c8be168c1a768cecc9244f1176e" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 (의)학산의료재단아라한국병원</h4>             <p><strong>📍 주소:</strong><br>경남 함안군 산인면 학산2길 17-50 경상남도 통영시 남해안대로 857 (광도면)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 200병상 | 진료과수: 11과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 34.869973<br>                경도: 128.415510             </p>         </div>         </div>`)[0];
+                popup_2df6f80f64e3ef4dabbf2e8da2979be5.setContent(html_07998c8be168c1a768cecc9244f1176e);
+            
+        
+
+        marker_3e91036461d82dfe2d87784a15ba3fa0.bindPopup(popup_2df6f80f64e3ef4dabbf2e8da2979be5)
+        ;
+
+        
+    
+    
+            marker_3e91036461d82dfe2d87784a15ba3fa0.bindTooltip(
+                `<div>
+                     (의)학산의료재단아라한국병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3e91036461d82dfe2d87784a15ba3fa0.setIcon(icon_bb83c681a599904db4b84aae91c7535c);
+            
+    
+            feature_group_55747eb4c721cd7b7945bfa67e9eeba5.addTo(map_1dbbd8c791897e9ce2b0b806bab7824b);
+        
+    
+            var feature_group_c306077e8d43a5c6ba36bb344fb3aaad = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_b8399c93ebc3209fbb5a2670ad1d2d11 = L.marker(
+                [35.84278073, 129.2066787],
+                {
+}
+            ).addTo(feature_group_c306077e8d43a5c6ba36bb344fb3aaad);
+        
+    
+            var icon_4b4751cfeb488ab6a6179a9fe6cd68a1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_931a8ed972fa8a3c0e460a72f0141750 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3c5c5c2fbf9a8038c41b4e504f83c3d2 = $(`<div id="html_3c5c5c2fbf9a8038c41b4e504f83c3d2" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 서울안과</h4>             <p><strong>📍 주소:</strong><br>하동읍 중앙로 15 2층(경남은행) 경상북도 경주시 금성로 281 (성건동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.842781<br>                경도: 129.206679             </p>         </div>         </div>`)[0];
+                popup_931a8ed972fa8a3c0e460a72f0141750.setContent(html_3c5c5c2fbf9a8038c41b4e504f83c3d2);
+            
+        
+
+        marker_b8399c93ebc3209fbb5a2670ad1d2d11.bindPopup(popup_931a8ed972fa8a3c0e460a72f0141750)
+        ;
+
+        
+    
+    
+            marker_b8399c93ebc3209fbb5a2670ad1d2d11.bindTooltip(
+                `<div>
+                     서울안과 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b8399c93ebc3209fbb5a2670ad1d2d11.setIcon(icon_4b4751cfeb488ab6a6179a9fe6cd68a1);
+            
+    
+            feature_group_c306077e8d43a5c6ba36bb344fb3aaad.addTo(map_1dbbd8c791897e9ce2b0b806bab7824b);
+        
+    
+            var feature_group_a29a581937dd065f34c3272098f053a5 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            feature_group_a29a581937dd065f34c3272098f053a5.addTo(map_1dbbd8c791897e9ce2b0b806bab7824b);
+        
+    
+            var layer_control_773c368b3a7932aa1cae8617c62bcfde_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_66842f069ced28e42c458a2d2acf23e1,
+                    "VWorld \uae30\ubcf8\uc9c0\ub3c4 (\ud55c\uae00)" : tile_layer_65c60e4a1e440ec172004b38a894f1ec,
+                },
+                overlays :  {
+                    "\uc885\ud569\ubcd1\uc6d0" : feature_group_4f884b0adc0b38f445853c3b36124682,
+                    "\ubcd1\uc6d0" : feature_group_55747eb4c721cd7b7945bfa67e9eeba5,
+                    "\uc758\uc6d0" : feature_group_c306077e8d43a5c6ba36bb344fb3aaad,
+                    "\uc694\uc591\ubcd1\uc6d0" : feature_group_a29a581937dd065f34c3272098f053a5,
+                },
+            };
+            let layer_control_773c368b3a7932aa1cae8617c62bcfde = L.control.layers(
+                layer_control_773c368b3a7932aa1cae8617c62bcfde_layers.base_layers,
+                layer_control_773c368b3a7932aa1cae8617c62bcfde_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_1dbbd8c791897e9ce2b0b806bab7824b);
+
+        
+</script>
+</html>

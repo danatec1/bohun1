@@ -1,0 +1,2893 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_8b929ec2503d0f0b48b493b7e783f8b5 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <div style="position: fixed; 
+                    top: 10px; left: 50px; width: 280px; 
+                    background-color: white; border:2px solid grey; z-index:9999; 
+                    font-size:13px; padding: 12px; border-radius: 8px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+        <h4 style="margin: 0 0 10px 0;">🏥 위탁병원 지도 - 부산</h4>
+        <p style="margin: 5px 0;"><strong>총 병원 수:</strong> 56개</p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 5px 0; font-weight: bold;">📍 종별 현황:</p>
+        <p style="margin: 3px 0;">
+            <span style="color: #d63333; font-weight: bold;">●</span> 종합병원: 0개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #3498db; font-weight: bold;">●</span> 병원: 7개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #38a169; font-weight: bold;">●</span> 의원: 48개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #ff8c00; font-weight: bold;">●</span> 요양병원: 1개
+        </p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 5px 0; font-size: 11px; color: #666;">
+        생성: 2025-10-24 16:27</p>
+        </div>
+        
+    
+            <div class="folium-map" id="map_8b929ec2503d0f0b48b493b7e783f8b5" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_8b929ec2503d0f0b48b493b7e783f8b5 = L.map(
+                "map_8b929ec2503d0f0b48b493b7e783f8b5",
+                {
+                    center: [35.1796, 129.0756],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": true,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a589fab96cd4181e3f6e130db791f583 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "OpenStreetMap",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_a589fab96cd4181e3f6e130db791f583.addTo(map_8b929ec2503d0f0b48b493b7e783f8b5);
+        
+    
+            var tile_layer_e5028f594c414d8137a8def22e5eb9b2 = L.tileLayer(
+                "https://map.vworld.kr/tile/Base/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "VWorld \ud55c\uad6d\uc9c0\ub3c4",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var feature_group_73f82602934692ba8eaba0b161e7ed50 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            feature_group_73f82602934692ba8eaba0b161e7ed50.addTo(map_8b929ec2503d0f0b48b493b7e783f8b5);
+        
+    
+            var feature_group_a174498fcd152a7db219e8cee6d7bad4 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_2952a0a49ca4502dfba206f9b8483adc = L.marker(
+                [35.20123462, 129.0876627],
+                {
+}
+            ).addTo(feature_group_a174498fcd152a7db219e8cee6d7bad4);
+        
+    
+            var icon_df2db6e4c407727e9f960b3f17f31d88 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6b2acfea0b33022b24f8a5ac2caf2746 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_881f7014cf92b0071b74d73657991235 = $(`<div id="html_881f7014cf92b0071b74d73657991235" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 기장병원</h4>             <p><strong>📍 주소:</strong><br>기장읍 대청로72번길 6 부산광역시 동래구 충렬대로 259 (낙민동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 190병상 | 진료과수: 8과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.201235<br>                경도: 129.087663             </p>         </div>         </div>`)[0];
+                popup_6b2acfea0b33022b24f8a5ac2caf2746.setContent(html_881f7014cf92b0071b74d73657991235);
+            
+        
+
+        marker_2952a0a49ca4502dfba206f9b8483adc.bindPopup(popup_6b2acfea0b33022b24f8a5ac2caf2746)
+        ;
+
+        
+    
+    
+            marker_2952a0a49ca4502dfba206f9b8483adc.bindTooltip(
+                `<div>
+                     기장병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2952a0a49ca4502dfba206f9b8483adc.setIcon(icon_df2db6e4c407727e9f960b3f17f31d88);
+            
+    
+            var marker_2178fa64df223a5997fbd3fc68231513 = L.marker(
+                [35.18671651, 129.0820685],
+                {
+}
+            ).addTo(feature_group_a174498fcd152a7db219e8cee6d7bad4);
+        
+    
+            var icon_5814cbf183e3ef986dce0da1abd333c2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_92a9a62ae582aa3a1cb1d908b2b44232 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_171d640bd459ce8368e2d490f1733769 = $(`<div id="html_171d640bd459ce8368e2d490f1733769" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 (의)상원의료재단 부산힘찬병원</h4>             <p><strong>📍 주소:</strong><br>충렬대로 255 (수안동) 부산광역시 연제구 반송로 5 (연산동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 145병상 | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.186717<br>                경도: 129.082068             </p>         </div>         </div>`)[0];
+                popup_92a9a62ae582aa3a1cb1d908b2b44232.setContent(html_171d640bd459ce8368e2d490f1733769);
+            
+        
+
+        marker_2178fa64df223a5997fbd3fc68231513.bindPopup(popup_92a9a62ae582aa3a1cb1d908b2b44232)
+        ;
+
+        
+    
+    
+            marker_2178fa64df223a5997fbd3fc68231513.bindTooltip(
+                `<div>
+                     (의)상원의료재단 부산힘찬병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2178fa64df223a5997fbd3fc68231513.setIcon(icon_5814cbf183e3ef986dce0da1abd333c2);
+            
+    
+            var marker_5d12cc8e5a00590bf8eb723d5728c5ee = L.marker(
+                [35.13465671, 129.0916536],
+                {
+}
+            ).addTo(feature_group_a174498fcd152a7db219e8cee6d7bad4);
+        
+    
+            var icon_bebd7fd7014e46ad8da0fe06ece7d4c7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d5729d3f4f4af7b0da3f8657adce8e63 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_932f84ec57e747bb78c8003cffbb5b7f = $(`<div id="html_932f84ec57e747bb78c8003cffbb5b7f" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 구포부민병원</h4>             <p><strong>📍 주소:</strong><br>사상로 607 부산광역시 남구 유엔평화로 4 (대연동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 162병상 | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.134657<br>                경도: 129.091654             </p>         </div>         </div>`)[0];
+                popup_d5729d3f4f4af7b0da3f8657adce8e63.setContent(html_932f84ec57e747bb78c8003cffbb5b7f);
+            
+        
+
+        marker_5d12cc8e5a00590bf8eb723d5728c5ee.bindPopup(popup_d5729d3f4f4af7b0da3f8657adce8e63)
+        ;
+
+        
+    
+    
+            marker_5d12cc8e5a00590bf8eb723d5728c5ee.bindTooltip(
+                `<div>
+                     구포부민병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5d12cc8e5a00590bf8eb723d5728c5ee.setIcon(icon_bebd7fd7014e46ad8da0fe06ece7d4c7);
+            
+    
+            var marker_a50df2420a02a2848acbc5d2b9d9c7ca = L.marker(
+                [35.09614614, 129.0241147],
+                {
+}
+            ).addTo(feature_group_a174498fcd152a7db219e8cee6d7bad4);
+        
+    
+            var icon_aad93c2706331889b6a0afaf4cf52fe7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a02d8597b9b5c09d58e5e485d3a56679 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c74f54d077a910bf950ee6910143c13a = $(`<div id="html_c74f54d077a910bf950ee6910143c13a" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 중앙U병원</h4>             <p><strong>📍 주소:</strong><br>감천로 59 (감천동) 부산광역시 서구 구덕로 109 (충무동1가)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 143병상 | 진료과수: 7과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.096146<br>                경도: 129.024115             </p>         </div>         </div>`)[0];
+                popup_a02d8597b9b5c09d58e5e485d3a56679.setContent(html_c74f54d077a910bf950ee6910143c13a);
+            
+        
+
+        marker_a50df2420a02a2848acbc5d2b9d9c7ca.bindPopup(popup_a02d8597b9b5c09d58e5e485d3a56679)
+        ;
+
+        
+    
+    
+            marker_a50df2420a02a2848acbc5d2b9d9c7ca.bindTooltip(
+                `<div>
+                     중앙U병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a50df2420a02a2848acbc5d2b9d9c7ca.setIcon(icon_aad93c2706331889b6a0afaf4cf52fe7);
+            
+    
+            var marker_abfd54375e35697bff4772adf4f798c0 = L.marker(
+                [35.04856813, 128.9653682],
+                {
+}
+            ).addTo(feature_group_a174498fcd152a7db219e8cee6d7bad4);
+        
+    
+            var icon_894304da71a6a920dfb82738aa3e84f9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7a9b96f5bcf14bd39dd4fd3ac084c088 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_be9e9e04ad94dfc2ce9c899eb96ce2cb = $(`<div id="html_be9e9e04ad94dfc2ce9c899eb96ce2cb" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 메트로적추병원</h4>             <p><strong>📍 주소:</strong><br>수영로 390-1 부산광역시 사하구 다대로 698 (다대동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 58병상 | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.048568<br>                경도: 128.965368             </p>         </div>         </div>`)[0];
+                popup_7a9b96f5bcf14bd39dd4fd3ac084c088.setContent(html_be9e9e04ad94dfc2ce9c899eb96ce2cb);
+            
+        
+
+        marker_abfd54375e35697bff4772adf4f798c0.bindPopup(popup_7a9b96f5bcf14bd39dd4fd3ac084c088)
+        ;
+
+        
+    
+    
+            marker_abfd54375e35697bff4772adf4f798c0.bindTooltip(
+                `<div>
+                     메트로적추병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_abfd54375e35697bff4772adf4f798c0.setIcon(icon_894304da71a6a920dfb82738aa3e84f9);
+            
+    
+            var marker_3a7235e51928e1b3b9b80d3bb408283f = L.marker(
+                [35.18514023, 129.1214509],
+                {
+}
+            ).addTo(feature_group_a174498fcd152a7db219e8cee6d7bad4);
+        
+    
+            var icon_ce342aa68ca80992fca204671cde7309 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c0a8adbf8bd37ed76358707651eb1f10 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_43e1fd3a013fd860cdb4249deba0bf02 = $(`<div id="html_43e1fd3a013fd860cdb4249deba0bf02" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 효성시티병원</h4>             <p><strong>📍 주소:</strong><br>해운대로 135(재송동) 부산광역시 해운대구 해운대로 135 (재송동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 149병상 | 진료과수: 11과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.185140<br>                경도: 129.121451             </p>         </div>         </div>`)[0];
+                popup_c0a8adbf8bd37ed76358707651eb1f10.setContent(html_43e1fd3a013fd860cdb4249deba0bf02);
+            
+        
+
+        marker_3a7235e51928e1b3b9b80d3bb408283f.bindPopup(popup_c0a8adbf8bd37ed76358707651eb1f10)
+        ;
+
+        
+    
+    
+            marker_3a7235e51928e1b3b9b80d3bb408283f.bindTooltip(
+                `<div>
+                     효성시티병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3a7235e51928e1b3b9b80d3bb408283f.setIcon(icon_ce342aa68ca80992fca204671cde7309);
+            
+    
+            var marker_23da9b6251734566d7c6a40eecfe750c = L.marker(
+                [35.2115306, 129.0606704],
+                {
+}
+            ).addTo(feature_group_a174498fcd152a7db219e8cee6d7bad4);
+        
+    
+            var icon_366d41467bca2680249cc680658e7459 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1aee64001e7a9dfcdaaa6ebf51c60c6a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a381364fdc1a7dd84f025bf69c7eec6b = $(`<div id="html_a381364fdc1a7dd84f025bf69c7eec6b" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 강서힘찬병원</h4>             <p><strong>📍 주소:</strong><br>강서로56길 38 (등촌동) 부산광역시</p>             <p><strong>🏥 규모:</strong><br>                병상수: 119병상 | 진료과수: 9과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.211531<br>                경도: 129.060670             </p>         </div>         </div>`)[0];
+                popup_1aee64001e7a9dfcdaaa6ebf51c60c6a.setContent(html_a381364fdc1a7dd84f025bf69c7eec6b);
+            
+        
+
+        marker_23da9b6251734566d7c6a40eecfe750c.bindPopup(popup_1aee64001e7a9dfcdaaa6ebf51c60c6a)
+        ;
+
+        
+    
+    
+            marker_23da9b6251734566d7c6a40eecfe750c.bindTooltip(
+                `<div>
+                     강서힘찬병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_23da9b6251734566d7c6a40eecfe750c.setIcon(icon_366d41467bca2680249cc680658e7459);
+            
+    
+            feature_group_a174498fcd152a7db219e8cee6d7bad4.addTo(map_8b929ec2503d0f0b48b493b7e783f8b5);
+        
+    
+            var feature_group_870b932f031692acbc82195a5c80ab59 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_2396b37c5c8348790ac088250d7d245c = L.marker(
+                [35.1351007, 129.0857773],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_b0051898d918fbc17ec1977f13da3fcd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3ad10cbf26530b8ee4ce502ec2be3503 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_243c929e9e72b9abf868b3a84bd34408 = $(`<div id="html_243c929e9e72b9abf868b3a84bd34408" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 신선정형외과의원</h4>             <p><strong>📍 주소:</strong><br>관저중로 72 (관저동) 4층 신선정형외과 부산광역시 남구 수영로 175 (대연동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.135101<br>                경도: 129.085777             </p>         </div>         </div>`)[0];
+                popup_3ad10cbf26530b8ee4ce502ec2be3503.setContent(html_243c929e9e72b9abf868b3a84bd34408);
+            
+        
+
+        marker_2396b37c5c8348790ac088250d7d245c.bindPopup(popup_3ad10cbf26530b8ee4ce502ec2be3503)
+        ;
+
+        
+    
+    
+            marker_2396b37c5c8348790ac088250d7d245c.bindTooltip(
+                `<div>
+                     신선정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2396b37c5c8348790ac088250d7d245c.setIcon(icon_b0051898d918fbc17ec1977f13da3fcd);
+            
+    
+            var marker_d6736736b959ca8e3afdf3356d50f2cb = L.marker(
+                [35.2656414, 129.2256503],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_3ff1ebf783cdbe3eaef01f2811914da5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0e5589f1935dec2ed0aebc8ea850b84d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_26346cd90bb326ccb87cda7d625eddbb = $(`<div id="html_26346cd90bb326ccb87cda7d625eddbb" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 한샘내과의원</h4>             <p><strong>📍 주소:</strong><br>유성대로 772, 501호 부산광역시 기장군 해빛6로 85-16 (일광읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.265641<br>                경도: 129.225650             </p>         </div>         </div>`)[0];
+                popup_0e5589f1935dec2ed0aebc8ea850b84d.setContent(html_26346cd90bb326ccb87cda7d625eddbb);
+            
+        
+
+        marker_d6736736b959ca8e3afdf3356d50f2cb.bindPopup(popup_0e5589f1935dec2ed0aebc8ea850b84d)
+        ;
+
+        
+    
+    
+            marker_d6736736b959ca8e3afdf3356d50f2cb.bindTooltip(
+                `<div>
+                     한샘내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d6736736b959ca8e3afdf3356d50f2cb.setIcon(icon_3ff1ebf783cdbe3eaef01f2811914da5);
+            
+    
+            var marker_a84a7a5f3b99daca96b13c30a050c3c0 = L.marker(
+                [35.32191711, 129.175635],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_60b3865bf6da3219d5542e8c509214ff = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0db140ff37fc990ed29edefd643fe465 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_098e136b87f474968a94b61bf79bcd44 = $(`<div id="html_098e136b87f474968a94b61bf79bcd44" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 지정신건강의학과의원</h4>             <p><strong>📍 주소:</strong><br>중앙로 10(문화동, 태양빌딩 2층) 부산광역시 기장군 정관로 563 (정관읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.321917<br>                경도: 129.175635             </p>         </div>         </div>`)[0];
+                popup_0db140ff37fc990ed29edefd643fe465.setContent(html_098e136b87f474968a94b61bf79bcd44);
+            
+        
+
+        marker_a84a7a5f3b99daca96b13c30a050c3c0.bindPopup(popup_0db140ff37fc990ed29edefd643fe465)
+        ;
+
+        
+    
+    
+            marker_a84a7a5f3b99daca96b13c30a050c3c0.bindTooltip(
+                `<div>
+                     지정신건강의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a84a7a5f3b99daca96b13c30a050c3c0.setIcon(icon_60b3865bf6da3219d5542e8c509214ff);
+            
+    
+            var marker_5caf3d6d89f38d571fa8246b099078b6 = L.marker(
+                [35.19829673, 128.9905935],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_cbb10caebe642999d150cdd035e1a634 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_37578a77ccfc706189c2c4feba6c23dd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_26e8a1ef9bd191dcb11c455d32f03e2d = $(`<div id="html_26e8a1ef9bd191dcb11c455d32f03e2d" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 햇살이비인후과의원</h4>             <p><strong>📍 주소:</strong><br>목중로 50, 406호 중촌제일프라자 3층 부산광역시 북구 사상로 607 (구포동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 3병상 | 진료과수: 2과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.198297<br>                경도: 128.990593             </p>         </div>         </div>`)[0];
+                popup_37578a77ccfc706189c2c4feba6c23dd.setContent(html_26e8a1ef9bd191dcb11c455d32f03e2d);
+            
+        
+
+        marker_5caf3d6d89f38d571fa8246b099078b6.bindPopup(popup_37578a77ccfc706189c2c4feba6c23dd)
+        ;
+
+        
+    
+    
+            marker_5caf3d6d89f38d571fa8246b099078b6.bindTooltip(
+                `<div>
+                     햇살이비인후과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5caf3d6d89f38d571fa8246b099078b6.setIcon(icon_cbb10caebe642999d150cdd035e1a634);
+            
+    
+            var marker_be8a89d6962cdd1cadd4fb6eae062e24 = L.marker(
+                [35.27187258, 129.0923574],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_8cc261b276c65addba7e50cd24868c46 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e687ac3ba722f2d090a0e58838d4d39b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6c1e11ad7da366ab17c1ef1f13d4b220 = $(`<div id="html_6c1e11ad7da366ab17c1ef1f13d4b220" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 다사랑내과의원</h4>             <p><strong>📍 주소:</strong><br>명지국제11로 25 (명지동) 동명빌딩 3층 다사랑내과의원 부산광역시 금정구 중앙대로 2101 (남산동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 5병상 | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.271873<br>                경도: 129.092357             </p>         </div>         </div>`)[0];
+                popup_e687ac3ba722f2d090a0e58838d4d39b.setContent(html_6c1e11ad7da366ab17c1ef1f13d4b220);
+            
+        
+
+        marker_be8a89d6962cdd1cadd4fb6eae062e24.bindPopup(popup_e687ac3ba722f2d090a0e58838d4d39b)
+        ;
+
+        
+    
+    
+            marker_be8a89d6962cdd1cadd4fb6eae062e24.bindTooltip(
+                `<div>
+                     다사랑내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_be8a89d6962cdd1cadd4fb6eae062e24.setIcon(icon_8cc261b276c65addba7e50cd24868c46);
+            
+    
+            var marker_3635942b5cc77bd16f64da31b098052f = L.marker(
+                [35.21442721, 129.1040738],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_287385de3a98862942b4c968e5c937e1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8a97fcabf68019e5113d3e4bc0b1b5c8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_43d765573719bc45b952c9b35d34cc92 = $(`<div id="html_43d765573719bc45b952c9b35d34cc92" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 기장뉴욕치과의원</h4>             <p><strong>📍 주소:</strong><br>차성로 288번길 30, 2층 부산광역시 금정구 서동로 162 (서동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.214427<br>                경도: 129.104074             </p>         </div>         </div>`)[0];
+                popup_8a97fcabf68019e5113d3e4bc0b1b5c8.setContent(html_43d765573719bc45b952c9b35d34cc92);
+            
+        
+
+        marker_3635942b5cc77bd16f64da31b098052f.bindPopup(popup_8a97fcabf68019e5113d3e4bc0b1b5c8)
+        ;
+
+        
+    
+    
+            marker_3635942b5cc77bd16f64da31b098052f.bindTooltip(
+                `<div>
+                     기장뉴욕치과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3635942b5cc77bd16f64da31b098052f.setIcon(icon_287385de3a98862942b4c968e5c937e1);
+            
+    
+            var marker_a2d36a3978a0b2707c44189d2dd1e98e = L.marker(
+                [35.10523035, 128.9689158],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_a2b63eb5b6213c659359dbb9e38db1c4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9fc23a95c330dbaf372a3458886a2044 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_50e14a08bf0c60d5546217911c435ed7 = $(`<div id="html_50e14a08bf0c60d5546217911c435ed7" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 바르다마취통증의학과의원</h4>             <p><strong>📍 주소:</strong><br>일광읍 해빛6로 85-16, 6층 부산광역시 사하구 낙동대로 453 (하단동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.105230<br>                경도: 128.968916             </p>         </div>         </div>`)[0];
+                popup_9fc23a95c330dbaf372a3458886a2044.setContent(html_50e14a08bf0c60d5546217911c435ed7);
+            
+        
+
+        marker_a2d36a3978a0b2707c44189d2dd1e98e.bindPopup(popup_9fc23a95c330dbaf372a3458886a2044)
+        ;
+
+        
+    
+    
+            marker_a2d36a3978a0b2707c44189d2dd1e98e.bindTooltip(
+                `<div>
+                     바르다마취통증의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a2d36a3978a0b2707c44189d2dd1e98e.setIcon(icon_a2b63eb5b6213c659359dbb9e38db1c4);
+            
+    
+            var marker_642dffcdc9be597ef3fcf9c410009ba8 = L.marker(
+                [35.20143122, 129.0871802],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_d96a00b4aad2742581a31e2b8833a516 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_12d8c4d20d511a8aac48f54bea33197f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b7c143f03e69cd1447adaf351c708878 = $(`<div id="html_b7c143f03e69cd1447adaf351c708878" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 수이비인후과의원</h4>             <p><strong>📍 주소:</strong><br>정관읍 정관로 495 2층 수이비인후과 부산광역시 동래구 충렬대로 255 (수안동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.201431<br>                경도: 129.087180             </p>         </div>         </div>`)[0];
+                popup_12d8c4d20d511a8aac48f54bea33197f.setContent(html_b7c143f03e69cd1447adaf351c708878);
+            
+        
+
+        marker_642dffcdc9be597ef3fcf9c410009ba8.bindPopup(popup_12d8c4d20d511a8aac48f54bea33197f)
+        ;
+
+        
+    
+    
+            marker_642dffcdc9be597ef3fcf9c410009ba8.bindTooltip(
+                `<div>
+                     수이비인후과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_642dffcdc9be597ef3fcf9c410009ba8.setIcon(icon_d96a00b4aad2742581a31e2b8833a516);
+            
+    
+            var marker_d8ffbaafdd3aa0d6a4012256fabc92fc = L.marker(
+                [35.13507625, 129.0952793],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_5200f0a2284d5187f5c5a374312a4785 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f14d0c4c95594b3b269aadae58ea32dc = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_07800a69974d1ce77c09496a37272b8f = $(`<div id="html_07800a69974d1ce77c09496a37272b8f" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 이광욱내과의원</h4>             <p><strong>📍 주소:</strong><br>읍내로 105, 5층 부산광역시 남구 수영로 260 (대연동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.135076<br>                경도: 129.095279             </p>         </div>         </div>`)[0];
+                popup_f14d0c4c95594b3b269aadae58ea32dc.setContent(html_07800a69974d1ce77c09496a37272b8f);
+            
+        
+
+        marker_d8ffbaafdd3aa0d6a4012256fabc92fc.bindPopup(popup_f14d0c4c95594b3b269aadae58ea32dc)
+        ;
+
+        
+    
+    
+            marker_d8ffbaafdd3aa0d6a4012256fabc92fc.bindTooltip(
+                `<div>
+                     이광욱내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d8ffbaafdd3aa0d6a4012256fabc92fc.setIcon(icon_5200f0a2284d5187f5c5a374312a4785);
+            
+    
+            var marker_153f768cb508b2b2790b502441b6bb80 = L.marker(
+                [35.24663927, 129.0890312],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_275e1e576e6d0ac3b54f622f658c6db9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_05abc0171c69da162e7e22b45a76a9cb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_04d8282ba0ac45d58b42a874e0ccbca9 = $(`<div id="html_04d8282ba0ac45d58b42a874e0ccbca9" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 늘편한내과의원</h4>             <p><strong>📍 주소:</strong><br>진남로 4 3층 부산광역시 금정구 구서로 17 (구서동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.246639<br>                경도: 129.089031             </p>         </div>         </div>`)[0];
+                popup_05abc0171c69da162e7e22b45a76a9cb.setContent(html_04d8282ba0ac45d58b42a874e0ccbca9);
+            
+        
+
+        marker_153f768cb508b2b2790b502441b6bb80.bindPopup(popup_05abc0171c69da162e7e22b45a76a9cb)
+        ;
+
+        
+    
+    
+            marker_153f768cb508b2b2790b502441b6bb80.bindTooltip(
+                `<div>
+                     늘편한내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_153f768cb508b2b2790b502441b6bb80.setIcon(icon_275e1e576e6d0ac3b54f622f658c6db9);
+            
+    
+            var marker_de9c2e905f0bdcd8b47d7a2072f39ffe = L.marker(
+                [35.24529283, 129.2158232],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_4e60061d88ba3a6a8b2549154c931624 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_38c07eda60376a3550502e4a99e85637 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2f4b1eb0b4d58cc037ad36bd0b4afb1e = $(`<div id="html_2f4b1eb0b4d58cc037ad36bd0b4afb1e" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 박언비뇨의학과의원</h4>             <p><strong>📍 주소:</strong><br>수영로 260 5층 511-512호 부산광역시 기장군 읍내로 105 (기장읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 3과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.245293<br>                경도: 129.215823             </p>         </div>         </div>`)[0];
+                popup_38c07eda60376a3550502e4a99e85637.setContent(html_2f4b1eb0b4d58cc037ad36bd0b4afb1e);
+            
+        
+
+        marker_de9c2e905f0bdcd8b47d7a2072f39ffe.bindPopup(popup_38c07eda60376a3550502e4a99e85637)
+        ;
+
+        
+    
+    
+            marker_de9c2e905f0bdcd8b47d7a2072f39ffe.bindTooltip(
+                `<div>
+                     박언비뇨의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_de9c2e905f0bdcd8b47d7a2072f39ffe.setIcon(icon_4e60061d88ba3a6a8b2549154c931624);
+            
+    
+            var marker_c304d2a7a5f9df7fe57e563f644b400b = L.marker(
+                [35.18593201, 128.9907046],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_f42ea3c35afc37e6a20a3590d17852f9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b9a1836ce9e3f166fbf86f0b26eb7bb2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_46d7eb48c6a0ace147dedf5e7e31e3d2 = $(`<div id="html_46d7eb48c6a0ace147dedf5e7e31e3d2" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 센텀카이스트재활의학과의원</h4>             <p><strong>📍 주소:</strong><br>유엔평화로 4 갤러리메디타워 5-6층 부산광역시 사상구 백양대로 893 (모라동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.185932<br>                경도: 128.990705             </p>         </div>         </div>`)[0];
+                popup_b9a1836ce9e3f166fbf86f0b26eb7bb2.setContent(html_46d7eb48c6a0ace147dedf5e7e31e3d2);
+            
+        
+
+        marker_c304d2a7a5f9df7fe57e563f644b400b.bindPopup(popup_b9a1836ce9e3f166fbf86f0b26eb7bb2)
+        ;
+
+        
+    
+    
+            marker_c304d2a7a5f9df7fe57e563f644b400b.bindTooltip(
+                `<div>
+                     센텀카이스트재활의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c304d2a7a5f9df7fe57e563f644b400b.setIcon(icon_f42ea3c35afc37e6a20a3590d17852f9);
+            
+    
+            var marker_a5e5505a2d3e4b9e41160cda0826c7ef = L.marker(
+                [35.24293318, 129.2152371],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_d445891e8952ace27c95a78310bc1dc1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ce4b1aa14e74cd38d7db2506ad449817 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ffdd15e2cf0eb4233309ed8f2817b37b = $(`<div id="html_ffdd15e2cf0eb4233309ed8f2817b37b" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 비타민마취통증의학과의원</h4>             <p><strong>📍 주소:</strong><br>중앙대로 375, 강남빌딩 3층 부산광역시 기장군 차성로288번길 30 (기장읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 3과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.242933<br>                경도: 129.215237             </p>         </div>         </div>`)[0];
+                popup_ce4b1aa14e74cd38d7db2506ad449817.setContent(html_ffdd15e2cf0eb4233309ed8f2817b37b);
+            
+        
+
+        marker_a5e5505a2d3e4b9e41160cda0826c7ef.bindPopup(popup_ce4b1aa14e74cd38d7db2506ad449817)
+        ;
+
+        
+    
+    
+            marker_a5e5505a2d3e4b9e41160cda0826c7ef.bindTooltip(
+                `<div>
+                     비타민마취통증의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a5e5505a2d3e4b9e41160cda0826c7ef.setIcon(icon_d445891e8952ace27c95a78310bc1dc1);
+            
+    
+            var marker_2d3787b5f6521e50e5b651523c3c5719 = L.marker(
+                [35.1353676, 129.0920109],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_9ea8097e7cee8d08ce599b900eac299a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f0e7fd4f69590dd3d26dc3e1d1f78292 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e4dd9d9a3f92c304ba62203c08940465 = $(`<div id="html_e4dd9d9a3f92c304ba62203c08940465" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 한빛내과의원</h4>             <p><strong>📍 주소:</strong><br>중앙대로 233, 초량동 해정빌딩 5층 부산광역시 남구 진남로 4 (대연동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 8과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.135368<br>                경도: 129.092011             </p>         </div>         </div>`)[0];
+                popup_f0e7fd4f69590dd3d26dc3e1d1f78292.setContent(html_e4dd9d9a3f92c304ba62203c08940465);
+            
+        
+
+        marker_2d3787b5f6521e50e5b651523c3c5719.bindPopup(popup_f0e7fd4f69590dd3d26dc3e1d1f78292)
+        ;
+
+        
+    
+    
+            marker_2d3787b5f6521e50e5b651523c3c5719.bindTooltip(
+                `<div>
+                     한빛내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2d3787b5f6521e50e5b651523c3c5719.setIcon(icon_9ea8097e7cee8d08ce599b900eac299a);
+            
+    
+            var marker_6f2363ca45b76349501deffa02e166b6 = L.marker(
+                [35.32583739, 129.1706542],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_de69e48fcee8f490d6bf4868e6f2c4ac = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3a61fba6cb4220a542723af2487f9124 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4ec80b058665b6a4ed5c01b02ace602f = $(`<div id="html_4ec80b058665b6a4ed5c01b02ace602f" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 베스트이비인후과의원</h4>             <p><strong>📍 주소:</strong><br>충렬대로 259, 3~3층 부산광역시 기장군 정관로 495 (정관읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 1병상 | 진료과수: 8과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.325837<br>                경도: 129.170654             </p>         </div>         </div>`)[0];
+                popup_3a61fba6cb4220a542723af2487f9124.setContent(html_4ec80b058665b6a4ed5c01b02ace602f);
+            
+        
+
+        marker_6f2363ca45b76349501deffa02e166b6.bindPopup(popup_3a61fba6cb4220a542723af2487f9124)
+        ;
+
+        
+    
+    
+            marker_6f2363ca45b76349501deffa02e166b6.bindTooltip(
+                `<div>
+                     베스트이비인후과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6f2363ca45b76349501deffa02e166b6.setIcon(icon_de69e48fcee8f490d6bf4868e6f2c4ac);
+            
+    
+            var marker_8e5ca8954f43eed5dfc57b56dcde7213 = L.marker(
+                [35.21040315, 129.0075323],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_dc479dc36927a4dbf83f33c5a7290f5c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_067761709db2766cfb9888cebc3d8ef4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_343628917dbad72500b84f34bccc0365 = $(`<div id="html_343628917dbad72500b84f34bccc0365" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 윤재웅신경외과의원</h4>             <p><strong>📍 주소:</strong><br>반송로 325(명장동),  3~4층 부산광역시 북구 만덕대로 22 (덕천동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 15과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.210403<br>                경도: 129.007532             </p>         </div>         </div>`)[0];
+                popup_067761709db2766cfb9888cebc3d8ef4.setContent(html_343628917dbad72500b84f34bccc0365);
+            
+        
+
+        marker_8e5ca8954f43eed5dfc57b56dcde7213.bindPopup(popup_067761709db2766cfb9888cebc3d8ef4)
+        ;
+
+        
+    
+    
+            marker_8e5ca8954f43eed5dfc57b56dcde7213.bindTooltip(
+                `<div>
+                     윤재웅신경외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8e5ca8954f43eed5dfc57b56dcde7213.setIcon(icon_dc479dc36927a4dbf83f33c5a7290f5c);
+            
+    
+            var marker_f43f1b315456b6991e08b2968d9ef39b = L.marker(
+                [35.13075056, 128.9721028],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_2306822a7941be308bc080c90cb68ce1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_19cb4a13553b54461f8da44986fa7c2c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_abff9ab23beeac86d271112e906141a1 = $(`<div id="html_abff9ab23beeac86d271112e906141a1" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 청춘안과의원</h4>             <p><strong>📍 주소:</strong><br>명륜로 103번길 19(명륜동) 부산광역시 사상구 낙동대로 786 (엄궁동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.130751<br>                경도: 128.972103             </p>         </div>         </div>`)[0];
+                popup_19cb4a13553b54461f8da44986fa7c2c.setContent(html_abff9ab23beeac86d271112e906141a1);
+            
+        
+
+        marker_f43f1b315456b6991e08b2968d9ef39b.bindPopup(popup_19cb4a13553b54461f8da44986fa7c2c)
+        ;
+
+        
+    
+    
+            marker_f43f1b315456b6991e08b2968d9ef39b.bindTooltip(
+                `<div>
+                     청춘안과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f43f1b315456b6991e08b2968d9ef39b.setIcon(icon_2306822a7941be308bc080c90cb68ce1);
+            
+    
+            var marker_ef3ab2eddacc721b07b9f0e630aa0861 = L.marker(
+                [35.23591835, 129.2164904],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_0a2db3718b1bdf313830b181b0d38a55 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_710fe0e70ff82c6d3915b9c84752c127 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3644b54230c3ccd9934d7ee3edc587f6 = $(`<div id="html_3644b54230c3ccd9934d7ee3edc587f6" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 김호일정형외과의원</h4>             <p><strong>📍 주소:</strong><br>시랑로 12(구포동) 부산광역시 기장군 대청로72번길 6 (기장읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 23병상 | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.235918<br>                경도: 129.216490             </p>         </div>         </div>`)[0];
+                popup_710fe0e70ff82c6d3915b9c84752c127.setContent(html_3644b54230c3ccd9934d7ee3edc587f6);
+            
+        
+
+        marker_ef3ab2eddacc721b07b9f0e630aa0861.bindPopup(popup_710fe0e70ff82c6d3915b9c84752c127)
+        ;
+
+        
+    
+    
+            marker_ef3ab2eddacc721b07b9f0e630aa0861.bindTooltip(
+                `<div>
+                     김호일정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ef3ab2eddacc721b07b9f0e630aa0861.setIcon(icon_0a2db3718b1bdf313830b181b0d38a55);
+            
+    
+            var marker_c525505a7e4bd2b4158750ff92ac82e6 = L.marker(
+                [35.11811711, 129.0407373],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_a1c9a2ea8a808bf1d3cbac81ae9f3bdb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a4055253a4c07705118701f1bbdf7ea3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_34126d7ba803f11f76f4a11de4190e4c = $(`<div id="html_34126d7ba803f11f76f4a11de4190e4c" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 덕천요편한비뇨기과의원</h4>             <p><strong>📍 주소:</strong><br>만덕대로 22 드림메디컬빌딩 7층 부산광역시 동구 중앙대로 233 (초량동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 2병상 | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.118117<br>                경도: 129.040737             </p>         </div>         </div>`)[0];
+                popup_a4055253a4c07705118701f1bbdf7ea3.setContent(html_34126d7ba803f11f76f4a11de4190e4c);
+            
+        
+
+        marker_c525505a7e4bd2b4158750ff92ac82e6.bindPopup(popup_a4055253a4c07705118701f1bbdf7ea3)
+        ;
+
+        
+    
+    
+            marker_c525505a7e4bd2b4158750ff92ac82e6.bindTooltip(
+                `<div>
+                     덕천요편한비뇨기과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c525505a7e4bd2b4158750ff92ac82e6.setIcon(icon_a1c9a2ea8a808bf1d3cbac81ae9f3bdb);
+            
+    
+            var marker_bfd3b99966d6aaa08f1b8e3d65cffbc2 = L.marker(
+                [35.1516273, 129.111222],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_68f53280ac633967354eee1ed3bb35b6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_44bec827b08a65df00c4b6d0f6add05b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4613fa2ab5ae83937c9c4ecb78f68caf = $(`<div id="html_4613fa2ab5ae83937c9c4ecb78f68caf" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 덕천치과의원</h4>             <p><strong>📍 주소:</strong><br>만덕대로 17 부산광역시 수영구 수영로 511-1 (광안동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.151627<br>                경도: 129.111222             </p>         </div>         </div>`)[0];
+                popup_44bec827b08a65df00c4b6d0f6add05b.setContent(html_4613fa2ab5ae83937c9c4ecb78f68caf);
+            
+        
+
+        marker_bfd3b99966d6aaa08f1b8e3d65cffbc2.bindPopup(popup_44bec827b08a65df00c4b6d0f6add05b)
+        ;
+
+        
+    
+    
+            marker_bfd3b99966d6aaa08f1b8e3d65cffbc2.bindTooltip(
+                `<div>
+                     덕천치과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_bfd3b99966d6aaa08f1b8e3d65cffbc2.setIcon(icon_68f53280ac633967354eee1ed3bb35b6);
+            
+    
+            var marker_9e67f27c98863810863106f12cb839c9 = L.marker(
+                [35.20292662, 129.0820015],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_8fa1d8fd52778ba44a7caa8b08d3b474 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_19eeeac98e57f4af6f7f8fd5f835ea19 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_05be842792c63dcf52264e10c1fbe292 = $(`<div id="html_05be842792c63dcf52264e10c1fbe292" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 서울아산이비인후과의원</h4>             <p><strong>📍 주소:</strong><br>만덕대로 24(덕천동) 국민은행 덕천동지점 8층 부산광역시 동래구 명륜로103번길 19 (명륜동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.202927<br>                경도: 129.082001             </p>         </div>         </div>`)[0];
+                popup_19eeeac98e57f4af6f7f8fd5f835ea19.setContent(html_05be842792c63dcf52264e10c1fbe292);
+            
+        
+
+        marker_9e67f27c98863810863106f12cb839c9.bindPopup(popup_19eeeac98e57f4af6f7f8fd5f835ea19)
+        ;
+
+        
+    
+    
+            marker_9e67f27c98863810863106f12cb839c9.bindTooltip(
+                `<div>
+                     서울아산이비인후과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9e67f27c98863810863106f12cb839c9.setIcon(icon_8fa1d8fd52778ba44a7caa8b08d3b474);
+            
+    
+            var marker_1862a92f3ff14b8972f73ee3b8a84852 = L.marker(
+                [35.20456103, 129.0040881],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_ec1c1ed44557b49dcf3be532150918a6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_04bfdfad33449086c2ab3d70c9b7d8f3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_404a53258c2a04c316984b43a19c5e88 = $(`<div id="html_404a53258c2a04c316984b43a19c5e88" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 맑은유비뇨기과의원</h4>             <p><strong>📍 주소:</strong><br>낙동대로 786, 애진빌딩 5층(엄궁동) 부산광역시 북구 시랑로 12 (구포동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 2과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.204561<br>                경도: 129.004088             </p>         </div>         </div>`)[0];
+                popup_04bfdfad33449086c2ab3d70c9b7d8f3.setContent(html_404a53258c2a04c316984b43a19c5e88);
+            
+        
+
+        marker_1862a92f3ff14b8972f73ee3b8a84852.bindPopup(popup_04bfdfad33449086c2ab3d70c9b7d8f3)
+        ;
+
+        
+    
+    
+            marker_1862a92f3ff14b8972f73ee3b8a84852.bindTooltip(
+                `<div>
+                     맑은유비뇨기과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1862a92f3ff14b8972f73ee3b8a84852.setIcon(icon_ec1c1ed44557b49dcf3be532150918a6);
+            
+    
+            var marker_eae0c3db82627fc5012b04bacc5ad03c = L.marker(
+                [35.20851185, 129.1031955],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_ec6c58bd841382b4033713890aa22b6d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b346c914f906260e82e7a939b9b3a329 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cd9159f72d2e0445bd8e8c4e4c6eeecd = $(`<div id="html_cd9159f72d2e0445bd8e8c4e4c6eeecd" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 부산신경외과의원</h4>             <p><strong>📍 주소:</strong><br>낙동대로 786 애진빌딩 6층 부산광역시 동래구 반송로 325 (명장동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.208512<br>                경도: 129.103195             </p>         </div>         </div>`)[0];
+                popup_b346c914f906260e82e7a939b9b3a329.setContent(html_cd9159f72d2e0445bd8e8c4e4c6eeecd);
+            
+        
+
+        marker_eae0c3db82627fc5012b04bacc5ad03c.bindPopup(popup_b346c914f906260e82e7a939b9b3a329)
+        ;
+
+        
+    
+    
+            marker_eae0c3db82627fc5012b04bacc5ad03c.bindTooltip(
+                `<div>
+                     부산신경외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_eae0c3db82627fc5012b04bacc5ad03c.setIcon(icon_ec6c58bd841382b4033713890aa22b6d);
+            
+    
+            var marker_023e87c7c9c330f05c8a993c126e5363 = L.marker(
+                [35.21075775, 129.006946],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_b1e8fe5e4c604a2bf48ce469218ec414 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1f5417eb30c72e8853c1dd7eaced88c4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c822b610611e3598d15b94cc4e390ebe = $(`<div id="html_c822b610611e3598d15b94cc4e390ebe" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 참좋은정형외과신경과의원</h4>             <p><strong>📍 주소:</strong><br>백양대로 893, 궁전빌딩 402호 부산광역시 북구 만덕대로 17 (덕천동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.210758<br>                경도: 129.006946             </p>         </div>         </div>`)[0];
+                popup_1f5417eb30c72e8853c1dd7eaced88c4.setContent(html_c822b610611e3598d15b94cc4e390ebe);
+            
+        
+
+        marker_023e87c7c9c330f05c8a993c126e5363.bindPopup(popup_1f5417eb30c72e8853c1dd7eaced88c4)
+        ;
+
+        
+    
+    
+            marker_023e87c7c9c330f05c8a993c126e5363.bindTooltip(
+                `<div>
+                     참좋은정형외과신경과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_023e87c7c9c330f05c8a993c126e5363.setIcon(icon_b1e8fe5e4c604a2bf48ce469218ec414);
+            
+    
+            var marker_61996ba804983b280550260ced958d8a = L.marker(
+                [35.12908299, 129.0485246],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_8a9094a06d86c83c3af02976a420ce40 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ab9418ef546db0806a191fa0fce7b429 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3ec038ac940902e0221434151742c6a2 = $(`<div id="html_3ec038ac940902e0221434151742c6a2" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 다대튼튼치과의원</h4>             <p><strong>📍 주소:</strong><br>다대로 698, 5층 부산광역시 동구 중앙대로 375 (수정동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 10과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.129083<br>                경도: 129.048525             </p>         </div>         </div>`)[0];
+                popup_ab9418ef546db0806a191fa0fce7b429.setContent(html_3ec038ac940902e0221434151742c6a2);
+            
+        
+
+        marker_61996ba804983b280550260ced958d8a.bindPopup(popup_ab9418ef546db0806a191fa0fce7b429)
+        ;
+
+        
+    
+    
+            marker_61996ba804983b280550260ced958d8a.bindTooltip(
+                `<div>
+                     다대튼튼치과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_61996ba804983b280550260ced958d8a.setIcon(icon_8a9094a06d86c83c3af02976a420ce40);
+            
+    
+            var marker_ac3ed30c85e09a1aa7d65898ac0e2302 = L.marker(
+                [35.16591756, 129.114486],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_75f61762c51fd3573e5aaeb86b13cd2b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a4a7eb26f83fe983313847bd04007a04 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7277087fed1baffc54c79fa45b9168a6 = $(`<div id="html_7277087fed1baffc54c79fa45b9168a6" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 박영수비뇨기과의원</h4>             <p><strong>📍 주소:</strong><br>낙동대로 453 부산광역시 수영구 수영로 675 (광안동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 2과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.165918<br>                경도: 129.114486             </p>         </div>         </div>`)[0];
+                popup_a4a7eb26f83fe983313847bd04007a04.setContent(html_7277087fed1baffc54c79fa45b9168a6);
+            
+        
+
+        marker_ac3ed30c85e09a1aa7d65898ac0e2302.bindPopup(popup_a4a7eb26f83fe983313847bd04007a04)
+        ;
+
+        
+    
+    
+            marker_ac3ed30c85e09a1aa7d65898ac0e2302.bindTooltip(
+                `<div>
+                     박영수비뇨기과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ac3ed30c85e09a1aa7d65898ac0e2302.setIcon(icon_75f61762c51fd3573e5aaeb86b13cd2b);
+            
+    
+            var marker_7c3ffd4c813118390b86db0274358780 = L.marker(
+                [35.13075056, 128.9721028],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_c7c30f2b0310d7dcf5fdb5736cf3b524 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ecfe0909ce5695180ea562be5e04bd29 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0087034768607d00e0e578be35fbfbff = $(`<div id="html_0087034768607d00e0e578be35fbfbff" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 비에스숨이비인후과의원</h4>             <p><strong>📍 주소:</strong><br>낙동남로 1412 경부빌딩 7,8층 부산광역시 사상구 낙동대로 786 (엄궁동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.130751<br>                경도: 128.972103             </p>         </div>         </div>`)[0];
+                popup_ecfe0909ce5695180ea562be5e04bd29.setContent(html_0087034768607d00e0e578be35fbfbff);
+            
+        
+
+        marker_7c3ffd4c813118390b86db0274358780.bindPopup(popup_ecfe0909ce5695180ea562be5e04bd29)
+        ;
+
+        
+    
+    
+            marker_7c3ffd4c813118390b86db0274358780.bindTooltip(
+                `<div>
+                     비에스숨이비인후과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7c3ffd4c813118390b86db0274358780.setIcon(icon_c7c30f2b0310d7dcf5fdb5736cf3b524);
+            
+    
+            var marker_da5a5641ca780a0c9c6ee053133cf27e = L.marker(
+                [35.09846727, 129.0315724],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_71daeb5b9aa051f47e946b8d6c5c855a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1133d197895bf62c59e67d7339d786a8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_32e719d708c425ad1878b84b6f79eb66 = $(`<div id="html_32e719d708c425ad1878b84b6f79eb66" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 속바른내과의원</h4>             <p><strong>📍 주소:</strong><br>구덕로 109 부산광역시 중구 구덕로 40 (남포동2가)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 9과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.098467<br>                경도: 129.031572             </p>         </div>         </div>`)[0];
+                popup_1133d197895bf62c59e67d7339d786a8.setContent(html_32e719d708c425ad1878b84b6f79eb66);
+            
+        
+
+        marker_da5a5641ca780a0c9c6ee053133cf27e.bindPopup(popup_1133d197895bf62c59e67d7339d786a8)
+        ;
+
+        
+    
+    
+            marker_da5a5641ca780a0c9c6ee053133cf27e.bindTooltip(
+                `<div>
+                     속바른내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_da5a5641ca780a0c9c6ee053133cf27e.setIcon(icon_71daeb5b9aa051f47e946b8d6c5c855a);
+            
+    
+            var marker_6ae88089621e28e57c06023380c94720 = L.marker(
+                [35.14091525, 128.916082],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_b725af1cccc48e43706f83c32e63c7fe = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_053d98e3206af7501b1293b1aad285b3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bdc57f0d3af4277ac9ed56fcc0da798d = $(`<div id="html_bdc57f0d3af4277ac9ed56fcc0da798d" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 정원정형외과의원</h4>             <p><strong>📍 주소:</strong><br>대영로 46 부산광역시 강서구 에코중앙대로</p>             <p><strong>🏥 규모:</strong><br>                병상수: 29병상 | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.140915<br>                경도: 128.916082             </p>         </div>         </div>`)[0];
+                popup_053d98e3206af7501b1293b1aad285b3.setContent(html_bdc57f0d3af4277ac9ed56fcc0da798d);
+            
+        
+
+        marker_6ae88089621e28e57c06023380c94720.bindPopup(popup_053d98e3206af7501b1293b1aad285b3)
+        ;
+
+        
+    
+    
+            marker_6ae88089621e28e57c06023380c94720.bindTooltip(
+                `<div>
+                     정원정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6ae88089621e28e57c06023380c94720.setIcon(icon_b725af1cccc48e43706f83c32e63c7fe);
+            
+    
+            var marker_aa1fdb298163efd5e395fb2229f6c704 = L.marker(
+                [35.10587303, 128.9660802],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_6436478093bc83f718272265b5f559f4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e68b25b575dc109c05245b969f1f75df = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_66d81ebd96e35d408b6926362347ea48 = $(`<div id="html_66d81ebd96e35d408b6926362347ea48" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 바른이김대식치과의원</h4>             <p><strong>📍 주소:</strong><br>수영로 465 남천프라자 3층 부산광역시 사하구 낙동남로 1412 (하단동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 9과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.105873<br>                경도: 128.966080             </p>         </div>         </div>`)[0];
+                popup_e68b25b575dc109c05245b969f1f75df.setContent(html_66d81ebd96e35d408b6926362347ea48);
+            
+        
+
+        marker_aa1fdb298163efd5e395fb2229f6c704.bindPopup(popup_e68b25b575dc109c05245b969f1f75df)
+        ;
+
+        
+    
+    
+            marker_aa1fdb298163efd5e395fb2229f6c704.bindTooltip(
+                `<div>
+                     바른이김대식치과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_aa1fdb298163efd5e395fb2229f6c704.setIcon(icon_6436478093bc83f718272265b5f559f4);
+            
+    
+            var marker_eb18852bec5804a0f02fffbc2661ef60 = L.marker(
+                [35.0904797, 128.9990294],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_9e81cd58e221e5cc59faf82cac6f39d0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ef5986dd86a145d2c2d2d4c80fc13437 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f20beaa1f126a8505ed134258cd94778 = $(`<div id="html_f20beaa1f126a8505ed134258cd94778" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 수영청담비뇨의학과의원</h4>             <p><strong>📍 주소:</strong><br>수영로 675, 큐비메디컬 4층(광안동) 부산광역시 사하구 감천로 59 (감천동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.090480<br>                경도: 128.999029             </p>         </div>         </div>`)[0];
+                popup_ef5986dd86a145d2c2d2d4c80fc13437.setContent(html_f20beaa1f126a8505ed134258cd94778);
+            
+        
+
+        marker_eb18852bec5804a0f02fffbc2661ef60.bindPopup(popup_ef5986dd86a145d2c2d2d4c80fc13437)
+        ;
+
+        
+    
+    
+            marker_eb18852bec5804a0f02fffbc2661ef60.bindTooltip(
+                `<div>
+                     수영청담비뇨의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_eb18852bec5804a0f02fffbc2661ef60.setIcon(icon_9e81cd58e221e5cc59faf82cac6f39d0);
+            
+    
+            var marker_0e0afc424320371543a92005c1e12cc3 = L.marker(
+                [35.10943139, 129.0166357],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_3df0d6f23fd1ff4eecab805a79029bd5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c0a2c5e4f220066ada08975f0c498b42 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_aa613f9d0706d8c8510a233b760e41f9 = $(`<div id="html_aa613f9d0706d8c8510a233b760e41f9" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 조이비인후과의원</h4>             <p><strong>📍 주소:</strong><br>수영로 511-1 부산광역시 서구 대영로 46 (서대신동1가)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.109431<br>                경도: 129.016636             </p>         </div>         </div>`)[0];
+                popup_c0a2c5e4f220066ada08975f0c498b42.setContent(html_aa613f9d0706d8c8510a233b760e41f9);
+            
+        
+
+        marker_0e0afc424320371543a92005c1e12cc3.bindPopup(popup_c0a2c5e4f220066ada08975f0c498b42)
+        ;
+
+        
+    
+    
+            marker_0e0afc424320371543a92005c1e12cc3.bindTooltip(
+                `<div>
+                     조이비인후과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0e0afc424320371543a92005c1e12cc3.setIcon(icon_3df0d6f23fd1ff4eecab805a79029bd5);
+            
+    
+            var marker_add419836a94214afcde0df180545f19 = L.marker(
+                [35.09820863, 129.0288964],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_2f703057c28fad3cf757a6cb41b76e24 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8cd4c4756fbba34cae1e5f793858e533 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4db7ce8129a1815c8619f616d46f2ea5 = $(`<div id="html_4db7ce8129a1815c8619f616d46f2ea5" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 (의)열린의료재단연산열린의원</h4>             <p><strong>📍 주소:</strong><br>중앙대로 1091 제세빌딩 7층 부산광역시 중구 비프광장로 40 (남포동5가)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 3과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.098209<br>                경도: 129.028896             </p>         </div>         </div>`)[0];
+                popup_8cd4c4756fbba34cae1e5f793858e533.setContent(html_4db7ce8129a1815c8619f616d46f2ea5);
+            
+        
+
+        marker_add419836a94214afcde0df180545f19.bindPopup(popup_8cd4c4756fbba34cae1e5f793858e533)
+        ;
+
+        
+    
+    
+            marker_add419836a94214afcde0df180545f19.bindTooltip(
+                `<div>
+                     (의)열린의료재단연산열린의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_add419836a94214afcde0df180545f19.setIcon(icon_2f703057c28fad3cf757a6cb41b76e24);
+            
+    
+            var marker_5f016bec0238c58bdd9787443920a784 = L.marker(
+                [35.21046082, 129.007765],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_59c8869a35de5189ee759de790f517ed = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ea6173a449aa85a4cb91501dd09b01eb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6a4964d9275c3c5bc995f5e5dba05710 = $(`<div id="html_6a4964d9275c3c5bc995f5e5dba05710" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 박윤하비뇨기과의원</h4>             <p><strong>📍 주소:</strong><br>반송로 5, 4층(연산동) 부산광역시 북구 만덕대로 24 (덕천동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 2과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.210461<br>                경도: 129.007765             </p>         </div>         </div>`)[0];
+                popup_ea6173a449aa85a4cb91501dd09b01eb.setContent(html_6a4964d9275c3c5bc995f5e5dba05710);
+            
+        
+
+        marker_5f016bec0238c58bdd9787443920a784.bindPopup(popup_ea6173a449aa85a4cb91501dd09b01eb)
+        ;
+
+        
+    
+    
+            marker_5f016bec0238c58bdd9787443920a784.bindTooltip(
+                `<div>
+                     박윤하비뇨기과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5f016bec0238c58bdd9787443920a784.setIcon(icon_59c8869a35de5189ee759de790f517ed);
+            
+    
+            var marker_3458966512ddd75f6015ae7f85ae09f2 = L.marker(
+                [35.09340853, 129.0461597],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_96d02fa0ddf84b1e0e9f753cf46352e3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8ce6d93c566aedafdd8e1228f329816c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d1c7525df823f697fc0a617ce6c43687 = $(`<div id="html_d1c7525df823f697fc0a617ce6c43687" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 보강재활의학과의원</h4>             <p><strong>📍 주소:</strong><br>월드컵대로 3 (연산동) 신리메디컬 4층 부산광역시 영도구 태종로 160 (봉래동4가)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.093409<br>                경도: 129.046160             </p>         </div>         </div>`)[0];
+                popup_8ce6d93c566aedafdd8e1228f329816c.setContent(html_d1c7525df823f697fc0a617ce6c43687);
+            
+        
+
+        marker_3458966512ddd75f6015ae7f85ae09f2.bindPopup(popup_8ce6d93c566aedafdd8e1228f329816c)
+        ;
+
+        
+    
+    
+            marker_3458966512ddd75f6015ae7f85ae09f2.bindTooltip(
+                `<div>
+                     보강재활의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3458966512ddd75f6015ae7f85ae09f2.setIcon(icon_96d02fa0ddf84b1e0e9f753cf46352e3);
+            
+    
+            var marker_df6a2e31e76ce0763e5e923fc7b2ae7a = L.marker(
+                [35.14751329, 129.1100889],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_93dffc10192a5fd3e570337925781c6d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_12ff6f4044c10ec4000ea3c295cfd4ca = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ddf54466c51762bc6de6e5b9713f7bb0 = $(`<div id="html_ddf54466c51762bc6de6e5b9713f7bb0" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 수도의원</h4>             <p><strong>📍 주소:</strong><br>태종로 160 부산광역시 수영구 수영로 465 (남천동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 11과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.147513<br>                경도: 129.110089             </p>         </div>         </div>`)[0];
+                popup_12ff6f4044c10ec4000ea3c295cfd4ca.setContent(html_ddf54466c51762bc6de6e5b9713f7bb0);
+            
+        
+
+        marker_df6a2e31e76ce0763e5e923fc7b2ae7a.bindPopup(popup_12ff6f4044c10ec4000ea3c295cfd4ca)
+        ;
+
+        
+    
+    
+            marker_df6a2e31e76ce0763e5e923fc7b2ae7a.bindTooltip(
+                `<div>
+                     수도의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_df6a2e31e76ce0763e5e923fc7b2ae7a.setIcon(icon_93dffc10192a5fd3e570337925781c6d);
+            
+    
+            var marker_8bd6fe23c53f19d36aa014a3e84cec25 = L.marker(
+                [35.18533893, 129.0806932],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_8d9c687793c43733abcd3685d89da1bb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c92b5ffd94369caeee80f7a58748dd47 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ff6fd4275bdb3e9dbeb9b440ab5336a4 = $(`<div id="html_ff6fd4275bdb3e9dbeb9b440ab5336a4" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 BS삼성안과의원</h4>             <p><strong>📍 주소:</strong><br>구덕로 90 서라벌빌딩 5층 부산광역시 연제구 중앙대로 1091 (연산동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.185339<br>                경도: 129.080693             </p>         </div>         </div>`)[0];
+                popup_c92b5ffd94369caeee80f7a58748dd47.setContent(html_ff6fd4275bdb3e9dbeb9b440ab5336a4);
+            
+        
+
+        marker_8bd6fe23c53f19d36aa014a3e84cec25.bindPopup(popup_c92b5ffd94369caeee80f7a58748dd47)
+        ;
+
+        
+    
+    
+            marker_8bd6fe23c53f19d36aa014a3e84cec25.bindTooltip(
+                `<div>
+                     BS삼성안과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8bd6fe23c53f19d36aa014a3e84cec25.setIcon(icon_8d9c687793c43733abcd3685d89da1bb);
+            
+    
+            var marker_dff76e8c8d8177a9bbb3f39e25ced812 = L.marker(
+                [35.17510764, 129.0860783],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_06270bc4a64a6d38cbda7b728bda9cc0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6eeffb5611cf5c812ff671ac2a0a133e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6ee71d23b46c9e69fc4c6c71895ec33c = $(`<div id="html_6ee71d23b46c9e69fc4c6c71895ec33c" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 애플치과의원</h4>             <p><strong>📍 주소:</strong><br>비프광장로 40, B-501호 부산광역시 연제구 월드컵대로 3 (연산동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.175108<br>                경도: 129.086078             </p>         </div>         </div>`)[0];
+                popup_6eeffb5611cf5c812ff671ac2a0a133e.setContent(html_6ee71d23b46c9e69fc4c6c71895ec33c);
+            
+        
+
+        marker_dff76e8c8d8177a9bbb3f39e25ced812.bindPopup(popup_6eeffb5611cf5c812ff671ac2a0a133e)
+        ;
+
+        
+    
+    
+            marker_dff76e8c8d8177a9bbb3f39e25ced812.bindTooltip(
+                `<div>
+                     애플치과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dff76e8c8d8177a9bbb3f39e25ced812.setIcon(icon_06270bc4a64a6d38cbda7b728bda9cc0);
+            
+    
+            var marker_d5292286f9858c1351ca57ce5dcdf210 = L.marker(
+                [35.07839211, 129.0707846],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_29a2ceec4b9d641891270f0d2cca089c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1cf675e6a1c46d8ad07c8ef6cc01daca = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1e1362957d7cc4f191ea3a6a40792c1f = $(`<div id="html_1e1362957d7cc4f191ea3a6a40792c1f" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 이지숨이비인후과의원</h4>             <p><strong>📍 주소:</strong><br>구덕로 40, 호림빌딩 7층 부산광역시 영도구 동삼로 56 (동삼동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.078392<br>                경도: 129.070785             </p>         </div>         </div>`)[0];
+                popup_1cf675e6a1c46d8ad07c8ef6cc01daca.setContent(html_1e1362957d7cc4f191ea3a6a40792c1f);
+            
+        
+
+        marker_d5292286f9858c1351ca57ce5dcdf210.bindPopup(popup_1cf675e6a1c46d8ad07c8ef6cc01daca)
+        ;
+
+        
+    
+    
+            marker_d5292286f9858c1351ca57ce5dcdf210.bindTooltip(
+                `<div>
+                     이지숨이비인후과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d5292286f9858c1351ca57ce5dcdf210.setIcon(icon_29a2ceec4b9d641891270f0d2cca089c);
+            
+    
+            var marker_e8ec89b3ce61a1a4aa8330ff001855b9 = L.marker(
+                [35.18432808, 129.0798475],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_f6121c8a384ca5f444938cd662907d38 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b16568e12465683c697f2771ec43d0eb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b9554340116b6fc1848142421cdc40b8 = $(`<div id="html_b9554340116b6fc1848142421cdc40b8" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 굿모닝이비인후과의원</h4>             <p><strong>📍 주소:</strong><br>중앙대로 669 부산광역시 연제구 중앙대로 1077 (연산동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 12병상 | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.184328<br>                경도: 129.079847             </p>         </div>         </div>`)[0];
+                popup_b16568e12465683c697f2771ec43d0eb.setContent(html_b9554340116b6fc1848142421cdc40b8);
+            
+        
+
+        marker_e8ec89b3ce61a1a4aa8330ff001855b9.bindPopup(popup_b16568e12465683c697f2771ec43d0eb)
+        ;
+
+        
+    
+    
+            marker_e8ec89b3ce61a1a4aa8330ff001855b9.bindTooltip(
+                `<div>
+                     굿모닝이비인후과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e8ec89b3ce61a1a4aa8330ff001855b9.setIcon(icon_f6121c8a384ca5f444938cd662907d38);
+            
+    
+            var marker_246e519b49c9834314fd6d9c33843d2c = L.marker(
+                [35.09756413, 129.0260148],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_74ad42e750bad74a9d3cda1019e0c6d3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bef58f2d2d79783d8f66fffaddf45273 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_493a0efc700eaf993a0ccacb4cb6353f = $(`<div id="html_493a0efc700eaf993a0ccacb4cb6353f" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 부강비뇨의학과의원</h4>             <p><strong>📍 주소:</strong><br>좌동순환로505 3층 부강비뇨의학과 부산광역시 중구 구덕로 90 (남포동6가)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.097564<br>                경도: 129.026015             </p>         </div>         </div>`)[0];
+                popup_bef58f2d2d79783d8f66fffaddf45273.setContent(html_493a0efc700eaf993a0ccacb4cb6353f);
+            
+        
+
+        marker_246e519b49c9834314fd6d9c33843d2c.bindPopup(popup_bef58f2d2d79783d8f66fffaddf45273)
+        ;
+
+        
+    
+    
+            marker_246e519b49c9834314fd6d9c33843d2c.bindTooltip(
+                `<div>
+                     부강비뇨의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_246e519b49c9834314fd6d9c33843d2c.setIcon(icon_74ad42e750bad74a9d3cda1019e0c6d3);
+            
+    
+            var marker_e069362c2e1b7ddeb43cc47b881445d9 = L.marker(
+                [35.14122498, 129.1074212],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_b850b5c363bca0e76f1154e93afbf3ac = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_53459e5d55f1502ce0976ea2e88a85e7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_287003f27cab7c71691db593ee81a9cd = $(`<div id="html_287003f27cab7c71691db593ee81a9cd" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 센텀소중한눈안과의원</h4>             <p><strong>📍 주소:</strong><br>센텀남대로 50, 센텀임페리얼타워 14층(우동) 부산광역시 수영구 수영로 390-1 (남천동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.141225<br>                경도: 129.107421             </p>         </div>         </div>`)[0];
+                popup_53459e5d55f1502ce0976ea2e88a85e7.setContent(html_287003f27cab7c71691db593ee81a9cd);
+            
+        
+
+        marker_e069362c2e1b7ddeb43cc47b881445d9.bindPopup(popup_53459e5d55f1502ce0976ea2e88a85e7)
+        ;
+
+        
+    
+    
+            marker_e069362c2e1b7ddeb43cc47b881445d9.bindTooltip(
+                `<div>
+                     센텀소중한눈안과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e069362c2e1b7ddeb43cc47b881445d9.setIcon(icon_b850b5c363bca0e76f1154e93afbf3ac);
+            
+    
+            var marker_40dc32e7004a4b4af3656431d3a11094 = L.marker(
+                [35.16825378, 129.1473694],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_aed0bc6de6e65d3361585f6f5bbcc2d4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_244e667cb20a85c1dbd250263b2cc772 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c756b977de7d934dc56287fcdef56653 = $(`<div id="html_c756b977de7d934dc56287fcdef56653" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 강남삼성드림이비인후과의원</h4>             <p><strong>📍 주소:</strong><br>테헤란로 514, 5층 부산광역시 해운대구 해운대로469번가길 77 (우동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 5병상 | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.168254<br>                경도: 129.147369             </p>         </div>         </div>`)[0];
+                popup_244e667cb20a85c1dbd250263b2cc772.setContent(html_c756b977de7d934dc56287fcdef56653);
+            
+        
+
+        marker_40dc32e7004a4b4af3656431d3a11094.bindPopup(popup_244e667cb20a85c1dbd250263b2cc772)
+        ;
+
+        
+    
+    
+            marker_40dc32e7004a4b4af3656431d3a11094.bindTooltip(
+                `<div>
+                     강남삼성드림이비인후과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_40dc32e7004a4b4af3656431d3a11094.setIcon(icon_aed0bc6de6e65d3361585f6f5bbcc2d4);
+            
+    
+            var marker_48238512ab9aa88070eea6484c1b3cd4 = L.marker(
+                [35.16566933, 129.1682249],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_5203309cfa50d689a681084f68034646 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3dad8f874a94578a68e3da6d3c90d278 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_548d14ec18077edb1f4a40e9fd9e0a86 = $(`<div id="html_548d14ec18077edb1f4a40e9fd9e0a86" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 강남서울엔비뇨기과의원</h4>             <p><strong>📍 주소:</strong><br>강남대로 376, 12층 부산광역시 해운대구 좌동순환로 505 (중동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 1병상 | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.165669<br>                경도: 129.168225             </p>         </div>         </div>`)[0];
+                popup_3dad8f874a94578a68e3da6d3c90d278.setContent(html_548d14ec18077edb1f4a40e9fd9e0a86);
+            
+        
+
+        marker_48238512ab9aa88070eea6484c1b3cd4.bindPopup(popup_3dad8f874a94578a68e3da6d3c90d278)
+        ;
+
+        
+    
+    
+            marker_48238512ab9aa88070eea6484c1b3cd4.bindTooltip(
+                `<div>
+                     강남서울엔비뇨기과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_48238512ab9aa88070eea6484c1b3cd4.setIcon(icon_5203309cfa50d689a681084f68034646);
+            
+    
+            var marker_a931e552a4bd35dae61c7be30c1cbd07 = L.marker(
+                [35.14091525, 128.916082],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_44b9ef41141d02317a30741d116ee95b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_91936da6cb6e6687764d1bb53101e242 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_05fdce1e1f466a544e448b82868cf296 = $(`<div id="html_05fdce1e1f466a544e448b82868cf296" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 화이팅정형외과의원</h4>             <p><strong>📍 주소:</strong><br>테헤란로 146, 현익빌딩 6층 부산광역시 강서구 에코중앙대로</p>             <p><strong>🏥 규모:</strong><br>                병상수: 10병상 | 진료과수: 2과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.140915<br>                경도: 128.916082             </p>         </div>         </div>`)[0];
+                popup_91936da6cb6e6687764d1bb53101e242.setContent(html_05fdce1e1f466a544e448b82868cf296);
+            
+        
+
+        marker_a931e552a4bd35dae61c7be30c1cbd07.bindPopup(popup_91936da6cb6e6687764d1bb53101e242)
+        ;
+
+        
+    
+    
+            marker_a931e552a4bd35dae61c7be30c1cbd07.bindTooltip(
+                `<div>
+                     화이팅정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a931e552a4bd35dae61c7be30c1cbd07.setIcon(icon_44b9ef41141d02317a30741d116ee95b);
+            
+    
+            var marker_d06af74deafb2153d5e9273f4dcc188e = L.marker(
+                [35.16875768, 129.1784567],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_80a8ebce53a1586aafaea3f042dcc90f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_895e00206991b9e264cbbcf7d6999676 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e5036043565d39ea4da069618208ff94 = $(`<div id="html_e5036043565d39ea4da069618208ff94" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 류마내과의원</h4>             <p><strong>📍 주소:</strong><br>천호대로 1099 (천호동) 5층 502호 부산광역시 해운대구 세실로 43 (좌동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 9과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.168758<br>                경도: 129.178457             </p>         </div>         </div>`)[0];
+                popup_895e00206991b9e264cbbcf7d6999676.setContent(html_e5036043565d39ea4da069618208ff94);
+            
+        
+
+        marker_d06af74deafb2153d5e9273f4dcc188e.bindPopup(popup_895e00206991b9e264cbbcf7d6999676)
+        ;
+
+        
+    
+    
+            marker_d06af74deafb2153d5e9273f4dcc188e.bindTooltip(
+                `<div>
+                     류마내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d06af74deafb2153d5e9273f4dcc188e.setIcon(icon_80a8ebce53a1586aafaea3f042dcc90f);
+            
+    
+            var marker_c56315b5d2635965c6db9be7e76b3cc0 = L.marker(
+                [35.09267865, 129.0442466],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_0e29e90e74ae14608922f3ba20d38d8c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_22949170f8c35d306632ff05a8ceb6b7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6fbe9308d737ba411e77207c9aa923ed = $(`<div id="html_6fbe9308d737ba411e77207c9aa923ed" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 안원식서울마취통증의학과</h4>             <p><strong>📍 주소:</strong><br>올림픽로 783, 3층  부산광역시 영도구 대교로 1 (봉래동3가)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.092679<br>                경도: 129.044247             </p>         </div>         </div>`)[0];
+                popup_22949170f8c35d306632ff05a8ceb6b7.setContent(html_6fbe9308d737ba411e77207c9aa923ed);
+            
+        
+
+        marker_c56315b5d2635965c6db9be7e76b3cc0.bindPopup(popup_22949170f8c35d306632ff05a8ceb6b7)
+        ;
+
+        
+    
+    
+            marker_c56315b5d2635965c6db9be7e76b3cc0.bindTooltip(
+                `<div>
+                     안원식서울마취통증의학과 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c56315b5d2635965c6db9be7e76b3cc0.setIcon(icon_0e29e90e74ae14608922f3ba20d38d8c);
+            
+    
+            var marker_9b0229ee7c2756967ce07291ec02dda2 = L.marker(
+                [35.16810885, 129.1313013],
+                {
+}
+            ).addTo(feature_group_870b932f031692acbc82195a5c80ab59);
+        
+    
+            var icon_1e6408cce04f7377e8f1ca72299c75d8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ddadd3b150f19530a11fa786327441f9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e6e8135c65b67809f37cf05a56525967 = $(`<div id="html_e6e8135c65b67809f37cf05a56525967" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 손장원정형외과의원</h4>             <p><strong>📍 주소:</strong><br>관악로 203 2층 부산광역시 해운대구 센텀남대로 50 (우동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.168109<br>                경도: 129.131301             </p>         </div>         </div>`)[0];
+                popup_ddadd3b150f19530a11fa786327441f9.setContent(html_e6e8135c65b67809f37cf05a56525967);
+            
+        
+
+        marker_9b0229ee7c2756967ce07291ec02dda2.bindPopup(popup_ddadd3b150f19530a11fa786327441f9)
+        ;
+
+        
+    
+    
+            marker_9b0229ee7c2756967ce07291ec02dda2.bindTooltip(
+                `<div>
+                     손장원정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9b0229ee7c2756967ce07291ec02dda2.setIcon(icon_1e6408cce04f7377e8f1ca72299c75d8);
+            
+    
+            feature_group_870b932f031692acbc82195a5c80ab59.addTo(map_8b929ec2503d0f0b48b493b7e783f8b5);
+        
+    
+            var feature_group_85c57ec4581b9b4a9db70da67a3058f4 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_635fb5b81a30a9110d1a01d9993f0ea4 = L.marker(
+                [35.10487078, 128.9212723],
+                {
+}
+            ).addTo(feature_group_85c57ec4581b9b4a9db70da67a3058f4);
+        
+    
+            var icon_a6e90f6e111d371bbc47a27fe4923c41 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "heartbeat",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fb409978a4d8ea4f33f611859abbe226 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e5eda1c7be9f6e7abac03a69ece89945 = $(`<div id="html_e5eda1c7be9f6e7abac03a69ece89945" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 대전참사랑요양병원</h4>             <p><strong>📍 주소:</strong><br>계룡로491번길 8 갤러리빌 4차 부산광역시 강서구 명지국제11로 25 (명지동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 132병상 | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.104871<br>                경도: 128.921272             </p>         </div>         </div>`)[0];
+                popup_fb409978a4d8ea4f33f611859abbe226.setContent(html_e5eda1c7be9f6e7abac03a69ece89945);
+            
+        
+
+        marker_635fb5b81a30a9110d1a01d9993f0ea4.bindPopup(popup_fb409978a4d8ea4f33f611859abbe226)
+        ;
+
+        
+    
+    
+            marker_635fb5b81a30a9110d1a01d9993f0ea4.bindTooltip(
+                `<div>
+                     대전참사랑요양병원 (요양병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_635fb5b81a30a9110d1a01d9993f0ea4.setIcon(icon_a6e90f6e111d371bbc47a27fe4923c41);
+            
+    
+            feature_group_85c57ec4581b9b4a9db70da67a3058f4.addTo(map_8b929ec2503d0f0b48b493b7e783f8b5);
+        
+    
+            var layer_control_295c16ff7ffad987f118581b2b20b5e1_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_a589fab96cd4181e3f6e130db791f583,
+                    "VWorld \uae30\ubcf8\uc9c0\ub3c4 (\ud55c\uae00)" : tile_layer_e5028f594c414d8137a8def22e5eb9b2,
+                },
+                overlays :  {
+                    "\uc885\ud569\ubcd1\uc6d0" : feature_group_73f82602934692ba8eaba0b161e7ed50,
+                    "\ubcd1\uc6d0" : feature_group_a174498fcd152a7db219e8cee6d7bad4,
+                    "\uc758\uc6d0" : feature_group_870b932f031692acbc82195a5c80ab59,
+                    "\uc694\uc591\ubcd1\uc6d0" : feature_group_85c57ec4581b9b4a9db70da67a3058f4,
+                },
+            };
+            let layer_control_295c16ff7ffad987f118581b2b20b5e1 = L.control.layers(
+                layer_control_295c16ff7ffad987f118581b2b20b5e1_layers.base_layers,
+                layer_control_295c16ff7ffad987f118581b2b20b5e1_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_8b929ec2503d0f0b48b493b7e783f8b5);
+
+        
+</script>
+</html>

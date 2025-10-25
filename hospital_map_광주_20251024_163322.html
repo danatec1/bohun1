@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_ae08a1c893250077d73c31abd642c211 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <div style="position: fixed; 
+                    top: 10px; left: 50px; width: 280px; 
+                    background-color: white; border:2px solid grey; z-index:9999; 
+                    font-size:13px; padding: 12px; border-radius: 8px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+        <h4 style="margin: 0 0 10px 0;">🏥 위탁병원 지도 - 광주</h4>
+        <p style="margin: 5px 0;"><strong>총 병원 수:</strong> 20개</p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 5px 0; font-weight: bold;">📍 종별 현황:</p>
+        <p style="margin: 3px 0;">
+            <span style="color: #d63333; font-weight: bold;">●</span> 종합병원: 0개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #3498db; font-weight: bold;">●</span> 병원: 1개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #38a169; font-weight: bold;">●</span> 의원: 18개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #ff8c00; font-weight: bold;">●</span> 요양병원: 1개
+        </p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 5px 0; font-size: 11px; color: #666;">
+        생성: 2025-10-24 16:33</p>
+        </div>
+        
+    
+            <div class="folium-map" id="map_ae08a1c893250077d73c31abd642c211" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_ae08a1c893250077d73c31abd642c211 = L.map(
+                "map_ae08a1c893250077d73c31abd642c211",
+                {
+                    center: [35.1595, 126.8526],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": true,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_fbb506baf70f4cceaaf1b1796d709026 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "OpenStreetMap",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_fbb506baf70f4cceaaf1b1796d709026.addTo(map_ae08a1c893250077d73c31abd642c211);
+        
+    
+            var tile_layer_de9509c97354efd6d4ccd5a2ea98e705 = L.tileLayer(
+                "https://map.vworld.kr/tile/Base/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "VWorld \ud55c\uad6d\uc9c0\ub3c4",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var feature_group_c8b8cbd4369b6b964eaf8ff2f42f2d12 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            feature_group_c8b8cbd4369b6b964eaf8ff2f42f2d12.addTo(map_ae08a1c893250077d73c31abd642c211);
+        
+    
+            var feature_group_7cd66e30ab04710de41cee05e63fc73a = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_dc643262e84d60538438ae149d2af056 = L.marker(
+                [35.12420816, 126.9075351],
+                {
+}
+            ).addTo(feature_group_7cd66e30ab04710de41cee05e63fc73a);
+        
+    
+            var icon_651f41c476ae314af6736004bcfb88be = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7b0f0a0a4cfe3458ac760a122d098338 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ba3cbef5f9c47e0bd6c5dc053dc2ca03 = $(`<div id="html_ba3cbef5f9c47e0bd6c5dc053dc2ca03" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 문영래정형외과병원</h4>             <p><strong>📍 주소:</strong><br>운천로 148 (쌍촌동) 2층 광주광역시 남구 제석로 110 (봉선동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 50병상 | 진료과수: 3과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.124208<br>                경도: 126.907535             </p>         </div>         </div>`)[0];
+                popup_7b0f0a0a4cfe3458ac760a122d098338.setContent(html_ba3cbef5f9c47e0bd6c5dc053dc2ca03);
+            
+        
+
+        marker_dc643262e84d60538438ae149d2af056.bindPopup(popup_7b0f0a0a4cfe3458ac760a122d098338)
+        ;
+
+        
+    
+    
+            marker_dc643262e84d60538438ae149d2af056.bindTooltip(
+                `<div>
+                     문영래정형외과병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dc643262e84d60538438ae149d2af056.setIcon(icon_651f41c476ae314af6736004bcfb88be);
+            
+    
+            feature_group_7cd66e30ab04710de41cee05e63fc73a.addTo(map_ae08a1c893250077d73c31abd642c211);
+        
+    
+            var feature_group_32bbfa69550a7b3f95a0b4c585d7f1df = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_8da73966446ddeae552b235e5ea72c61 = L.marker(
+                [37.40884163, 127.2584214],
+                {
+}
+            ).addTo(feature_group_32bbfa69550a7b3f95a0b4c585d7f1df);
+        
+    
+            var icon_708f9d72cf1ccad770fc8227875eb4ab = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3e53abd0e71d8f99c50a5a86d4f33401 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a19d902dff333bf46452b4a74a1f9cc5 = $(`<div id="html_a19d902dff333bf46452b4a74a1f9cc5" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 정발산튼튼척의원</h4>             <p><strong>📍 주소:</strong><br>일산동구 정발산로 38, 208호 경기도 광주시 중앙로 101 (경안동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.408842<br>                경도: 127.258421             </p>         </div>         </div>`)[0];
+                popup_3e53abd0e71d8f99c50a5a86d4f33401.setContent(html_a19d902dff333bf46452b4a74a1f9cc5);
+            
+        
+
+        marker_8da73966446ddeae552b235e5ea72c61.bindPopup(popup_3e53abd0e71d8f99c50a5a86d4f33401)
+        ;
+
+        
+    
+    
+            marker_8da73966446ddeae552b235e5ea72c61.bindTooltip(
+                `<div>
+                     정발산튼튼척의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8da73966446ddeae552b235e5ea72c61.setIcon(icon_708f9d72cf1ccad770fc8227875eb4ab);
+            
+    
+            var marker_36191bae8c8fd01db9d0a4cb6b998593 = L.marker(
+                [37.47407804, 126.8701973],
+                {
+}
+            ).addTo(feature_group_32bbfa69550a7b3f95a0b4c585d7f1df);
+        
+    
+            var icon_650d551d9ad9026225b7665441b19954 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_28b94fe874c72924ba30c1d310a251b9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_da7b61ee78e0130c4d64a23f1f460aa3 = $(`<div id="html_da7b61ee78e0130c4d64a23f1f460aa3" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 광주시원한비뇨의학과의원</h4>             <p><strong>📍 주소:</strong><br>광주대로 31, 지에이타워 8층  경기도 광명시 디지털로 25 (철산동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 1병상 | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.474078<br>                경도: 126.870197             </p>         </div>         </div>`)[0];
+                popup_28b94fe874c72924ba30c1d310a251b9.setContent(html_da7b61ee78e0130c4d64a23f1f460aa3);
+            
+        
+
+        marker_36191bae8c8fd01db9d0a4cb6b998593.bindPopup(popup_28b94fe874c72924ba30c1d310a251b9)
+        ;
+
+        
+    
+    
+            marker_36191bae8c8fd01db9d0a4cb6b998593.bindTooltip(
+                `<div>
+                     광주시원한비뇨의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_36191bae8c8fd01db9d0a4cb6b998593.setIcon(icon_650d551d9ad9026225b7665441b19954);
+            
+    
+            var marker_32368b0d87a2c895baf86bc7c20178d0 = L.marker(
+                [37.40935227, 127.2602326],
+                {
+}
+            ).addTo(feature_group_32bbfa69550a7b3f95a0b4c585d7f1df);
+        
+    
+            var icon_9645bb8aa8642ca79f0b77513f33bf98 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b96794551deee295b7aeff29620defe3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1616b604d29dd684f8029da6a063aa67 = $(`<div id="html_1616b604d29dd684f8029da6a063aa67" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 광주제일내과의원</h4>             <p><strong>📍 주소:</strong><br>중앙로 101 경기도 광주시 광주대로 31 (경안동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 9과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.409352<br>                경도: 127.260233             </p>         </div>         </div>`)[0];
+                popup_b96794551deee295b7aeff29620defe3.setContent(html_1616b604d29dd684f8029da6a063aa67);
+            
+        
+
+        marker_32368b0d87a2c895baf86bc7c20178d0.bindPopup(popup_b96794551deee295b7aeff29620defe3)
+        ;
+
+        
+    
+    
+            marker_32368b0d87a2c895baf86bc7c20178d0.bindTooltip(
+                `<div>
+                     광주제일내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_32368b0d87a2c895baf86bc7c20178d0.setIcon(icon_9645bb8aa8642ca79f0b77513f33bf98);
+            
+    
+            var marker_8192e5cb4691a2ac5dcdb8035ce603f7 = L.marker(
+                [37.40952354, 127.2561946],
+                {
+}
+            ).addTo(feature_group_32bbfa69550a7b3f95a0b4c585d7f1df);
+        
+    
+            var icon_6ffb589689819682689f6efe343b83b6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c39fb36cb6ee70f6c3938a2889bd2ca7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_daef421e29d5baad13dcf4ab5f3f0716 = $(`<div id="html_daef421e29d5baad13dcf4ab5f3f0716" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 퇴촌중앙의원</h4>             <p><strong>📍 주소:</strong><br>퇴촌면 광동로 73-8 경기도 광주시 경안로 40 (경안동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 8과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.409524<br>                경도: 127.256195             </p>         </div>         </div>`)[0];
+                popup_c39fb36cb6ee70f6c3938a2889bd2ca7.setContent(html_daef421e29d5baad13dcf4ab5f3f0716);
+            
+        
+
+        marker_8192e5cb4691a2ac5dcdb8035ce603f7.bindPopup(popup_c39fb36cb6ee70f6c3938a2889bd2ca7)
+        ;
+
+        
+    
+    
+            marker_8192e5cb4691a2ac5dcdb8035ce603f7.bindTooltip(
+                `<div>
+                     퇴촌중앙의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8192e5cb4691a2ac5dcdb8035ce603f7.setIcon(icon_6ffb589689819682689f6efe343b83b6);
+            
+    
+            var marker_667a6a2326066f3d03ca788516da292b = L.marker(
+                [37.4708045, 127.3108453],
+                {
+}
+            ).addTo(feature_group_32bbfa69550a7b3f95a0b4c585d7f1df);
+        
+    
+            var icon_5ef8da26b2b73db77c7c0f3db36d11f9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_86a1c82133ad291e977d8a1ea7b0941b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8aa94cda1025cc2d45dfb13dda84edcf = $(`<div id="html_8aa94cda1025cc2d45dfb13dda84edcf" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 서울비뇨기과의원(구리점)</h4>             <p><strong>📍 주소:</strong><br>건원대로3 흥화브라운오피스텔 4층 경기도 광주시 광동로 73-8 (퇴촌면)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 1병상 | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.470804<br>                경도: 127.310845             </p>         </div>         </div>`)[0];
+                popup_86a1c82133ad291e977d8a1ea7b0941b.setContent(html_8aa94cda1025cc2d45dfb13dda84edcf);
+            
+        
+
+        marker_667a6a2326066f3d03ca788516da292b.bindPopup(popup_86a1c82133ad291e977d8a1ea7b0941b)
+        ;
+
+        
+    
+    
+            marker_667a6a2326066f3d03ca788516da292b.bindTooltip(
+                `<div>
+                     서울비뇨기과의원(구리점) (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_667a6a2326066f3d03ca788516da292b.setIcon(icon_5ef8da26b2b73db77c7c0f3db36d11f9);
+            
+    
+            var marker_24c4914b96878ab6d47816135b6e9bee = L.marker(
+                [37.37408812, 127.2973598],
+                {
+}
+            ).addTo(feature_group_32bbfa69550a7b3f95a0b4c585d7f1df);
+        
+    
+            var icon_8fa03a0d49dbbc234af250b677def58e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cda8c929c1a48d560ab1c55fd1761920 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a8bb5f8754c7c54a89554ea92d0feab5 = $(`<div id="html_a8bb5f8754c7c54a89554ea92d0feab5" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 김성진내과의원</h4>             <p><strong>📍 주소:</strong><br>고산로 693 (산본동) 하나로빌딩 3층 김성진내과 경기도 광주시 경충대로 1087 (초월읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.374088<br>                경도: 127.297360             </p>         </div>         </div>`)[0];
+                popup_cda8c929c1a48d560ab1c55fd1761920.setContent(html_a8bb5f8754c7c54a89554ea92d0feab5);
+            
+        
+
+        marker_24c4914b96878ab6d47816135b6e9bee.bindPopup(popup_cda8c929c1a48d560ab1c55fd1761920)
+        ;
+
+        
+    
+    
+            marker_24c4914b96878ab6d47816135b6e9bee.bindTooltip(
+                `<div>
+                     김성진내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_24c4914b96878ab6d47816135b6e9bee.setIcon(icon_8fa03a0d49dbbc234af250b677def58e);
+            
+    
+            var marker_2d3068eec579490fd09380b0387886bd = L.marker(
+                [35.11957141, 126.8986875],
+                {
+}
+            ).addTo(feature_group_32bbfa69550a7b3f95a0b4c585d7f1df);
+        
+    
+            var icon_4ad01ef97af4755d2c10939fe3f618d3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4ebfbeac55447f551d55aeb09a1e2897 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cde21c28b94f99f762e42478f78a55db = $(`<div id="html_cde21c28b94f99f762e42478f78a55db" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 속튼튼의원</h4>             <p><strong>📍 주소:</strong><br>청도읍 청화로 154 광주광역시 남구 서문대로 675 (진월동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.119571<br>                경도: 126.898687             </p>         </div>         </div>`)[0];
+                popup_4ebfbeac55447f551d55aeb09a1e2897.setContent(html_cde21c28b94f99f762e42478f78a55db);
+            
+        
+
+        marker_2d3068eec579490fd09380b0387886bd.bindPopup(popup_4ebfbeac55447f551d55aeb09a1e2897)
+        ;
+
+        
+    
+    
+            marker_2d3068eec579490fd09380b0387886bd.bindTooltip(
+                `<div>
+                     속튼튼의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2d3068eec579490fd09380b0387886bd.setIcon(icon_4ad01ef97af4755d2c10939fe3f618d3);
+            
+    
+            var marker_fe4882243b08884a818e04ed7c2c05eb = L.marker(
+                [35.12403682, 126.897838],
+                {
+}
+            ).addTo(feature_group_32bbfa69550a7b3f95a0b4c585d7f1df);
+        
+    
+            var icon_b2c17ff87beb6d751cb54d39087af619 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c90979a4e20ac6fec4c388c1320708e6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bd85fc0600536c68571f2e59b4578ed5 = $(`<div id="html_bd85fc0600536c68571f2e59b4578ed5" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 더속편한내과의원</h4>             <p><strong>📍 주소:</strong><br>석적읍 강변대로 2288 광주광역시 남구 서문대로 725 (진월동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.124037<br>                경도: 126.897838             </p>         </div>         </div>`)[0];
+                popup_c90979a4e20ac6fec4c388c1320708e6.setContent(html_bd85fc0600536c68571f2e59b4578ed5);
+            
+        
+
+        marker_fe4882243b08884a818e04ed7c2c05eb.bindPopup(popup_c90979a4e20ac6fec4c388c1320708e6)
+        ;
+
+        
+    
+    
+            marker_fe4882243b08884a818e04ed7c2c05eb.bindTooltip(
+                `<div>
+                     더속편한내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_fe4882243b08884a818e04ed7c2c05eb.setIcon(icon_b2c17ff87beb6d751cb54d39087af619);
+            
+    
+            var marker_17ff3815df11966f285b883cc40cfa30 = L.marker(
+                [35.21370143, 126.8503546],
+                {
+}
+            ).addTo(feature_group_32bbfa69550a7b3f95a0b4c585d7f1df);
+        
+    
+            var icon_c559fc1e83a5d8938965b01d887462b0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_84c35ccf4c616833c3c00d4c13b59bf6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c026ec5523a4a5e198ef90f0dbda996d = $(`<div id="html_c026ec5523a4a5e198ef90f0dbda996d" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 우리삼성안과의원</h4>             <p><strong>📍 주소:</strong><br>왜관읍 중앙로 159 광주광역시 광산구 월계로 223-8 (쌍암동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.213701<br>                경도: 126.850355             </p>         </div>         </div>`)[0];
+                popup_84c35ccf4c616833c3c00d4c13b59bf6.setContent(html_c026ec5523a4a5e198ef90f0dbda996d);
+            
+        
+
+        marker_17ff3815df11966f285b883cc40cfa30.bindPopup(popup_84c35ccf4c616833c3c00d4c13b59bf6)
+        ;
+
+        
+    
+    
+            marker_17ff3815df11966f285b883cc40cfa30.bindTooltip(
+                `<div>
+                     우리삼성안과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_17ff3815df11966f285b883cc40cfa30.setIcon(icon_c559fc1e83a5d8938965b01d887462b0);
+            
+    
+            var marker_ddb0491cc0e69063f9ae97b88166da0f = L.marker(
+                [35.14617748, 126.8491828],
+                {
+}
+            ).addTo(feature_group_32bbfa69550a7b3f95a0b4c585d7f1df);
+        
+    
+            var icon_ee6c0c7466c57bc7f03508be89fb53ee = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ee387685cc0bd4a7a549c13ae540bb48 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ed68fc99ff775cddad01b655ff610bf9 = $(`<div id="html_ed68fc99ff775cddad01b655ff610bf9" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 시원한신경과의원</h4>             <p><strong>📍 주소:</strong><br>남구 중흥로 88 광주광역시 서구 마륵복개로 91 (마륵동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 8과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.146177<br>                경도: 126.849183             </p>         </div>         </div>`)[0];
+                popup_ee387685cc0bd4a7a549c13ae540bb48.setContent(html_ed68fc99ff775cddad01b655ff610bf9);
+            
+        
+
+        marker_ddb0491cc0e69063f9ae97b88166da0f.bindPopup(popup_ee387685cc0bd4a7a549c13ae540bb48)
+        ;
+
+        
+    
+    
+            marker_ddb0491cc0e69063f9ae97b88166da0f.bindTooltip(
+                `<div>
+                     시원한신경과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ddb0491cc0e69063f9ae97b88166da0f.setIcon(icon_ee6c0c7466c57bc7f03508be89fb53ee);
+            
+    
+            var marker_63f515fb848e0549a9b6cc9cef3553a2 = L.marker(
+                [35.12801167, 126.8549398],
+                {
+}
+            ).addTo(feature_group_32bbfa69550a7b3f95a0b4c585d7f1df);
+        
+    
+            var icon_951d28dfe26f0b8480301518a0a614ca = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_da9eec2cfa0b32e88e4e6c715ff316f1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d84e93d67ca222f3c77d93f45838c4a5 = $(`<div id="html_d84e93d67ca222f3c77d93f45838c4a5" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 첨단메디케어의원</h4>             <p><strong>📍 주소:</strong><br>월계로 223-8 광주광역시 서구 화개1로 45 (금호동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 20병상 | 진료과수: 8과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.128012<br>                경도: 126.854940             </p>         </div>         </div>`)[0];
+                popup_da9eec2cfa0b32e88e4e6c715ff316f1.setContent(html_d84e93d67ca222f3c77d93f45838c4a5);
+            
+        
+
+        marker_63f515fb848e0549a9b6cc9cef3553a2.bindPopup(popup_da9eec2cfa0b32e88e4e6c715ff316f1)
+        ;
+
+        
+    
+    
+            marker_63f515fb848e0549a9b6cc9cef3553a2.bindTooltip(
+                `<div>
+                     첨단메디케어의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_63f515fb848e0549a9b6cc9cef3553a2.setIcon(icon_951d28dfe26f0b8480301518a0a614ca);
+            
+    
+            var marker_23da25e3feedd7939dc43c25455d049a = L.marker(
+                [35.13275779, 126.9286878],
+                {
+}
+            ).addTo(feature_group_32bbfa69550a7b3f95a0b4c585d7f1df);
+        
+    
+            var icon_34c9ce7d72d23adbd1b7f9f098fd50dd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4e9afe1edd05c97fd8a806a819b14e7d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a7451b14d487eba12996216e0f22e4ec = $(`<div id="html_a7451b14d487eba12996216e0f22e4ec" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 조민석내과의원</h4>             <p><strong>📍 주소:</strong><br>서문대로 692 광주광역시 동구 남문로 696 (학동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 3과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.132758<br>                경도: 126.928688             </p>         </div>         </div>`)[0];
+                popup_4e9afe1edd05c97fd8a806a819b14e7d.setContent(html_a7451b14d487eba12996216e0f22e4ec);
+            
+        
+
+        marker_23da25e3feedd7939dc43c25455d049a.bindPopup(popup_4e9afe1edd05c97fd8a806a819b14e7d)
+        ;
+
+        
+    
+    
+            marker_23da25e3feedd7939dc43c25455d049a.bindTooltip(
+                `<div>
+                     조민석내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_23da25e3feedd7939dc43c25455d049a.setIcon(icon_34c9ce7d72d23adbd1b7f9f098fd50dd);
+            
+    
+            var marker_17bce38b6cbdb6915d4af83d3cc7fcf4 = L.marker(
+                [35.14211159, 126.9202501],
+                {
+}
+            ).addTo(feature_group_32bbfa69550a7b3f95a0b4c585d7f1df);
+        
+    
+            var icon_425dabf719c92cb91fccdd929a04c4ab = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d19b375f2434a580045e2c80141b9555 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_04fa378e410391e984652a78972fb9cd = $(`<div id="html_04fa378e410391e984652a78972fb9cd" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 킹덤치과의원</h4>             <p><strong>📍 주소:</strong><br>제석로 110 광주광역시 동구 백서로 134-1 (학동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 10과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.142112<br>                경도: 126.920250             </p>         </div>         </div>`)[0];
+                popup_d19b375f2434a580045e2c80141b9555.setContent(html_04fa378e410391e984652a78972fb9cd);
+            
+        
+
+        marker_17bce38b6cbdb6915d4af83d3cc7fcf4.bindPopup(popup_d19b375f2434a580045e2c80141b9555)
+        ;
+
+        
+    
+    
+            marker_17bce38b6cbdb6915d4af83d3cc7fcf4.bindTooltip(
+                `<div>
+                     킹덤치과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_17bce38b6cbdb6915d4af83d3cc7fcf4.setIcon(icon_425dabf719c92cb91fccdd929a04c4ab);
+            
+    
+            var marker_ddaaf4001575a8e9af3ebcbdbb9d256e = L.marker(
+                [35.12122024, 126.8990361],
+                {
+}
+            ).addTo(feature_group_32bbfa69550a7b3f95a0b4c585d7f1df);
+        
+    
+            var icon_5f087fa4215ad2a6d5d9577632410817 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4b41306f6c5e69303425ba95e0099bd0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_55da14b5095433325ebe9298536996d9 = $(`<div id="html_55da14b5095433325ebe9298536996d9" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 뉴스타정형외과의원</h4>             <p><strong>📍 주소:</strong><br>임방울대로 1055 광주광역시 남구 서문대로 692 (진월동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 27병상 | 진료과수: 2과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.121220<br>                경도: 126.899036             </p>         </div>         </div>`)[0];
+                popup_4b41306f6c5e69303425ba95e0099bd0.setContent(html_55da14b5095433325ebe9298536996d9);
+            
+        
+
+        marker_ddaaf4001575a8e9af3ebcbdbb9d256e.bindPopup(popup_4b41306f6c5e69303425ba95e0099bd0)
+        ;
+
+        
+    
+    
+            marker_ddaaf4001575a8e9af3ebcbdbb9d256e.bindTooltip(
+                `<div>
+                     뉴스타정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ddaaf4001575a8e9af3ebcbdbb9d256e.setIcon(icon_5f087fa4215ad2a6d5d9577632410817);
+            
+    
+            var marker_cb5a41ad1e7fbe46a140c48ced54c27c = L.marker(
+                [35.19090666, 126.8378944],
+                {
+}
+            ).addTo(feature_group_32bbfa69550a7b3f95a0b4c585d7f1df);
+        
+    
+            var icon_b74d27ca998809fb2620f94fd063bb14 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6c6b60a6d73615a4df075528a6ba9993 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6a569e1f939b7c5bf94bffad8d2b4486 = $(`<div id="html_6a569e1f939b7c5bf94bffad8d2b4486" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 에이치메디컬의원</h4>             <p><strong>📍 주소:</strong><br>서암대로 187 광주광역시 광산구 장신로 253 (신창동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 22병상 | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.190907<br>                경도: 126.837894             </p>         </div>         </div>`)[0];
+                popup_6c6b60a6d73615a4df075528a6ba9993.setContent(html_6a569e1f939b7c5bf94bffad8d2b4486);
+            
+        
+
+        marker_cb5a41ad1e7fbe46a140c48ced54c27c.bindPopup(popup_6c6b60a6d73615a4df075528a6ba9993)
+        ;
+
+        
+    
+    
+            marker_cb5a41ad1e7fbe46a140c48ced54c27c.bindTooltip(
+                `<div>
+                     에이치메디컬의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cb5a41ad1e7fbe46a140c48ced54c27c.setIcon(icon_b74d27ca998809fb2620f94fd063bb14);
+            
+    
+            var marker_20a33f9af6716d7d2ab7aab51ac2f463 = L.marker(
+                [35.21217101, 126.8728525],
+                {
+}
+            ).addTo(feature_group_32bbfa69550a7b3f95a0b4c585d7f1df);
+        
+    
+            var icon_9bb57839dc9dead216d2ad2910ee300c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a32ad61f9cc53d492dffc7312d84bea2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3e9f95e453e522741c44557f0aa62a19 = $(`<div id="html_3e9f95e453e522741c44557f0aa62a19" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 원형마취통증의학과의원</h4>             <p><strong>📍 주소:</strong><br>대명로 304 광주광역시 북구 임방울대로 1055 (용두동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.212171<br>                경도: 126.872852             </p>         </div>         </div>`)[0];
+                popup_a32ad61f9cc53d492dffc7312d84bea2.setContent(html_3e9f95e453e522741c44557f0aa62a19);
+            
+        
+
+        marker_20a33f9af6716d7d2ab7aab51ac2f463.bindPopup(popup_a32ad61f9cc53d492dffc7312d84bea2)
+        ;
+
+        
+    
+    
+            marker_20a33f9af6716d7d2ab7aab51ac2f463.bindTooltip(
+                `<div>
+                     원형마취통증의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_20a33f9af6716d7d2ab7aab51ac2f463.setIcon(icon_9bb57839dc9dead216d2ad2910ee300c);
+            
+    
+            var marker_e8c6e9e080e468fdb41e583d314f58ce = L.marker(
+                [35.1458796, 126.8573104],
+                {
+}
+            ).addTo(feature_group_32bbfa69550a7b3f95a0b4c585d7f1df);
+        
+    
+            var icon_c46d6472b8bdbc79b12904dd27f9570e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ea182483d56e6d95836b1a9d9b70a59d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e467e0d198a4229eb94804b5ced10f4a = $(`<div id="html_e467e0d198a4229eb94804b5ced10f4a" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 김종원치과의원</h4>             <p><strong>📍 주소:</strong><br>한실로 99 광주광역시 서구 운천로 148 (쌍촌동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.145880<br>                경도: 126.857310             </p>         </div>         </div>`)[0];
+                popup_ea182483d56e6d95836b1a9d9b70a59d.setContent(html_e467e0d198a4229eb94804b5ced10f4a);
+            
+        
+
+        marker_e8c6e9e080e468fdb41e583d314f58ce.bindPopup(popup_ea182483d56e6d95836b1a9d9b70a59d)
+        ;
+
+        
+    
+    
+            marker_e8c6e9e080e468fdb41e583d314f58ce.bindTooltip(
+                `<div>
+                     김종원치과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e8c6e9e080e468fdb41e583d314f58ce.setIcon(icon_c46d6472b8bdbc79b12904dd27f9570e);
+            
+    
+            var marker_d7acd8567793e7f875b7b95f7dfdbbff = L.marker(
+                [35.16883801, 126.904746],
+                {
+}
+            ).addTo(feature_group_32bbfa69550a7b3f95a0b4c585d7f1df);
+        
+    
+            var icon_bc9b548795824b2dbe2228fee79d81bf = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_460515c8b183afbc1c149a40825be017 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2f7344825ac00cbca34928ed0a5e2208 = $(`<div id="html_2f7344825ac00cbca34928ed0a5e2208" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 현풍경대비뇨기과의원</h4>             <p><strong>📍 주소:</strong><br>현풍읍 테크노상업로 20 광주광역시 북구 서암대로 187 (신안동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.168838<br>                경도: 126.904746             </p>         </div>         </div>`)[0];
+                popup_460515c8b183afbc1c149a40825be017.setContent(html_2f7344825ac00cbca34928ed0a5e2208);
+            
+        
+
+        marker_d7acd8567793e7f875b7b95f7dfdbbff.bindPopup(popup_460515c8b183afbc1c149a40825be017)
+        ;
+
+        
+    
+    
+            marker_d7acd8567793e7f875b7b95f7dfdbbff.bindTooltip(
+                `<div>
+                     현풍경대비뇨기과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d7acd8567793e7f875b7b95f7dfdbbff.setIcon(icon_bc9b548795824b2dbe2228fee79d81bf);
+            
+    
+            feature_group_32bbfa69550a7b3f95a0b4c585d7f1df.addTo(map_ae08a1c893250077d73c31abd642c211);
+        
+    
+            var feature_group_e6d6504faaf0ac661a8f310434303fe4 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_34466a5006b2740582ae62446e814753 = L.marker(
+                [35.1911213, 126.8243718],
+                {
+}
+            ).addTo(feature_group_e6d6504faaf0ac661a8f310434303fe4);
+        
+    
+            var icon_fe39dab725ddf35d9f4666ca3e4f8a73 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "heartbeat",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1ff5b6ee37c4f1330a01c490813af56d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b61d5923e32fc6f8ecc44d6f0e82a9be = $(`<div id="html_b61d5923e32fc6f8ecc44d6f0e82a9be" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 상인요양병원</h4>             <p><strong>📍 주소:</strong><br>월배로 247 광주광역시 광산구 임방울대로 348 (수완동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 183병상 | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.191121<br>                경도: 126.824372             </p>         </div>         </div>`)[0];
+                popup_1ff5b6ee37c4f1330a01c490813af56d.setContent(html_b61d5923e32fc6f8ecc44d6f0e82a9be);
+            
+        
+
+        marker_34466a5006b2740582ae62446e814753.bindPopup(popup_1ff5b6ee37c4f1330a01c490813af56d)
+        ;
+
+        
+    
+    
+            marker_34466a5006b2740582ae62446e814753.bindTooltip(
+                `<div>
+                     상인요양병원 (요양병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_34466a5006b2740582ae62446e814753.setIcon(icon_fe39dab725ddf35d9f4666ca3e4f8a73);
+            
+    
+            feature_group_e6d6504faaf0ac661a8f310434303fe4.addTo(map_ae08a1c893250077d73c31abd642c211);
+        
+    
+            var layer_control_7806020d25ea274184905d22f9fe0798_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_fbb506baf70f4cceaaf1b1796d709026,
+                    "VWorld \uae30\ubcf8\uc9c0\ub3c4 (\ud55c\uae00)" : tile_layer_de9509c97354efd6d4ccd5a2ea98e705,
+                },
+                overlays :  {
+                    "\uc885\ud569\ubcd1\uc6d0" : feature_group_c8b8cbd4369b6b964eaf8ff2f42f2d12,
+                    "\ubcd1\uc6d0" : feature_group_7cd66e30ab04710de41cee05e63fc73a,
+                    "\uc758\uc6d0" : feature_group_32bbfa69550a7b3f95a0b4c585d7f1df,
+                    "\uc694\uc591\ubcd1\uc6d0" : feature_group_e6d6504faaf0ac661a8f310434303fe4,
+                },
+            };
+            let layer_control_7806020d25ea274184905d22f9fe0798 = L.control.layers(
+                layer_control_7806020d25ea274184905d22f9fe0798_layers.base_layers,
+                layer_control_7806020d25ea274184905d22f9fe0798_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_ae08a1c893250077d73c31abd642c211);
+
+        
+</script>
+</html>

@@ -9,14 +9,16 @@ from typing import List, Optional
 from ..models.hospital import Hospital
 
 class TestDBHospitalRepository:
-    def __init__(self, host='localhost', user='root', password='Admin1', database='testdb'):
+    def __init__(self, host='121.157.160.22', port=3306, user='root', password='zzaaqq', database='testdb'):
         self.connection_config = {
             'host': host,
+            'port': port,
             'user': user,
             'password': password,
             'database': database,
             'charset': 'utf8mb4',
-            'cursorclass': pymysql.cursors.DictCursor
+            'cursorclass': pymysql.cursors.DictCursor,
+            'connect_timeout': 30
         }
         
     def _get_connection(self):

@@ -1,0 +1,2653 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_c6669e4b02ef558a07db0a24da26a913 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <div style="position: fixed; 
+                    top: 10px; left: 50px; width: 280px; 
+                    background-color: white; border:2px solid grey; z-index:9999; 
+                    font-size:13px; padding: 12px; border-radius: 8px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+        <h4 style="margin: 0 0 10px 0;">🏥 위탁병원 지도 - 전북</h4>
+        <p style="margin: 5px 0;"><strong>총 병원 수:</strong> 51개</p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 5px 0; font-weight: bold;">📍 종별 현황:</p>
+        <p style="margin: 3px 0;">
+            <span style="color: #d63333; font-weight: bold;">●</span> 종합병원: 5개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #3498db; font-weight: bold;">●</span> 병원: 6개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #38a169; font-weight: bold;">●</span> 의원: 36개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #ff8c00; font-weight: bold;">●</span> 요양병원: 4개
+        </p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 5px 0; font-size: 11px; color: #666;">
+        생성: 2025-10-24 16:33</p>
+        </div>
+        
+    
+            <div class="folium-map" id="map_c6669e4b02ef558a07db0a24da26a913" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_c6669e4b02ef558a07db0a24da26a913 = L.map(
+                "map_c6669e4b02ef558a07db0a24da26a913",
+                {
+                    center: [35.7175, 127.153],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 9,
+  "zoomControl": true,
+  "preferCanvas": true,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_7f35f4d1eef2053c70c3930d3f4466ab = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "OpenStreetMap",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_7f35f4d1eef2053c70c3930d3f4466ab.addTo(map_c6669e4b02ef558a07db0a24da26a913);
+        
+    
+            var tile_layer_9115c4f5cb10f0244aa01ca4dff354e7 = L.tileLayer(
+                "https://map.vworld.kr/tile/Base/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "VWorld \ud55c\uad6d\uc9c0\ub3c4",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var feature_group_1126701443ce12c840188ea8737078a9 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_73ce6fbeaeaeebae41f049a88d1ff802 = L.marker(
+                [35.80425083, 126.895305],
+                {
+}
+            ).addTo(feature_group_1126701443ce12c840188ea8737078a9);
+        
+    
+            var icon_1219a2e6b341c2f1225fa46fb6887ad5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "hospital-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2cc890b92097c32e99bffe93dc744a3a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f5134203ef3bd7d07704ca4356526079 = $(`<div id="html_f5134203ef3bd7d07704ca4356526079" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 군산의료원</h4>             <p><strong>📍 주소:</strong><br>의료원로 27 전북특별자치도 김제시 동서로 259 (요촌동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 430병상 | 진료과수: 24과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.804251<br>                경도: 126.895305             </p>         </div>         </div>`)[0];
+                popup_2cc890b92097c32e99bffe93dc744a3a.setContent(html_f5134203ef3bd7d07704ca4356526079);
+            
+        
+
+        marker_73ce6fbeaeaeebae41f049a88d1ff802.bindPopup(popup_2cc890b92097c32e99bffe93dc744a3a)
+        ;
+
+        
+    
+    
+            marker_73ce6fbeaeaeebae41f049a88d1ff802.bindTooltip(
+                `<div>
+                     군산의료원 (종합병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_73ce6fbeaeaeebae41f049a88d1ff802.setIcon(icon_1219a2e6b341c2f1225fa46fb6887ad5);
+            
+    
+            var marker_42d824759cd86c3edf0c5e26a6ccc8a2 = L.marker(
+                [35.4356633, 126.6953811],
+                {
+}
+            ).addTo(feature_group_1126701443ce12c840188ea8737078a9);
+        
+    
+            var icon_b2ba98bdea908c18e01ea119b4a3d000 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "hospital-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5afe590bdaf04b500ee363acc61d313e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_94c3ba1bd0f792da1da498f6152b5a56 = $(`<div id="html_94c3ba1bd0f792da1da498f6152b5a56" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 남원의료원</h4>             <p><strong>📍 주소:</strong><br>충정로 365 (고죽동) 전북특별자치도 고창군 보릿골로 115 (고창읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 350병상 | 진료과수: 19과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.435663<br>                경도: 126.695381             </p>         </div>         </div>`)[0];
+                popup_5afe590bdaf04b500ee363acc61d313e.setContent(html_94c3ba1bd0f792da1da498f6152b5a56);
+            
+        
+
+        marker_42d824759cd86c3edf0c5e26a6ccc8a2.bindPopup(popup_5afe590bdaf04b500ee363acc61d313e)
+        ;
+
+        
+    
+    
+            marker_42d824759cd86c3edf0c5e26a6ccc8a2.bindTooltip(
+                `<div>
+                     남원의료원 (종합병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_42d824759cd86c3edf0c5e26a6ccc8a2.setIcon(icon_b2ba98bdea908c18e01ea119b4a3d000);
+            
+    
+            var marker_4b9dd9380bba3268a1f932d0e1af3b6b = L.marker(
+                [35.3760717, 127.1421774],
+                {
+}
+            ).addTo(feature_group_1126701443ce12c840188ea8737078a9);
+        
+    
+            var icon_7e5f8c54675b1109ecc622e8ee85df07 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "hospital-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4bbe9a4ba61a03e33981ed74973ca39a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4d6b147fdb4425b718ee49d97df8a3af = $(`<div id="html_4d6b147fdb4425b718ee49d97df8a3af" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 익산병원</h4>             <p><strong>📍 주소:</strong><br>무왕로 969 (신동) 전북특별자치도 순창군 순창9길 12-14 (순창읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 274병상 | 진료과수: 23과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.376072<br>                경도: 127.142177             </p>         </div>         </div>`)[0];
+                popup_4bbe9a4ba61a03e33981ed74973ca39a.setContent(html_4d6b147fdb4425b718ee49d97df8a3af);
+            
+        
+
+        marker_4b9dd9380bba3268a1f932d0e1af3b6b.bindPopup(popup_4bbe9a4ba61a03e33981ed74973ca39a)
+        ;
+
+        
+    
+    
+            marker_4b9dd9380bba3268a1f932d0e1af3b6b.bindTooltip(
+                `<div>
+                     익산병원 (종합병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4b9dd9380bba3268a1f932d0e1af3b6b.setIcon(icon_7e5f8c54675b1109ecc622e8ee85df07);
+            
+    
+            var marker_5e9e857244d1540ada03d4736ca51fd3 = L.marker(
+                [35.90989781, 127.0746202],
+                {
+}
+            ).addTo(feature_group_1126701443ce12c840188ea8737078a9);
+        
+    
+            var icon_aa56ca2c015a0f4d123dfcf8ab274ed6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "hospital-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b1b254ee57e7e330e8d01d1a267c57f8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ea5eef4fc55c0485ec93779f842ace8b = $(`<div id="html_ea5eef4fc55c0485ec93779f842ace8b" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 정읍아산병원</h4>             <p><strong>📍 주소:</strong><br>충정로 606-22 (용계동) 전북특별자치도 완주군 동학로 23 (삼례읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 250병상 | 진료과수: 15과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.909898<br>                경도: 127.074620             </p>         </div>         </div>`)[0];
+                popup_b1b254ee57e7e330e8d01d1a267c57f8.setContent(html_ea5eef4fc55c0485ec93779f842ace8b);
+            
+        
+
+        marker_5e9e857244d1540ada03d4736ca51fd3.bindPopup(popup_b1b254ee57e7e330e8d01d1a267c57f8)
+        ;
+
+        
+    
+    
+            marker_5e9e857244d1540ada03d4736ca51fd3.bindTooltip(
+                `<div>
+                     정읍아산병원 (종합병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5e9e857244d1540ada03d4736ca51fd3.setIcon(icon_aa56ca2c015a0f4d123dfcf8ab274ed6);
+            
+    
+            var marker_9bb9cb3b1533c80f5107c8298b1d3514 = L.marker(
+                [35.79214, 127.1171252],
+                {
+}
+            ).addTo(feature_group_1126701443ce12c840188ea8737078a9);
+        
+    
+            var icon_91e87ca0115ce4da0216fcc546feb495 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "hospital-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_19205fe896c352d285c6336f0e681af2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5f115ae5a23af00e5c64188e8f083a82 = $(`<div id="html_5f115ae5a23af00e5c64188e8f083a82" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 서귀포의료원</h4>             <p><strong>📍 주소:</strong><br>장수로 47 전북특별자치도 전주시 완산구 난전들로 266 (삼천동1가)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 291병상 | 진료과수: 17과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.792140<br>                경도: 127.117125             </p>         </div>         </div>`)[0];
+                popup_19205fe896c352d285c6336f0e681af2.setContent(html_5f115ae5a23af00e5c64188e8f083a82);
+            
+        
+
+        marker_9bb9cb3b1533c80f5107c8298b1d3514.bindPopup(popup_19205fe896c352d285c6336f0e681af2)
+        ;
+
+        
+    
+    
+            marker_9bb9cb3b1533c80f5107c8298b1d3514.bindTooltip(
+                `<div>
+                     서귀포의료원 (종합병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9bb9cb3b1533c80f5107c8298b1d3514.setIcon(icon_91e87ca0115ce4da0216fcc546feb495);
+            
+    
+            feature_group_1126701443ce12c840188ea8737078a9.addTo(map_c6669e4b02ef558a07db0a24da26a913);
+        
+    
+            var feature_group_9eb9f4cb294da09cf7d1d0aa2be56845 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_cc9ee2aafb89f0bd304747908e13f082 = L.marker(
+                [35.73279372, 126.7461413],
+                {
+}
+            ).addTo(feature_group_9eb9f4cb294da09cf7d1d0aa2be56845);
+        
+    
+            var icon_855fc0c098a50833c11bbe3e45f59c76 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5a3a944bcb87ef53643be7ef2784e153 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6fe1ed521e703888b1c65c9cdacaa725 = $(`<div id="html_6fe1ed521e703888b1c65c9cdacaa725" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 (의) 남우의료재단 진도전남병원</h4>             <p><strong>📍 주소:</strong><br>진도읍 남문길 12-11 전북특별자치도 부안군 부령로 33 (부안읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 100병상 | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.732794<br>                경도: 126.746141             </p>         </div>         </div>`)[0];
+                popup_5a3a944bcb87ef53643be7ef2784e153.setContent(html_6fe1ed521e703888b1c65c9cdacaa725);
+            
+        
+
+        marker_cc9ee2aafb89f0bd304747908e13f082.bindPopup(popup_5a3a944bcb87ef53643be7ef2784e153)
+        ;
+
+        
+    
+    
+            marker_cc9ee2aafb89f0bd304747908e13f082.bindTooltip(
+                `<div>
+                     (의) 남우의료재단 진도전남병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cc9ee2aafb89f0bd304747908e13f082.setIcon(icon_855fc0c098a50833c11bbe3e45f59c76);
+            
+    
+            var marker_df983c3cefdf16a62e7e6901b5f031b1 = L.marker(
+                [35.61261149, 127.287077],
+                {
+}
+            ).addTo(feature_group_9eb9f4cb294da09cf7d1d0aa2be56845);
+        
+    
+            var icon_3fc17b043ddb6593ef48ddcafee15db3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7e516aeda0e9c8a58da65a4ec54688cc = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f01fe07bb5fd4bc324304a82254ed57d = $(`<div id="html_f01fe07bb5fd4bc324304a82254ed57d" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 김제우석병원</h4>             <p><strong>📍 주소:</strong><br>서암4길 45 (서암동) 전북특별자치도 임실군 호국로 1680 (임실읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 200병상 | 진료과수: 11과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.612611<br>                경도: 127.287077             </p>         </div>         </div>`)[0];
+                popup_7e516aeda0e9c8a58da65a4ec54688cc.setContent(html_f01fe07bb5fd4bc324304a82254ed57d);
+            
+        
+
+        marker_df983c3cefdf16a62e7e6901b5f031b1.bindPopup(popup_7e516aeda0e9c8a58da65a4ec54688cc)
+        ;
+
+        
+    
+    
+            marker_df983c3cefdf16a62e7e6901b5f031b1.bindTooltip(
+                `<div>
+                     김제우석병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_df983c3cefdf16a62e7e6901b5f031b1.setIcon(icon_3fc17b043ddb6593ef48ddcafee15db3);
+            
+    
+            var marker_2e12dfccbb92f756ee834e4c0b8ac2f8 = L.marker(
+                [36.00321421, 126.9439545],
+                {
+}
+            ).addTo(feature_group_9eb9f4cb294da09cf7d1d0aa2be56845);
+        
+    
+            var icon_835b5978cd1f844a54dac26609cc72eb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cfa3bb0c22c90a945b2c0824814b164f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_29b77421441afd8c04d11e01a613487a = $(`<div id="html_29b77421441afd8c04d11e01a613487a" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 호성전주병원</h4>             <p><strong>📍 주소:</strong><br>덕진구 동부대로 895 (호성동1가) 호성전주병원 전북특별자치도 익산시 황등서로 4 (황등면)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 122병상 | 진료과수: 10과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.003214<br>                경도: 126.943955             </p>         </div>         </div>`)[0];
+                popup_cfa3bb0c22c90a945b2c0824814b164f.setContent(html_29b77421441afd8c04d11e01a613487a);
+            
+        
+
+        marker_2e12dfccbb92f756ee834e4c0b8ac2f8.bindPopup(popup_cfa3bb0c22c90a945b2c0824814b164f)
+        ;
+
+        
+    
+    
+            marker_2e12dfccbb92f756ee834e4c0b8ac2f8.bindTooltip(
+                `<div>
+                     호성전주병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2e12dfccbb92f756ee834e4c0b8ac2f8.setIcon(icon_835b5978cd1f844a54dac26609cc72eb);
+            
+    
+            var marker_4914bf59eeca884076b7f0e8c150954b = L.marker(
+                [35.80697664, 127.1190081],
+                {
+}
+            ).addTo(feature_group_9eb9f4cb294da09cf7d1d0aa2be56845);
+        
+    
+            var icon_2670a8c5308ca5e0957c25fe11bf520d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_93da76629c5a7b1b32a6fc0c082689f9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_606a248ee963894efe0f1f5f1772b568 = $(`<div id="html_606a248ee963894efe0f1f5f1772b568" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 정읍사랑병원</h4>             <p><strong>📍 주소:</strong><br>상동중앙로 94 (상동) 전북특별자치도 전주시 완산구 용머리로 77 (효자동1가)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 260병상 | 진료과수: 7과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.806977<br>                경도: 127.119008             </p>         </div>         </div>`)[0];
+                popup_93da76629c5a7b1b32a6fc0c082689f9.setContent(html_606a248ee963894efe0f1f5f1772b568);
+            
+        
+
+        marker_4914bf59eeca884076b7f0e8c150954b.bindPopup(popup_93da76629c5a7b1b32a6fc0c082689f9)
+        ;
+
+        
+    
+    
+            marker_4914bf59eeca884076b7f0e8c150954b.bindTooltip(
+                `<div>
+                     정읍사랑병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4914bf59eeca884076b7f0e8c150954b.setIcon(icon_2670a8c5308ca5e0957c25fe11bf520d);
+            
+    
+            var marker_9dbe621fd347e12d8922fbe05e3bfbbe = L.marker(
+                [35.86545896, 127.1479138],
+                {
+}
+            ).addTo(feature_group_9eb9f4cb294da09cf7d1d0aa2be56845);
+        
+    
+            var icon_1dfe8262c968d379587bf2791c2c9c60 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_097b8bff930a0007f76fb56bd4161a8d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ddea980e172e88f5a11840c25d2dbba2 = $(`<div id="html_ddea980e172e88f5a11840c25d2dbba2" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 서귀포열린병원</h4>             <p><strong>📍 주소:</strong><br>일주동로 8638 (동홍동) 전북특별자치도 전주시 덕진구 동부대로 895 (호성동1가)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 73병상 | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.865459<br>                경도: 127.147914             </p>         </div>         </div>`)[0];
+                popup_097b8bff930a0007f76fb56bd4161a8d.setContent(html_ddea980e172e88f5a11840c25d2dbba2);
+            
+        
+
+        marker_9dbe621fd347e12d8922fbe05e3bfbbe.bindPopup(popup_097b8bff930a0007f76fb56bd4161a8d)
+        ;
+
+        
+    
+    
+            marker_9dbe621fd347e12d8922fbe05e3bfbbe.bindTooltip(
+                `<div>
+                     서귀포열린병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9dbe621fd347e12d8922fbe05e3bfbbe.setIcon(icon_1dfe8262c968d379587bf2791c2c9c60);
+            
+    
+            var marker_34dd513f46ecf0bf7af84e9c75fdd7e1 = L.marker(
+                [35.56456716, 126.8714856],
+                {
+}
+            ).addTo(feature_group_9eb9f4cb294da09cf7d1d0aa2be56845);
+        
+    
+            var icon_375c6983b7f4a1a791358135544a2093 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bfadfb888c604c161b71d5b61f48fb57 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_35443ef0ddfdbc30f874481241efa792 = $(`<div id="html_35443ef0ddfdbc30f874481241efa792" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 제주의료원</h4>             <p><strong>📍 주소:</strong><br>산천단남길 10 전북특별자치도 정읍시 상동중앙로 94 (상동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 207병상 | 진료과수: 8과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.564567<br>                경도: 126.871486             </p>         </div>         </div>`)[0];
+                popup_bfadfb888c604c161b71d5b61f48fb57.setContent(html_35443ef0ddfdbc30f874481241efa792);
+            
+        
+
+        marker_34dd513f46ecf0bf7af84e9c75fdd7e1.bindPopup(popup_bfadfb888c604c161b71d5b61f48fb57)
+        ;
+
+        
+    
+    
+            marker_34dd513f46ecf0bf7af84e9c75fdd7e1.bindTooltip(
+                `<div>
+                     제주의료원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_34dd513f46ecf0bf7af84e9c75fdd7e1.setIcon(icon_375c6983b7f4a1a791358135544a2093);
+            
+    
+            feature_group_9eb9f4cb294da09cf7d1d0aa2be56845.addTo(map_c6669e4b02ef558a07db0a24da26a913);
+        
+    
+            var feature_group_7e24814c1c92c0eba990d10bb7114364 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_16869e16eb0c0ad95a70e569c8470c3c = L.marker(
+                [35.8072465, 126.8801771],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_96c62304474ad1da1d012eb5ce54bf63 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a725be6d003541d25828354b8de0aa64 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_69e8f4b7e35213369a87428c721d0f9e = $(`<div id="html_69e8f4b7e35213369a87428c721d0f9e" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 금일의원</h4>             <p><strong>📍 주소:</strong><br>금일읍 금일로 395-1 전북특별자치도 김제시 서암4길 45 (서암동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 20병상 | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.807246<br>                경도: 126.880177             </p>         </div>         </div>`)[0];
+                popup_a725be6d003541d25828354b8de0aa64.setContent(html_69e8f4b7e35213369a87428c721d0f9e);
+            
+        
+
+        marker_16869e16eb0c0ad95a70e569c8470c3c.bindPopup(popup_a725be6d003541d25828354b8de0aa64)
+        ;
+
+        
+    
+    
+            marker_16869e16eb0c0ad95a70e569c8470c3c.bindTooltip(
+                `<div>
+                     금일의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_16869e16eb0c0ad95a70e569c8470c3c.setIcon(icon_96c62304474ad1da1d012eb5ce54bf63);
+            
+    
+            var marker_a33e47c32ec610be9a62edff3df281e6 = L.marker(
+                [35.96757655, 126.7356546],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_46f816bc4c04dd384803cc2181d1d3cb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fb4adfe3ff3d629b7a9d4dafb7d13a26 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8d3e15ce26fcc50b2d20ebeb03f8bc59 = $(`<div id="html_8d3e15ce26fcc50b2d20ebeb03f8bc59" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 완도금일보건지소</h4>             <p><strong>📍 주소:</strong><br>금일읍 금일로 397 전북특별자치도 군산시 조촌4길 11 (조촌동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.967577<br>                경도: 126.735655             </p>         </div>         </div>`)[0];
+                popup_fb4adfe3ff3d629b7a9d4dafb7d13a26.setContent(html_8d3e15ce26fcc50b2d20ebeb03f8bc59);
+            
+        
+
+        marker_a33e47c32ec610be9a62edff3df281e6.bindPopup(popup_fb4adfe3ff3d629b7a9d4dafb7d13a26)
+        ;
+
+        
+    
+    
+            marker_a33e47c32ec610be9a62edff3df281e6.bindTooltip(
+                `<div>
+                     완도금일보건지소 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a33e47c32ec610be9a62edff3df281e6.setIcon(icon_46f816bc4c04dd384803cc2181d1d3cb);
+            
+    
+            var marker_5da2db161fcf9d8e23ffbb1bd8dad43a = L.marker(
+                [36.0059019, 127.6716763],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_7589e91ffeea266060110c8513a73840 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7138e34a3504e884ed30f1751e68c11f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_61da551e122045985779c54dcd455e66 = $(`<div id="html_61da551e122045985779c54dcd455e66" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 조도면보건지소</h4>             <p><strong>📍 주소:</strong><br>조도면 창유1길 58-26 전북특별자치도 무주군 한풍루로 413 (무주읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 3과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.005902<br>                경도: 127.671676             </p>         </div>         </div>`)[0];
+                popup_7138e34a3504e884ed30f1751e68c11f.setContent(html_61da551e122045985779c54dcd455e66);
+            
+        
+
+        marker_5da2db161fcf9d8e23ffbb1bd8dad43a.bindPopup(popup_7138e34a3504e884ed30f1751e68c11f)
+        ;
+
+        
+    
+    
+            marker_5da2db161fcf9d8e23ffbb1bd8dad43a.bindTooltip(
+                `<div>
+                     조도면보건지소 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5da2db161fcf9d8e23ffbb1bd8dad43a.setIcon(icon_7589e91ffeea266060110c8513a73840);
+            
+    
+            var marker_7bdd18c19eb6f7405215f22622bdcfbb = L.marker(
+                [35.95491647, 126.7119092],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_e941183def5db079d8057b0a7def4f46 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2a36c6815eae5f8d25a02dde6db4864c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a198ef74623a9cbdd521557679f6006d = $(`<div id="html_a198ef74623a9cbdd521557679f6006d" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 하나로플란트치과의원</h4>             <p><strong>📍 주소:</strong><br>함평읍 내바람길 42 전북특별자치도 군산시 의료원로 27 (지곡동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.954916<br>                경도: 126.711909             </p>         </div>         </div>`)[0];
+                popup_2a36c6815eae5f8d25a02dde6db4864c.setContent(html_a198ef74623a9cbdd521557679f6006d);
+            
+        
+
+        marker_7bdd18c19eb6f7405215f22622bdcfbb.bindPopup(popup_2a36c6815eae5f8d25a02dde6db4864c)
+        ;
+
+        
+    
+    
+            marker_7bdd18c19eb6f7405215f22622bdcfbb.bindTooltip(
+                `<div>
+                     하나로플란트치과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7bdd18c19eb6f7405215f22622bdcfbb.setIcon(icon_e941183def5db079d8057b0a7def4f46);
+            
+    
+            var marker_1801eeaa2f5a8226979f43ec23e51cb4 = L.marker(
+                [35.83812496, 127.0578103],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_0f4ab0582497b832e7d24e1567f0c2a7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6c01140f1bc0cf5581c7a4a6056cda5b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f5de1bd1d5898bbf535787e2eae9f149 = $(`<div id="html_f5de1bd1d5898bbf535787e2eae9f149" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 한양내과의원</h4>             <p><strong>📍 주소:</strong><br>화순읍 자치샘로 36 옥천빌딩 2층 전북특별자치도 완주군 기지로 54 (이서면)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 11과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.838125<br>                경도: 127.057810             </p>         </div>         </div>`)[0];
+                popup_6c01140f1bc0cf5581c7a4a6056cda5b.setContent(html_f5de1bd1d5898bbf535787e2eae9f149);
+            
+        
+
+        marker_1801eeaa2f5a8226979f43ec23e51cb4.bindPopup(popup_6c01140f1bc0cf5581c7a4a6056cda5b)
+        ;
+
+        
+    
+    
+            marker_1801eeaa2f5a8226979f43ec23e51cb4.bindTooltip(
+                `<div>
+                     한양내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1801eeaa2f5a8226979f43ec23e51cb4.setIcon(icon_0f4ab0582497b832e7d24e1567f0c2a7);
+            
+    
+            var marker_0ded1d8fd27002871db6da189f6a6b6f = L.marker(
+                [35.92250942, 127.123709],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_8a84af44b0c3d92cb7399cef0e2f8536 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_beaf68a3fdfdf37482ab68093c240963 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b42d3f47d3a40fe0c7641743632d6ca5 = $(`<div id="html_b42d3f47d3a40fe0c7641743632d6ca5" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 화순고인돌정형외과의원</h4>             <p><strong>📍 주소:</strong><br>화순읍 중앙로 69 전북특별자치도 완주군 삼봉1로 2 (삼례읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.922509<br>                경도: 127.123709             </p>         </div>         </div>`)[0];
+                popup_beaf68a3fdfdf37482ab68093c240963.setContent(html_b42d3f47d3a40fe0c7641743632d6ca5);
+            
+        
+
+        marker_0ded1d8fd27002871db6da189f6a6b6f.bindPopup(popup_beaf68a3fdfdf37482ab68093c240963)
+        ;
+
+        
+    
+    
+            marker_0ded1d8fd27002871db6da189f6a6b6f.bindTooltip(
+                `<div>
+                     화순고인돌정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0ded1d8fd27002871db6da189f6a6b6f.setIcon(icon_8a84af44b0c3d92cb7399cef0e2f8536);
+            
+    
+            var marker_63139918ec5be392105f9d55474f1c13 = L.marker(
+                [35.41001454, 127.3885459],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_c63ea8c7417b5c576cfab4196e104440 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e8d31f95b14e8dab6e9993b164ae23dd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_10bdb1f4c91f0e83cae8a1639d41998a = $(`<div id="html_10bdb1f4c91f0e83cae8a1639d41998a" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 화순튼튼마취통증의학과의원</h4>             <p><strong>📍 주소:</strong><br>화순읍 칠충로 141-7 전북특별자치도 남원시 용성로 113 (동충동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.410015<br>                경도: 127.388546             </p>         </div>         </div>`)[0];
+                popup_e8d31f95b14e8dab6e9993b164ae23dd.setContent(html_10bdb1f4c91f0e83cae8a1639d41998a);
+            
+        
+
+        marker_63139918ec5be392105f9d55474f1c13.bindPopup(popup_e8d31f95b14e8dab6e9993b164ae23dd)
+        ;
+
+        
+    
+    
+            marker_63139918ec5be392105f9d55474f1c13.bindTooltip(
+                `<div>
+                     화순튼튼마취통증의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_63139918ec5be392105f9d55474f1c13.setIcon(icon_c63ea8c7417b5c576cfab4196e104440);
+            
+    
+            var marker_c44754fc8c5ea97bbb95014632659589 = L.marker(
+                [35.73139885, 127.5822107],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_52709f2a3e594628542c74205af4abe0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4882d6f2d447b6cda7b46f5ef126cb85 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2ca0663d19253fbbc4212e7bd888f3a4 = $(`<div id="html_2ca0663d19253fbbc4212e7bd888f3a4" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 달팽이이비인후과의원</h4>             <p><strong>📍 주소:</strong><br>궁포안1길 33 전북특별자치도 장수군 한들로 93 (장계면)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 3병상 | 진료과수: 3과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.731399<br>                경도: 127.582211             </p>         </div>         </div>`)[0];
+                popup_4882d6f2d447b6cda7b46f5ef126cb85.setContent(html_2ca0663d19253fbbc4212e7bd888f3a4);
+            
+        
+
+        marker_c44754fc8c5ea97bbb95014632659589.bindPopup(popup_4882d6f2d447b6cda7b46f5ef126cb85)
+        ;
+
+        
+    
+    
+            marker_c44754fc8c5ea97bbb95014632659589.bindTooltip(
+                `<div>
+                     달팽이이비인후과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c44754fc8c5ea97bbb95014632659589.setIcon(icon_52709f2a3e594628542c74205af4abe0);
+            
+    
+            var marker_08dead03e04a36dda247bfe934647543 = L.marker(
+                [35.92195166, 127.1237165],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_ecaa81cdfc8ad31e7cc05cc1ccf1da9d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d11391e6121deb9827258000e1c550cd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b12741899c88f57b32cca9374afcc6bc = $(`<div id="html_b12741899c88f57b32cca9374afcc6bc" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 하나이비인후과의원</h4>             <p><strong>📍 주소:</strong><br>동서로 160 전북특별자치도 완주군 삼봉중앙로 9 (삼례읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.921952<br>                경도: 127.123717             </p>         </div>         </div>`)[0];
+                popup_d11391e6121deb9827258000e1c550cd.setContent(html_b12741899c88f57b32cca9374afcc6bc);
+            
+        
+
+        marker_08dead03e04a36dda247bfe934647543.bindPopup(popup_d11391e6121deb9827258000e1c550cd)
+        ;
+
+        
+    
+    
+            marker_08dead03e04a36dda247bfe934647543.bindTooltip(
+                `<div>
+                     하나이비인후과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_08dead03e04a36dda247bfe934647543.setIcon(icon_ecaa81cdfc8ad31e7cc05cc1ccf1da9d);
+            
+    
+            var marker_5be649c1cd177b95362f26a90b200dc8 = L.marker(
+                [35.72688562, 126.7321171],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_3ae58b05dbe3a169dc881c3faedd8664 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a7b6715179fd7b61f5aeddffe851adf6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1b264fde14e1d3c7d0353269f185fee4 = $(`<div id="html_1b264fde14e1d3c7d0353269f185fee4" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 미래연합의원</h4>             <p><strong>📍 주소:</strong><br>시청로 3 (죽항동) 미래연합의원 전북특별자치도 부안군 부풍로 48-1 (부안읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 29병상 | 진료과수: 7과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.726886<br>                경도: 126.732117             </p>         </div>         </div>`)[0];
+                popup_a7b6715179fd7b61f5aeddffe851adf6.setContent(html_1b264fde14e1d3c7d0353269f185fee4);
+            
+        
+
+        marker_5be649c1cd177b95362f26a90b200dc8.bindPopup(popup_a7b6715179fd7b61f5aeddffe851adf6)
+        ;
+
+        
+    
+    
+            marker_5be649c1cd177b95362f26a90b200dc8.bindTooltip(
+                `<div>
+                     미래연합의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5be649c1cd177b95362f26a90b200dc8.setIcon(icon_3ae58b05dbe3a169dc881c3faedd8664);
+            
+    
+            var marker_731657f7e5333c23793a867541b6360b = L.marker(
+                [35.79889296, 126.8864077],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_60591a1fd18a2330711e15b4b9b15346 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ed40f4d404a041adbaccbe41f6579553 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4c7d4cbbdbdcc6f4f8036e58d213a889 = $(`<div id="html_4c7d4cbbdbdcc6f4f8036e58d213a889" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 중앙가정의학과의원</h4>             <p><strong>📍 주소:</strong><br>용성로 79 (동충동) 전북특별자치도 김제시 동서로 160 (요촌동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.798893<br>                경도: 126.886408             </p>         </div>         </div>`)[0];
+                popup_ed40f4d404a041adbaccbe41f6579553.setContent(html_4c7d4cbbdbdcc6f4f8036e58d213a889);
+            
+        
+
+        marker_731657f7e5333c23793a867541b6360b.bindPopup(popup_ed40f4d404a041adbaccbe41f6579553)
+        ;
+
+        
+    
+    
+            marker_731657f7e5333c23793a867541b6360b.bindTooltip(
+                `<div>
+                     중앙가정의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_731657f7e5333c23793a867541b6360b.setIcon(icon_60591a1fd18a2330711e15b4b9b15346);
+            
+    
+            var marker_046ccd46d6988b6a14c62059e1c36a1b = L.marker(
+                [35.43498123, 126.6980105],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_985b009e6ba915ef9bfb458894fbb4e6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d71bf007f9aba813a2a5a6e901dabb27 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_853838495823ba2a41419dba5bcd2150 = $(`<div id="html_853838495823ba2a41419dba5bcd2150" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 중앙안과의원</h4>             <p><strong>📍 주소:</strong><br>용성로 113 전북특별자치도 고창군 중앙로 206 (고창읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.434981<br>                경도: 126.698010             </p>         </div>         </div>`)[0];
+                popup_d71bf007f9aba813a2a5a6e901dabb27.setContent(html_853838495823ba2a41419dba5bcd2150);
+            
+        
+
+        marker_046ccd46d6988b6a14c62059e1c36a1b.bindPopup(popup_d71bf007f9aba813a2a5a6e901dabb27)
+        ;
+
+        
+    
+    
+            marker_046ccd46d6988b6a14c62059e1c36a1b.bindTooltip(
+                `<div>
+                     중앙안과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_046ccd46d6988b6a14c62059e1c36a1b.setIcon(icon_985b009e6ba915ef9bfb458894fbb4e6);
+            
+    
+            var marker_5f656c0caa5c8b416493dda8ef322c75 = L.marker(
+                [35.97531019, 126.7335182],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_f5c6a6665b5638ceb00da94d383dd0f6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_46f2c02f36e6aba25a6611d5cfba7074 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3710ba3036089e4b9c3c002288ef029b = $(`<div id="html_3710ba3036089e4b9c3c002288ef029b" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 무주신경외과의원</h4>             <p><strong>📍 주소:</strong><br>무주읍 향학로 33-1 무주신경외과 전북특별자치도 군산시 백릉로 70 (조촌동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.975310<br>                경도: 126.733518             </p>         </div>         </div>`)[0];
+                popup_46f2c02f36e6aba25a6611d5cfba7074.setContent(html_3710ba3036089e4b9c3c002288ef029b);
+            
+        
+
+        marker_5f656c0caa5c8b416493dda8ef322c75.bindPopup(popup_46f2c02f36e6aba25a6611d5cfba7074)
+        ;
+
+        
+    
+    
+            marker_5f656c0caa5c8b416493dda8ef322c75.bindTooltip(
+                `<div>
+                     무주신경외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5f656c0caa5c8b416493dda8ef322c75.setIcon(icon_f5c6a6665b5638ceb00da94d383dd0f6);
+            
+    
+            var marker_14d3915d0f085bff2734151bcb675a5b = L.marker(
+                [35.4092036, 127.3851294],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_9d12c7e9f337b288bbb64e6b955b4cf5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ae4283167eb5b55070798bf355194129 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3ce7e4ca3d78ce1fbb2deb8ab4f1116b = $(`<div id="html_3ce7e4ca3d78ce1fbb2deb8ab4f1116b" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 현대가정의학과의원</h4>             <p><strong>📍 주소:</strong><br>부안읍 부풍로 48-1 전북특별자치도 남원시 용성로 79 (동충동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.409204<br>                경도: 127.385129             </p>         </div>         </div>`)[0];
+                popup_ae4283167eb5b55070798bf355194129.setContent(html_3ce7e4ca3d78ce1fbb2deb8ab4f1116b);
+            
+        
+
+        marker_14d3915d0f085bff2734151bcb675a5b.bindPopup(popup_ae4283167eb5b55070798bf355194129)
+        ;
+
+        
+    
+    
+            marker_14d3915d0f085bff2734151bcb675a5b.bindTooltip(
+                `<div>
+                     현대가정의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_14d3915d0f085bff2734151bcb675a5b.setIcon(icon_9d12c7e9f337b288bbb64e6b955b4cf5);
+            
+    
+            var marker_1bfd30bb3340fe40ca43fde52aa230ec = L.marker(
+                [35.61808876, 127.2828687],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_810166829ca9f3763494a144f530d413 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f147d4e1f8fb454fd9202feb84611604 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_74e8adf4a92222cb0e4333df7b57d2aa = $(`<div id="html_74e8adf4a92222cb0e4333df7b57d2aa" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 대동의원</h4>             <p><strong>📍 주소:</strong><br>순창읍 순창5길15 전북특별자치도 임실군 봉황로 203 (임실읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 3과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.618089<br>                경도: 127.282869             </p>         </div>         </div>`)[0];
+                popup_f147d4e1f8fb454fd9202feb84611604.setContent(html_74e8adf4a92222cb0e4333df7b57d2aa);
+            
+        
+
+        marker_1bfd30bb3340fe40ca43fde52aa230ec.bindPopup(popup_f147d4e1f8fb454fd9202feb84611604)
+        ;
+
+        
+    
+    
+            marker_1bfd30bb3340fe40ca43fde52aa230ec.bindTooltip(
+                `<div>
+                     대동의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1bfd30bb3340fe40ca43fde52aa230ec.setIcon(icon_810166829ca9f3763494a144f530d413);
+            
+    
+            var marker_eb4f396cf161b66e1fc3d2e5dc628e04 = L.marker(
+                [35.80561967, 127.1169825],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_549fbc37d051629099008d449c00fab1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e65e45dc18a198b99094be4427210f08 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7bd987bc85f547f8c76f35687a59e74a = $(`<div id="html_7bd987bc85f547f8c76f35687a59e74a" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 류재규내과의원</h4>             <p><strong>📍 주소:</strong><br>순창읍 순창로 225-10 전북특별자치도 전주시 완산구 거마평로 146 (효자동1가)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 3과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.805620<br>                경도: 127.116983             </p>         </div>         </div>`)[0];
+                popup_e65e45dc18a198b99094be4427210f08.setContent(html_7bd987bc85f547f8c76f35687a59e74a);
+            
+        
+
+        marker_eb4f396cf161b66e1fc3d2e5dc628e04.bindPopup(popup_e65e45dc18a198b99094be4427210f08)
+        ;
+
+        
+    
+    
+            marker_eb4f396cf161b66e1fc3d2e5dc628e04.bindTooltip(
+                `<div>
+                     류재규내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_eb4f396cf161b66e1fc3d2e5dc628e04.setIcon(icon_549fbc37d051629099008d449c00fab1);
+            
+    
+            var marker_54b0db5cc0498fe6b0c69396845c8bc3 = L.marker(
+                [35.43194381, 127.4071917],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_f8c37ffcd7dec04c36d79bb22b2b90d6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_66934ef98e42f1e9f1ee6073865b0f3b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b672e451fadbbfa3a414ef7ec7918af1 = $(`<div id="html_b672e451fadbbfa3a414ef7ec7918af1" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 이상희재활의학과의원</h4>             <p><strong>📍 주소:</strong><br>순창읍 순창9길 12-14 전북특별자치도 남원시 충정로 365 (고죽동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 7과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.431944<br>                경도: 127.407192             </p>         </div>         </div>`)[0];
+                popup_66934ef98e42f1e9f1ee6073865b0f3b.setContent(html_b672e451fadbbfa3a414ef7ec7918af1);
+            
+        
+
+        marker_54b0db5cc0498fe6b0c69396845c8bc3.bindPopup(popup_66934ef98e42f1e9f1ee6073865b0f3b)
+        ;
+
+        
+    
+    
+            marker_54b0db5cc0498fe6b0c69396845c8bc3.bindTooltip(
+                `<div>
+                     이상희재활의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_54b0db5cc0498fe6b0c69396845c8bc3.setIcon(icon_f8c37ffcd7dec04c36d79bb22b2b90d6);
+            
+    
+            var marker_549791e6d61670785306e9d9c2cf35d9 = L.marker(
+                [35.36506885, 127.1412462],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_f599618bbf0ae655a8c78604e15f7441 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_90527a43bc53562a95a451ec49eafac5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f529cd6831fcb987a017e0d7c45c5a4f = $(`<div id="html_f529cd6831fcb987a017e0d7c45c5a4f" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 삼봉이치과의원</h4>             <p><strong>📍 주소:</strong><br>삼례읍 삼봉중앙로 9 전북특별자치도 순창군 순창로 105 (순창읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.365069<br>                경도: 127.141246             </p>         </div>         </div>`)[0];
+                popup_90527a43bc53562a95a451ec49eafac5.setContent(html_f529cd6831fcb987a017e0d7c45c5a4f);
+            
+        
+
+        marker_549791e6d61670785306e9d9c2cf35d9.bindPopup(popup_90527a43bc53562a95a451ec49eafac5)
+        ;
+
+        
+    
+    
+            marker_549791e6d61670785306e9d9c2cf35d9.bindTooltip(
+                `<div>
+                     삼봉이치과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_549791e6d61670785306e9d9c2cf35d9.setIcon(icon_f599618bbf0ae655a8c78604e15f7441);
+            
+    
+            var marker_42b6230f78052f572fe1d1b2b6c3c829 = L.marker(
+                [35.97625428, 126.7440275],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_e000952953192eaef2860aa57ae17ec1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5542e129905e6845f86f964d3c4429c5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_186911f3689dfbf47ac0395e74213100 = $(`<div id="html_186911f3689dfbf47ac0395e74213100" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 새봄가정의학과의원</h4>             <p><strong>📍 주소:</strong><br>삼례읍 삼봉1로 2 전북특별자치도 군산시 궁포안1길 33 (조촌동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 7과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.976254<br>                경도: 126.744028             </p>         </div>         </div>`)[0];
+                popup_5542e129905e6845f86f964d3c4429c5.setContent(html_186911f3689dfbf47ac0395e74213100);
+            
+        
+
+        marker_42b6230f78052f572fe1d1b2b6c3c829.bindPopup(popup_5542e129905e6845f86f964d3c4429c5)
+        ;
+
+        
+    
+    
+            marker_42b6230f78052f572fe1d1b2b6c3c829.bindTooltip(
+                `<div>
+                     새봄가정의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_42b6230f78052f572fe1d1b2b6c3c829.setIcon(icon_e000952953192eaef2860aa57ae17ec1);
+            
+    
+            var marker_709af2d2cefee57c4a5820f0be377ece = L.marker(
+                [36.00726167, 127.6626777],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_aaa457264a5f0e17810b4393c061a22a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0d1a881d47f76f802bcbe1ffebd736a1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_322b0ac154ef7f040dc978260e390d77 = $(`<div id="html_322b0ac154ef7f040dc978260e390d77" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 한솔의원</h4>             <p><strong>📍 주소:</strong><br>고산면 고산로 81 2층 전북특별자치도 무주군 향학로 33-1 (무주읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 12과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.007262<br>                경도: 127.662678             </p>         </div>         </div>`)[0];
+                popup_0d1a881d47f76f802bcbe1ffebd736a1.setContent(html_322b0ac154ef7f040dc978260e390d77);
+            
+        
+
+        marker_709af2d2cefee57c4a5820f0be377ece.bindPopup(popup_0d1a881d47f76f802bcbe1ffebd736a1)
+        ;
+
+        
+    
+    
+            marker_709af2d2cefee57c4a5820f0be377ece.bindTooltip(
+                `<div>
+                     한솔의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_709af2d2cefee57c4a5820f0be377ece.setIcon(icon_aaa457264a5f0e17810b4393c061a22a);
+            
+    
+            var marker_0506148b0486de37595c5549b1b4e543 = L.marker(
+                [35.43488827, 126.7006279],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_2143c2242cbbd41087037e078d6ebe25 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cb0645d9775ebdf9ce0b337d5f82d88a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9453a46d1067bd54765536273db79da0 = $(`<div id="html_9453a46d1067bd54765536273db79da0" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 한호수내과의원</h4>             <p><strong>📍 주소:</strong><br>삼례읍 동학로 23 전북특별자치도 고창군 중앙로 230 (고창읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.434888<br>                경도: 126.700628             </p>         </div>         </div>`)[0];
+                popup_cb0645d9775ebdf9ce0b337d5f82d88a.setContent(html_9453a46d1067bd54765536273db79da0);
+            
+        
+
+        marker_0506148b0486de37595c5549b1b4e543.bindPopup(popup_cb0645d9775ebdf9ce0b337d5f82d88a)
+        ;
+
+        
+    
+    
+            marker_0506148b0486de37595c5549b1b4e543.bindTooltip(
+                `<div>
+                     한호수내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0506148b0486de37595c5549b1b4e543.setIcon(icon_2143c2242cbbd41087037e078d6ebe25);
+            
+    
+            var marker_d822af21babe4ee9151231607ed9f210 = L.marker(
+                [35.81441111, 127.133269],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_c2141ce7bcbd5c137e5fe074d921b4e7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_698b40d31293fe39e83c49a8e15fbdf9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1445f2df4ab61d16d03f154b96f1a2fd = $(`<div id="html_1445f2df4ab61d16d03f154b96f1a2fd" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 김종성비뇨기과의원</h4>             <p><strong>📍 주소:</strong><br>무왕로 1073 (영등동) (영등동) 하나은행 2층 전북특별자치도 전주시 완산구 서원로 365 (중화산동1가)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 1병상 | 진료과수: 2과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.814411<br>                경도: 127.133269             </p>         </div>         </div>`)[0];
+                popup_698b40d31293fe39e83c49a8e15fbdf9.setContent(html_1445f2df4ab61d16d03f154b96f1a2fd);
+            
+        
+
+        marker_d822af21babe4ee9151231607ed9f210.bindPopup(popup_698b40d31293fe39e83c49a8e15fbdf9)
+        ;
+
+        
+    
+    
+            marker_d822af21babe4ee9151231607ed9f210.bindTooltip(
+                `<div>
+                     김종성비뇨기과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d822af21babe4ee9151231607ed9f210.setIcon(icon_c2141ce7bcbd5c137e5fe074d921b4e7);
+            
+    
+            var marker_ffb10f97626dc445cfd1dd90d85a5f00 = L.marker(
+                [35.87416119, 127.0721432],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_456a06ccb713b18f44ef4562ce5aebcd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bf6895cdd9ddbef6b345b751f60d4d4a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_67a44b84efc5b442efe171b443f25eec = $(`<div id="html_67a44b84efc5b442efe171b443f25eec" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 오강렬내과의원</h4>             <p><strong>📍 주소:</strong><br>익산대로 198 전북특별자치도 전주시 덕진구 쪽구름로 120 (반월동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 2과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.874161<br>                경도: 127.072143             </p>         </div>         </div>`)[0];
+                popup_bf6895cdd9ddbef6b345b751f60d4d4a.setContent(html_67a44b84efc5b442efe171b443f25eec);
+            
+        
+
+        marker_ffb10f97626dc445cfd1dd90d85a5f00.bindPopup(popup_bf6895cdd9ddbef6b345b751f60d4d4a)
+        ;
+
+        
+    
+    
+            marker_ffb10f97626dc445cfd1dd90d85a5f00.bindTooltip(
+                `<div>
+                     오강렬내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ffb10f97626dc445cfd1dd90d85a5f00.setIcon(icon_456a06ccb713b18f44ef4562ce5aebcd);
+            
+    
+            var marker_4a4af3e88edd6745dcac4f752591fc27 = L.marker(
+                [35.93134201, 126.9526592],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_9cc37afd862776de84bb9514ec24004e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a7c22369439da8c58b74575ee023a70f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1b4989524ce165f23bb9048f35548e67 = $(`<div id="html_1b4989524ce165f23bb9048f35548e67" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 이기훈내과의원</h4>             <p><strong>📍 주소:</strong><br>황등면 황등서로 4 전북특별자치도 익산시 평동로 665 (인화동1가)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.931342<br>                경도: 126.952659             </p>         </div>         </div>`)[0];
+                popup_a7c22369439da8c58b74575ee023a70f.setContent(html_1b4989524ce165f23bb9048f35548e67);
+            
+        
+
+        marker_4a4af3e88edd6745dcac4f752591fc27.bindPopup(popup_a7c22369439da8c58b74575ee023a70f)
+        ;
+
+        
+    
+    
+            marker_4a4af3e88edd6745dcac4f752591fc27.bindTooltip(
+                `<div>
+                     이기훈내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4a4af3e88edd6745dcac4f752591fc27.setIcon(icon_9cc37afd862776de84bb9514ec24004e);
+            
+    
+            var marker_4623ad7da2db67923cb57800ae1188c8 = L.marker(
+                [35.37323755, 127.1408562],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_660d2e846d213a55595c9a798632d34a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_24af1b16b8fe108f1bbf27acd0c738c9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c5b2d7bcdb35940244467022ad9a5d84 = $(`<div id="html_c5b2d7bcdb35940244467022ad9a5d84" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 다사랑의원</h4>             <p><strong>📍 주소:</strong><br>임실읍 봉황로 203 전북특별자치도 순창군 순창5길 15 (순창읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.373238<br>                경도: 127.140856             </p>         </div>         </div>`)[0];
+                popup_24af1b16b8fe108f1bbf27acd0c738c9.setContent(html_c5b2d7bcdb35940244467022ad9a5d84);
+            
+        
+
+        marker_4623ad7da2db67923cb57800ae1188c8.bindPopup(popup_24af1b16b8fe108f1bbf27acd0c738c9)
+        ;
+
+        
+    
+    
+            marker_4623ad7da2db67923cb57800ae1188c8.bindTooltip(
+                `<div>
+                     다사랑의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4623ad7da2db67923cb57800ae1188c8.setIcon(icon_660d2e846d213a55595c9a798632d34a);
+            
+    
+            var marker_bd1004dc889afee020e7c82b8680cf8a = L.marker(
+                [35.73043973, 126.7213312],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_70ae6bf2398e40fb1f8119d7b611ff76 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0c021a8492bf200ccd2c9c679630f918 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_265d1d3b4845fc4ef8add38a2e20da89 = $(`<div id="html_265d1d3b4845fc4ef8add38a2e20da89" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 임실군보건의료원</h4>             <p><strong>📍 주소:</strong><br>임실읍 호국로 1680 전북특별자치도 부안군 염소로 25 (행안면)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 15병상 | 진료과수: 7과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.730440<br>                경도: 126.721331             </p>         </div>         </div>`)[0];
+                popup_0c021a8492bf200ccd2c9c679630f918.setContent(html_265d1d3b4845fc4ef8add38a2e20da89);
+            
+        
+
+        marker_bd1004dc889afee020e7c82b8680cf8a.bindPopup(popup_0c021a8492bf200ccd2c9c679630f918)
+        ;
+
+        
+    
+    
+            marker_bd1004dc889afee020e7c82b8680cf8a.bindTooltip(
+                `<div>
+                     임실군보건의료원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_bd1004dc889afee020e7c82b8680cf8a.setIcon(icon_70ae6bf2398e40fb1f8119d7b611ff76);
+            
+    
+            var marker_fea96c6e337efb286c7a0bbb9f1bf490 = L.marker(
+                [35.41129476, 127.3928264],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_291c32c61890f6dd48739c9cc6eede9a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_51e4ca348b3bb8389b86d4b9b0e3e6f5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d5f1bf765b5257a3972c589b9f2ae883 = $(`<div id="html_d5f1bf765b5257a3972c589b9f2ae883" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 임실내과의원</h4>             <p><strong>📍 주소:</strong><br>임실읍봉황로 159 임실내과 전북특별자치도 남원시 시청로 3 (죽항동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.411295<br>                경도: 127.392826             </p>         </div>         </div>`)[0];
+                popup_51e4ca348b3bb8389b86d4b9b0e3e6f5.setContent(html_d5f1bf765b5257a3972c589b9f2ae883);
+            
+        
+
+        marker_fea96c6e337efb286c7a0bbb9f1bf490.bindPopup(popup_51e4ca348b3bb8389b86d4b9b0e3e6f5)
+        ;
+
+        
+    
+    
+            marker_fea96c6e337efb286c7a0bbb9f1bf490.bindTooltip(
+                `<div>
+                     임실내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_fea96c6e337efb286c7a0bbb9f1bf490.setIcon(icon_291c32c61890f6dd48739c9cc6eede9a);
+            
+    
+            var marker_f4688a81ae3ef508c0f345486448e0cb = L.marker(
+                [35.97526039, 127.205939],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_b289f48a57fec802b54a07ac3f5640db = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9b5856ddf3d78548f30de23d54dec6bb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4e5607256fc9eef03bb44617f94ea473 = $(`<div id="html_4e5607256fc9eef03bb44617f94ea473" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 장수군보건의료원</h4>             <p><strong>📍 주소:</strong><br>장수읍 장천로 247 전북특별자치도 완주군 고산로 81 (고산면)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 30병상 | 진료과수: 11과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.975260<br>                경도: 127.205939             </p>         </div>         </div>`)[0];
+                popup_9b5856ddf3d78548f30de23d54dec6bb.setContent(html_4e5607256fc9eef03bb44617f94ea473);
+            
+        
+
+        marker_f4688a81ae3ef508c0f345486448e0cb.bindPopup(popup_9b5856ddf3d78548f30de23d54dec6bb)
+        ;
+
+        
+    
+    
+            marker_f4688a81ae3ef508c0f345486448e0cb.bindTooltip(
+                `<div>
+                     장수군보건의료원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f4688a81ae3ef508c0f345486448e0cb.setIcon(icon_b289f48a57fec802b54a07ac3f5640db);
+            
+    
+            var marker_a21335a9e1d7b7bec5ad5a19ea414cf1 = L.marker(
+                [35.95875879, 126.9759874],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_e840fc98a1a37e4f0d7953286f4a4a36 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8a10a7df1c6c8f231afb648e0aa440a7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_699ce1946ab892e2b5f3e779030a30e7 = $(`<div id="html_699ce1946ab892e2b5f3e779030a30e7" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 삼성가정의학과의원</h4>             <p><strong>📍 주소:</strong><br>완산구 난전들로 266 전북특별자치도 익산시 무왕로 1073 (영등동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 10과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.958759<br>                경도: 126.975987             </p>         </div>         </div>`)[0];
+                popup_8a10a7df1c6c8f231afb648e0aa440a7.setContent(html_699ce1946ab892e2b5f3e779030a30e7);
+            
+        
+
+        marker_a21335a9e1d7b7bec5ad5a19ea414cf1.bindPopup(popup_8a10a7df1c6c8f231afb648e0aa440a7)
+        ;
+
+        
+    
+    
+            marker_a21335a9e1d7b7bec5ad5a19ea414cf1.bindTooltip(
+                `<div>
+                     삼성가정의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a21335a9e1d7b7bec5ad5a19ea414cf1.setIcon(icon_e840fc98a1a37e4f0d7953286f4a4a36);
+            
+    
+            var marker_0042ec1086e2579d377028968252924f = L.marker(
+                [35.61468253, 127.2801472],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_f1e325f508c34486de5a689b0f2b640a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bb859e8b649aa000863c3e97d8d5540f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ecd465210da620d471fcfc2de1f77bc7 = $(`<div id="html_ecd465210da620d471fcfc2de1f77bc7" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 장인수가정의학과의원</h4>             <p><strong>📍 주소:</strong><br>덕진구 쪽구름로 120 전북특별자치도 임실군 봉황로 159 (임실읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.614683<br>                경도: 127.280147             </p>         </div>         </div>`)[0];
+                popup_bb859e8b649aa000863c3e97d8d5540f.setContent(html_ecd465210da620d471fcfc2de1f77bc7);
+            
+        
+
+        marker_0042ec1086e2579d377028968252924f.bindPopup(popup_bb859e8b649aa000863c3e97d8d5540f)
+        ;
+
+        
+    
+    
+            marker_0042ec1086e2579d377028968252924f.bindTooltip(
+                `<div>
+                     장인수가정의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0042ec1086e2579d377028968252924f.setIcon(icon_f1e325f508c34486de5a689b0f2b640a);
+            
+    
+            var marker_efe31e5934a8c0030c09bef519e350b8 = L.marker(
+                [35.37561476, 127.1429339],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_f9a28452ac03f24551bbdca3b02df835 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_68dc854df3467809192c2bfed5e44b6e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e4e1cbe0d0e0e49b2b2c9f5e413c4f4b = $(`<div id="html_e4e1cbe0d0e0e49b2b2c9f5e413c4f4b" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 장하림의원</h4>             <p><strong>📍 주소:</strong><br>완산구 거마평로 146 전북특별자치도 순창군 순창로 225-10 (순창읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 11과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.375615<br>                경도: 127.142934             </p>         </div>         </div>`)[0];
+                popup_68dc854df3467809192c2bfed5e44b6e.setContent(html_e4e1cbe0d0e0e49b2b2c9f5e413c4f4b);
+            
+        
+
+        marker_efe31e5934a8c0030c09bef519e350b8.bindPopup(popup_68dc854df3467809192c2bfed5e44b6e)
+        ;
+
+        
+    
+    
+            marker_efe31e5934a8c0030c09bef519e350b8.bindTooltip(
+                `<div>
+                     장하림의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_efe31e5934a8c0030c09bef519e350b8.setIcon(icon_f9a28452ac03f24551bbdca3b02df835);
+            
+    
+            var marker_5b7bb28171e1b9220ffd57f6454c442e = L.marker(
+                [35.58895123, 126.8234857],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_94e283eac05721a4c72ed849afa3e974 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_268626086688f6e5c17cdd862f66571c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1412fa4064fb79d326fefbeb4c8e87be = $(`<div id="html_1412fa4064fb79d326fefbeb4c8e87be" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 남원의원</h4>             <p><strong>📍 주소:</strong><br>남원읍 태위로 636 전북특별자치도 정읍시 충정로 606-22 (용계동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 11과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.588951<br>                경도: 126.823486             </p>         </div>         </div>`)[0];
+                popup_268626086688f6e5c17cdd862f66571c.setContent(html_1412fa4064fb79d326fefbeb4c8e87be);
+            
+        
+
+        marker_5b7bb28171e1b9220ffd57f6454c442e.bindPopup(popup_268626086688f6e5c17cdd862f66571c)
+        ;
+
+        
+    
+    
+            marker_5b7bb28171e1b9220ffd57f6454c442e.bindTooltip(
+                `<div>
+                     남원의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5b7bb28171e1b9220ffd57f6454c442e.setIcon(icon_94e283eac05721a4c72ed849afa3e974);
+            
+    
+            var marker_653501a3720d0ad1d24f295746954854 = L.marker(
+                [35.94365279, 126.9488019],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_4a4007aba104c41c531a6b5754bebceb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_51f41d95cd64c406b3cb3191e3f2cc18 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e61fdd9dd7019a3c63d9e791fb41dfdf = $(`<div id="html_e61fdd9dd7019a3c63d9e791fb41dfdf" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 안덕의원</h4>             <p><strong>📍 주소:</strong><br>안덕면 화순로 112 전북특별자치도 익산시 익산대로 198 (창인동1가)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.943653<br>                경도: 126.948802             </p>         </div>         </div>`)[0];
+                popup_51f41d95cd64c406b3cb3191e3f2cc18.setContent(html_e61fdd9dd7019a3c63d9e791fb41dfdf);
+            
+        
+
+        marker_653501a3720d0ad1d24f295746954854.bindPopup(popup_51f41d95cd64c406b3cb3191e3f2cc18)
+        ;
+
+        
+    
+    
+            marker_653501a3720d0ad1d24f295746954854.bindTooltip(
+                `<div>
+                     안덕의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_653501a3720d0ad1d24f295746954854.setIcon(icon_4a4007aba104c41c531a6b5754bebceb);
+            
+    
+            var marker_d60171ee4388381d269d75dcc6431a4b = L.marker(
+                [35.65469507, 127.5200712],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_d30db7e7adeed8fdb94af59823f6c919 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_11d988c1b04b95e84ccfc1d5abed1205 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5ae09b9db420eef098e03c77fbe9b24d = $(`<div id="html_5ae09b9db420eef098e03c77fbe9b24d" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 연합치과의원</h4>             <p><strong>📍 주소:</strong><br>일주동로 8614 2층 전북특별자치도 장수군 장천로 247 (장수읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 11과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.654695<br>                경도: 127.520071             </p>         </div>         </div>`)[0];
+                popup_11d988c1b04b95e84ccfc1d5abed1205.setContent(html_5ae09b9db420eef098e03c77fbe9b24d);
+            
+        
+
+        marker_d60171ee4388381d269d75dcc6431a4b.bindPopup(popup_11d988c1b04b95e84ccfc1d5abed1205)
+        ;
+
+        
+    
+    
+            marker_d60171ee4388381d269d75dcc6431a4b.bindTooltip(
+                `<div>
+                     연합치과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d60171ee4388381d269d75dcc6431a4b.setIcon(icon_d30db7e7adeed8fdb94af59823f6c919);
+            
+    
+            var marker_abd40d51b893940f23db33f3e9286ac3 = L.marker(
+                [35.7918405, 127.4290532],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_67ea7a3a10c8baa0fdbd27ecb59563b6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_855209205ecf06544573b347caa32337 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a7a1faef9a848006bf768069dc917ecf = $(`<div id="html_a7a1faef9a848006bf768069dc917ecf" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 최선365의원</h4>             <p><strong>📍 주소:</strong><br>성산읍 고성오조로 67 1층 전북특별자치도 진안군 진무로 1102 (진안읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 10과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.791840<br>                경도: 127.429053             </p>         </div>         </div>`)[0];
+                popup_855209205ecf06544573b347caa32337.setContent(html_a7a1faef9a848006bf768069dc917ecf);
+            
+        
+
+        marker_abd40d51b893940f23db33f3e9286ac3.bindPopup(popup_855209205ecf06544573b347caa32337)
+        ;
+
+        
+    
+    
+            marker_abd40d51b893940f23db33f3e9286ac3.bindTooltip(
+                `<div>
+                     최선365의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_abd40d51b893940f23db33f3e9286ac3.setIcon(icon_67ea7a3a10c8baa0fdbd27ecb59563b6);
+            
+    
+            var marker_427d6088215db769e6677ff572e90364 = L.marker(
+                [35.84765613, 127.1547952],
+                {
+}
+            ).addTo(feature_group_7e24814c1c92c0eba990d10bb7114364);
+        
+    
+            var icon_dcbc2b52e32fbca90765ab6c467d6203 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_61b528033893c719f29966fcc68c1547 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9c1d91d05773c9d40834638ccfe2b896 = $(`<div id="html_9c1d91d05773c9d40834638ccfe2b896" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 동산내과의원</h4>             <p><strong>📍 주소:</strong><br>중앙로 337,3층 301,302호 전북특별자치도 전주시 덕진구 백제대로 789 (우아동3가)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 7과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.847656<br>                경도: 127.154795             </p>         </div>         </div>`)[0];
+                popup_61b528033893c719f29966fcc68c1547.setContent(html_9c1d91d05773c9d40834638ccfe2b896);
+            
+        
+
+        marker_427d6088215db769e6677ff572e90364.bindPopup(popup_61b528033893c719f29966fcc68c1547)
+        ;
+
+        
+    
+    
+            marker_427d6088215db769e6677ff572e90364.bindTooltip(
+                `<div>
+                     동산내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_427d6088215db769e6677ff572e90364.setIcon(icon_dcbc2b52e32fbca90765ab6c467d6203);
+            
+    
+            feature_group_7e24814c1c92c0eba990d10bb7114364.addTo(map_c6669e4b02ef558a07db0a24da26a913);
+        
+    
+            var feature_group_a8b15f7d3f5dd3212a95cde8df08a5fb = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_6b939eaa235ca90959e25db02bcf77c0 = L.marker(
+                [35.43655556, 126.6936617],
+                {
+}
+            ).addTo(feature_group_a8b15f7d3f5dd3212a95cde8df08a5fb);
+        
+    
+            var icon_5a60f4865ead455e51c70692599fcad5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "heartbeat",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a2501e8164c637f42bb0e061d0d5fa39 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_326467b2bbe1f9b72b351e5583e53a9d = $(`<div id="html_326467b2bbe1f9b72b351e5583e53a9d" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 군산원광효도요양병원</h4>             <p><strong>📍 주소:</strong><br>조촌4길 11 전북특별자치도 고창군 화신1길 9 (고창읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 564병상 | 진료과수: 7과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.436556<br>                경도: 126.693662             </p>         </div>         </div>`)[0];
+                popup_a2501e8164c637f42bb0e061d0d5fa39.setContent(html_326467b2bbe1f9b72b351e5583e53a9d);
+            
+        
+
+        marker_6b939eaa235ca90959e25db02bcf77c0.bindPopup(popup_a2501e8164c637f42bb0e061d0d5fa39)
+        ;
+
+        
+    
+    
+            marker_6b939eaa235ca90959e25db02bcf77c0.bindTooltip(
+                `<div>
+                     군산원광효도요양병원 (요양병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6b939eaa235ca90959e25db02bcf77c0.setIcon(icon_5a60f4865ead455e51c70692599fcad5);
+            
+    
+            var marker_47956b191a1e6d5ce19afb760c004541 = L.marker(
+                [35.79534337, 127.4322213],
+                {
+}
+            ).addTo(feature_group_a8b15f7d3f5dd3212a95cde8df08a5fb);
+        
+    
+            var icon_02a07ea179afdcf98c7a9783550d2026 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "heartbeat",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_55986d68ed8a8f239b5676c4125d1a67 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_504059494eb992d2fd6d852cd10c824a = $(`<div id="html_504059494eb992d2fd6d852cd10c824a" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 부안효요양병원</h4>             <p><strong>📍 주소:</strong><br>행안면 염소로 25 전북특별자치도 진안군 진무로 1145 (진안읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 175병상 | 진료과수: 8과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.795343<br>                경도: 127.432221             </p>         </div>         </div>`)[0];
+                popup_55986d68ed8a8f239b5676c4125d1a67.setContent(html_504059494eb992d2fd6d852cd10c824a);
+            
+        
+
+        marker_47956b191a1e6d5ce19afb760c004541.bindPopup(popup_55986d68ed8a8f239b5676c4125d1a67)
+        ;
+
+        
+    
+    
+            marker_47956b191a1e6d5ce19afb760c004541.bindTooltip(
+                `<div>
+                     부안효요양병원 (요양병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_47956b191a1e6d5ce19afb760c004541.setIcon(icon_02a07ea179afdcf98c7a9783550d2026);
+            
+    
+            var marker_5e80177e05482c2600c666bc0ae1a0f9 = L.marker(
+                [35.96172274, 126.9666304],
+                {
+}
+            ).addTo(feature_group_a8b15f7d3f5dd3212a95cde8df08a5fb);
+        
+    
+            var icon_df589c37f4e171ebdab8a1a142158dc8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "heartbeat",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4aeadd60d48dfea7582b8c77edcf63e0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c002623f59b9945818b1af6e7ac5ce1c = $(`<div id="html_c002623f59b9945818b1af6e7ac5ce1c" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 의료법인태종의료재단 순창요양병원</h4>             <p><strong>📍 주소:</strong><br>순창읍 순창로 105 전북특별자치도 익산시 무왕로 969 (신동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 504병상 | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.961723<br>                경도: 126.966630             </p>         </div>         </div>`)[0];
+                popup_4aeadd60d48dfea7582b8c77edcf63e0.setContent(html_c002623f59b9945818b1af6e7ac5ce1c);
+            
+        
+
+        marker_5e80177e05482c2600c666bc0ae1a0f9.bindPopup(popup_4aeadd60d48dfea7582b8c77edcf63e0)
+        ;
+
+        
+    
+    
+            marker_5e80177e05482c2600c666bc0ae1a0f9.bindTooltip(
+                `<div>
+                     의료법인태종의료재단 순창요양병원 (요양병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5e80177e05482c2600c666bc0ae1a0f9.setIcon(icon_df589c37f4e171ebdab8a1a142158dc8);
+            
+    
+            var marker_99c45e9dee765ea4441d47b50c34b8ee = L.marker(
+                [35.79242951, 127.4269665],
+                {
+}
+            ).addTo(feature_group_a8b15f7d3f5dd3212a95cde8df08a5fb);
+        
+    
+            var icon_f902ef5769f0077739b315ae5cdfacd5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "heartbeat",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_91414f22b0cf66eca1b5c50dff4b9949 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_07c03605d9b3d3171f31da99467a79c7 = $(`<div id="html_07c03605d9b3d3171f31da99467a79c7" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 효사랑가족요양병원</h4>             <p><strong>📍 주소:</strong><br>완산구 용머리로 77 전북특별자치도 진안군 중앙로 88 (진안읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 806병상 | 진료과수: 7과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.792430<br>                경도: 127.426967             </p>         </div>         </div>`)[0];
+                popup_91414f22b0cf66eca1b5c50dff4b9949.setContent(html_07c03605d9b3d3171f31da99467a79c7);
+            
+        
+
+        marker_99c45e9dee765ea4441d47b50c34b8ee.bindPopup(popup_91414f22b0cf66eca1b5c50dff4b9949)
+        ;
+
+        
+    
+    
+            marker_99c45e9dee765ea4441d47b50c34b8ee.bindTooltip(
+                `<div>
+                     효사랑가족요양병원 (요양병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_99c45e9dee765ea4441d47b50c34b8ee.setIcon(icon_f902ef5769f0077739b315ae5cdfacd5);
+            
+    
+            feature_group_a8b15f7d3f5dd3212a95cde8df08a5fb.addTo(map_c6669e4b02ef558a07db0a24da26a913);
+        
+    
+            var layer_control_ef6c3c25fe7d363059b265e67ef757b2_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_7f35f4d1eef2053c70c3930d3f4466ab,
+                    "VWorld \uae30\ubcf8\uc9c0\ub3c4 (\ud55c\uae00)" : tile_layer_9115c4f5cb10f0244aa01ca4dff354e7,
+                },
+                overlays :  {
+                    "\uc885\ud569\ubcd1\uc6d0" : feature_group_1126701443ce12c840188ea8737078a9,
+                    "\ubcd1\uc6d0" : feature_group_9eb9f4cb294da09cf7d1d0aa2be56845,
+                    "\uc758\uc6d0" : feature_group_7e24814c1c92c0eba990d10bb7114364,
+                    "\uc694\uc591\ubcd1\uc6d0" : feature_group_a8b15f7d3f5dd3212a95cde8df08a5fb,
+                },
+            };
+            let layer_control_ef6c3c25fe7d363059b265e67ef757b2 = L.control.layers(
+                layer_control_ef6c3c25fe7d363059b265e67ef757b2_layers.base_layers,
+                layer_control_ef6c3c25fe7d363059b265e67ef757b2_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_c6669e4b02ef558a07db0a24da26a913);
+
+        
+</script>
+</html>

@@ -277,36 +277,48 @@ def create_yearly_area_chart(df):
             x=year_data['월'],
             y=year_data['인원'],
             name=f'{int(year)}년',
-            mode='lines',
+            mode='lines+markers',
             fill='tonexty' if year != yearly_monthly['연도'].min() else 'tozeroy',
-            line=dict(width=2),
+            line=dict(width=3),
+            marker=dict(size=8),
             hovertemplate='%{fullData.name}<br>월: %{x}월<br>인원: %{y:,.0f}명<extra></extra>'
         ))
     
     fig.update_layout(
-        title='전국 위탁병원 연도별 월별 이용인원 추이',
-        title_x=0.5,
+        title=dict(
+            text='전국 위탁병원 연도별 월별 이용인원 추이',
+            x=0.5,
+            font=dict(size=20)
+        ),
         xaxis=dict(
             title='월',
             tickmode='linear',
             tick0=1,
             dtick=1,
-            range=[1, 12]
+            range=[0.5, 12.5],
+            gridcolor='rgba(128, 128, 128, 0.2)'
         ),
         yaxis=dict(
             title='이용인원 (명)',
-            tickformat=','
+            tickformat=',',
+            gridcolor='rgba(128, 128, 128, 0.2)'
         ),
         hovermode='x unified',
-        width=900,
-        height=600,
+        width=1600,
+        height=700,
+        plot_bgcolor='white',
         legend=dict(
-            orientation="v",
-            yanchor="top",
-            y=1,
-            xanchor="right",
-            x=1
-        )
+            orientation="h",
+            yanchor="bottom",
+            y=-0.2,
+            xanchor="center",
+            x=0.5,
+            bgcolor='rgba(255, 255, 255, 0.95)',
+            bordercolor='rgba(0, 0, 0, 0.3)',
+            borderwidth=2,
+            font=dict(size=12)
+        ),
+        margin=dict(t=100, r=50, l=80, b=120)
     )
     
     return fig

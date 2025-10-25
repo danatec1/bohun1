@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_4f153d2389a41ba81c7c715458e20e1f {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <div style="position: fixed; 
+                    top: 10px; left: 50px; width: 280px; 
+                    background-color: white; border:2px solid grey; z-index:9999; 
+                    font-size:13px; padding: 12px; border-radius: 8px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+        <h4 style="margin: 0 0 10px 0;">🏥 위탁병원 지도 - 제주</h4>
+        <p style="margin: 5px 0;"><strong>총 병원 수:</strong> 20개</p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 5px 0; font-weight: bold;">📍 종별 현황:</p>
+        <p style="margin: 3px 0;">
+            <span style="color: #d63333; font-weight: bold;">●</span> 종합병원: 4개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #3498db; font-weight: bold;">●</span> 병원: 2개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #38a169; font-weight: bold;">●</span> 의원: 12개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #ff8c00; font-weight: bold;">●</span> 요양병원: 2개
+        </p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 5px 0; font-size: 11px; color: #666;">
+        생성: 2025-10-24 16:34</p>
+        </div>
+        
+    
+            <div class="folium-map" id="map_4f153d2389a41ba81c7c715458e20e1f" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_4f153d2389a41ba81c7c715458e20e1f = L.map(
+                "map_4f153d2389a41ba81c7c715458e20e1f",
+                {
+                    center: [33.489, 126.4983],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": true,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_06a9e6fad08f15faa8e1a5ce349eee61 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "OpenStreetMap",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_06a9e6fad08f15faa8e1a5ce349eee61.addTo(map_4f153d2389a41ba81c7c715458e20e1f);
+        
+    
+            var tile_layer_d31ebba40c6539cfad552a00d3e279ce = L.tileLayer(
+                "https://map.vworld.kr/tile/Base/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "VWorld \ud55c\uad6d\uc9c0\ub3c4",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var feature_group_1ba66039d8b4932baee75f46dbe627a6 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_c82ccf4a0cbd780f6008bc75d435e6f7 = L.marker(
+                [33.49152212, 126.5372545],
+                {
+}
+            ).addTo(feature_group_1ba66039d8b4932baee75f46dbe627a6);
+        
+    
+            var icon_b35358f047393d2e80ceb4554aa1d766 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "hospital-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_eca4512e6f37cf728b95ba7db59da70d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_49fa57e63eee04e8fe713904d9d6e580 = $(`<div id="html_49fa57e63eee04e8fe713904d9d6e580" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 전주예수병원</h4>             <p><strong>📍 주소:</strong><br>완산구 서원로 365 (중화산동1가) 제주특별자치도 제주시 중앙로 337 (이도이동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 756병상 | 진료과수: 30과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 33.491522<br>                경도: 126.537255             </p>         </div>         </div>`)[0];
+                popup_eca4512e6f37cf728b95ba7db59da70d.setContent(html_49fa57e63eee04e8fe713904d9d6e580);
+            
+        
+
+        marker_c82ccf4a0cbd780f6008bc75d435e6f7.bindPopup(popup_eca4512e6f37cf728b95ba7db59da70d)
+        ;
+
+        
+    
+    
+            marker_c82ccf4a0cbd780f6008bc75d435e6f7.bindTooltip(
+                `<div>
+                     전주예수병원 (종합병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c82ccf4a0cbd780f6008bc75d435e6f7.setIcon(icon_b35358f047393d2e80ceb4554aa1d766);
+            
+    
+            var marker_66f886dfe7f80318c50155abb5e14a1e = L.marker(
+                [33.25521654, 126.5642874],
+                {
+}
+            ).addTo(feature_group_1ba66039d8b4932baee75f46dbe627a6);
+        
+    
+            var icon_dea28f2ae9ec96672004d197835d39f0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "hospital-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_55acd8ccf06996e3a0e65b9807ed8815 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5e71f6d77f4f60632ef905a125761d27 = $(`<div id="html_5e71f6d77f4f60632ef905a125761d27" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 제주한라병원</h4>             <p><strong>📍 주소:</strong><br>도령로 65 (연동) 제주특별자치도 서귀포시 장수로 47 (동홍동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 534병상 | 진료과수: 25과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 33.255217<br>                경도: 126.564287             </p>         </div>         </div>`)[0];
+                popup_55acd8ccf06996e3a0e65b9807ed8815.setContent(html_5e71f6d77f4f60632ef905a125761d27);
+            
+        
+
+        marker_66f886dfe7f80318c50155abb5e14a1e.bindPopup(popup_55acd8ccf06996e3a0e65b9807ed8815)
+        ;
+
+        
+    
+    
+            marker_66f886dfe7f80318c50155abb5e14a1e.bindTooltip(
+                `<div>
+                     제주한라병원 (종합병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_66f886dfe7f80318c50155abb5e14a1e.setIcon(icon_dea28f2ae9ec96672004d197835d39f0);
+            
+    
+            var marker_90456a6a3c07ad27aa5e920c00c47c07 = L.marker(
+                [33.49007862, 126.4850338],
+                {
+}
+            ).addTo(feature_group_1ba66039d8b4932baee75f46dbe627a6);
+        
+    
+            var icon_73fbda9a67050f9b2476be748b28f918 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "hospital-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e7f5dd9e930e4c6d1f1f3ffb4407ed4c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_57baa1468c57757e48cef6b6bb33d087 = $(`<div id="html_57baa1468c57757e48cef6b6bb33d087" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 공주의료원</h4>             <p><strong>📍 주소:</strong><br>무령로 77 제주특별자치도 제주시 도령로 65 (연동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 297병상 | 진료과수: 24과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 33.490079<br>                경도: 126.485034             </p>         </div>         </div>`)[0];
+                popup_e7f5dd9e930e4c6d1f1f3ffb4407ed4c.setContent(html_57baa1468c57757e48cef6b6bb33d087);
+            
+        
+
+        marker_90456a6a3c07ad27aa5e920c00c47c07.bindPopup(popup_e7f5dd9e930e4c6d1f1f3ffb4407ed4c)
+        ;
+
+        
+    
+    
+            marker_90456a6a3c07ad27aa5e920c00c47c07.bindTooltip(
+                `<div>
+                     공주의료원 (종합병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_90456a6a3c07ad27aa5e920c00c47c07.setIcon(icon_73fbda9a67050f9b2476be748b28f918);
+            
+    
+            var marker_acd7bd9b24467628e1ca47eddcb55893 = L.marker(
+                [33.51299865, 126.5224209],
+                {
+}
+            ).addTo(feature_group_1ba66039d8b4932baee75f46dbe627a6);
+        
+    
+            var icon_88a636008470f8a158606c7e9caa408f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "hospital-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1b59aa507bffa3a557e1e76479aef5a0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_710c25ce268cfb43dc40ad96eb72ae2b = $(`<div id="html_710c25ce268cfb43dc40ad96eb72ae2b" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 보령아산병원</h4>             <p><strong>📍 주소:</strong><br>죽성로 136 제주특별자치도 제주시 관덕로 30 (삼도이동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 244병상 | 진료과수: 13과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 33.512999<br>                경도: 126.522421             </p>         </div>         </div>`)[0];
+                popup_1b59aa507bffa3a557e1e76479aef5a0.setContent(html_710c25ce268cfb43dc40ad96eb72ae2b);
+            
+        
+
+        marker_acd7bd9b24467628e1ca47eddcb55893.bindPopup(popup_1b59aa507bffa3a557e1e76479aef5a0)
+        ;
+
+        
+    
+    
+            marker_acd7bd9b24467628e1ca47eddcb55893.bindTooltip(
+                `<div>
+                     보령아산병원 (종합병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_acd7bd9b24467628e1ca47eddcb55893.setIcon(icon_88a636008470f8a158606c7e9caa408f);
+            
+    
+            feature_group_1ba66039d8b4932baee75f46dbe627a6.addTo(map_4f153d2389a41ba81c7c715458e20e1f);
+        
+    
+            var feature_group_8fe5ce7e6962910f445f30bed98fb5e8 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_8a996ad999b78f687b3f16e114a0ad4f = L.marker(
+                [33.24666095, 126.334279],
+                {
+}
+            ).addTo(feature_group_8fe5ce7e6962910f445f30bed98fb5e8);
+        
+    
+            var icon_6bec42b59b53482a7038bdf9bd0c53cd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_865f6607e674c210b13bf4f359db32de = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c06ce9fa54fef57ebc2f94cfc13941eb = $(`<div id="html_c06ce9fa54fef57ebc2f94cfc13941eb" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 익산제일병원</h4>             <p><strong>📍 주소:</strong><br>평동로 665 제주특별자치도 서귀포시 화순로 112 (안덕면)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 99병상 | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 33.246661<br>                경도: 126.334279             </p>         </div>         </div>`)[0];
+                popup_865f6607e674c210b13bf4f359db32de.setContent(html_c06ce9fa54fef57ebc2f94cfc13941eb);
+            
+        
+
+        marker_8a996ad999b78f687b3f16e114a0ad4f.bindPopup(popup_865f6607e674c210b13bf4f359db32de)
+        ;
+
+        
+    
+    
+            marker_8a996ad999b78f687b3f16e114a0ad4f.bindTooltip(
+                `<div>
+                     익산제일병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8a996ad999b78f687b3f16e114a0ad4f.setIcon(icon_6bec42b59b53482a7038bdf9bd0c53cd);
+            
+    
+            var marker_234c7d2ac71bfb0bd64e9c43c0139369 = L.marker(
+                [33.4138299, 126.2628756],
+                {
+}
+            ).addTo(feature_group_8fe5ce7e6962910f445f30bed98fb5e8);
+        
+    
+            var icon_9ac618f3e97e721bedc313a9e18eaaea = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_00d3cb51a3cbea4857c3a1a277fb540d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7afa3433f6f79568c93a7569175fb591 = $(`<div id="html_7afa3433f6f79568c93a7569175fb591" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 고려병원</h4>             <p><strong>📍 주소:</strong><br>해월로 151 제주특별자치도 제주시 한림로 652 (한림읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 54병상 | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 33.413830<br>                경도: 126.262876             </p>         </div>         </div>`)[0];
+                popup_00d3cb51a3cbea4857c3a1a277fb540d.setContent(html_7afa3433f6f79568c93a7569175fb591);
+            
+        
+
+        marker_234c7d2ac71bfb0bd64e9c43c0139369.bindPopup(popup_00d3cb51a3cbea4857c3a1a277fb540d)
+        ;
+
+        
+    
+    
+            marker_234c7d2ac71bfb0bd64e9c43c0139369.bindTooltip(
+                `<div>
+                     고려병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_234c7d2ac71bfb0bd64e9c43c0139369.setIcon(icon_9ac618f3e97e721bedc313a9e18eaaea);
+            
+    
+            feature_group_8fe5ce7e6962910f445f30bed98fb5e8.addTo(map_4f153d2389a41ba81c7c715458e20e1f);
+        
+    
+            var feature_group_9375991400b65b7e8f27f3d0b2ca44ad = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_d0b0fccd285a7bcaf5242d0a827b884c = L.marker(
+                [33.44954373, 126.9145175],
+                {
+}
+            ).addTo(feature_group_9375991400b65b7e8f27f3d0b2ca44ad);
+        
+    
+            var icon_62278e2694e1a2ea02a12fc5fbe446d1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f4826e517cab93c2df4dab01c0566273 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_dfa029922d5d61d50958947fca3c92de = $(`<div id="html_dfa029922d5d61d50958947fca3c92de" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 혁신오케이정형외과의원</h4>             <p><strong>📍 주소:</strong><br>이서면 기지로 54 비씨엠타워 2층 제주특별자치도 서귀포시 고성오조로 67 (성산읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 20병상 | 진료과수: 2과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 33.449544<br>                경도: 126.914518             </p>         </div>         </div>`)[0];
+                popup_f4826e517cab93c2df4dab01c0566273.setContent(html_dfa029922d5d61d50958947fca3c92de);
+            
+        
+
+        marker_d0b0fccd285a7bcaf5242d0a827b884c.bindPopup(popup_f4826e517cab93c2df4dab01c0566273)
+        ;
+
+        
+    
+    
+            marker_d0b0fccd285a7bcaf5242d0a827b884c.bindTooltip(
+                `<div>
+                     혁신오케이정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d0b0fccd285a7bcaf5242d0a827b884c.setIcon(icon_62278e2694e1a2ea02a12fc5fbe446d1);
+            
+    
+            var marker_5a9dbd8c95d08c318df967d1c89488e0 = L.marker(
+                [33.52329954, 126.8556674],
+                {
+}
+            ).addTo(feature_group_9375991400b65b7e8f27f3d0b2ca44ad);
+        
+    
+            var icon_2d9ee8cd906b642e7f4784e8a4ce2198 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1ba8055593be05d9ecf0f11e795c8af5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_da1b739ec06ef3fa39f57166a50407c5 = $(`<div id="html_da1b739ec06ef3fa39f57166a50407c5" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 참가정의학과의원</h4>             <p><strong>📍 주소:</strong><br>장계면 한들로 93 참가정의학과의원 제주특별자치도 제주시 구좌로 40 (구좌읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 33.523300<br>                경도: 126.855667             </p>         </div>         </div>`)[0];
+                popup_1ba8055593be05d9ecf0f11e795c8af5.setContent(html_da1b739ec06ef3fa39f57166a50407c5);
+            
+        
+
+        marker_5a9dbd8c95d08c318df967d1c89488e0.bindPopup(popup_1ba8055593be05d9ecf0f11e795c8af5)
+        ;
+
+        
+    
+    
+            marker_5a9dbd8c95d08c318df967d1c89488e0.bindTooltip(
+                `<div>
+                     참가정의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5a9dbd8c95d08c318df967d1c89488e0.setIcon(icon_2d9ee8cd906b642e7f4784e8a4ce2198);
+            
+    
+            var marker_117e3e3bab44e8aeaaa8eefd2a3e524c = L.marker(
+                [33.22210551, 126.2539583],
+                {
+}
+            ).addTo(feature_group_9375991400b65b7e8f27f3d0b2ca44ad);
+        
+    
+            var icon_a67fcfc00b618806bcba0c7627dba97c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f8ed7ff51879c2b27aa341e2ba120e1e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9d79499b2e57eaf60eaec0db87806c8a = $(`<div id="html_9d79499b2e57eaf60eaec0db87806c8a" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 대한결핵협회 전북특별자치도지부 복십자의원</h4>             <p><strong>📍 주소:</strong><br>덕진구 백제대로 789 제주특별자치도 서귀포시 하모상가로 49 (대정읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 33.222106<br>                경도: 126.253958             </p>         </div>         </div>`)[0];
+                popup_f8ed7ff51879c2b27aa341e2ba120e1e.setContent(html_9d79499b2e57eaf60eaec0db87806c8a);
+            
+        
+
+        marker_117e3e3bab44e8aeaaa8eefd2a3e524c.bindPopup(popup_f8ed7ff51879c2b27aa341e2ba120e1e)
+        ;
+
+        
+    
+    
+            marker_117e3e3bab44e8aeaaa8eefd2a3e524c.bindTooltip(
+                `<div>
+                     대한결핵협회 전북특별자치도지부 복십자의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_117e3e3bab44e8aeaaa8eefd2a3e524c.setIcon(icon_a67fcfc00b618806bcba0c7627dba97c);
+            
+    
+            var marker_2b827e9eb19c2a38e62123895a408d65 = L.marker(
+                [33.44485539, 126.5608557],
+                {
+}
+            ).addTo(feature_group_9375991400b65b7e8f27f3d0b2ca44ad);
+        
+    
+            var icon_b07b8f4318a046fab491d52c5b5aa116 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4b42739ad8c071da2851ca4043a63234 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_358a294025d1006bf18a7ad984668bd5 = $(`<div id="html_358a294025d1006bf18a7ad984668bd5" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 김홍기가정의학과의원</h4>             <p><strong>📍 주소:</strong><br>진안읍 중앙로88 제주특별자치도 제주시 산천단남길 10 (아라일동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 33.444855<br>                경도: 126.560856             </p>         </div>         </div>`)[0];
+                popup_4b42739ad8c071da2851ca4043a63234.setContent(html_358a294025d1006bf18a7ad984668bd5);
+            
+        
+
+        marker_2b827e9eb19c2a38e62123895a408d65.bindPopup(popup_4b42739ad8c071da2851ca4043a63234)
+        ;
+
+        
+    
+    
+            marker_2b827e9eb19c2a38e62123895a408d65.bindTooltip(
+                `<div>
+                     김홍기가정의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2b827e9eb19c2a38e62123895a408d65.setIcon(icon_b07b8f4318a046fab491d52c5b5aa116);
+            
+    
+            var marker_92ffe1172ada3afb948becd2c94c38af = L.marker(
+                [33.32571275, 126.8330962],
+                {
+}
+            ).addTo(feature_group_9375991400b65b7e8f27f3d0b2ca44ad);
+        
+    
+            var icon_2034a06fd1ed3ee4ad6282dc15ef7ee9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6fe81700a956d1d6f4663ded534b52d4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_34ae441b2e11ddb9e73c218c0ca2527d = $(`<div id="html_34ae441b2e11ddb9e73c218c0ca2527d" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 서울삼성재활의학과의원</h4>             <p><strong>📍 주소:</strong><br>대정읍 하모상가로 49 제주특별자치도 서귀포시 표선중앙로 86 (표선면)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 7과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 33.325713<br>                경도: 126.833096             </p>         </div>         </div>`)[0];
+                popup_6fe81700a956d1d6f4663ded534b52d4.setContent(html_34ae441b2e11ddb9e73c218c0ca2527d);
+            
+        
+
+        marker_92ffe1172ada3afb948becd2c94c38af.bindPopup(popup_6fe81700a956d1d6f4663ded534b52d4)
+        ;
+
+        
+    
+    
+            marker_92ffe1172ada3afb948becd2c94c38af.bindTooltip(
+                `<div>
+                     서울삼성재활의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_92ffe1172ada3afb948becd2c94c38af.setIcon(icon_2034a06fd1ed3ee4ad6282dc15ef7ee9);
+            
+    
+            var marker_e52a823576890acb2f07b7f9b296e671 = L.marker(
+                [33.25483079, 126.5678414],
+                {
+}
+            ).addTo(feature_group_9375991400b65b7e8f27f3d0b2ca44ad);
+        
+    
+            var icon_badc1405d1337431f913fc3e2a6616ae = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4f25c7f845019d9c54400ab7338f7d1b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_39040871aa20d95fc388e955d49f0e28 = $(`<div id="html_39040871aa20d95fc388e955d49f0e28" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 문의원</h4>             <p><strong>📍 주소:</strong><br>한림읍 한림로 652 제주특별자치도 서귀포시 일주동로 8614 (동홍동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 2과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 33.254831<br>                경도: 126.567841             </p>         </div>         </div>`)[0];
+                popup_4f25c7f845019d9c54400ab7338f7d1b.setContent(html_39040871aa20d95fc388e955d49f0e28);
+            
+        
+
+        marker_e52a823576890acb2f07b7f9b296e671.bindPopup(popup_4f25c7f845019d9c54400ab7338f7d1b)
+        ;
+
+        
+    
+    
+            marker_e52a823576890acb2f07b7f9b296e671.bindTooltip(
+                `<div>
+                     문의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e52a823576890acb2f07b7f9b296e671.setIcon(icon_badc1405d1337431f913fc3e2a6616ae);
+            
+    
+            var marker_1c4191e899ff9374cc3420864ea614a6 = L.marker(
+                [33.46726177, 126.5452313],
+                {
+}
+            ).addTo(feature_group_9375991400b65b7e8f27f3d0b2ca44ad);
+        
+    
+            var icon_e215ad9b5313332c4da41bf90b957134 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_755fa4c6bc8e27f19f64e5dfbfb97168 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_17c24cc13f0d4f42820804bac9acac71 = $(`<div id="html_17c24cc13f0d4f42820804bac9acac71" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 센트럴치과의원</h4>             <p><strong>📍 주소:</strong><br>중앙로 61 (이도일동) 2층 센트럴치과의원 제주특별자치도 제주시 아란13길 15 (아라일동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 9과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 33.467262<br>                경도: 126.545231             </p>         </div>         </div>`)[0];
+                popup_755fa4c6bc8e27f19f64e5dfbfb97168.setContent(html_17c24cc13f0d4f42820804bac9acac71);
+            
+        
+
+        marker_1c4191e899ff9374cc3420864ea614a6.bindPopup(popup_755fa4c6bc8e27f19f64e5dfbfb97168)
+        ;
+
+        
+    
+    
+            marker_1c4191e899ff9374cc3420864ea614a6.bindTooltip(
+                `<div>
+                     센트럴치과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1c4191e899ff9374cc3420864ea614a6.setIcon(icon_e215ad9b5313332c4da41bf90b957134);
+            
+    
+            var marker_6899c1d2c4e3808e8f0c7b297c96e19c = L.marker(
+                [33.44485539, 126.5608557],
+                {
+}
+            ).addTo(feature_group_9375991400b65b7e8f27f3d0b2ca44ad);
+        
+    
+            var icon_e080bb8ee90389b1ceb962cc8e844182 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_22ed3df521fd69cbd3e3351c31fd8e0d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8a0f51c42f931b91fa0a0d977b73cd13 = $(`<div id="html_8a0f51c42f931b91fa0a0d977b73cd13" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 김광석외과의원</h4>             <p><strong>📍 주소:</strong><br>엄사면 번영로 14 제주특별자치도 제주시 산천단남길 10 (아라일동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 7과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 33.444855<br>                경도: 126.560856             </p>         </div>         </div>`)[0];
+                popup_22ed3df521fd69cbd3e3351c31fd8e0d.setContent(html_8a0f51c42f931b91fa0a0d977b73cd13);
+            
+        
+
+        marker_6899c1d2c4e3808e8f0c7b297c96e19c.bindPopup(popup_22ed3df521fd69cbd3e3351c31fd8e0d)
+        ;
+
+        
+    
+    
+            marker_6899c1d2c4e3808e8f0c7b297c96e19c.bindTooltip(
+                `<div>
+                     김광석외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6899c1d2c4e3808e8f0c7b297c96e19c.setIcon(icon_e080bb8ee90389b1ceb962cc8e844182);
+            
+    
+            var marker_d2a439ba8f47646c1b4af5c3acc2bf22 = L.marker(
+                [33.24881986, 126.5694471],
+                {
+}
+            ).addTo(feature_group_9375991400b65b7e8f27f3d0b2ca44ad);
+        
+    
+            var icon_b28c88d27857571774890132638a1f79 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_17ccdbfa9a8cea9a3b975e9f45e16d25 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_881d1802c9eaa6d76434e1bddb27d371 = $(`<div id="html_881d1802c9eaa6d76434e1bddb27d371" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 공주서울내과의원</h4>             <p><strong>📍 주소:</strong><br>웅진로 186 (산성동) 2층 공주서울내과의원 제주특별자치도 서귀포시 중정로 123 (서귀동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 33.248820<br>                경도: 126.569447             </p>         </div>         </div>`)[0];
+                popup_17ccdbfa9a8cea9a3b975e9f45e16d25.setContent(html_881d1802c9eaa6d76434e1bddb27d371);
+            
+        
+
+        marker_d2a439ba8f47646c1b4af5c3acc2bf22.bindPopup(popup_17ccdbfa9a8cea9a3b975e9f45e16d25)
+        ;
+
+        
+    
+    
+            marker_d2a439ba8f47646c1b4af5c3acc2bf22.bindTooltip(
+                `<div>
+                     공주서울내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d2a439ba8f47646c1b4af5c3acc2bf22.setIcon(icon_b28c88d27857571774890132638a1f79);
+            
+    
+            var marker_3754e6ffe2e6282eb2cc2632ab589243 = L.marker(
+                [33.25445774, 126.5654242],
+                {
+}
+            ).addTo(feature_group_9375991400b65b7e8f27f3d0b2ca44ad);
+        
+    
+            var icon_704cefc79704671f24c3aefdf142b30c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_32fdd864cdfcec48c4cf030c38a08073 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6fb1159c37bdb99f74fa7affca89b301 = $(`<div id="html_6fb1159c37bdb99f74fa7affca89b301" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 금산365의원</h4>             <p><strong>📍 주소:</strong><br>금산읍 후곤천길 56 제주특별자치도 서귀포시 일주동로 8638 (동홍동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 25병상 | 진료과수: 8과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 33.254458<br>                경도: 126.565424             </p>         </div>         </div>`)[0];
+                popup_32fdd864cdfcec48c4cf030c38a08073.setContent(html_6fb1159c37bdb99f74fa7affca89b301);
+            
+        
+
+        marker_3754e6ffe2e6282eb2cc2632ab589243.bindPopup(popup_32fdd864cdfcec48c4cf030c38a08073)
+        ;
+
+        
+    
+    
+            marker_3754e6ffe2e6282eb2cc2632ab589243.bindTooltip(
+                `<div>
+                     금산365의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3754e6ffe2e6282eb2cc2632ab589243.setIcon(icon_704cefc79704671f24c3aefdf142b30c);
+            
+    
+            var marker_e667499c2e3d8738f5df27bd1c83eba0 = L.marker(
+                [33.48419502, 126.4305308],
+                {
+}
+            ).addTo(feature_group_9375991400b65b7e8f27f3d0b2ca44ad);
+        
+    
+            var icon_46ec91f31629496f34824e77ab5d26ef = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_619f505e7323a5ceb5d84ff5f104be31 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d3808027d34822f198628aab3da51eae = $(`<div id="html_d3808027d34822f198628aab3da51eae" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 하나치과의원</h4>             <p><strong>📍 주소:</strong><br>금산읍 인삼로 65, 303호(엔이시티) 제주특별자치도 제주시 우평로 338 (외도일동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 11과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 33.484195<br>                경도: 126.430531             </p>         </div>         </div>`)[0];
+                popup_619f505e7323a5ceb5d84ff5f104be31.setContent(html_d3808027d34822f198628aab3da51eae);
+            
+        
+
+        marker_e667499c2e3d8738f5df27bd1c83eba0.bindPopup(popup_619f505e7323a5ceb5d84ff5f104be31)
+        ;
+
+        
+    
+    
+            marker_e667499c2e3d8738f5df27bd1c83eba0.bindTooltip(
+                `<div>
+                     하나치과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e667499c2e3d8738f5df27bd1c83eba0.setIcon(icon_46ec91f31629496f34824e77ab5d26ef);
+            
+    
+            var marker_50cb96bda6b7dbcff763940b964d408e = L.marker(
+                [33.5416396, 126.6675643],
+                {
+}
+            ).addTo(feature_group_9375991400b65b7e8f27f3d0b2ca44ad);
+        
+    
+            var icon_deebefe9306a22babbcf3dce11db0294 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a40caba879949e52b150749a2029b5be = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0177af8a6728d319b4ee2f0b6759dccf = $(`<div id="html_0177af8a6728d319b4ee2f0b6759dccf" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 푸른정형외과의원</h4>             <p><strong>📍 주소:</strong><br>명천중앙길 8, 104호 제주특별자치도 제주시 함덕13길 1-1 (조천읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 33.541640<br>                경도: 126.667564             </p>         </div>         </div>`)[0];
+                popup_a40caba879949e52b150749a2029b5be.setContent(html_0177af8a6728d319b4ee2f0b6759dccf);
+            
+        
+
+        marker_50cb96bda6b7dbcff763940b964d408e.bindPopup(popup_a40caba879949e52b150749a2029b5be)
+        ;
+
+        
+    
+    
+            marker_50cb96bda6b7dbcff763940b964d408e.bindTooltip(
+                `<div>
+                     푸른정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_50cb96bda6b7dbcff763940b964d408e.setIcon(icon_deebefe9306a22babbcf3dce11db0294);
+            
+    
+            feature_group_9375991400b65b7e8f27f3d0b2ca44ad.addTo(map_4f153d2389a41ba81c7c715458e20e1f);
+        
+    
+            var feature_group_c0ebd9e020462eeddcc234d3970e15e2 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_e6b4790856a02418c0017f9f0cf816bd = L.marker(
+                [33.2777064, 126.7146083],
+                {
+}
+            ).addTo(feature_group_c0ebd9e020462eeddcc234d3970e15e2);
+        
+    
+            var icon_7d384286fcf1650aa769f7414d8ab5e8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "heartbeat",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_634a20814815b18bb23a03f8f754c9cd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bee1705b1de3b2675f6da31e2768905d = $(`<div id="html_bee1705b1de3b2675f6da31e2768905d" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 늘봄재활요양병원</h4>             <p><strong>📍 주소:</strong><br>관덕로 30 제주특별자치도 서귀포시 태위로 636 (남원읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 149병상 | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 33.277706<br>                경도: 126.714608             </p>         </div>         </div>`)[0];
+                popup_634a20814815b18bb23a03f8f754c9cd.setContent(html_bee1705b1de3b2675f6da31e2768905d);
+            
+        
+
+        marker_e6b4790856a02418c0017f9f0cf816bd.bindPopup(popup_634a20814815b18bb23a03f8f754c9cd)
+        ;
+
+        
+    
+    
+            marker_e6b4790856a02418c0017f9f0cf816bd.bindTooltip(
+                `<div>
+                     늘봄재활요양병원 (요양병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e6b4790856a02418c0017f9f0cf816bd.setIcon(icon_7d384286fcf1650aa769f7414d8ab5e8);
+            
+    
+            var marker_3c4e63e7792d01b614bd06434a8eeb86 = L.marker(
+                [33.51276658, 126.5248207],
+                {
+}
+            ).addTo(feature_group_c0ebd9e020462eeddcc234d3970e15e2);
+        
+    
+            var icon_9b3eff749c9eee4127a9ce62df9e9092 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "heartbeat",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9abbeb610038858784a07251deb8cfa4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e9358cc6d2f732ecb104ba61cf6a3e97 = $(`<div id="html_e9358cc6d2f732ecb104ba61cf6a3e97" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 제주의료원 부속요양병원</h4>             <p><strong>📍 주소:</strong><br>산천단남길 10 (아라일동) 부속요양병원 제주특별자치도 제주시 중앙로 61 (이도일동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 199병상 | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 33.512767<br>                경도: 126.524821             </p>         </div>         </div>`)[0];
+                popup_9abbeb610038858784a07251deb8cfa4.setContent(html_e9358cc6d2f732ecb104ba61cf6a3e97);
+            
+        
+
+        marker_3c4e63e7792d01b614bd06434a8eeb86.bindPopup(popup_9abbeb610038858784a07251deb8cfa4)
+        ;
+
+        
+    
+    
+            marker_3c4e63e7792d01b614bd06434a8eeb86.bindTooltip(
+                `<div>
+                     제주의료원 부속요양병원 (요양병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3c4e63e7792d01b614bd06434a8eeb86.setIcon(icon_9b3eff749c9eee4127a9ce62df9e9092);
+            
+    
+            feature_group_c0ebd9e020462eeddcc234d3970e15e2.addTo(map_4f153d2389a41ba81c7c715458e20e1f);
+        
+    
+            var layer_control_b8b780186ac6735fc037466b6c5b4dc0_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_06a9e6fad08f15faa8e1a5ce349eee61,
+                    "VWorld \uae30\ubcf8\uc9c0\ub3c4 (\ud55c\uae00)" : tile_layer_d31ebba40c6539cfad552a00d3e279ce,
+                },
+                overlays :  {
+                    "\uc885\ud569\ubcd1\uc6d0" : feature_group_1ba66039d8b4932baee75f46dbe627a6,
+                    "\ubcd1\uc6d0" : feature_group_8fe5ce7e6962910f445f30bed98fb5e8,
+                    "\uc758\uc6d0" : feature_group_9375991400b65b7e8f27f3d0b2ca44ad,
+                    "\uc694\uc591\ubcd1\uc6d0" : feature_group_c0ebd9e020462eeddcc234d3970e15e2,
+                },
+            };
+            let layer_control_b8b780186ac6735fc037466b6c5b4dc0 = L.control.layers(
+                layer_control_b8b780186ac6735fc037466b6c5b4dc0_layers.base_layers,
+                layer_control_b8b780186ac6735fc037466b6c5b4dc0_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_4f153d2389a41ba81c7c715458e20e1f);
+
+        
+</script>
+</html>

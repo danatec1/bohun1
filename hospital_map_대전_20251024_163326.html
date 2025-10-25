@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_beb0b1ade4f14c95fe2e75f82a7c497d {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <div style="position: fixed; 
+                    top: 10px; left: 50px; width: 280px; 
+                    background-color: white; border:2px solid grey; z-index:9999; 
+                    font-size:13px; padding: 12px; border-radius: 8px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+        <h4 style="margin: 0 0 10px 0;">🏥 위탁병원 지도 - 대전</h4>
+        <p style="margin: 5px 0;"><strong>총 병원 수:</strong> 21개</p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 5px 0; font-weight: bold;">📍 종별 현황:</p>
+        <p style="margin: 3px 0;">
+            <span style="color: #d63333; font-weight: bold;">●</span> 종합병원: 0개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #3498db; font-weight: bold;">●</span> 병원: 3개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #38a169; font-weight: bold;">●</span> 의원: 17개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #ff8c00; font-weight: bold;">●</span> 요양병원: 1개
+        </p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 5px 0; font-size: 11px; color: #666;">
+        생성: 2025-10-24 16:33</p>
+        </div>
+        
+    
+            <div class="folium-map" id="map_beb0b1ade4f14c95fe2e75f82a7c497d" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_beb0b1ade4f14c95fe2e75f82a7c497d = L.map(
+                "map_beb0b1ade4f14c95fe2e75f82a7c497d",
+                {
+                    center: [36.3504, 127.3845],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": true,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_e4e645722af2bc2fb86fd794ff289e04 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "OpenStreetMap",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_e4e645722af2bc2fb86fd794ff289e04.addTo(map_beb0b1ade4f14c95fe2e75f82a7c497d);
+        
+    
+            var tile_layer_d3e90aab9878d6d099b8cdf8d312fac0 = L.tileLayer(
+                "https://map.vworld.kr/tile/Base/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "VWorld \ud55c\uad6d\uc9c0\ub3c4",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var feature_group_946227197a19d59c8728ad8dcffc2a3d = L.featureGroup(
+                {
+}
+            );
+        
+    
+            feature_group_946227197a19d59c8728ad8dcffc2a3d.addTo(map_beb0b1ade4f14c95fe2e75f82a7c497d);
+        
+    
+            var feature_group_f256db435cb483d4fce5c4af31e856f9 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_83c5029c461df21744f590ef217f527a = L.marker(
+                [36.31910197, 127.4169877],
+                {
+}
+            ).addTo(feature_group_f256db435cb483d4fce5c4af31e856f9);
+        
+    
+            var icon_3d4270ed7f3115e1003987712f8754e5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c950a9c32c38975ebb41e05dd8cf1f04 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bdbcc64bf066630ed6ae09c140d29036 = $(`<div id="html_bdbcc64bf066630ed6ae09c140d29036" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 바른생각병원</h4>             <p><strong>📍 주소:</strong><br>청사로 128 대전광역시 중구 계룡로 945 (대사동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 89병상 | 진료과수: 10과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.319102<br>                경도: 127.416988             </p>         </div>         </div>`)[0];
+                popup_c950a9c32c38975ebb41e05dd8cf1f04.setContent(html_bdbcc64bf066630ed6ae09c140d29036);
+            
+        
+
+        marker_83c5029c461df21744f590ef217f527a.bindPopup(popup_c950a9c32c38975ebb41e05dd8cf1f04)
+        ;
+
+        
+    
+    
+            marker_83c5029c461df21744f590ef217f527a.bindTooltip(
+                `<div>
+                     바른생각병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_83c5029c461df21744f590ef217f527a.setIcon(icon_3d4270ed7f3115e1003987712f8754e5);
+            
+    
+            var marker_d2a43a8f0e8a3098ee3e9d34134a0030 = L.marker(
+                [36.35154582, 127.3385574],
+                {
+}
+            ).addTo(feature_group_f256db435cb483d4fce5c4af31e856f9);
+        
+    
+            var icon_4af2ff096314f9609ac4d185f9391961 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f36c5f91d2557bafb1f30829fbf334fd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1a75d05d4374a4ff7e8a5d9691a7ef12 = $(`<div id="html_1a75d05d4374a4ff7e8a5d9691a7ef12" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 세웅병원</h4>             <p><strong>📍 주소:</strong><br>서동로 162 대전광역시 유성구 도안대로567번길 26 (봉명동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 202병상 | 진료과수: 10과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.351546<br>                경도: 127.338557             </p>         </div>         </div>`)[0];
+                popup_f36c5f91d2557bafb1f30829fbf334fd.setContent(html_1a75d05d4374a4ff7e8a5d9691a7ef12);
+            
+        
+
+        marker_d2a43a8f0e8a3098ee3e9d34134a0030.bindPopup(popup_f36c5f91d2557bafb1f30829fbf334fd)
+        ;
+
+        
+    
+    
+            marker_d2a43a8f0e8a3098ee3e9d34134a0030.bindTooltip(
+                `<div>
+                     세웅병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d2a43a8f0e8a3098ee3e9d34134a0030.setIcon(icon_4af2ff096314f9609ac4d185f9391961);
+            
+    
+            var marker_1a0facf9d1a0c3ef15c027a6dac97281 = L.marker(
+                [36.37480033, 127.3184381],
+                {
+}
+            ).addTo(feature_group_f256db435cb483d4fce5c4af31e856f9);
+        
+    
+            var icon_dec99191764763cb6add11273d04ee91 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a3adc9c5a8336c17a5aff5c04b806c10 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_11db32d30210de1aeaae65249f3c8779 = $(`<div id="html_11db32d30210de1aeaae65249f3c8779" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 부산성소병원</h4>             <p><strong>📍 주소:</strong><br>수영로 175 (대연동) 대전광역시 유성구 노은로 170 (지족동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 203병상 | 진료과수: 10과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.374800<br>                경도: 127.318438             </p>         </div>         </div>`)[0];
+                popup_a3adc9c5a8336c17a5aff5c04b806c10.setContent(html_11db32d30210de1aeaae65249f3c8779);
+            
+        
+
+        marker_1a0facf9d1a0c3ef15c027a6dac97281.bindPopup(popup_a3adc9c5a8336c17a5aff5c04b806c10)
+        ;
+
+        
+    
+    
+            marker_1a0facf9d1a0c3ef15c027a6dac97281.bindTooltip(
+                `<div>
+                     부산성소병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1a0facf9d1a0c3ef15c027a6dac97281.setIcon(icon_dec99191764763cb6add11273d04ee91);
+            
+    
+            feature_group_f256db435cb483d4fce5c4af31e856f9.addTo(map_beb0b1ade4f14c95fe2e75f82a7c497d);
+        
+    
+            var feature_group_c12255381616dcbaed16aba222524666 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_b6a869831ff03e413c933a552384dfe1 = L.marker(
+                [36.35950575, 127.3778318],
+                {
+}
+            ).addTo(feature_group_c12255381616dcbaed16aba222524666);
+        
+    
+            var icon_4191ca444cc89be896ca4753d1a927fe = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_577c5e46a7a972aedb0ef6571f206032 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_875e07d150e1c79fe7beb97a557ff64a = $(`<div id="html_875e07d150e1c79fe7beb97a557ff64a" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 S신경외과의원</h4>             <p><strong>📍 주소:</strong><br>동대구로 86 대전광역시 서구 청사로 128 (월평동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 2병상 | 진료과수: 3과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.359506<br>                경도: 127.377832             </p>         </div>         </div>`)[0];
+                popup_577c5e46a7a972aedb0ef6571f206032.setContent(html_875e07d150e1c79fe7beb97a557ff64a);
+            
+        
+
+        marker_b6a869831ff03e413c933a552384dfe1.bindPopup(popup_577c5e46a7a972aedb0ef6571f206032)
+        ;
+
+        
+    
+    
+            marker_b6a869831ff03e413c933a552384dfe1.bindTooltip(
+                `<div>
+                     S신경외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b6a869831ff03e413c933a552384dfe1.setIcon(icon_4191ca444cc89be896ca4753d1a927fe);
+            
+    
+            var marker_4c4d9653fbab8d4115f5c6df00ed64ac = L.marker(
+                [36.34558198, 127.380334],
+                {
+}
+            ).addTo(feature_group_c12255381616dcbaed16aba222524666);
+        
+    
+            var icon_b241161b2153849e0639816fb04fb705 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9eebcccba3b78f6623607b5cb1e0d610 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8104d14dba2c864047a615410d87460b = $(`<div id="html_8104d14dba2c864047a615410d87460b" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 준내과의원</h4>             <p><strong>📍 주소:</strong><br>달구벌대로 2395 (범어동) 준내과의원 대전광역시 서구 계룡로491번길 8 (둔산동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 8과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.345582<br>                경도: 127.380334             </p>         </div>         </div>`)[0];
+                popup_9eebcccba3b78f6623607b5cb1e0d610.setContent(html_8104d14dba2c864047a615410d87460b);
+            
+        
+
+        marker_4c4d9653fbab8d4115f5c6df00ed64ac.bindPopup(popup_9eebcccba3b78f6623607b5cb1e0d610)
+        ;
+
+        
+    
+    
+            marker_4c4d9653fbab8d4115f5c6df00ed64ac.bindTooltip(
+                `<div>
+                     준내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4c4d9653fbab8d4115f5c6df00ed64ac.setIcon(icon_b241161b2153849e0639816fb04fb705);
+            
+    
+            var marker_5abdac4929b42b5ac582808a37b9e4da = L.marker(
+                [36.33199694, 127.385587],
+                {
+}
+            ).addTo(feature_group_c12255381616dcbaed16aba222524666);
+        
+    
+            var icon_bd40edfcf65afd3e811eea328127baba = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_07f538ce194b7605e9e6d1d1cd437380 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d43cd32f6de2105ff41e39b570d1319c = $(`<div id="html_d43cd32f6de2105ff41e39b570d1319c" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 이튼연합치과의원남산점</h4>             <p><strong>📍 주소:</strong><br>남산로 61 대전광역시 서구 도산로 286 (가장동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 10과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.331997<br>                경도: 127.385587             </p>         </div>         </div>`)[0];
+                popup_07f538ce194b7605e9e6d1d1cd437380.setContent(html_d43cd32f6de2105ff41e39b570d1319c);
+            
+        
+
+        marker_5abdac4929b42b5ac582808a37b9e4da.bindPopup(popup_07f538ce194b7605e9e6d1d1cd437380)
+        ;
+
+        
+    
+    
+            marker_5abdac4929b42b5ac582808a37b9e4da.bindTooltip(
+                `<div>
+                     이튼연합치과의원남산점 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5abdac4929b42b5ac582808a37b9e4da.setIcon(icon_bd40edfcf65afd3e811eea328127baba);
+            
+    
+            var marker_da6ff51368d7285a8180163d508a725e = L.marker(
+                [36.36733049, 127.4316157],
+                {
+}
+            ).addTo(feature_group_c12255381616dcbaed16aba222524666);
+        
+    
+            var icon_a9a2701a0918f2499d82be914c407614 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b563a659f2e742bf582f32950e19c5fd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8f9441439346c5082c3df61c075e300a = $(`<div id="html_8f9441439346c5082c3df61c075e300a" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 청담내과의원</h4>             <p><strong>📍 주소:</strong><br>동춘당로 179 (법동) 201 대전광역시 대덕구 동춘당로 179 (법동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.367330<br>                경도: 127.431616             </p>         </div>         </div>`)[0];
+                popup_b563a659f2e742bf582f32950e19c5fd.setContent(html_8f9441439346c5082c3df61c075e300a);
+            
+        
+
+        marker_da6ff51368d7285a8180163d508a725e.bindPopup(popup_b563a659f2e742bf582f32950e19c5fd)
+        ;
+
+        
+    
+    
+            marker_da6ff51368d7285a8180163d508a725e.bindTooltip(
+                `<div>
+                     청담내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_da6ff51368d7285a8180163d508a725e.setIcon(icon_a9a2701a0918f2499d82be914c407614);
+            
+    
+            var marker_9287cd8f840f0059a0f48b759dcc75b7 = L.marker(
+                [35.85964134, 128.6245212],
+                {
+}
+            ).addTo(feature_group_c12255381616dcbaed16aba222524666);
+        
+    
+            var icon_a0fc51363798af554b332e3741d1b8b2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5c1f9376a2364af9657895af8ae3e590 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a0ae2c745b43282c2c94615b96ed27b2 = $(`<div id="html_a0ae2c745b43282c2c94615b96ed27b2" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 나상연정형외과의원</h4>             <p><strong>📍 주소:</strong><br>동대전로 59-1(대동) 대구광역시 수성구 달구벌대로 2395 (범어동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 29병상 | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.859641<br>                경도: 128.624521             </p>         </div>         </div>`)[0];
+                popup_5c1f9376a2364af9657895af8ae3e590.setContent(html_a0ae2c745b43282c2c94615b96ed27b2);
+            
+        
+
+        marker_9287cd8f840f0059a0f48b759dcc75b7.bindPopup(popup_5c1f9376a2364af9657895af8ae3e590)
+        ;
+
+        
+    
+    
+            marker_9287cd8f840f0059a0f48b759dcc75b7.bindTooltip(
+                `<div>
+                     나상연정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9287cd8f840f0059a0f48b759dcc75b7.setIcon(icon_a0fc51363798af554b332e3741d1b8b2);
+            
+    
+            var marker_b5ce875dbb62a73cf8abc30f914ba693 = L.marker(
+                [35.85708115, 128.6134835],
+                {
+}
+            ).addTo(feature_group_c12255381616dcbaed16aba222524666);
+        
+    
+            var icon_14a1cd81e43df53769eb64a2cca58ed6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9b5b5018d1a7f75b9e37e51d2928e9cb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9bd599d611d839797b7b817f0b3ec94e = $(`<div id="html_9bd599d611d839797b7b817f0b3ec94e" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 덕인의원</h4>             <p><strong>📍 주소:</strong><br>대전로 782 (원동) 대구광역시 수성구 수성로 353 (수성동1가)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.857081<br>                경도: 128.613484             </p>         </div>         </div>`)[0];
+                popup_9b5b5018d1a7f75b9e37e51d2928e9cb.setContent(html_9bd599d611d839797b7b817f0b3ec94e);
+            
+        
+
+        marker_b5ce875dbb62a73cf8abc30f914ba693.bindPopup(popup_9b5b5018d1a7f75b9e37e51d2928e9cb)
+        ;
+
+        
+    
+    
+            marker_b5ce875dbb62a73cf8abc30f914ba693.bindTooltip(
+                `<div>
+                     덕인의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b5ce875dbb62a73cf8abc30f914ba693.setIcon(icon_14a1cd81e43df53769eb64a2cca58ed6);
+            
+    
+            var marker_6075011ec547e2bc551de8da6ac11eef = L.marker(
+                [36.45029606, 127.4267411],
+                {
+}
+            ).addTo(feature_group_c12255381616dcbaed16aba222524666);
+        
+    
+            var icon_620c6e1fe6e7294f30011bbe7907159c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_72ed8fc245593985df8d85d5509db633 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9f374f5d6a79e5fbb1254c33c7bc40b0 = $(`<div id="html_9f374f5d6a79e5fbb1254c33c7bc40b0" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 마디신경외과의원</h4>             <p><strong>📍 주소:</strong><br>곤룡로 6 대전광역시 대덕구 대덕대로 1610 (석봉동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 1병상 | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.450296<br>                경도: 127.426741             </p>         </div>         </div>`)[0];
+                popup_72ed8fc245593985df8d85d5509db633.setContent(html_9f374f5d6a79e5fbb1254c33c7bc40b0);
+            
+        
+
+        marker_6075011ec547e2bc551de8da6ac11eef.bindPopup(popup_72ed8fc245593985df8d85d5509db633)
+        ;
+
+        
+    
+    
+            marker_6075011ec547e2bc551de8da6ac11eef.bindTooltip(
+                `<div>
+                     마디신경외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6075011ec547e2bc551de8da6ac11eef.setIcon(icon_620c6e1fe6e7294f30011bbe7907159c);
+            
+    
+            var marker_dd9a47411b36a22412673ec3acd0dd9e = L.marker(
+                [36.32904664, 127.4412496],
+                {
+}
+            ).addTo(feature_group_c12255381616dcbaed16aba222524666);
+        
+    
+            var icon_4018136e0d7d0cfad520de6fe452c6c7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_48448df3f547c0306c15a13bbd6aabac = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_979d440aa52ee2f72a80dffcd734820d = $(`<div id="html_979d440aa52ee2f72a80dffcd734820d" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 김봉천정형외과의원</h4>             <p><strong>📍 주소:</strong><br>계백로 1130 (가수원동) 대전광역시 동구 동대전로 59-1 (대동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 27병상 | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.329047<br>                경도: 127.441250             </p>         </div>         </div>`)[0];
+                popup_48448df3f547c0306c15a13bbd6aabac.setContent(html_979d440aa52ee2f72a80dffcd734820d);
+            
+        
+
+        marker_dd9a47411b36a22412673ec3acd0dd9e.bindPopup(popup_48448df3f547c0306c15a13bbd6aabac)
+        ;
+
+        
+    
+    
+            marker_dd9a47411b36a22412673ec3acd0dd9e.bindTooltip(
+                `<div>
+                     김봉천정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dd9a47411b36a22412673ec3acd0dd9e.setIcon(icon_4018136e0d7d0cfad520de6fe452c6c7);
+            
+    
+            var marker_9871f9442805b025a2b44ad3383987bd = L.marker(
+                [36.360961, 127.336281],
+                {
+}
+            ).addTo(feature_group_c12255381616dcbaed16aba222524666);
+        
+    
+            var icon_4f6a7d629ffa616a00b4d486295339c6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_027e8e24e231a194d2ab1e45dc12865a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0a7e8afb52113f605bae0535a81d3f2f = $(`<div id="html_0a7e8afb52113f605bae0535a81d3f2f" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 더봄구강악안면외과치과의원</h4>             <p><strong>📍 주소:</strong><br>대덕대로 246, B동 2층 대전광역시 유성구 유성대로 772 (장대동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 10과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.360961<br>                경도: 127.336281             </p>         </div>         </div>`)[0];
+                popup_027e8e24e231a194d2ab1e45dc12865a.setContent(html_0a7e8afb52113f605bae0535a81d3f2f);
+            
+        
+
+        marker_9871f9442805b025a2b44ad3383987bd.bindPopup(popup_027e8e24e231a194d2ab1e45dc12865a)
+        ;
+
+        
+    
+    
+            marker_9871f9442805b025a2b44ad3383987bd.bindTooltip(
+                `<div>
+                     더봄구강악안면외과치과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9871f9442805b025a2b44ad3383987bd.setIcon(icon_4f6a7d629ffa616a00b4d486295339c6);
+            
+    
+            var marker_2b9d9c6bdc8d80df23c10382c2b2a91f = L.marker(
+                [36.27989626, 127.4686042],
+                {
+}
+            ).addTo(feature_group_c12255381616dcbaed16aba222524666);
+        
+    
+            var icon_9c35a54c0271cf23625e2e5b760bae2e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_32b9f3bf84f4bcdbaf16681370949163 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0e18e326974da3f9ddab2f439ea4791a = $(`<div id="html_0e18e326974da3f9ddab2f439ea4791a" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 백세성모정형외과의원</h4>             <p><strong>📍 주소:</strong><br>도산로 286(가장동) 대전광역시 동구 곤룡로 6 (낭월동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 29병상 | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.279896<br>                경도: 127.468604             </p>         </div>         </div>`)[0];
+                popup_32b9f3bf84f4bcdbaf16681370949163.setContent(html_0e18e326974da3f9ddab2f439ea4791a);
+            
+        
+
+        marker_2b9d9c6bdc8d80df23c10382c2b2a91f.bindPopup(popup_32b9f3bf84f4bcdbaf16681370949163)
+        ;
+
+        
+    
+    
+            marker_2b9d9c6bdc8d80df23c10382c2b2a91f.bindTooltip(
+                `<div>
+                     백세성모정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2b9d9c6bdc8d80df23c10382c2b2a91f.setIcon(icon_9c35a54c0271cf23625e2e5b760bae2e);
+            
+    
+            var marker_d780ea29b5c19799cf9cc31b337734fa = L.marker(
+                [36.35473626, 127.3799853],
+                {
+}
+            ).addTo(feature_group_c12255381616dcbaed16aba222524666);
+        
+    
+            var icon_ea010651976af0ea47f61551045cbefb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f52d3a3fe8ecb10762c6d6a1e898a4ae = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7bc020be206b30985bf0c36a2d82bac8 = $(`<div id="html_7bc020be206b30985bf0c36a2d82bac8" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 삼성외과의원</h4>             <p><strong>📍 주소:</strong><br>대덕대로176번길 9, 6~7층(둔산동) 대전광역시 서구 대덕대로 246, B동 (둔산동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 22병상 | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.354736<br>                경도: 127.379985             </p>         </div>         </div>`)[0];
+                popup_f52d3a3fe8ecb10762c6d6a1e898a4ae.setContent(html_7bc020be206b30985bf0c36a2d82bac8);
+            
+        
+
+        marker_d780ea29b5c19799cf9cc31b337734fa.bindPopup(popup_f52d3a3fe8ecb10762c6d6a1e898a4ae)
+        ;
+
+        
+    
+    
+            marker_d780ea29b5c19799cf9cc31b337734fa.bindTooltip(
+                `<div>
+                     삼성외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d780ea29b5c19799cf9cc31b337734fa.setIcon(icon_ea010651976af0ea47f61551045cbefb);
+            
+    
+            var marker_a95d40b27ab66fec870fd97910d2faec = L.marker(
+                [36.30384757, 127.349082],
+                {
+}
+            ).addTo(feature_group_c12255381616dcbaed16aba222524666);
+        
+    
+            var icon_446095610458f70c238b47c0d6c28afd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ce566d52a1b71931f8a512a6f3a19c43 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9b86fb82fb6807aba2a069fa61355555 = $(`<div id="html_9b86fb82fb6807aba2a069fa61355555" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 메디안내과의원</h4>             <p><strong>📍 주소:</strong><br>노은로 170 (지족동) 스타시티 3층 대전광역시 서구 계백로 1130 (가수원동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.303848<br>                경도: 127.349082             </p>         </div>         </div>`)[0];
+                popup_ce566d52a1b71931f8a512a6f3a19c43.setContent(html_9b86fb82fb6807aba2a069fa61355555);
+            
+        
+
+        marker_a95d40b27ab66fec870fd97910d2faec.bindPopup(popup_ce566d52a1b71931f8a512a6f3a19c43)
+        ;
+
+        
+    
+    
+            marker_a95d40b27ab66fec870fd97910d2faec.bindTooltip(
+                `<div>
+                     메디안내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a95d40b27ab66fec870fd97910d2faec.setIcon(icon_446095610458f70c238b47c0d6c28afd);
+            
+    
+            var marker_9a4e08c48eff2a620c1efa1b6d3b98cf = L.marker(
+                [36.32958893, 127.4340498],
+                {
+}
+            ).addTo(feature_group_c12255381616dcbaed16aba222524666);
+        
+    
+            var icon_218af1db8b8030234850fa77f47cff52 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d75bac4385e0fa79238555b71a327766 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_775da284eb8493d683565c703b01eab4 = $(`<div id="html_775da284eb8493d683565c703b01eab4" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 새봄안과의원</h4>             <p><strong>📍 주소:</strong><br>계룡로 114, BYC빌딩 7층(봉명동) 대전광역시 동구 대전로 782 (원동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 3병상 | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.329589<br>                경도: 127.434050             </p>         </div>         </div>`)[0];
+                popup_d75bac4385e0fa79238555b71a327766.setContent(html_775da284eb8493d683565c703b01eab4);
+            
+        
+
+        marker_9a4e08c48eff2a620c1efa1b6d3b98cf.bindPopup(popup_d75bac4385e0fa79238555b71a327766)
+        ;
+
+        
+    
+    
+            marker_9a4e08c48eff2a620c1efa1b6d3b98cf.bindTooltip(
+                `<div>
+                     새봄안과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9a4e08c48eff2a620c1efa1b6d3b98cf.setIcon(icon_218af1db8b8030234850fa77f47cff52);
+            
+    
+            var marker_0ecc4361f4ead0e24b6160881c495f2c = L.marker(
+                [36.34868424, 127.3776552],
+                {
+}
+            ).addTo(feature_group_c12255381616dcbaed16aba222524666);
+        
+    
+            var icon_9c91761762b7ebffbaa6af514510e070 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8eb31bd87c4a3547ccec5033f4f33974 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_06bd13b77a3a37e2d4c2f22a30f89f70 = $(`<div id="html_06bd13b77a3a37e2d4c2f22a30f89f70" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 김학영정형외과의원</h4>             <p><strong>📍 주소:</strong><br>계룡로 945 (대사동) 대전광역시 서구 대덕대로176번길 9 (둔산동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 3과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.348684<br>                경도: 127.377655             </p>         </div>         </div>`)[0];
+                popup_8eb31bd87c4a3547ccec5033f4f33974.setContent(html_06bd13b77a3a37e2d4c2f22a30f89f70);
+            
+        
+
+        marker_0ecc4361f4ead0e24b6160881c495f2c.bindPopup(popup_8eb31bd87c4a3547ccec5033f4f33974)
+        ;
+
+        
+    
+    
+            marker_0ecc4361f4ead0e24b6160881c495f2c.bindTooltip(
+                `<div>
+                     김학영정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0ecc4361f4ead0e24b6160881c495f2c.setIcon(icon_9c91761762b7ebffbaa6af514510e070);
+            
+    
+            var marker_492843f8d581fe9c8522aa5bb9a0958e = L.marker(
+                [36.33771148, 127.4096408],
+                {
+}
+            ).addTo(feature_group_c12255381616dcbaed16aba222524666);
+        
+    
+            var icon_5a35221f2764d52189e4f4d289c29d0a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e774007f35653151ad07f40b63650e05 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_52b9f1d5503ec814f19be438188732ff = $(`<div id="html_52b9f1d5503ec814f19be438188732ff" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 위드유이비인과의원</h4>             <p><strong>📍 주소:</strong><br>중앙대로 2101, 2층(남산동) 대전광역시 중구 목중로 50 (중촌동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.337711<br>                경도: 127.409641             </p>         </div>         </div>`)[0];
+                popup_e774007f35653151ad07f40b63650e05.setContent(html_52b9f1d5503ec814f19be438188732ff);
+            
+        
+
+        marker_492843f8d581fe9c8522aa5bb9a0958e.bindPopup(popup_e774007f35653151ad07f40b63650e05)
+        ;
+
+        
+    
+    
+            marker_492843f8d581fe9c8522aa5bb9a0958e.bindTooltip(
+                `<div>
+                     위드유이비인과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_492843f8d581fe9c8522aa5bb9a0958e.setIcon(icon_5a35221f2764d52189e4f4d289c29d0a);
+            
+    
+            var marker_3998af04edfff32f7fed336b53bc4c48 = L.marker(
+                [36.35261966, 127.3429524],
+                {
+}
+            ).addTo(feature_group_c12255381616dcbaed16aba222524666);
+        
+    
+            var icon_6c0f1a6e123a5b970be918ce10693739 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_44647443fb6226d02633a09caa3092bf = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ec83aeba73b32c15f40856f1d77efbc9 = $(`<div id="html_ec83aeba73b32c15f40856f1d77efbc9" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 한솔내과의원</h4>             <p><strong>📍 주소:</strong><br>구서로17 덕원메디칼 2층 대전광역시 유성구 계룡로 114 (봉명동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 7과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.352620<br>                경도: 127.342952             </p>         </div>         </div>`)[0];
+                popup_44647443fb6226d02633a09caa3092bf.setContent(html_ec83aeba73b32c15f40856f1d77efbc9);
+            
+        
+
+        marker_3998af04edfff32f7fed336b53bc4c48.bindPopup(popup_44647443fb6226d02633a09caa3092bf)
+        ;
+
+        
+    
+    
+            marker_3998af04edfff32f7fed336b53bc4c48.bindTooltip(
+                `<div>
+                     한솔내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3998af04edfff32f7fed336b53bc4c48.setIcon(icon_6c0f1a6e123a5b970be918ce10693739);
+            
+    
+            var marker_49431c1a454490912dacb435c12a93a1 = L.marker(
+                [36.32242868, 127.4135549],
+                {
+}
+            ).addTo(feature_group_c12255381616dcbaed16aba222524666);
+        
+    
+            var icon_454e0050536e0b0ec4ef14b9b11a32ca = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_234d25a0b4de10a894a342d9d95e7dde = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_444c3a22cc26d69f710fb4a7a406a988 = $(`<div id="html_444c3a22cc26d69f710fb4a7a406a988" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 더본정형외과의원</h4>             <p><strong>📍 주소:</strong><br>정관읍 정관로 563, 301호 대전광역시 중구 중앙로 10 (문화동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 7과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.322429<br>                경도: 127.413555             </p>         </div>         </div>`)[0];
+                popup_234d25a0b4de10a894a342d9d95e7dde.setContent(html_444c3a22cc26d69f710fb4a7a406a988);
+            
+        
+
+        marker_49431c1a454490912dacb435c12a93a1.bindPopup(popup_234d25a0b4de10a894a342d9d95e7dde)
+        ;
+
+        
+    
+    
+            marker_49431c1a454490912dacb435c12a93a1.bindTooltip(
+                `<div>
+                     더본정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_49431c1a454490912dacb435c12a93a1.setIcon(icon_454e0050536e0b0ec4ef14b9b11a32ca);
+            
+    
+            feature_group_c12255381616dcbaed16aba222524666.addTo(map_beb0b1ade4f14c95fe2e75f82a7c497d);
+        
+    
+            var feature_group_57a72ef220017ff639e5ca788905556a = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_3806bf86bc014fa0b462d6875e255918 = L.marker(
+                [36.29858854, 127.3352971],
+                {
+}
+            ).addTo(feature_group_57a72ef220017ff639e5ca788905556a);
+        
+    
+            var icon_ed6c580d84ff7b5fa26a83ff21f0912f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "heartbeat",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1919c6f4c553c62807d4d6e7a63ce368 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2efc70e05eae3ca846d96fb606bea323 = $(`<div id="html_2efc70e05eae3ca846d96fb606bea323" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 브레인요양병원</h4>             <p><strong>📍 주소:</strong><br>도안대로 567번길 26 대전광역시 서구 관저중로 72 (관저동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 238병상 | 진료과수: 8과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.298589<br>                경도: 127.335297             </p>         </div>         </div>`)[0];
+                popup_1919c6f4c553c62807d4d6e7a63ce368.setContent(html_2efc70e05eae3ca846d96fb606bea323);
+            
+        
+
+        marker_3806bf86bc014fa0b462d6875e255918.bindPopup(popup_1919c6f4c553c62807d4d6e7a63ce368)
+        ;
+
+        
+    
+    
+            marker_3806bf86bc014fa0b462d6875e255918.bindTooltip(
+                `<div>
+                     브레인요양병원 (요양병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3806bf86bc014fa0b462d6875e255918.setIcon(icon_ed6c580d84ff7b5fa26a83ff21f0912f);
+            
+    
+            feature_group_57a72ef220017ff639e5ca788905556a.addTo(map_beb0b1ade4f14c95fe2e75f82a7c497d);
+        
+    
+            var layer_control_b46fb72ae45e76254977bf8b910030be_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_e4e645722af2bc2fb86fd794ff289e04,
+                    "VWorld \uae30\ubcf8\uc9c0\ub3c4 (\ud55c\uae00)" : tile_layer_d3e90aab9878d6d099b8cdf8d312fac0,
+                },
+                overlays :  {
+                    "\uc885\ud569\ubcd1\uc6d0" : feature_group_946227197a19d59c8728ad8dcffc2a3d,
+                    "\ubcd1\uc6d0" : feature_group_f256db435cb483d4fce5c4af31e856f9,
+                    "\uc758\uc6d0" : feature_group_c12255381616dcbaed16aba222524666,
+                    "\uc694\uc591\ubcd1\uc6d0" : feature_group_57a72ef220017ff639e5ca788905556a,
+                },
+            };
+            let layer_control_b46fb72ae45e76254977bf8b910030be = L.control.layers(
+                layer_control_b46fb72ae45e76254977bf8b910030be_layers.base_layers,
+                layer_control_b46fb72ae45e76254977bf8b910030be_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_beb0b1ade4f14c95fe2e75f82a7c497d);
+
+        
+</script>
+</html>

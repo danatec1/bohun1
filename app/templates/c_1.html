@@ -161,40 +161,40 @@
   </div>
 
   <div class="sidebar active" id="sidebar">
-    <button onclick="showSection('sec1')">📊 전국 위탁병원 월별 평균이용 인원추이 </button>
-    <button onclick="showSection('sec2')">📈 전국 위탁병원 년도년월 인원 상관관계</button>
-    <button onclick="showSection('sec3')">📊 광역지자체별 년도별 위탁병원 이용인원</button>
-    <button onclick="showSection('sec4')">📊 광역지자체별 년도별 지역별 위탁병원 이용인원</button>
-    <button onclick="showSection('sec5')">🥧 년도별 광역지자체 코드별, 위탁병원 이용인원 비율</button>
+    <button onclick="showSection('sec1')">📊 전국 위탁병원 연도,월,연월, 인원 상관 관계분석 </button>
+    <button onclick="showSection('sec2')">📈 전국 위탁병원 연도별, 월별 이용인원 추이</button>
+    <button onclick="showSection('sec3')">📊 광역지자체별, 연도별  위탁병원 이용인원 막대차트1</button>
+    <button onclick="showSection('sec4')">📊 광역지자체별, 연도별 위탁병원 이용인원 현황 막대 차트2</button>
+    <button onclick="showSection('sec5')">🥧 광역지자체별, 연도별 위탁병원 이용인원 분포 현황 파이 차트</button>
   </div>
 
   <div class="content">
     <div id="sec1" class="content-section active">
-      <h2>MySQL 실시간 데이터 기반 산점도 행렬 차트 (Scatter Matrix)</h2>
-      <p>지역별 병원 이용자 현황을 확인할 수 있습니다.</p>
+      <h2>전국 위탁병원 연도, 월, 연월 인원 상관관계 분석 </h2>
+      <p>항목별 상관관계를 분석 합니다.</p>
 	   <iframe src="/chart3" height="850px"></iframe>
     </div>
 
     <div id="sec2" class="content-section">
-      <h2>MySQL 실시간 데이터 기반 연도별 비교 Area 차트</h2>
-      <p>2024년 상반기: 목표 대비 105% 달성</p>
-	   <iframe src="/chart4" height="650px"></iframe>
+      <h2>전국 위탁병원 연도별, 월별 이용인원 추이</h2>
+      <p></p>
+	   <iframe src="/chart4" height="800px"></iframe>
     </div>
 
     <div id="sec3" class="content-section">
-      <h2>실시간 데이터 기반 광역지자체별 연도별 그룹 막대 차트 (2023년3월~2025년4월)</h2>
-      <p>월별 평균 만족도 점수: 4.5 / 5.0</p>
+      <h2>광역지자체별, 연도별 위탁병원 이용 인원 현황 막대 차트 1</h2>
+      <p></p>
 	   <iframe src="/chart5" height="650px"></iframe>
     </div>
     <div id="sec4" class="content-section">
-      <h2>광역지자체별 이용 인원</h2>
-      <p>MySQL 실시간 데이터 기반 Pivot 막대 차트 (2023년3월~2025년4월)</p>
+      <h2>광역지자체별, 연도별 위탁병원 이용 인원 현황 막대 차트2</h2>
+      <p></p>
       <iframe src="/chart6" height="650px"></iframe>
     </div>
 
     <div id="sec5" class="content-section">
-      <h2>연도별 광역지자체별 위탁병원 이용 인원 비율</h2>
-      <p>MySQL 실시간 데이터 기반 연도별 파이차트 서브플롯 (2023년3월~2025년4월)</p>
+      <h2>광역지자체별, 연도별 위탁병원 이용 인원 분포 현황 파이 차트</h2>
+      <p></p>
       <iframe src="/chart7" height="1050px"></iframe>
     </div>
   </div>

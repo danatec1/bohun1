@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_1e5b96be5952d36072dcc98cd6f92b9c {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <div style="position: fixed; 
+                    top: 10px; left: 50px; width: 280px; 
+                    background-color: white; border:2px solid grey; z-index:9999; 
+                    font-size:13px; padding: 12px; border-radius: 8px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+        <h4 style="margin: 0 0 10px 0;">🏥 위탁병원 지도 - 세종</h4>
+        <p style="margin: 5px 0;"><strong>총 병원 수:</strong> 7개</p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 5px 0; font-weight: bold;">📍 종별 현황:</p>
+        <p style="margin: 3px 0;">
+            <span style="color: #d63333; font-weight: bold;">●</span> 종합병원: 2개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #3498db; font-weight: bold;">●</span> 병원: 1개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #38a169; font-weight: bold;">●</span> 의원: 4개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #ff8c00; font-weight: bold;">●</span> 요양병원: 0개
+        </p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 5px 0; font-size: 11px; color: #666;">
+        생성: 2025-10-24 16:33</p>
+        </div>
+        
+    
+            <div class="folium-map" id="map_1e5b96be5952d36072dcc98cd6f92b9c" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_1e5b96be5952d36072dcc98cd6f92b9c = L.map(
+                "map_1e5b96be5952d36072dcc98cd6f92b9c",
+                {
+                    center: [36.48, 127.289],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": true,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a387b12c1f480ae03871f80e21e51387 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "OpenStreetMap",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_a387b12c1f480ae03871f80e21e51387.addTo(map_1e5b96be5952d36072dcc98cd6f92b9c);
+        
+    
+            var tile_layer_52470e487010088eb966df418ba85229 = L.tileLayer(
+                "https://map.vworld.kr/tile/Base/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "VWorld \ud55c\uad6d\uc9c0\ub3c4",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var feature_group_8f2a5962744a00c76e724a2bf0bb561f = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_7ae013e7a37e801125c33f0243d01750 = L.marker(
+                [36.60180881, 127.3000723],
+                {
+}
+            ).addTo(feature_group_8f2a5962744a00c76e724a2bf0bb561f);
+        
+    
+            var icon_17c73f9cd7cdece7d978c2be56fd8107 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "hospital-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f9d6625df99bde0af7cceb1d56bff911 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_25afcc84a87bcb189614c010828b7db7 = $(`<div id="html_25afcc84a87bcb189614c010828b7db7" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 서울적십자병원</h4>             <p><strong>📍 주소:</strong><br>새문안로 9 (평동) 세종특별자치시 조치원로 31 (조치원읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 292병상 | 진료과수: 18과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.601809<br>                경도: 127.300072             </p>         </div>         </div>`)[0];
+                popup_f9d6625df99bde0af7cceb1d56bff911.setContent(html_25afcc84a87bcb189614c010828b7db7);
+            
+        
+
+        marker_7ae013e7a37e801125c33f0243d01750.bindPopup(popup_f9d6625df99bde0af7cceb1d56bff911)
+        ;
+
+        
+    
+    
+            marker_7ae013e7a37e801125c33f0243d01750.bindTooltip(
+                `<div>
+                     서울적십자병원 (종합병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7ae013e7a37e801125c33f0243d01750.setIcon(icon_17c73f9cd7cdece7d978c2be56fd8107);
+            
+    
+            var marker_65169615b3bbc89587f56dd98e8c4c1e = L.marker(
+                [36.52897687, 127.2650461],
+                {
+}
+            ).addTo(feature_group_8f2a5962744a00c76e724a2bf0bb561f);
+        
+    
+            var icon_2a0dc3a26d715f0976e44afd2ccf9916 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "hospital-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_624dfc1c68b001e9eecaa6949299a4bb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d2e9e26738731bf408ab03060a8d01f5 = $(`<div id="html_d2e9e26738731bf408ab03060a8d01f5" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 비에스종합병원</h4>             <p><strong>📍 주소:</strong><br>강화읍 충렬사로 31 비에스종합병원 세종특별자치시 해밀3로 51 (해밀동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 262병상 | 진료과수: 16과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.528977<br>                경도: 127.265046             </p>         </div>         </div>`)[0];
+                popup_624dfc1c68b001e9eecaa6949299a4bb.setContent(html_d2e9e26738731bf408ab03060a8d01f5);
+            
+        
+
+        marker_65169615b3bbc89587f56dd98e8c4c1e.bindPopup(popup_624dfc1c68b001e9eecaa6949299a4bb)
+        ;
+
+        
+    
+    
+            marker_65169615b3bbc89587f56dd98e8c4c1e.bindTooltip(
+                `<div>
+                     비에스종합병원 (종합병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_65169615b3bbc89587f56dd98e8c4c1e.setIcon(icon_2a0dc3a26d715f0976e44afd2ccf9916);
+            
+    
+            feature_group_8f2a5962744a00c76e724a2bf0bb561f.addTo(map_1e5b96be5952d36072dcc98cd6f92b9c);
+        
+    
+            var feature_group_9204e121b581b543e320b378c4bbc449 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_9a064211759bff687b4fa8b462b28776 = L.marker(
+                [36.60041224, 127.2980422],
+                {
+}
+            ).addTo(feature_group_9204e121b581b543e320b378c4bbc449);
+        
+    
+            var icon_9929f11c3c1cecd6b28434e4ec14711a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_41952b9d33ad80b298bdebf0821a3936 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a92fc884ed3a710b865016536de62cca = $(`<div id="html_a92fc884ed3a710b865016536de62cca" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 강화병원</h4>             <p><strong>📍 주소:</strong><br>강화읍 강화대로312번길 11 세종특별자치시 새내로 97 (조치원읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 98병상 | 진료과수: 7과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.600412<br>                경도: 127.298042             </p>         </div>         </div>`)[0];
+                popup_41952b9d33ad80b298bdebf0821a3936.setContent(html_a92fc884ed3a710b865016536de62cca);
+            
+        
+
+        marker_9a064211759bff687b4fa8b462b28776.bindPopup(popup_41952b9d33ad80b298bdebf0821a3936)
+        ;
+
+        
+    
+    
+            marker_9a064211759bff687b4fa8b462b28776.bindTooltip(
+                `<div>
+                     강화병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9a064211759bff687b4fa8b462b28776.setIcon(icon_9929f11c3c1cecd6b28434e4ec14711a);
+            
+    
+            feature_group_9204e121b581b543e320b378c4bbc449.addTo(map_1e5b96be5952d36072dcc98cd6f92b9c);
+        
+    
+            var feature_group_2b6477c5704d14ad9618b95721be04a7 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_b187b62b31e808c1e523e88882dbe243 = L.marker(
+                [36.60145237, 127.297618],
+                {
+}
+            ).addTo(feature_group_2b6477c5704d14ad9618b95721be04a7);
+        
+    
+            var icon_927c05a0935efbd303919e5b5990fbd0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_151caa3b2e5ec48538cb05ed566f866d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_97671914e47ac6c147b190d34687f285 = $(`<div id="html_97671914e47ac6c147b190d34687f285" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 용산성모내과의원</h4>             <p><strong>📍 주소:</strong><br>새창로 217 (한강로2가) 5층 용산성모내과 세종특별자치시 조치원로 7 (조치원읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 8과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.601452<br>                경도: 127.297618             </p>         </div>         </div>`)[0];
+                popup_151caa3b2e5ec48538cb05ed566f866d.setContent(html_97671914e47ac6c147b190d34687f285);
+            
+        
+
+        marker_b187b62b31e808c1e523e88882dbe243.bindPopup(popup_151caa3b2e5ec48538cb05ed566f866d)
+        ;
+
+        
+    
+    
+            marker_b187b62b31e808c1e523e88882dbe243.bindTooltip(
+                `<div>
+                     용산성모내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b187b62b31e808c1e523e88882dbe243.setIcon(icon_927c05a0935efbd303919e5b5990fbd0);
+            
+    
+            var marker_2aa4b4337c10f492208b33a53634f86a = L.marker(
+                [36.4712702, 127.2759179],
+                {
+}
+            ).addTo(feature_group_2b6477c5704d14ad9618b95721be04a7);
+        
+    
+            var icon_4d4ce381de64c5a9b2dac58c7b9c2506 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c981b5f74f663dd7a3e5c0a6e6e28b46 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_60717368c2b378c22611c3e0f33a1755 = $(`<div id="html_60717368c2b378c22611c3e0f33a1755" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 세종연합비뇨기과의원</h4>             <p><strong>📍 주소:</strong><br>한누리대로 273 세종특별자치시 한누리대로 2281 (대평동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 3병상 | 진료과수: 2과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.471270<br>                경도: 127.275918             </p>         </div>         </div>`)[0];
+                popup_c981b5f74f663dd7a3e5c0a6e6e28b46.setContent(html_60717368c2b378c22611c3e0f33a1755);
+            
+        
+
+        marker_2aa4b4337c10f492208b33a53634f86a.bindPopup(popup_c981b5f74f663dd7a3e5c0a6e6e28b46)
+        ;
+
+        
+    
+    
+            marker_2aa4b4337c10f492208b33a53634f86a.bindTooltip(
+                `<div>
+                     세종연합비뇨기과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2aa4b4337c10f492208b33a53634f86a.setIcon(icon_4d4ce381de64c5a9b2dac58c7b9c2506);
+            
+    
+            var marker_9a7fe8664f85d8e618b7ba8e848b5d56 = L.marker(
+                [36.488526, 127.2564848],
+                {
+}
+            ).addTo(feature_group_2b6477c5704d14ad9618b95721be04a7);
+        
+    
+            var icon_b1670de7b6363293a6c7f1c162c41580 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5b7a575e4627d152871c4ccb55272f87 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9cc6710b3db89ec36b63f4be80d8cc3c = $(`<div id="html_9cc6710b3db89ec36b63f4be80d8cc3c" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 전내과의원</h4>             <p><strong>📍 주소:</strong><br>번영로107번길1 세종특별자치시 한누리대로 273 (나성동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.488526<br>                경도: 127.256485             </p>         </div>         </div>`)[0];
+                popup_5b7a575e4627d152871c4ccb55272f87.setContent(html_9cc6710b3db89ec36b63f4be80d8cc3c);
+            
+        
+
+        marker_9a7fe8664f85d8e618b7ba8e848b5d56.bindPopup(popup_5b7a575e4627d152871c4ccb55272f87)
+        ;
+
+        
+    
+    
+            marker_9a7fe8664f85d8e618b7ba8e848b5d56.bindTooltip(
+                `<div>
+                     전내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9a7fe8664f85d8e618b7ba8e848b5d56.setIcon(icon_b1670de7b6363293a6c7f1c162c41580);
+            
+    
+            var marker_23f0724f05b734b90d10cb80c3d5174b = L.marker(
+                [36.60239175, 127.303495],
+                {
+}
+            ).addTo(feature_group_2b6477c5704d14ad9618b95721be04a7);
+        
+    
+            var icon_3558dfabb180eadf1e2e754253ca0d61 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_dd0bbb6a8f0dce5372799a12caf9d1d4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bdac344d4403657e84403eefeaeca01e = $(`<div id="html_bdac344d4403657e84403eefeaeca01e" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 마디정형외과의원</h4>             <p><strong>📍 주소:</strong><br>방어진순환도로 577 세종특별자치시 조치원로 62-1 (조치원읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 27병상 | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 36.602392<br>                경도: 127.303495             </p>         </div>         </div>`)[0];
+                popup_dd0bbb6a8f0dce5372799a12caf9d1d4.setContent(html_bdac344d4403657e84403eefeaeca01e);
+            
+        
+
+        marker_23f0724f05b734b90d10cb80c3d5174b.bindPopup(popup_dd0bbb6a8f0dce5372799a12caf9d1d4)
+        ;
+
+        
+    
+    
+            marker_23f0724f05b734b90d10cb80c3d5174b.bindTooltip(
+                `<div>
+                     마디정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_23f0724f05b734b90d10cb80c3d5174b.setIcon(icon_3558dfabb180eadf1e2e754253ca0d61);
+            
+    
+            feature_group_2b6477c5704d14ad9618b95721be04a7.addTo(map_1e5b96be5952d36072dcc98cd6f92b9c);
+        
+    
+            var feature_group_db1702dc0bc1de6563d662806ae0c3cb = L.featureGroup(
+                {
+}
+            );
+        
+    
+            feature_group_db1702dc0bc1de6563d662806ae0c3cb.addTo(map_1e5b96be5952d36072dcc98cd6f92b9c);
+        
+    
+            var layer_control_923a7ad4c22cd7a7503aa477e81c7a4e_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_a387b12c1f480ae03871f80e21e51387,
+                    "VWorld \uae30\ubcf8\uc9c0\ub3c4 (\ud55c\uae00)" : tile_layer_52470e487010088eb966df418ba85229,
+                },
+                overlays :  {
+                    "\uc885\ud569\ubcd1\uc6d0" : feature_group_8f2a5962744a00c76e724a2bf0bb561f,
+                    "\ubcd1\uc6d0" : feature_group_9204e121b581b543e320b378c4bbc449,
+                    "\uc758\uc6d0" : feature_group_2b6477c5704d14ad9618b95721be04a7,
+                    "\uc694\uc591\ubcd1\uc6d0" : feature_group_db1702dc0bc1de6563d662806ae0c3cb,
+                },
+            };
+            let layer_control_923a7ad4c22cd7a7503aa477e81c7a4e = L.control.layers(
+                layer_control_923a7ad4c22cd7a7503aa477e81c7a4e_layers.base_layers,
+                layer_control_923a7ad4c22cd7a7503aa477e81c7a4e_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_1e5b96be5952d36072dcc98cd6f92b9c);
+
+        
+</script>
+</html>

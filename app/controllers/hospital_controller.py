@@ -21,7 +21,8 @@ class HospitalController:
         # MySQL 연결 설정
         import os
         self.db_config = {
-            'host': 'localhost',
+            'host': '121.157.160.22',
+            'port': 3306,
             'user': 'root',
             'password': os.environ.get('MYSQL_PASSWORD', 'zzaaqq'),
             'database': 'testdb',
@@ -214,7 +215,10 @@ class HospitalController:
             filename = os.path.basename(filepath)
             
             # 병원 수 계산 (지역별 필터링 적용)
-            hospitals = self.service.get_all_hospitals()
+            from ..repositories.testdb_hospital_repository import TestDBHospitalRepository
+            repo = TestDBHospitalRepository()
+            hospitals = repo.find_all()
+            
             if region:
                 hospital_count = sum(1 for h in hospitals if region in h.address)
             else:
@@ -233,6 +237,9 @@ class HospitalController:
                 'region': region
             })
         except Exception as e:
+            import traceback
+            error_detail = traceback.format_exc()
+            print(f"지도 생성 에러: {error_detail}")
             return jsonify({
                 'success': False,
                 'error': f'지도 생성 실패: {str(e)}'

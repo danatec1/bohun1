@@ -1,0 +1,3229 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_c468ac48fc48049271256bfad3bfd326 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <div style="position: fixed; 
+                    top: 10px; left: 50px; width: 280px; 
+                    background-color: white; border:2px solid grey; z-index:9999; 
+                    font-size:13px; padding: 12px; border-radius: 8px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+        <h4 style="margin: 0 0 10px 0;">🏥 위탁병원 지도 - 강원</h4>
+        <p style="margin: 5px 0;"><strong>총 병원 수:</strong> 63개</p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 5px 0; font-weight: bold;">📍 종별 현황:</p>
+        <p style="margin: 3px 0;">
+            <span style="color: #d63333; font-weight: bold;">●</span> 종합병원: 8개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #3498db; font-weight: bold;">●</span> 병원: 7개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #38a169; font-weight: bold;">●</span> 의원: 43개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #ff8c00; font-weight: bold;">●</span> 요양병원: 4개
+        </p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 5px 0; font-size: 11px; color: #666;">
+        생성: 2025-10-24 16:33</p>
+        </div>
+        
+    
+            <div class="folium-map" id="map_c468ac48fc48049271256bfad3bfd326" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_c468ac48fc48049271256bfad3bfd326 = L.map(
+                "map_c468ac48fc48049271256bfad3bfd326",
+                {
+                    center: [37.8228, 128.1555],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 9,
+  "zoomControl": true,
+  "preferCanvas": true,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_46a365a144fe1f5d148d83947fb40ee7 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "OpenStreetMap",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_46a365a144fe1f5d148d83947fb40ee7.addTo(map_c468ac48fc48049271256bfad3bfd326);
+        
+    
+            var tile_layer_663b869954d84d9f050ba36065fc61c7 = L.tileLayer(
+                "https://map.vworld.kr/tile/Base/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "VWorld \ud55c\uad6d\uc9c0\ub3c4",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var marker_738c2238d779fab3af17ef6da20d80ba = L.marker(
+                [38.06789843, 128.1734497],
+                {
+}
+            ).addTo(map_c468ac48fc48049271256bfad3bfd326);
+        
+    
+            var icon_d23a8d77c5c0c08f9e22b8cb2aa7dd85 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "gray",
+  "iconColor": "white",
+  "icon": "question",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8abd2003f6a913844282e0bbf6823244 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b1bf6a0f4fad49d20fd0a96dc79c68e2 = $(`<div id="html_b1bf6a0f4fad49d20fd0a96dc79c68e2" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 원주세브란스기독병원</h4>             <p><strong>📍 주소:</strong><br>일산로 20 강원특별자치도 인제군 비봉로15번길 4 (인제읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 866병상 | 진료과수: 29과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 38.067898<br>                경도: 128.173450             </p>         </div>         </div>`)[0];
+                popup_8abd2003f6a913844282e0bbf6823244.setContent(html_b1bf6a0f4fad49d20fd0a96dc79c68e2);
+            
+        
+
+        marker_738c2238d779fab3af17ef6da20d80ba.bindPopup(popup_8abd2003f6a913844282e0bbf6823244)
+        ;
+
+        
+    
+    
+            marker_738c2238d779fab3af17ef6da20d80ba.bindTooltip(
+                `<div>
+                     원주세브란스기독병원 (상급종합)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_738c2238d779fab3af17ef6da20d80ba.setIcon(icon_d23a8d77c5c0c08f9e22b8cb2aa7dd85);
+            
+    
+            var feature_group_ca850a3335b0b82da22443ba5a140df5 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_446c0ed961ecbc30a4ec91d99695ab12 = L.marker(
+                [37.77449334, 128.9074458],
+                {
+}
+            ).addTo(feature_group_ca850a3335b0b82da22443ba5a140df5);
+        
+    
+            var icon_c5eab09ab1a82222117ca2d69ad7e376 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "hospital-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1a9035e3cf951f46094321029c4083c5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_884001b67b441205c0f7e15805c6e411 = $(`<div id="html_884001b67b441205c0f7e15805c6e411" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 강릉동인병원</h4>             <p><strong>📍 주소:</strong><br>강릉대로419번길 42 강원특별자치도 강릉시 강릉대로419번길 42 (포남동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 383병상 | 진료과수: 21과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.774493<br>                경도: 128.907446             </p>         </div>         </div>`)[0];
+                popup_1a9035e3cf951f46094321029c4083c5.setContent(html_884001b67b441205c0f7e15805c6e411);
+            
+        
+
+        marker_446c0ed961ecbc30a4ec91d99695ab12.bindPopup(popup_1a9035e3cf951f46094321029c4083c5)
+        ;
+
+        
+    
+    
+            marker_446c0ed961ecbc30a4ec91d99695ab12.bindTooltip(
+                `<div>
+                     강릉동인병원 (종합병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_446c0ed961ecbc30a4ec91d99695ab12.setIcon(icon_c5eab09ab1a82222117ca2d69ad7e376);
+            
+    
+            var marker_ef6900edc4d7974303dd4d2ec18c540f = L.marker(
+                [37.4859367, 129.1085056],
+                {
+}
+            ).addTo(feature_group_ca850a3335b0b82da22443ba5a140df5);
+        
+    
+            var icon_847608546c17dc1470439723dd40253f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "hospital-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b6401ce6f94b4d9f5be662524a7a1196 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2c4d9146eab7a69f37f768d78790657a = $(`<div id="html_2c4d9146eab7a69f37f768d78790657a" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 동해동인병원</h4>             <p><strong>📍 주소:</strong><br>하평로 26 강원특별자치도 동해시 청운1길 48 (쇄운동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 379병상 | 진료과수: 13과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.485937<br>                경도: 129.108506             </p>         </div>         </div>`)[0];
+                popup_b6401ce6f94b4d9f5be662524a7a1196.setContent(html_2c4d9146eab7a69f37f768d78790657a);
+            
+        
+
+        marker_ef6900edc4d7974303dd4d2ec18c540f.bindPopup(popup_b6401ce6f94b4d9f5be662524a7a1196)
+        ;
+
+        
+    
+    
+            marker_ef6900edc4d7974303dd4d2ec18c540f.bindTooltip(
+                `<div>
+                     동해동인병원 (종합병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ef6900edc4d7974303dd4d2ec18c540f.setIcon(icon_847608546c17dc1470439723dd40253f);
+            
+    
+            var marker_85d7183f564cb74a77766a376405ef31 = L.marker(
+                [37.44148624, 129.1643414],
+                {
+}
+            ).addTo(feature_group_ca850a3335b0b82da22443ba5a140df5);
+        
+    
+            var icon_efe8d299289d382ca8cb707af7fc730e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "hospital-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0366b1d5bd315fd5ee9731c9204918e4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_13a5844a1d63bcead3a1c1e991597f80 = $(`<div id="html_13a5844a1d63bcead3a1c1e991597f80" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 삼척의료원</h4>             <p><strong>📍 주소:</strong><br>오십천로 418 (남양동) 강원특별자치도 삼척시 남양동 55-63</p>             <p><strong>🏥 규모:</strong><br>                병상수: 150병상 | 진료과수: 13과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.441486<br>                경도: 129.164341             </p>         </div>         </div>`)[0];
+                popup_0366b1d5bd315fd5ee9731c9204918e4.setContent(html_13a5844a1d63bcead3a1c1e991597f80);
+            
+        
+
+        marker_85d7183f564cb74a77766a376405ef31.bindPopup(popup_0366b1d5bd315fd5ee9731c9204918e4)
+        ;
+
+        
+    
+    
+            marker_85d7183f564cb74a77766a376405ef31.bindTooltip(
+                `<div>
+                     삼척의료원 (종합병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_85d7183f564cb74a77766a376405ef31.setIcon(icon_efe8d299289d382ca8cb707af7fc730e);
+            
+    
+            var marker_321f52c1116802c501a3e4733cf37bea = L.marker(
+                [38.18995591, 128.5877349],
+                {
+}
+            ).addTo(feature_group_ca850a3335b0b82da22443ba5a140df5);
+        
+    
+            var icon_66ec80b96d0459bc8e97161e9dd8a19a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "hospital-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e25bfe2597224155233b49f9539de6b2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_eac609a9b0ff8a3901a169bb6d21f55f = $(`<div id="html_eac609a9b0ff8a3901a169bb6d21f55f" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 속초의료원</h4>             <p><strong>📍 주소:</strong><br>영랑호반길 3 강원특별자치도 속초시 동해대로 4084 (조양동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 172병상 | 진료과수: 18과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 38.189956<br>                경도: 128.587735             </p>         </div>         </div>`)[0];
+                popup_e25bfe2597224155233b49f9539de6b2.setContent(html_eac609a9b0ff8a3901a169bb6d21f55f);
+            
+        
+
+        marker_321f52c1116802c501a3e4733cf37bea.bindPopup(popup_e25bfe2597224155233b49f9539de6b2)
+        ;
+
+        
+    
+    
+            marker_321f52c1116802c501a3e4733cf37bea.bindTooltip(
+                `<div>
+                     속초의료원 (종합병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_321f52c1116802c501a3e4733cf37bea.setIcon(icon_66ec80b96d0459bc8e97161e9dd8a19a);
+            
+    
+            var marker_5bea9ed01fb05528a5b1aeeead439eb7 = L.marker(
+                [37.18252784, 128.4655694],
+                {
+}
+            ).addTo(feature_group_ca850a3335b0b82da22443ba5a140df5);
+        
+    
+            var icon_4da5620a3d1350d0ddde613b9a0089ae = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "hospital-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5f6edf5bb0aecf08d8e2675be5eaaa77 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8530bcd10f29bf80a3954292bd05caee = $(`<div id="html_8530bcd10f29bf80a3954292bd05caee" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 영월의료원</h4>             <p><strong>📍 주소:</strong><br>영월읍 중앙1로 59 강원특별자치도 영월군 중앙1로 15 (영월읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 202병상 | 진료과수: 18과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.182528<br>                경도: 128.465569             </p>         </div>         </div>`)[0];
+                popup_5f6edf5bb0aecf08d8e2675be5eaaa77.setContent(html_8530bcd10f29bf80a3954292bd05caee);
+            
+        
+
+        marker_5bea9ed01fb05528a5b1aeeead439eb7.bindPopup(popup_5f6edf5bb0aecf08d8e2675be5eaaa77)
+        ;
+
+        
+    
+    
+            marker_5bea9ed01fb05528a5b1aeeead439eb7.bindTooltip(
+                `<div>
+                     영월의료원 (종합병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5bea9ed01fb05528a5b1aeeead439eb7.setIcon(icon_4da5620a3d1350d0ddde613b9a0089ae);
+            
+    
+            var marker_5a6ae0821e5a4b908b3a065fc51e43ff = L.marker(
+                [37.88114667, 127.7268688],
+                {
+}
+            ).addTo(feature_group_ca850a3335b0b82da22443ba5a140df5);
+        
+    
+            var icon_318dc7280300c4c587ebc761beffa656 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "hospital-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e9daa7c3ec1cfd390f6ead10d2ec20fb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5e01eeecd8e8c3b80f21dedcef35889c = $(`<div id="html_5e01eeecd8e8c3b80f21dedcef35889c" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 강원대학교병원</h4>             <p><strong>📍 주소:</strong><br>백령로 156 (효자동) 강원특별자치도 춘천시 금강로 39 (낙원동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 608병상 | 진료과수: 26과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.881147<br>                경도: 127.726869             </p>         </div>         </div>`)[0];
+                popup_e9daa7c3ec1cfd390f6ead10d2ec20fb.setContent(html_5e01eeecd8e8c3b80f21dedcef35889c);
+            
+        
+
+        marker_5a6ae0821e5a4b908b3a065fc51e43ff.bindPopup(popup_e9daa7c3ec1cfd390f6ead10d2ec20fb)
+        ;
+
+        
+    
+    
+            marker_5a6ae0821e5a4b908b3a065fc51e43ff.bindTooltip(
+                `<div>
+                     강원대학교병원 (종합병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5a6ae0821e5a4b908b3a065fc51e43ff.setIcon(icon_318dc7280300c4c587ebc761beffa656);
+            
+    
+            var marker_b821791cf032199c1373e89639b946b9 = L.marker(
+                [37.17345176, 128.9910194],
+                {
+}
+            ).addTo(feature_group_ca850a3335b0b82da22443ba5a140df5);
+        
+    
+            var icon_9fbecd947f0e5ba21cc17d387ef27c6e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "hospital-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9b69b61cfd7b22287a7581c4e7d24239 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f5ad4041a55820cd7a242763404fd51c = $(`<div id="html_f5ad4041a55820cd7a242763404fd51c" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 근로복지공단 태백병원</h4>             <p><strong>📍 주소:</strong><br>보드미길 8 강원특별자치도 태백시 황지로 169 (황지동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 395병상 | 진료과수: 15과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.173452<br>                경도: 128.991019             </p>         </div>         </div>`)[0];
+                popup_9b69b61cfd7b22287a7581c4e7d24239.setContent(html_f5ad4041a55820cd7a242763404fd51c);
+            
+        
+
+        marker_b821791cf032199c1373e89639b946b9.bindPopup(popup_9b69b61cfd7b22287a7581c4e7d24239)
+        ;
+
+        
+    
+    
+            marker_b821791cf032199c1373e89639b946b9.bindTooltip(
+                `<div>
+                     근로복지공단 태백병원 (종합병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b821791cf032199c1373e89639b946b9.setIcon(icon_9fbecd947f0e5ba21cc17d387ef27c6e);
+            
+    
+            var marker_7b060a802fad30ecb1584a0474df8faa = L.marker(
+                [37.85706617, 127.7393653],
+                {
+}
+            ).addTo(feature_group_ca850a3335b0b82da22443ba5a140df5);
+        
+    
+            var icon_50ebc7a7c6bc8739be372b004a63ea98 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "hospital-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ac40666e9844f9294300b5ed94085cc1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6a3a808802f53046929a02de281032bc = $(`<div id="html_6a3a808802f53046929a02de281032bc" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 홍천아산병원</h4>             <p><strong>📍 주소:</strong><br>홍천읍 산림공원1길 17 강원특별자치도 춘천시 퇴계로 188 (석사동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 145병상 | 진료과수: 8과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.857066<br>                경도: 127.739365             </p>         </div>         </div>`)[0];
+                popup_ac40666e9844f9294300b5ed94085cc1.setContent(html_6a3a808802f53046929a02de281032bc);
+            
+        
+
+        marker_7b060a802fad30ecb1584a0474df8faa.bindPopup(popup_ac40666e9844f9294300b5ed94085cc1)
+        ;
+
+        
+    
+    
+            marker_7b060a802fad30ecb1584a0474df8faa.bindTooltip(
+                `<div>
+                     홍천아산병원 (종합병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7b060a802fad30ecb1584a0474df8faa.setIcon(icon_50ebc7a7c6bc8739be372b004a63ea98);
+            
+    
+            feature_group_ca850a3335b0b82da22443ba5a140df5.addTo(map_c468ac48fc48049271256bfad3bfd326);
+        
+    
+            var feature_group_481450d32ce8d4aa3fcd0c3c4150db67 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_42e4ef12373184b0cbf1f1167678c863 = L.marker(
+                [38.07551505, 128.6222138],
+                {
+}
+            ).addTo(feature_group_481450d32ce8d4aa3fcd0c3c4150db67);
+        
+    
+            var icon_7bf88759f9ffe5288b2b8eb0fd1aecd5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b41f5615fa0c016cef3852a629629858 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_74b9026e12b59e2a4e54abfc0eef721e = $(`<div id="html_74b9026e12b59e2a4e54abfc0eef721e" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 양구성심병원</h4>             <p><strong>📍 주소:</strong><br>양구읍 중심로 160 강원특별자치도 양양군 양양로 62-1 (양양읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 47병상 | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 38.075515<br>                경도: 128.622214             </p>         </div>         </div>`)[0];
+                popup_b41f5615fa0c016cef3852a629629858.setContent(html_74b9026e12b59e2a4e54abfc0eef721e);
+            
+        
+
+        marker_42e4ef12373184b0cbf1f1167678c863.bindPopup(popup_b41f5615fa0c016cef3852a629629858)
+        ;
+
+        
+    
+    
+            marker_42e4ef12373184b0cbf1f1167678c863.bindTooltip(
+                `<div>
+                     양구성심병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_42e4ef12373184b0cbf1f1167678c863.setIcon(icon_7bf88759f9ffe5288b2b8eb0fd1aecd5);
+            
+    
+            var marker_605826379166cbc5d33d46abd98fae89 = L.marker(
+                [37.33976298, 127.9518526],
+                {
+}
+            ).addTo(feature_group_481450d32ce8d4aa3fcd0c3c4150db67);
+        
+    
+            var icon_a31b2247b612c4985d4d27605cde9d51 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9ff98401cc6aa7fd945384691bdfc176 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a8ac7efd66d8f56f09eb06ead86c2694 = $(`<div id="html_a8ac7efd66d8f56f09eb06ead86c2694" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 연세메디하임병원</h4>             <p><strong>📍 주소:</strong><br>원문로 1419 (연세메디하임) 강원특별자치도 원주시 남원로 631 (명륜동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 199병상 | 진료과수: 3과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.339763<br>                경도: 127.951853             </p>         </div>         </div>`)[0];
+                popup_9ff98401cc6aa7fd945384691bdfc176.setContent(html_a8ac7efd66d8f56f09eb06ead86c2694);
+            
+        
+
+        marker_605826379166cbc5d33d46abd98fae89.bindPopup(popup_9ff98401cc6aa7fd945384691bdfc176)
+        ;
+
+        
+    
+    
+            marker_605826379166cbc5d33d46abd98fae89.bindTooltip(
+                `<div>
+                     연세메디하임병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_605826379166cbc5d33d46abd98fae89.setIcon(icon_a31b2247b612c4985d4d27605cde9d51);
+            
+    
+            var marker_3bfd98daaf6e16c5eefa05556bf19117 = L.marker(
+                [37.34206588, 127.9540739],
+                {
+}
+            ).addTo(feature_group_481450d32ce8d4aa3fcd0c3c4150db67);
+        
+    
+            var icon_4fefef5bc2782605b3dcec0081b80b91 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c9aa0533807b3e80b55c56d91d579b7f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6fd1cdc65e3e39430c24347e46919289 = $(`<div id="html_6fd1cdc65e3e39430c24347e46919289" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 현대중앙병원</h4>             <p><strong>📍 주소:</strong><br>상지대길 23 강원특별자치도 원주시 남원로 665 (명륜동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 39병상 | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.342066<br>                경도: 127.954074             </p>         </div>         </div>`)[0];
+                popup_c9aa0533807b3e80b55c56d91d579b7f.setContent(html_6fd1cdc65e3e39430c24347e46919289);
+            
+        
+
+        marker_3bfd98daaf6e16c5eefa05556bf19117.bindPopup(popup_c9aa0533807b3e80b55c56d91d579b7f)
+        ;
+
+        
+    
+    
+            marker_3bfd98daaf6e16c5eefa05556bf19117.bindTooltip(
+                `<div>
+                     현대중앙병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3bfd98daaf6e16c5eefa05556bf19117.setIcon(icon_4fefef5bc2782605b3dcec0081b80b91);
+            
+    
+            var marker_92ce57715cf9784521d638709e46025e = L.marker(
+                [38.12419624, 128.2076308],
+                {
+}
+            ).addTo(feature_group_481450d32ce8d4aa3fcd0c3c4150db67);
+        
+    
+            var icon_f0897dc434478b80734017ca48cd3314 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f3f0dd1849939d3a7f37a8ba5bdde814 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7e8a055a2450af4f34043c1d3b32d86f = $(`<div id="html_7e8a055a2450af4f34043c1d3b32d86f" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 인제고려병원</h4>             <p><strong>📍 주소:</strong><br>인제읍 비봉로15번길 4 강원특별자치도 인제군 원통로 218 (북면)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 42병상 | 진료과수: 10과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 38.124196<br>                경도: 128.207631             </p>         </div>         </div>`)[0];
+                popup_f3f0dd1849939d3a7f37a8ba5bdde814.setContent(html_7e8a055a2450af4f34043c1d3b32d86f);
+            
+        
+
+        marker_92ce57715cf9784521d638709e46025e.bindPopup(popup_f3f0dd1849939d3a7f37a8ba5bdde814)
+        ;
+
+        
+    
+    
+            marker_92ce57715cf9784521d638709e46025e.bindTooltip(
+                `<div>
+                     인제고려병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_92ce57715cf9784521d638709e46025e.setIcon(icon_f0897dc434478b80734017ca48cd3314);
+            
+    
+            var marker_329bdfc5374272ca561099ddb3ac4fa9 = L.marker(
+                [37.87508794, 127.744926],
+                {
+}
+            ).addTo(feature_group_481450d32ce8d4aa3fcd0c3c4150db67);
+        
+    
+            var icon_ca80796ff6d4e81771e1ce57c0ab7972 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_313733fef2c9d9f8dc6bbcec83db2877 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a584cf172652ec6724aaaf4a690aba99 = $(`<div id="html_a584cf172652ec6724aaaf4a690aba99" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 근로복지공단 정선병원</h4>             <p><strong>📍 주소:</strong><br>정선읍 봉양1길 145 강원특별자치도 춘천시 백령로 156 (효자동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 178병상 | 진료과수: 3과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.875088<br>                경도: 127.744926             </p>         </div>         </div>`)[0];
+                popup_313733fef2c9d9f8dc6bbcec83db2877.setContent(html_a584cf172652ec6724aaaf4a690aba99);
+            
+        
+
+        marker_329bdfc5374272ca561099ddb3ac4fa9.bindPopup(popup_313733fef2c9d9f8dc6bbcec83db2877)
+        ;
+
+        
+    
+    
+            marker_329bdfc5374272ca561099ddb3ac4fa9.bindTooltip(
+                `<div>
+                     근로복지공단 정선병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_329bdfc5374272ca561099ddb3ac4fa9.setIcon(icon_ca80796ff6d4e81771e1ce57c0ab7972);
+            
+    
+            var marker_3bef1107ee9b2cf6b135ddf563f02d41 = L.marker(
+                [38.20783161, 127.2179777],
+                {
+}
+            ).addTo(feature_group_481450d32ce8d4aa3fcd0c3c4150db67);
+        
+    
+            var icon_ea8fd8167377a1cafa5c43f3f54bee5f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8881c9fc4a3818f5819e034b51f9a2d9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6e9fb12d6b57de9704a90e220f668909 = $(`<div id="html_6e9fb12d6b57de9704a90e220f668909" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 철원병원</h4>             <p><strong>📍 주소:</strong><br>갈말읍 명성로 208 강원특별자치도 철원군 금학로 215 (동송읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 93병상 | 진료과수: 14과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 38.207832<br>                경도: 127.217978             </p>         </div>         </div>`)[0];
+                popup_8881c9fc4a3818f5819e034b51f9a2d9.setContent(html_6e9fb12d6b57de9704a90e220f668909);
+            
+        
+
+        marker_3bef1107ee9b2cf6b135ddf563f02d41.bindPopup(popup_8881c9fc4a3818f5819e034b51f9a2d9)
+        ;
+
+        
+    
+    
+            marker_3bef1107ee9b2cf6b135ddf563f02d41.bindTooltip(
+                `<div>
+                     철원병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3bef1107ee9b2cf6b135ddf563f02d41.setIcon(icon_ea8fd8167377a1cafa5c43f3f54bee5f);
+            
+    
+            var marker_0e72538352c7569f9a25d1b72ae4146b = L.marker(
+                [37.88018483, 127.7562394],
+                {
+}
+            ).addTo(feature_group_481450d32ce8d4aa3fcd0c3c4150db67);
+        
+    
+            var icon_190ade14ed782ffb026cd2d818bb9f9c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c0ade3752baa63e49cd20d8d2c6d076d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3f8c1bfb13d60c00fed86eac04d944a6 = $(`<div id="html_3f8c1bfb13d60c00fed86eac04d944a6" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 인성병원</h4>             <p><strong>📍 주소:</strong><br>금강로 39 강원특별자치도 춘천시 세실로 252 (동면)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 141병상 | 진료과수: 7과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.880185<br>                경도: 127.756239             </p>         </div>         </div>`)[0];
+                popup_c0ade3752baa63e49cd20d8d2c6d076d.setContent(html_3f8c1bfb13d60c00fed86eac04d944a6);
+            
+        
+
+        marker_0e72538352c7569f9a25d1b72ae4146b.bindPopup(popup_c0ade3752baa63e49cd20d8d2c6d076d)
+        ;
+
+        
+    
+    
+            marker_0e72538352c7569f9a25d1b72ae4146b.bindTooltip(
+                `<div>
+                     인성병원 (병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0e72538352c7569f9a25d1b72ae4146b.setIcon(icon_190ade14ed782ffb026cd2d818bb9f9c);
+            
+    
+            feature_group_481450d32ce8d4aa3fcd0c3c4150db67.addTo(map_c468ac48fc48049271256bfad3bfd326);
+        
+    
+            var feature_group_35c01f8d957a90be0fdb6e629b5c6292 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_c9762e628af85599297298d535e9f72d = L.marker(
+                [37.76513909, 128.8778593],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_37eaa09cbab6f28ac43514d50962ef36 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5edeb3be1b52667264cdccb508bb8420 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_760ebdab2d065a6227a17f77c7caf12c = $(`<div id="html_760ebdab2d065a6227a17f77c7caf12c" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 박정빈외과의원</h4>             <p><strong>📍 주소:</strong><br>경강로 2109 (임당동) 문선빌딩 3층 강원특별자치도 강릉시 솔올로 35 (교동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 4병상 | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.765139<br>                경도: 128.877859             </p>         </div>         </div>`)[0];
+                popup_5edeb3be1b52667264cdccb508bb8420.setContent(html_760ebdab2d065a6227a17f77c7caf12c);
+            
+        
+
+        marker_c9762e628af85599297298d535e9f72d.bindPopup(popup_5edeb3be1b52667264cdccb508bb8420)
+        ;
+
+        
+    
+    
+            marker_c9762e628af85599297298d535e9f72d.bindTooltip(
+                `<div>
+                     박정빈외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c9762e628af85599297298d535e9f72d.setIcon(icon_37eaa09cbab6f28ac43514d50962ef36);
+            
+    
+            var marker_38103982e1e8659e55560faa2d3ac44d = L.marker(
+                [37.76383889, 128.8755218],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_9a2aaa64145b463949d5ab40849b5ae4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_825516d108b21c8e8d019ee6e949feff = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fca89f6be2e8e482337fada39a423dbe = $(`<div id="html_fca89f6be2e8e482337fada39a423dbe" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 우리들내과의원</h4>             <p><strong>📍 주소:</strong><br>경강로 2079, 2~5층 강원특별자치도 강릉시 솔올로5번길 40 (교동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.763839<br>                경도: 128.875522             </p>         </div>         </div>`)[0];
+                popup_825516d108b21c8e8d019ee6e949feff.setContent(html_fca89f6be2e8e482337fada39a423dbe);
+            
+        
+
+        marker_38103982e1e8659e55560faa2d3ac44d.bindPopup(popup_825516d108b21c8e8d019ee6e949feff)
+        ;
+
+        
+    
+    
+            marker_38103982e1e8659e55560faa2d3ac44d.bindTooltip(
+                `<div>
+                     우리들내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_38103982e1e8659e55560faa2d3ac44d.setIcon(icon_9a2aaa64145b463949d5ab40849b5ae4);
+            
+    
+            var marker_d9f63ca5f20f0fa66224f4e99eb8e9d1 = L.marker(
+                [37.75394246, 128.8944872],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_280f26eba713f00228c7874125ef003c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4810a448de92a5bf021c668a1e9dcb27 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c0083a37fc888cfb95374dbd00285e42 = $(`<div id="html_c0083a37fc888cfb95374dbd00285e42" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 위드내과의원</h4>             <p><strong>📍 주소:</strong><br>솔올로 35 (교동) 2층 강원특별자치도 강릉시 경강로 2079 (임당동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.753942<br>                경도: 128.894487             </p>         </div>         </div>`)[0];
+                popup_4810a448de92a5bf021c668a1e9dcb27.setContent(html_c0083a37fc888cfb95374dbd00285e42);
+            
+        
+
+        marker_d9f63ca5f20f0fa66224f4e99eb8e9d1.bindPopup(popup_4810a448de92a5bf021c668a1e9dcb27)
+        ;
+
+        
+    
+    
+            marker_d9f63ca5f20f0fa66224f4e99eb8e9d1.bindTooltip(
+                `<div>
+                     위드내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d9f63ca5f20f0fa66224f4e99eb8e9d1.setIcon(icon_280f26eba713f00228c7874125ef003c);
+            
+    
+            var marker_e8e9a6d2954a563f4212baaae91dd085 = L.marker(
+                [37.75567441, 128.8971829],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_ede82944069122e420839ee7f0406343 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f7c9482e690e69c1f4299877082f85e0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_dd72328011cef399a783d5c02fc7a26e = $(`<div id="html_dd72328011cef399a783d5c02fc7a26e" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 이명호내과의원</h4>             <p><strong>📍 주소:</strong><br>솔올로5번길 40 (교동) 엘림빌딩2층 강원특별자치도 강릉시 경강로 2109 (임당동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 2과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.755674<br>                경도: 128.897183             </p>         </div>         </div>`)[0];
+                popup_f7c9482e690e69c1f4299877082f85e0.setContent(html_dd72328011cef399a783d5c02fc7a26e);
+            
+        
+
+        marker_e8e9a6d2954a563f4212baaae91dd085.bindPopup(popup_f7c9482e690e69c1f4299877082f85e0)
+        ;
+
+        
+    
+    
+            marker_e8e9a6d2954a563f4212baaae91dd085.bindTooltip(
+                `<div>
+                     이명호내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e8e9a6d2954a563f4212baaae91dd085.setIcon(icon_ede82944069122e420839ee7f0406343);
+            
+    
+            var marker_d756f078d2f3cf2faf1bd31fdc9338a8 = L.marker(
+                [38.3791184, 128.4724296],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_f43d91724ea988de3c34d3d8fec81736 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_232f1b9f16f58e5680cf124d146946ab = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_97a2fee25f2a85a5a877c9a7f46f6388 = $(`<div id="html_97a2fee25f2a85a5a877c9a7f46f6388" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 고성제일의원</h4>             <p><strong>📍 주소:</strong><br>간성읍 간성로 24 강원특별자치도 고성군 간성로 24 (간성읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 13과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 38.379118<br>                경도: 128.472430             </p>         </div>         </div>`)[0];
+                popup_232f1b9f16f58e5680cf124d146946ab.setContent(html_97a2fee25f2a85a5a877c9a7f46f6388);
+            
+        
+
+        marker_d756f078d2f3cf2faf1bd31fdc9338a8.bindPopup(popup_232f1b9f16f58e5680cf124d146946ab)
+        ;
+
+        
+    
+    
+            marker_d756f078d2f3cf2faf1bd31fdc9338a8.bindTooltip(
+                `<div>
+                     고성제일의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d756f078d2f3cf2faf1bd31fdc9338a8.setIcon(icon_f43d91724ea988de3c34d3d8fec81736);
+            
+    
+            var marker_2139030be2e027651dc4a803efb4ff5a = L.marker(
+                [37.53002867, 129.1074311],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_21186f24c2f4d625ca0c1eb4ea65762f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_52eb461898ebe29ca78da1ee9b04eff2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0ba075f80f1b7380542f0f9ae1fc3162 = $(`<div id="html_0ba075f80f1b7380542f0f9ae1fc3162" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 세브란의원</h4>             <p><strong>📍 주소:</strong><br>거진읍 거진시장길 11 강원특별자치도 동해시 하평로 26 (평릉동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 8과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.530029<br>                경도: 129.107431             </p>         </div>         </div>`)[0];
+                popup_52eb461898ebe29ca78da1ee9b04eff2.setContent(html_0ba075f80f1b7380542f0f9ae1fc3162);
+            
+        
+
+        marker_2139030be2e027651dc4a803efb4ff5a.bindPopup(popup_52eb461898ebe29ca78da1ee9b04eff2)
+        ;
+
+        
+    
+    
+            marker_2139030be2e027651dc4a803efb4ff5a.bindTooltip(
+                `<div>
+                     세브란의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2139030be2e027651dc4a803efb4ff5a.setIcon(icon_21186f24c2f4d625ca0c1eb4ea65762f);
+            
+    
+            var marker_75cde559f09d6a393582b90bc6dc845d = L.marker(
+                [37.52228415, 129.1152689],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_ef1abcc40d34771446c0a2af235d3536 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_281ca82a4b20eb7c4f4a5e714f995474 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_14a130f6cf772979d6787dd1ef151c1d = $(`<div id="html_14a130f6cf772979d6787dd1ef151c1d" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 누가이비인후과의원</h4>             <p><strong>📍 주소:</strong><br>한섬로 111-7, 3층 강원특별자치도 동해시 한섬로 111-7 (천곡동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 3병상 | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.522284<br>                경도: 129.115269             </p>         </div>         </div>`)[0];
+                popup_281ca82a4b20eb7c4f4a5e714f995474.setContent(html_14a130f6cf772979d6787dd1ef151c1d);
+            
+        
+
+        marker_75cde559f09d6a393582b90bc6dc845d.bindPopup(popup_281ca82a4b20eb7c4f4a5e714f995474)
+        ;
+
+        
+    
+    
+            marker_75cde559f09d6a393582b90bc6dc845d.bindTooltip(
+                `<div>
+                     누가이비인후과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_75cde559f09d6a393582b90bc6dc845d.setIcon(icon_ef1abcc40d34771446c0a2af235d3536);
+            
+    
+            var marker_1f5d936d98834598c3e4ac96e87046ac = L.marker(
+                [37.4859435, 129.1102229],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_5ad74557c9bfe1c7c09220725c80c5ce = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b276910d1bc2c3da8dba8f0324a5f1fb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_25de3d2cdf36c0442a2bbdb615ec7289 = $(`<div id="html_25de3d2cdf36c0442a2bbdb615ec7289" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 동해제일내과의원</h4>             <p><strong>📍 주소:</strong><br>청운1길 48 2층 강원특별자치도 동해시 청운1길 64 (나안동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.485943<br>                경도: 129.110223             </p>         </div>         </div>`)[0];
+                popup_b276910d1bc2c3da8dba8f0324a5f1fb.setContent(html_25de3d2cdf36c0442a2bbdb615ec7289);
+            
+        
+
+        marker_1f5d936d98834598c3e4ac96e87046ac.bindPopup(popup_b276910d1bc2c3da8dba8f0324a5f1fb)
+        ;
+
+        
+    
+    
+            marker_1f5d936d98834598c3e4ac96e87046ac.bindTooltip(
+                `<div>
+                     동해제일내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1f5d936d98834598c3e4ac96e87046ac.setIcon(icon_5ad74557c9bfe1c7c09220725c80c5ce);
+            
+    
+            var marker_85b22d83379dd4787c995005b15169ae = L.marker(
+                [37.44244048, 129.1638221],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_968417dc2a51e73d788e31bc3c6cc06d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fb0f43f40387a86871fb111a752a36ac = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ac9fd243b372c34f6d06256da64ced7e = $(`<div id="html_ac9fd243b372c34f6d06256da64ced7e" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 신세계의원</h4>             <p><strong>📍 주소:</strong><br>청운1길 64, 301호(나안동) 강원특별자치도 삼척시 진주로 19 (남양동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 11과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.442440<br>                경도: 129.163822             </p>         </div>         </div>`)[0];
+                popup_fb0f43f40387a86871fb111a752a36ac.setContent(html_ac9fd243b372c34f6d06256da64ced7e);
+            
+        
+
+        marker_85b22d83379dd4787c995005b15169ae.bindPopup(popup_fb0f43f40387a86871fb111a752a36ac)
+        ;
+
+        
+    
+    
+            marker_85b22d83379dd4787c995005b15169ae.bindTooltip(
+                `<div>
+                     신세계의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_85b22d83379dd4787c995005b15169ae.setIcon(icon_968417dc2a51e73d788e31bc3c6cc06d);
+            
+    
+            var marker_1eb3f580b1f621f5c54786d25e688b11 = L.marker(
+                [38.44754205, 128.4547986],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_9af1576a93b677bf7f40910173f134c6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_83e5b981eea646836052e090fe978bdd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_267dc9da17089457897d48c6c0f1d045 = $(`<div id="html_267dc9da17089457897d48c6c0f1d045" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 신준호의원</h4>             <p><strong>📍 주소:</strong><br>남양동 55-63 강원특별자치도 고성군 거진시장길 11 (거진읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 38.447542<br>                경도: 128.454799             </p>         </div>         </div>`)[0];
+                popup_83e5b981eea646836052e090fe978bdd.setContent(html_267dc9da17089457897d48c6c0f1d045);
+            
+        
+
+        marker_1eb3f580b1f621f5c54786d25e688b11.bindPopup(popup_83e5b981eea646836052e090fe978bdd)
+        ;
+
+        
+    
+    
+            marker_1eb3f580b1f621f5c54786d25e688b11.bindTooltip(
+                `<div>
+                     신준호의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1eb3f580b1f621f5c54786d25e688b11.setIcon(icon_9af1576a93b677bf7f40910173f134c6);
+            
+    
+            var marker_5eaf7308fdf746fd81a4a8c2725f25af = L.marker(
+                [37.44018782, 129.1638421],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_a25af95b99df6b5e8bf45954e5cbe6d0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_997a70a8f4342705d016e45cd0255604 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e5182ee1189dd1de896c7316e70b931f = $(`<div id="html_e5182ee1189dd1de896c7316e70b931f" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 아산퍼스트마취통증의학과의원</h4>             <p><strong>📍 주소:</strong><br>진주로 19, 3층 강원특별자치도 삼척시 오십천로 418 (남양동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.440188<br>                경도: 129.163842             </p>         </div>         </div>`)[0];
+                popup_997a70a8f4342705d016e45cd0255604.setContent(html_e5182ee1189dd1de896c7316e70b931f);
+            
+        
+
+        marker_5eaf7308fdf746fd81a4a8c2725f25af.bindPopup(popup_997a70a8f4342705d016e45cd0255604)
+        ;
+
+        
+    
+    
+            marker_5eaf7308fdf746fd81a4a8c2725f25af.bindTooltip(
+                `<div>
+                     아산퍼스트마취통증의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5eaf7308fdf746fd81a4a8c2725f25af.setIcon(icon_a25af95b99df6b5e8bf45954e5cbe6d0);
+            
+    
+            var marker_5fcad2cd0e7e0c55db3483149594e9db = L.marker(
+                [38.10469902, 127.991199],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_0566dee76e52390f526dcead69a159b4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_41708abd561f1e380263ed947ad3a384 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9912a60e35539f43d55f3cf3325bb1fb = $(`<div id="html_9912a60e35539f43d55f3cf3325bb1fb" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 닥터음가정의학과의원</h4>             <p><strong>📍 주소:</strong><br>동해대로 4163 (조양동) 닥터음가정의학과의원 강원특별자치도 양구군 중심로 160 (양구읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 38.104699<br>                경도: 127.991199             </p>         </div>         </div>`)[0];
+                popup_41708abd561f1e380263ed947ad3a384.setContent(html_9912a60e35539f43d55f3cf3325bb1fb);
+            
+        
+
+        marker_5fcad2cd0e7e0c55db3483149594e9db.bindPopup(popup_41708abd561f1e380263ed947ad3a384)
+        ;
+
+        
+    
+    
+            marker_5fcad2cd0e7e0c55db3483149594e9db.bindTooltip(
+                `<div>
+                     닥터음가정의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5fcad2cd0e7e0c55db3483149594e9db.setIcon(icon_0566dee76e52390f526dcead69a159b4);
+            
+    
+            var marker_785618395100b6d7db7f1c7a3d0d11a6 = L.marker(
+                [38.10780057, 127.9883524],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_cf63f9ca2c662e247c38d9bb1ac900a8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_beec133bd7eae4bcefa112d05967e5e0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6dab0bdfd090dad98a985284423d26f8 = $(`<div id="html_6dab0bdfd090dad98a985284423d26f8" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 한사랑내과의원</h4>             <p><strong>📍 주소:</strong><br>양구읍 사명길 123 한사랑내과의원 강원특별자치도 양구군 사명길 123 (양구읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 7과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 38.107801<br>                경도: 127.988352             </p>         </div>         </div>`)[0];
+                popup_beec133bd7eae4bcefa112d05967e5e0.setContent(html_6dab0bdfd090dad98a985284423d26f8);
+            
+        
+
+        marker_785618395100b6d7db7f1c7a3d0d11a6.bindPopup(popup_beec133bd7eae4bcefa112d05967e5e0)
+        ;
+
+        
+    
+    
+            marker_785618395100b6d7db7f1c7a3d0d11a6.bindTooltip(
+                `<div>
+                     한사랑내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_785618395100b6d7db7f1c7a3d0d11a6.setIcon(icon_cf63f9ca2c662e247c38d9bb1ac900a8);
+            
+    
+            var marker_dcb92535ec3c419e137e73ff9020c2db = L.marker(
+                [38.07848355, 128.6271736],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_ca07b1680adfa5bb02fbda8530cd4f2f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_00fbe5a8ce20e5051dd05e8d36e7a237 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8ddf1a706a6ff86c26ad69dc9e6f58af = $(`<div id="html_8ddf1a706a6ff86c26ad69dc9e6f58af" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 상명내과의원</h4>             <p><strong>📍 주소:</strong><br>양양읍 양양로 62-1 2층 상명내과의원 강원특별자치도 양양군 양양로 9-1 (양양읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 2과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 38.078484<br>                경도: 128.627174             </p>         </div>         </div>`)[0];
+                popup_00fbe5a8ce20e5051dd05e8d36e7a237.setContent(html_8ddf1a706a6ff86c26ad69dc9e6f58af);
+            
+        
+
+        marker_dcb92535ec3c419e137e73ff9020c2db.bindPopup(popup_00fbe5a8ce20e5051dd05e8d36e7a237)
+        ;
+
+        
+    
+    
+            marker_dcb92535ec3c419e137e73ff9020c2db.bindTooltip(
+                `<div>
+                     상명내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dcb92535ec3c419e137e73ff9020c2db.setIcon(icon_ca07b1680adfa5bb02fbda8530cd4f2f);
+            
+    
+            var marker_5c80b2cb623cbd0becb2816e2282856b = L.marker(
+                [38.19091475, 128.579375],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_275c06b5ec39b798b3e6a7d2aa217df2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d3e6730bf638220fdf8e8df81b0d5b25 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d1f511d94f4ae6ff4de30de77e60ab2e = $(`<div id="html_d1f511d94f4ae6ff4de30de77e60ab2e" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 양양정형외과</h4>             <p><strong>📍 주소:</strong><br>양양읍 양양로 9-1 강원특별자치도 속초시 동해대로 4163 (조양동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 38.190915<br>                경도: 128.579375             </p>         </div>         </div>`)[0];
+                popup_d3e6730bf638220fdf8e8df81b0d5b25.setContent(html_d1f511d94f4ae6ff4de30de77e60ab2e);
+            
+        
+
+        marker_5c80b2cb623cbd0becb2816e2282856b.bindPopup(popup_d3e6730bf638220fdf8e8df81b0d5b25)
+        ;
+
+        
+    
+    
+            marker_5c80b2cb623cbd0becb2816e2282856b.bindTooltip(
+                `<div>
+                     양양정형외과 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5c80b2cb623cbd0becb2816e2282856b.setIcon(icon_275c06b5ec39b798b3e6a7d2aa217df2);
+            
+    
+            var marker_bdd678bad572335230861f8cb894dbe9 = L.marker(
+                [37.18393218, 128.4659437],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_baea875d4606e306e612411e5542614e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2144192cc2d0a10ab4d9ee166559cdb1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3192ffff8b6f372e92079e35b5f4a775 = $(`<div id="html_3192ffff8b6f372e92079e35b5f4a775" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 삼성수의원</h4>             <p><strong>📍 주소:</strong><br>영월읍 중앙1로 15 강원특별자치도 영월군 중앙1로 32 (영월읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 2과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.183932<br>                경도: 128.465944             </p>         </div>         </div>`)[0];
+                popup_2144192cc2d0a10ab4d9ee166559cdb1.setContent(html_3192ffff8b6f372e92079e35b5f4a775);
+            
+        
+
+        marker_bdd678bad572335230861f8cb894dbe9.bindPopup(popup_2144192cc2d0a10ab4d9ee166559cdb1)
+        ;
+
+        
+    
+    
+            marker_bdd678bad572335230861f8cb894dbe9.bindTooltip(
+                `<div>
+                     삼성수의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_bdd678bad572335230861f8cb894dbe9.setIcon(icon_baea875d4606e306e612411e5542614e);
+            
+    
+            var marker_45e27e7f0defacf6b9361473129e1310 = L.marker(
+                [37.18652035, 128.4652833],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_7d6138c7b6a725530cd886b90635ff86 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_084c4e949748be6229a563899a77a5a9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_01aa551e658231b6c0ee7a13498817f5 = $(`<div id="html_01aa551e658231b6c0ee7a13498817f5" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 성윤업내과의원</h4>             <p><strong>📍 주소:</strong><br>영월읍 중앙1로 32 성윤업내과의원 강원특별자치도 영월군 중앙1로 59 (영월읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 22과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.186520<br>                경도: 128.465283             </p>         </div>         </div>`)[0];
+                popup_084c4e949748be6229a563899a77a5a9.setContent(html_01aa551e658231b6c0ee7a13498817f5);
+            
+        
+
+        marker_45e27e7f0defacf6b9361473129e1310.bindPopup(popup_084c4e949748be6229a563899a77a5a9)
+        ;
+
+        
+    
+    
+            marker_45e27e7f0defacf6b9361473129e1310.bindTooltip(
+                `<div>
+                     성윤업내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_45e27e7f0defacf6b9361473129e1310.setIcon(icon_7d6138c7b6a725530cd886b90635ff86);
+            
+    
+            var marker_995bd0d74be9440b39c7acac1af83b56 = L.marker(
+                [37.34734084, 127.9283359],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_9387bee0e1d092572bfe323afa871981 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_588ecdb9d8286f2a17323f5a08007ad5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4d8e11f24492a5f1afbfca73867c0006 = $(`<div id="html_4d8e11f24492a5f1afbfca73867c0006" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 손경수내과의원</h4>             <p><strong>📍 주소:</strong><br>남원로 665 선일빌딩 1층일부,2,3,4층 강원특별자치도 원주시 봉화로 31 (단계동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 3과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.347341<br>                경도: 127.928336             </p>         </div>         </div>`)[0];
+                popup_588ecdb9d8286f2a17323f5a08007ad5.setContent(html_4d8e11f24492a5f1afbfca73867c0006);
+            
+        
+
+        marker_995bd0d74be9440b39c7acac1af83b56.bindPopup(popup_588ecdb9d8286f2a17323f5a08007ad5)
+        ;
+
+        
+    
+    
+            marker_995bd0d74be9440b39c7acac1af83b56.bindTooltip(
+                `<div>
+                     손경수내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_995bd0d74be9440b39c7acac1af83b56.setIcon(icon_9387bee0e1d092572bfe323afa871981);
+            
+    
+            var marker_44b385ccbb89e4c5e80974631c710cac = L.marker(
+                [37.34947013, 127.9506565],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_4f12d3ab39e47afe5de6cc99b2f63de6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a144e429cd87aaf5aa84dfaecea1f686 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_de894297d0bc3fccfa185f937f47085f = $(`<div id="html_de894297d0bc3fccfa185f937f47085f" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 원주연세의원</h4>             <p><strong>📍 주소:</strong><br>흥업면 남원로 57, 2층 강원특별자치도 원주시 중앙로 105 (중앙동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 11과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.349470<br>                경도: 127.950656             </p>         </div>         </div>`)[0];
+                popup_a144e429cd87aaf5aa84dfaecea1f686.setContent(html_de894297d0bc3fccfa185f937f47085f);
+            
+        
+
+        marker_44b385ccbb89e4c5e80974631c710cac.bindPopup(popup_a144e429cd87aaf5aa84dfaecea1f686)
+        ;
+
+        
+    
+    
+            marker_44b385ccbb89e4c5e80974631c710cac.bindTooltip(
+                `<div>
+                     원주연세의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_44b385ccbb89e4c5e80974631c710cac.setIcon(icon_4f12d3ab39e47afe5de6cc99b2f63de6);
+            
+    
+            var marker_ddbadbe92d84da60e768bd0e99ffbb63 = L.marker(
+                [37.36937309, 127.9388878],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_c9bfae6ad22d26ba848cce51dec74dc1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0bffb3c0bbdad63acd304e4f2df459f5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d53734e136fb92bdf38416ccb46715b0 = $(`<div id="html_d53734e136fb92bdf38416ccb46715b0" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 탑정형외과의원</h4>             <p><strong>📍 주소:</strong><br>봉화로 31, 시재메디타워(단계동) 강원특별자치도 원주시 상지대길 23 (우산동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 16병상 | 진료과수: 14과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.369373<br>                경도: 127.938888             </p>         </div>         </div>`)[0];
+                popup_0bffb3c0bbdad63acd304e4f2df459f5.setContent(html_d53734e136fb92bdf38416ccb46715b0);
+            
+        
+
+        marker_ddbadbe92d84da60e768bd0e99ffbb63.bindPopup(popup_0bffb3c0bbdad63acd304e4f2df459f5)
+        ;
+
+        
+    
+    
+            marker_ddbadbe92d84da60e768bd0e99ffbb63.bindTooltip(
+                `<div>
+                     탑정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ddbadbe92d84da60e768bd0e99ffbb63.setIcon(icon_c9bfae6ad22d26ba848cce51dec74dc1);
+            
+    
+            var marker_2f8cddb5487352b241670520dc9c075b = L.marker(
+                [37.30142774, 127.9192677],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_33a3aeca0a44642db6ee724c729cfbab = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_91632636b59a69a6becbb0e485ae7106 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_085c787dbc7ad7a43ac08bf706bf5349 = $(`<div id="html_085c787dbc7ad7a43ac08bf706bf5349" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 홍&권이비인후과의원</h4>             <p><strong>📍 주소:</strong><br>중앙로 105, 2~3층 강원특별자치도 원주시 남원로 57 (흥업면)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 5병상 | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.301428<br>                경도: 127.919268             </p>         </div>         </div>`)[0];
+                popup_91632636b59a69a6becbb0e485ae7106.setContent(html_085c787dbc7ad7a43ac08bf706bf5349);
+            
+        
+
+        marker_2f8cddb5487352b241670520dc9c075b.bindPopup(popup_91632636b59a69a6becbb0e485ae7106)
+        ;
+
+        
+    
+    
+            marker_2f8cddb5487352b241670520dc9c075b.bindTooltip(
+                `<div>
+                     홍&권이비인후과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2f8cddb5487352b241670520dc9c075b.setIcon(icon_33a3aeca0a44642db6ee724c729cfbab);
+            
+    
+            var marker_78bed4be2bc9b84ae80f3b747a912b68 = L.marker(
+                [37.34806029, 127.9459736],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_f0b20487d93a76bc37dbe09765e07784 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_32b103ed88b5232492b5d23aee68939d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3b30ae140cb01bfba0fafadbc8df76a0 = $(`<div id="html_3b30ae140cb01bfba0fafadbc8df76a0" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 한림의원</h4>             <p><strong>📍 주소:</strong><br>북면 원통로 218 한림의원 강원특별자치도 원주시 일산로 20 (일산동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.348060<br>                경도: 127.945974             </p>         </div>         </div>`)[0];
+                popup_32b103ed88b5232492b5d23aee68939d.setContent(html_3b30ae140cb01bfba0fafadbc8df76a0);
+            
+        
+
+        marker_78bed4be2bc9b84ae80f3b747a912b68.bindPopup(popup_32b103ed88b5232492b5d23aee68939d)
+        ;
+
+        
+    
+    
+            marker_78bed4be2bc9b84ae80f3b747a912b68.bindTooltip(
+                `<div>
+                     한림의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_78bed4be2bc9b84ae80f3b747a912b68.setIcon(icon_f0b20487d93a76bc37dbe09765e07784);
+            
+    
+            var marker_e137846b5a7fdeba0afb1fc37f82d9d3 = L.marker(
+                [37.22733036, 128.8198948],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_60087b2e02bfaf2ff7139aecf59d622d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_92a117fce9f314ff7f5115675608ee05 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_16a224a483dfd23a3399a69da4324f8d = $(`<div id="html_16a224a483dfd23a3399a69da4324f8d" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 사북제일의원</h4>             <p><strong>📍 주소:</strong><br>사북읍 사북5길 1 제일의원 강원특별자치도 정선군 사북5길 1 (사북읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 3과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.227330<br>                경도: 128.819895             </p>         </div>         </div>`)[0];
+                popup_92a117fce9f314ff7f5115675608ee05.setContent(html_16a224a483dfd23a3399a69da4324f8d);
+            
+        
+
+        marker_e137846b5a7fdeba0afb1fc37f82d9d3.bindPopup(popup_92a117fce9f314ff7f5115675608ee05)
+        ;
+
+        
+    
+    
+            marker_e137846b5a7fdeba0afb1fc37f82d9d3.bindTooltip(
+                `<div>
+                     사북제일의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e137846b5a7fdeba0afb1fc37f82d9d3.setIcon(icon_60087b2e02bfaf2ff7139aecf59d622d);
+            
+    
+            var marker_b8e77d2cc2bb955264605140e60b9047 = L.marker(
+                [38.15031989, 127.3081726],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_faaf1d22f31273f34a2cbd65cab666eb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c4c10ace2588573a6884abe8f28dad71 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b26359962cf37ce09fba8ae62985b0de = $(`<div id="html_b26359962cf37ce09fba8ae62985b0de" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 정선연세외과의원</h4>             <p><strong>📍 주소:</strong><br>정선읍 봉양6길 14 강원특별자치도 철원군 명성로 208 (갈말읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 8과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 38.150320<br>                경도: 127.308173             </p>         </div>         </div>`)[0];
+                popup_c4c10ace2588573a6884abe8f28dad71.setContent(html_b26359962cf37ce09fba8ae62985b0de);
+            
+        
+
+        marker_b8e77d2cc2bb955264605140e60b9047.bindPopup(popup_c4c10ace2588573a6884abe8f28dad71)
+        ;
+
+        
+    
+    
+            marker_b8e77d2cc2bb955264605140e60b9047.bindTooltip(
+                `<div>
+                     정선연세외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b8e77d2cc2bb955264605140e60b9047.setIcon(icon_faaf1d22f31273f34a2cbd65cab666eb);
+            
+    
+            var marker_c95225a1acdfebacae479d0eced5e56f = L.marker(
+                [37.38309018, 128.658726],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_da929541b87a85c26adb96ba439d92db = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0ac4d6e3135923c9acb4b5e8571d02fe = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9b95efd4843a9960635c023b21185b85 = $(`<div id="html_9b95efd4843a9960635c023b21185b85" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 강남아이원안과의원</h4>             <p><strong>📍 주소:</strong><br>동송읍 금학로 199 3층 강남아이원안과 강원특별자치도 정선군 봉양1길 145 (정선읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.383090<br>                경도: 128.658726             </p>         </div>         </div>`)[0];
+                popup_0ac4d6e3135923c9acb4b5e8571d02fe.setContent(html_9b95efd4843a9960635c023b21185b85);
+            
+        
+
+        marker_c95225a1acdfebacae479d0eced5e56f.bindPopup(popup_0ac4d6e3135923c9acb4b5e8571d02fe)
+        ;
+
+        
+    
+    
+            marker_c95225a1acdfebacae479d0eced5e56f.bindTooltip(
+                `<div>
+                     강남아이원안과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c95225a1acdfebacae479d0eced5e56f.setIcon(icon_da929541b87a85c26adb96ba439d92db);
+            
+    
+            var marker_a5f3144b3aca78e4a403f53e86ca75b0 = L.marker(
+                [37.17413099, 128.9906857],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_7c28089d217c1806e8a0e2f3619036bb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a25fd2641efb8ec61912944fcd83a38c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d70fa24c1f92510a6e2c6ed0fa5d4513 = $(`<div id="html_d70fa24c1f92510a6e2c6ed0fa5d4513" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 동송제일정형외과의원</h4>             <p><strong>📍 주소:</strong><br>동송읍 금학로 215, 2층 강원특별자치도 태백시 황지로 176-1 (황지동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.174131<br>                경도: 128.990686             </p>         </div>         </div>`)[0];
+                popup_a25fd2641efb8ec61912944fcd83a38c.setContent(html_d70fa24c1f92510a6e2c6ed0fa5d4513);
+            
+        
+
+        marker_a5f3144b3aca78e4a403f53e86ca75b0.bindPopup(popup_a25fd2641efb8ec61912944fcd83a38c)
+        ;
+
+        
+    
+    
+            marker_a5f3144b3aca78e4a403f53e86ca75b0.bindTooltip(
+                `<div>
+                     동송제일정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a5f3144b3aca78e4a403f53e86ca75b0.setIcon(icon_7c28089d217c1806e8a0e2f3619036bb);
+            
+    
+            var marker_37d576ecb6cf386a798363081e052822 = L.marker(
+                [37.86302472, 127.7196787],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_483a5d23845333c3b06b190046c862b7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_47a823b5210dd82e3c0233df2d820693 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c579ce9c21dc30d5391628f4e169e30f = $(`<div id="html_c579ce9c21dc30d5391628f4e169e30f" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 조도연정형외과의원</h4>             <p><strong>📍 주소:</strong><br>경춘로 2348, b1,1층 강원특별자치도 춘천시 경춘로 2348 (온의동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.863025<br>                경도: 127.719679             </p>         </div>         </div>`)[0];
+                popup_47a823b5210dd82e3c0233df2d820693.setContent(html_c579ce9c21dc30d5391628f4e169e30f);
+            
+        
+
+        marker_37d576ecb6cf386a798363081e052822.bindPopup(popup_47a823b5210dd82e3c0233df2d820693)
+        ;
+
+        
+    
+    
+            marker_37d576ecb6cf386a798363081e052822.bindTooltip(
+                `<div>
+                     조도연정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_37d576ecb6cf386a798363081e052822.setIcon(icon_483a5d23845333c3b06b190046c862b7);
+            
+    
+            var marker_1804aacac7d1c6ffc6b7eb10ba0f4703 = L.marker(
+                [38.20657937, 127.2189636],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_b3e144d2eb2389ca3a7b153f8fb9733f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6468d6a4258d4ced855069beea545099 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b3ae3536a4d526d3e84a46dee285dba7 = $(`<div id="html_b3ae3536a4d526d3e84a46dee285dba7" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 강남내과의원</h4>             <p><strong>📍 주소:</strong><br>춘천로 68, 3~4층 강원특별자치도 철원군 금학로 199 (동송읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 38.206579<br>                경도: 127.218964             </p>         </div>         </div>`)[0];
+                popup_6468d6a4258d4ced855069beea545099.setContent(html_b3ae3536a4d526d3e84a46dee285dba7);
+            
+        
+
+        marker_1804aacac7d1c6ffc6b7eb10ba0f4703.bindPopup(popup_6468d6a4258d4ced855069beea545099)
+        ;
+
+        
+    
+    
+            marker_1804aacac7d1c6ffc6b7eb10ba0f4703.bindTooltip(
+                `<div>
+                     강남내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1804aacac7d1c6ffc6b7eb10ba0f4703.setIcon(icon_b3e144d2eb2389ca3a7b153f8fb9733f);
+            
+    
+            var marker_0fe9300a9ff9c67a65ec1cf839c9af2d = L.marker(
+                [37.10403803, 129.0042578],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_e547958f921ab196eb1bcf79302d0963 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_efd945e1bc4e5f9e4a14cccb7cfe5913 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b8be929b19e830e5f9dc65b108a6cf6a = $(`<div id="html_b8be929b19e830e5f9dc65b108a6cf6a" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 마디온정형외과의원</h4>             <p><strong>📍 주소:</strong><br>안마산로 107 (퇴계동) 마디온정형외과의원 강원특별자치도 태백시 보드미길 8 (장성동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 24병상 | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.104038<br>                경도: 129.004258             </p>         </div>         </div>`)[0];
+                popup_efd945e1bc4e5f9e4a14cccb7cfe5913.setContent(html_b8be929b19e830e5f9dc65b108a6cf6a);
+            
+        
+
+        marker_0fe9300a9ff9c67a65ec1cf839c9af2d.bindPopup(popup_efd945e1bc4e5f9e4a14cccb7cfe5913)
+        ;
+
+        
+    
+    
+            marker_0fe9300a9ff9c67a65ec1cf839c9af2d.bindTooltip(
+                `<div>
+                     마디온정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0fe9300a9ff9c67a65ec1cf839c9af2d.setIcon(icon_e547958f921ab196eb1bcf79302d0963);
+            
+    
+            var marker_1d487b04975267c1a61fb42d39323f65 = L.marker(
+                [37.8544978, 127.72755],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_1b6cbd4791f21bf210031f11faebb7dd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8781e9b8402b89a4a9ef2f6cde1c52a4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8c1fda6e126aeeeeac14d89f0779a010 = $(`<div id="html_8c1fda6e126aeeeeac14d89f0779a010" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 안정효내과의원</h4>             <p><strong>📍 주소:</strong><br>퇴계로 188, 썬타워3층(석사동) 강원특별자치도 춘천시 안마산로 107 (퇴계동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 3과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.854498<br>                경도: 127.727550             </p>         </div>         </div>`)[0];
+                popup_8781e9b8402b89a4a9ef2f6cde1c52a4.setContent(html_8c1fda6e126aeeeeac14d89f0779a010);
+            
+        
+
+        marker_1d487b04975267c1a61fb42d39323f65.bindPopup(popup_8781e9b8402b89a4a9ef2f6cde1c52a4)
+        ;
+
+        
+    
+    
+            marker_1d487b04975267c1a61fb42d39323f65.bindTooltip(
+                `<div>
+                     안정효내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1d487b04975267c1a61fb42d39323f65.setIcon(icon_1b6cbd4791f21bf210031f11faebb7dd);
+            
+    
+            var marker_992358623e640511697ab83f917bf2ac = L.marker(
+                [37.87912496, 127.7292619],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_077cc35170e842d9d5687256b4779f8a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_931b24e2f057e475e24dff80e8be316f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_de1ae1c05ed9f663504a7b6b75438de6 = $(`<div id="html_de1ae1c05ed9f663504a7b6b75438de6" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 연세플러스비뇨기과의원</h4>             <p><strong>📍 주소:</strong><br>금강로 69(4층) 강원특별자치도 춘천시 금강로 69 (조양동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 6병상 | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.879125<br>                경도: 127.729262             </p>         </div>         </div>`)[0];
+                popup_931b24e2f057e475e24dff80e8be316f.setContent(html_de1ae1c05ed9f663504a7b6b75438de6);
+            
+        
+
+        marker_992358623e640511697ab83f917bf2ac.bindPopup(popup_931b24e2f057e475e24dff80e8be316f)
+        ;
+
+        
+    
+    
+            marker_992358623e640511697ab83f917bf2ac.bindTooltip(
+                `<div>
+                     연세플러스비뇨기과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_992358623e640511697ab83f917bf2ac.setIcon(icon_077cc35170e842d9d5687256b4779f8a);
+            
+    
+            var marker_eb05dfcf0cec69e88afad9ff8af8f022 = L.marker(
+                [37.87029257, 127.7249929],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_8d1d65f1fe2d86f3b46102623fdeebab = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d44057d92d344c2a4279188ec34649d4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_748f7135bb4f700ff37a8b60b9481d7f = $(`<div id="html_748f7135bb4f700ff37a8b60b9481d7f" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 하나큐치과의원</h4>             <p><strong>📍 주소:</strong><br>후석로 355, 2층(후평동) 강원특별자치도 춘천시 춘천로 68 (효자동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.870293<br>                경도: 127.724993             </p>         </div>         </div>`)[0];
+                popup_d44057d92d344c2a4279188ec34649d4.setContent(html_748f7135bb4f700ff37a8b60b9481d7f);
+            
+        
+
+        marker_eb05dfcf0cec69e88afad9ff8af8f022.bindPopup(popup_d44057d92d344c2a4279188ec34649d4)
+        ;
+
+        
+    
+    
+            marker_eb05dfcf0cec69e88afad9ff8af8f022.bindTooltip(
+                `<div>
+                     하나큐치과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_eb05dfcf0cec69e88afad9ff8af8f022.setIcon(icon_8d1d65f1fe2d86f3b46102623fdeebab);
+            
+    
+            var marker_8b3c7d32acc8ab2b81a510af2d5f99fe = L.marker(
+                [37.69082311, 127.8949729],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_d8629bab358fe1993ea3f3e20f70c162 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_05758fde3f27d9bbf277b447ed294922 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f042920e18cea7e0b4b67269bb2fa6e6 = $(`<div id="html_f042920e18cea7e0b4b67269bb2fa6e6" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 김병호내과의원</h4>             <p><strong>📍 주소:</strong><br>황지로 176-1 (황지동) 김병호내과의원 강원특별자치도 홍천군 산림공원1길 17 (홍천읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 3과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.690823<br>                경도: 127.894973             </p>         </div>         </div>`)[0];
+                popup_05758fde3f27d9bbf277b447ed294922.setContent(html_f042920e18cea7e0b4b67269bb2fa6e6);
+            
+        
+
+        marker_8b3c7d32acc8ab2b81a510af2d5f99fe.bindPopup(popup_05758fde3f27d9bbf277b447ed294922)
+        ;
+
+        
+    
+    
+            marker_8b3c7d32acc8ab2b81a510af2d5f99fe.bindTooltip(
+                `<div>
+                     김병호내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8b3c7d32acc8ab2b81a510af2d5f99fe.setIcon(icon_d8629bab358fe1993ea3f3e20f70c162);
+            
+    
+            var marker_14c77de88da53045f1242e60a112336b = L.marker(
+                [37.487365, 127.9867053],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_c9dfbc24a8161505be714fdc38a1c3f1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_06338cd18273530049248612dd7e2017 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c019a7ace694dff06ec98dd0c4fb759e = $(`<div id="html_c019a7ace694dff06ec98dd0c4fb759e" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 태백밝은안과의원</h4>             <p><strong>📍 주소:</strong><br>황지로 169(황지동) 강원특별자치도 횡성군 한우로 306 (횡성읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.487365<br>                경도: 127.986705             </p>         </div>         </div>`)[0];
+                popup_06338cd18273530049248612dd7e2017.setContent(html_c019a7ace694dff06ec98dd0c4fb759e);
+            
+        
+
+        marker_14c77de88da53045f1242e60a112336b.bindPopup(popup_06338cd18273530049248612dd7e2017)
+        ;
+
+        
+    
+    
+            marker_14c77de88da53045f1242e60a112336b.bindTooltip(
+                `<div>
+                     태백밝은안과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_14c77de88da53045f1242e60a112336b.setIcon(icon_c9dfbc24a8161505be714fdc38a1c3f1);
+            
+    
+            var marker_0272a3d52563508110ff0181c5fbd7c4 = L.marker(
+                [37.8824849, 127.7478134],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_3c7886e69ee00222e15b8cac713e7903 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a5311b1c81f004c4b2ef84f35c7b2596 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_802081bd90a5b1a88d8a54f4abc1b642 = $(`<div id="html_802081bd90a5b1a88d8a54f4abc1b642" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 평창군보건의료원</h4>             <p><strong>📍 주소:</strong><br>평창읍 종부로 61 강원특별자치도 춘천시 후석로 355 (후평동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 20병상 | 진료과수: 14과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.882485<br>                경도: 127.747813             </p>         </div>         </div>`)[0];
+                popup_a5311b1c81f004c4b2ef84f35c7b2596.setContent(html_802081bd90a5b1a88d8a54f4abc1b642);
+            
+        
+
+        marker_0272a3d52563508110ff0181c5fbd7c4.bindPopup(popup_a5311b1c81f004c4b2ef84f35c7b2596)
+        ;
+
+        
+    
+    
+            marker_0272a3d52563508110ff0181c5fbd7c4.bindTooltip(
+                `<div>
+                     평창군보건의료원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0272a3d52563508110ff0181c5fbd7c4.setIcon(icon_3c7886e69ee00222e15b8cac713e7903);
+            
+    
+            var marker_3cb60655d4297b6ebe08762599c6d241 = L.marker(
+                [37.36061646, 128.3891133],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_5cebea107a82e6f6359d492dc0015d70 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d1e341e9f307fd042fa68bd6577d6d05 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_14de04a64a6dff2be63ce57dde21e1bf = $(`<div id="html_14de04a64a6dff2be63ce57dde21e1bf" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 서울드림의원</h4>             <p><strong>📍 주소:</strong><br>홍천읍 신장대로 47-1 강원특별자치도 평창군 종부로 61 (평창읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 2과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.360616<br>                경도: 128.389113             </p>         </div>         </div>`)[0];
+                popup_d1e341e9f307fd042fa68bd6577d6d05.setContent(html_14de04a64a6dff2be63ce57dde21e1bf);
+            
+        
+
+        marker_3cb60655d4297b6ebe08762599c6d241.bindPopup(popup_d1e341e9f307fd042fa68bd6577d6d05)
+        ;
+
+        
+    
+    
+            marker_3cb60655d4297b6ebe08762599c6d241.bindTooltip(
+                `<div>
+                     서울드림의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3cb60655d4297b6ebe08762599c6d241.setIcon(icon_5cebea107a82e6f6359d492dc0015d70);
+            
+    
+            var marker_6cba6ba8025fc0394e6487968182b373 = L.marker(
+                [37.68869753, 127.8850227],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_a3129f7a7af9bb72927ba86983dfdeca = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8c481ac63c15e0a0c96723b63ba64d86 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1241ac6de3f4822bef9aa33f1d6653e8 = $(`<div id="html_1241ac6de3f4822bef9aa33f1d6653e8" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 서울정형외과의원(홍천)</h4>             <p><strong>📍 주소:</strong><br>홍천읍 신장대리 64-1 강원특별자치도 홍천군 홍천읍 신장대리 64-1</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.688698<br>                경도: 127.885023             </p>         </div>         </div>`)[0];
+                popup_8c481ac63c15e0a0c96723b63ba64d86.setContent(html_1241ac6de3f4822bef9aa33f1d6653e8);
+            
+        
+
+        marker_6cba6ba8025fc0394e6487968182b373.bindPopup(popup_8c481ac63c15e0a0c96723b63ba64d86)
+        ;
+
+        
+    
+    
+            marker_6cba6ba8025fc0394e6487968182b373.bindTooltip(
+                `<div>
+                     서울정형외과의원(홍천) (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6cba6ba8025fc0394e6487968182b373.setIcon(icon_a3129f7a7af9bb72927ba86983dfdeca);
+            
+    
+            var marker_cf4f3676ad7f556b72eac6895e5be0ec = L.marker(
+                [38.10738241, 127.7090777],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_6cb8478a0ce0805d4d698012e383de3e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a8d9cdcdfc36f06b6790bff603babce7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f44c848fd6717fb579dd316ec4ce05b4 = $(`<div id="html_f44c848fd6717fb579dd316ec4ce05b4" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 윤성일정형외과의원</h4>             <p><strong>📍 주소:</strong><br>홍천읍 홍천로 316, 4~5층 강원특별자치도 화천군 강변로 111 (화천읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 38.107382<br>                경도: 127.709078             </p>         </div>         </div>`)[0];
+                popup_a8d9cdcdfc36f06b6790bff603babce7.setContent(html_f44c848fd6717fb579dd316ec4ce05b4);
+            
+        
+
+        marker_cf4f3676ad7f556b72eac6895e5be0ec.bindPopup(popup_a8d9cdcdfc36f06b6790bff603babce7)
+        ;
+
+        
+    
+    
+            marker_cf4f3676ad7f556b72eac6895e5be0ec.bindTooltip(
+                `<div>
+                     윤성일정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cf4f3676ad7f556b72eac6895e5be0ec.setIcon(icon_6cb8478a0ce0805d4d698012e383de3e);
+            
+    
+            var marker_328a59b5db14adf8ea89fbb81daa1aeb = L.marker(
+                [37.47843752, 127.9799271],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_a9a70d000fab27668a5e62a4b96cc145 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d4a28a0f5280b6c3f7ae71cdb0912507 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7f8a434df82179c1f1c8932bad52dcad = $(`<div id="html_7f8a434df82179c1f1c8932bad52dcad" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 화천군보건의료원</h4>             <p><strong>📍 주소:</strong><br>화천읍 강변로 111 강원특별자치도 횡성군 횡성로 275 (횡성읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 21병상 | 진료과수: 7과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.478438<br>                경도: 127.979927             </p>         </div>         </div>`)[0];
+                popup_d4a28a0f5280b6c3f7ae71cdb0912507.setContent(html_7f8a434df82179c1f1c8932bad52dcad);
+            
+        
+
+        marker_328a59b5db14adf8ea89fbb81daa1aeb.bindPopup(popup_d4a28a0f5280b6c3f7ae71cdb0912507)
+        ;
+
+        
+    
+    
+            marker_328a59b5db14adf8ea89fbb81daa1aeb.bindTooltip(
+                `<div>
+                     화천군보건의료원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_328a59b5db14adf8ea89fbb81daa1aeb.setIcon(icon_a9a70d000fab27668a5e62a4b96cc145);
+            
+    
+            var marker_1ab5946f2d7a5053ba95c5050f8fd247 = L.marker(
+                [37.69036548, 127.8815344],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_6221e663d0e1d45bfe6737afa2487d3e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b9e91b33f03c06c84da94dfddd7f0c8c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c1fac69b335abe58ca44cb6c924f6f22 = $(`<div id="html_c1fac69b335abe58ca44cb6c924f6f22" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 화천내과의원</h4>             <p><strong>📍 주소:</strong><br>화천읍 중앙로 19-1 화천내과의원 강원특별자치도 홍천군 신장대로 47-1 (홍천읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.690365<br>                경도: 127.881534             </p>         </div>         </div>`)[0];
+                popup_b9e91b33f03c06c84da94dfddd7f0c8c.setContent(html_c1fac69b335abe58ca44cb6c924f6f22);
+            
+        
+
+        marker_1ab5946f2d7a5053ba95c5050f8fd247.bindPopup(popup_b9e91b33f03c06c84da94dfddd7f0c8c)
+        ;
+
+        
+    
+    
+            marker_1ab5946f2d7a5053ba95c5050f8fd247.bindTooltip(
+                `<div>
+                     화천내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1ab5946f2d7a5053ba95c5050f8fd247.setIcon(icon_6221e663d0e1d45bfe6737afa2487d3e);
+            
+    
+            var marker_18b6db2fd253dc842a569fdfcf097753 = L.marker(
+                [37.49168438, 127.9864834],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_9bf49a4771d34f98ba178caa1393fd21 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_10acd233b536c3e1735fff72706cad1e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8bf610b8153e64c88a7c1a3073f59e52 = $(`<div id="html_8bf610b8153e64c88a7c1a3073f59e52" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 이재형봄빛내과</h4>             <p><strong>📍 주소:</strong><br>횡성읍 한우로306, 3층 강원특별자치도 횡성군 태기로19번길 14 (횡성읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 7과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.491684<br>                경도: 127.986483             </p>         </div>         </div>`)[0];
+                popup_10acd233b536c3e1735fff72706cad1e.setContent(html_8bf610b8153e64c88a7c1a3073f59e52);
+            
+        
+
+        marker_18b6db2fd253dc842a569fdfcf097753.bindPopup(popup_10acd233b536c3e1735fff72706cad1e)
+        ;
+
+        
+    
+    
+            marker_18b6db2fd253dc842a569fdfcf097753.bindTooltip(
+                `<div>
+                     이재형봄빛내과 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_18b6db2fd253dc842a569fdfcf097753.setIcon(icon_9bf49a4771d34f98ba178caa1393fd21);
+            
+    
+            var marker_68001b8ef88f7b897d0d240832dd7e55 = L.marker(
+                [38.10426402, 127.706494],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_a6cef5d20aed12cc393e0b300dd9b3a0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b862f999f2f4d9b3bdcd89719f598cdf = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_aeba8a5321076c2a1b828994555902ee = $(`<div id="html_aeba8a5321076c2a1b828994555902ee" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 횡성정형외과의원</h4>             <p><strong>📍 주소:</strong><br>횡성읍 태기로19번길 14 태기로19번길14 강원특별자치도 화천군 중앙로 19-1 (화천읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 5과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 38.104264<br>                경도: 127.706494             </p>         </div>         </div>`)[0];
+                popup_b862f999f2f4d9b3bdcd89719f598cdf.setContent(html_aeba8a5321076c2a1b828994555902ee);
+            
+        
+
+        marker_68001b8ef88f7b897d0d240832dd7e55.bindPopup(popup_b862f999f2f4d9b3bdcd89719f598cdf)
+        ;
+
+        
+    
+    
+            marker_68001b8ef88f7b897d0d240832dd7e55.bindTooltip(
+                `<div>
+                     횡성정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_68001b8ef88f7b897d0d240832dd7e55.setIcon(icon_a6cef5d20aed12cc393e0b300dd9b3a0);
+            
+    
+            var marker_186d825a829eace57d302692f4d5e0f8 = L.marker(
+                [37.68827094, 127.8803198],
+                {
+}
+            ).addTo(feature_group_35c01f8d957a90be0fdb6e629b5c6292);
+        
+    
+            var icon_2e651db1e17c56864bf293d8d351a792 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c597c9c6afc1753e27d281e3519c1839 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8236992e05e736fa711dd7839735434f = $(`<div id="html_8236992e05e736fa711dd7839735434f" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 가평성모의원</h4>             <p><strong>📍 주소:</strong><br>가평읍 가화로 75 강원특별자치도 홍천군 홍천로 316 (홍천읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 12과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.688271<br>                경도: 127.880320             </p>         </div>         </div>`)[0];
+                popup_c597c9c6afc1753e27d281e3519c1839.setContent(html_8236992e05e736fa711dd7839735434f);
+            
+        
+
+        marker_186d825a829eace57d302692f4d5e0f8.bindPopup(popup_c597c9c6afc1753e27d281e3519c1839)
+        ;
+
+        
+    
+    
+            marker_186d825a829eace57d302692f4d5e0f8.bindTooltip(
+                `<div>
+                     가평성모의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_186d825a829eace57d302692f4d5e0f8.setIcon(icon_2e651db1e17c56864bf293d8d351a792);
+            
+    
+            feature_group_35c01f8d957a90be0fdb6e629b5c6292.addTo(map_c468ac48fc48049271256bfad3bfd326);
+        
+    
+            var feature_group_5abc7d258fd307ebf4b99106147e4482 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_e4d05d67e7c4f774e7962902ce835507 = L.marker(
+                [37.76240722, 128.9008045],
+                {
+}
+            ).addTo(feature_group_5abc7d258fd307ebf4b99106147e4482);
+        
+    
+            var icon_21b106aad7280d0eceb81b82c93df12e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "heartbeat",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e118be4e9a67c11427356aa4cf067c42 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0b2f8d083b41d48591152a4b61253f33 = $(`<div id="html_0b2f8d083b41d48591152a4b61253f33" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 강릉연세요양병원</h4>             <p><strong>📍 주소:</strong><br>옥가로 70 강원특별자치도 강릉시 옥가로 70 (옥천동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 99병상 | 진료과수: 3과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.762407<br>                경도: 128.900804             </p>         </div>         </div>`)[0];
+                popup_e118be4e9a67c11427356aa4cf067c42.setContent(html_0b2f8d083b41d48591152a4b61253f33);
+            
+        
+
+        marker_e4d05d67e7c4f774e7962902ce835507.bindPopup(popup_e118be4e9a67c11427356aa4cf067c42)
+        ;
+
+        
+    
+    
+            marker_e4d05d67e7c4f774e7962902ce835507.bindTooltip(
+                `<div>
+                     강릉연세요양병원 (요양병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e4d05d67e7c4f774e7962902ce835507.setIcon(icon_21b106aad7280d0eceb81b82c93df12e);
+            
+    
+            var marker_536d670f4616471c208f8d5e6c7e9485 = L.marker(
+                [38.21644946, 128.5892959],
+                {
+}
+            ).addTo(feature_group_5abc7d258fd307ebf4b99106147e4482);
+        
+    
+            var icon_299088f2c48d0c38484abaaca94e1544 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "heartbeat",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_effd55a4d0b048155d71a0d4faa888da = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f622acb3691d0063934009c746d8949b = $(`<div id="html_f622acb3691d0063934009c746d8949b" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 속초정요양병원</h4>             <p><strong>📍 주소:</strong><br>동해대로 4084 강원특별자치도 속초시 영랑호반길 3 (영랑동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 129병상 | 진료과수: 3과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 38.216449<br>                경도: 128.589296             </p>         </div>         </div>`)[0];
+                popup_effd55a4d0b048155d71a0d4faa888da.setContent(html_f622acb3691d0063934009c746d8949b);
+            
+        
+
+        marker_536d670f4616471c208f8d5e6c7e9485.bindPopup(popup_effd55a4d0b048155d71a0d4faa888da)
+        ;
+
+        
+    
+    
+            marker_536d670f4616471c208f8d5e6c7e9485.bindTooltip(
+                `<div>
+                     속초정요양병원 (요양병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_536d670f4616471c208f8d5e6c7e9485.setIcon(icon_299088f2c48d0c38484abaaca94e1544);
+            
+    
+            var marker_8050de15f46ba98307232d6254bee825 = L.marker(
+                [37.32617234, 127.8451486],
+                {
+}
+            ).addTo(feature_group_5abc7d258fd307ebf4b99106147e4482);
+        
+    
+            var icon_e8b7b125489be4dbcbff335fdb586a0f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "heartbeat",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d03abafc68d8d1e8d45b4de408488b1a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_172728b41de841f3340874160e5a71b2 = $(`<div id="html_172728b41de841f3340874160e5a71b2" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 연세요양병원</h4>             <p><strong>📍 주소:</strong><br>남원로 631 강원특별자치도 원주시 원문로 1419 (문막읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 166병상 | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.326172<br>                경도: 127.845149             </p>         </div>         </div>`)[0];
+                popup_d03abafc68d8d1e8d45b4de408488b1a.setContent(html_172728b41de841f3340874160e5a71b2);
+            
+        
+
+        marker_8050de15f46ba98307232d6254bee825.bindPopup(popup_d03abafc68d8d1e8d45b4de408488b1a)
+        ;
+
+        
+    
+    
+            marker_8050de15f46ba98307232d6254bee825.bindTooltip(
+                `<div>
+                     연세요양병원 (요양병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8050de15f46ba98307232d6254bee825.setIcon(icon_e8b7b125489be4dbcbff335fdb586a0f);
+            
+    
+            var marker_a9930b432dfe942a077754c4437cd025 = L.marker(
+                [37.37888591, 128.6639704],
+                {
+}
+            ).addTo(feature_group_5abc7d258fd307ebf4b99106147e4482);
+        
+    
+            var icon_1c52cba9f313eee2ff4ac1056bbed9a1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "heartbeat",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b50bb6d2ea314928a625f7cd7b1bc0fb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_60068ea1bdaf226184c80d417be25a04 = $(`<div id="html_60068ea1bdaf226184c80d417be25a04" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 춘천시노인전문병원</h4>             <p><strong>📍 주소:</strong><br>춘천시 동면 세실로 252,(동면) 강원특별자치도 정선군 봉양6길 14 (정선읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 165병상 | 진료과수: 6과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 37.378886<br>                경도: 128.663970             </p>         </div>         </div>`)[0];
+                popup_b50bb6d2ea314928a625f7cd7b1bc0fb.setContent(html_60068ea1bdaf226184c80d417be25a04);
+            
+        
+
+        marker_a9930b432dfe942a077754c4437cd025.bindPopup(popup_b50bb6d2ea314928a625f7cd7b1bc0fb)
+        ;
+
+        
+    
+    
+            marker_a9930b432dfe942a077754c4437cd025.bindTooltip(
+                `<div>
+                     춘천시노인전문병원 (요양병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a9930b432dfe942a077754c4437cd025.setIcon(icon_1c52cba9f313eee2ff4ac1056bbed9a1);
+            
+    
+            feature_group_5abc7d258fd307ebf4b99106147e4482.addTo(map_c468ac48fc48049271256bfad3bfd326);
+        
+    
+            var layer_control_4ceffab03664541b21ded8d5f2f88feb_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_46a365a144fe1f5d148d83947fb40ee7,
+                    "VWorld \uae30\ubcf8\uc9c0\ub3c4 (\ud55c\uae00)" : tile_layer_663b869954d84d9f050ba36065fc61c7,
+                },
+                overlays :  {
+                    "\uc885\ud569\ubcd1\uc6d0" : feature_group_ca850a3335b0b82da22443ba5a140df5,
+                    "\ubcd1\uc6d0" : feature_group_481450d32ce8d4aa3fcd0c3c4150db67,
+                    "\uc758\uc6d0" : feature_group_35c01f8d957a90be0fdb6e629b5c6292,
+                    "\uc694\uc591\ubcd1\uc6d0" : feature_group_5abc7d258fd307ebf4b99106147e4482,
+                },
+            };
+            let layer_control_4ceffab03664541b21ded8d5f2f88feb = L.control.layers(
+                layer_control_4ceffab03664541b21ded8d5f2f88feb_layers.base_layers,
+                layer_control_4ceffab03664541b21ded8d5f2f88feb_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_c468ac48fc48049271256bfad3bfd326);
+
+        
+</script>
+</html>

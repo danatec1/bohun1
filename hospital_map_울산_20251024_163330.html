@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_bf68a10575e5ecaf6d5213bb480ad1dc {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <div style="position: fixed; 
+                    top: 10px; left: 50px; width: 280px; 
+                    background-color: white; border:2px solid grey; z-index:9999; 
+                    font-size:13px; padding: 12px; border-radius: 8px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+        <h4 style="margin: 0 0 10px 0;">🏥 위탁병원 지도 - 울산</h4>
+        <p style="margin: 5px 0;"><strong>총 병원 수:</strong> 19개</p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 5px 0; font-weight: bold;">📍 종별 현황:</p>
+        <p style="margin: 3px 0;">
+            <span style="color: #d63333; font-weight: bold;">●</span> 종합병원: 1개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #3498db; font-weight: bold;">●</span> 병원: 0개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #38a169; font-weight: bold;">●</span> 의원: 16개
+        </p>
+        <p style="margin: 3px 0;">
+            <span style="color: #ff8c00; font-weight: bold;">●</span> 요양병원: 2개
+        </p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 5px 0; font-size: 11px; color: #666;">
+        생성: 2025-10-24 16:33</p>
+        </div>
+        
+    
+            <div class="folium-map" id="map_bf68a10575e5ecaf6d5213bb480ad1dc" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_bf68a10575e5ecaf6d5213bb480ad1dc = L.map(
+                "map_bf68a10575e5ecaf6d5213bb480ad1dc",
+                {
+                    center: [35.5384, 129.3114],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": true,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_b014402ef87718ce2608677fc7249f34 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "OpenStreetMap",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_b014402ef87718ce2608677fc7249f34.addTo(map_bf68a10575e5ecaf6d5213bb480ad1dc);
+        
+    
+            var tile_layer_40643d3454dab52b2c6aafb48f006f00 = L.tileLayer(
+                "https://map.vworld.kr/tile/Base/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "VWorld \ud55c\uad6d\uc9c0\ub3c4",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var feature_group_816d8e26d4e834c955012c26cdfc30dd = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_1ed3cb97a5715a4e5079d5d7725b43e8 = L.marker(
+                [35.5064489, 129.0903486],
+                {
+}
+            ).addTo(feature_group_816d8e26d4e834c955012c26cdfc30dd);
+        
+    
+            var icon_27831e3db4da684bdb88dcfaf2564fec = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "hospital-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0e45c29401f2deb1d65058bd477103ee = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_720f1f1ca2e6074a0e3195ea1a102507 = $(`<div id="html_720f1f1ca2e6074a0e3195ea1a102507" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 울산시티병원</h4>             <p><strong>📍 주소:</strong><br>산업로 1007 울산광역시 울주군 하방로 39 (삼남읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 190병상 | 진료과수: 20과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.506449<br>                경도: 129.090349             </p>         </div>         </div>`)[0];
+                popup_0e45c29401f2deb1d65058bd477103ee.setContent(html_720f1f1ca2e6074a0e3195ea1a102507);
+            
+        
+
+        marker_1ed3cb97a5715a4e5079d5d7725b43e8.bindPopup(popup_0e45c29401f2deb1d65058bd477103ee)
+        ;
+
+        
+    
+    
+            marker_1ed3cb97a5715a4e5079d5d7725b43e8.bindTooltip(
+                `<div>
+                     울산시티병원 (종합병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1ed3cb97a5715a4e5079d5d7725b43e8.setIcon(icon_27831e3db4da684bdb88dcfaf2564fec);
+            
+    
+            feature_group_816d8e26d4e834c955012c26cdfc30dd.addTo(map_bf68a10575e5ecaf6d5213bb480ad1dc);
+        
+    
+            var feature_group_613b857d63ef3c7ccd51bc17b683f3ea = L.featureGroup(
+                {
+}
+            );
+        
+    
+            feature_group_613b857d63ef3c7ccd51bc17b683f3ea.addTo(map_bf68a10575e5ecaf6d5213bb480ad1dc);
+        
+    
+            var feature_group_6e3c709913f530bd0f8ae68d36b0e69a = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_da477a94638d788815dce00acc54778f = L.marker(
+                [35.54612406, 129.3225534],
+                {
+}
+            ).addTo(feature_group_6e3c709913f530bd0f8ae68d36b0e69a);
+        
+    
+            var icon_8fcacf548cf1d794b003af1036d5e60c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_32cbe06441ffe23fad8b8d47f9eaf35c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_61e4c1b9c375d2c47c8865f2d4f2cd4b = $(`<div id="html_61e4c1b9c375d2c47c8865f2d4f2cd4b" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 맨스톤비뇨의학과의원</h4>             <p><strong>📍 주소:</strong><br>한강대로 69, 3층 울산광역시 남구 월평로171번길 13 (신정동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 3과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.546124<br>                경도: 129.322553             </p>         </div>         </div>`)[0];
+                popup_32cbe06441ffe23fad8b8d47f9eaf35c.setContent(html_61e4c1b9c375d2c47c8865f2d4f2cd4b);
+            
+        
+
+        marker_da477a94638d788815dce00acc54778f.bindPopup(popup_32cbe06441ffe23fad8b8d47f9eaf35c)
+        ;
+
+        
+    
+    
+            marker_da477a94638d788815dce00acc54778f.bindTooltip(
+                `<div>
+                     맨스톤비뇨의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_da477a94638d788815dce00acc54778f.setIcon(icon_8fcacf548cf1d794b003af1036d5e60c);
+            
+    
+            var marker_b00c6ef05ac0728b220642304ec10681 = L.marker(
+                [35.62920163, 129.3512853],
+                {
+}
+            ).addTo(feature_group_6e3c709913f530bd0f8ae68d36b0e69a);
+        
+    
+            var icon_174f39da348285b6da628b34f7d793f7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8ce962719aea684686617f35c019e330 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_85f9d3b1805eaafb50ba85c6f436732d = $(`<div id="html_85f9d3b1805eaafb50ba85c6f436732d" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 정승기정형외과의원</h4>             <p><strong>📍 주소:</strong><br>통일로 710 울산광역시 북구 호계로 292 (호계동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 8과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.629202<br>                경도: 129.351285             </p>         </div>         </div>`)[0];
+                popup_8ce962719aea684686617f35c019e330.setContent(html_85f9d3b1805eaafb50ba85c6f436732d);
+            
+        
+
+        marker_b00c6ef05ac0728b220642304ec10681.bindPopup(popup_8ce962719aea684686617f35c019e330)
+        ;
+
+        
+    
+    
+            marker_b00c6ef05ac0728b220642304ec10681.bindTooltip(
+                `<div>
+                     정승기정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b00c6ef05ac0728b220642304ec10681.setIcon(icon_174f39da348285b6da628b34f7d793f7);
+            
+    
+            var marker_87348b96382a1bc375d0720037161a26 = L.marker(
+                [35.49999658, 129.4282506],
+                {
+}
+            ).addTo(feature_group_6e3c709913f530bd0f8ae68d36b0e69a);
+        
+    
+            var icon_be50b2cf713c0640022812998a5c9c2b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2c6256e9bc45222b4bf88b7210d38367 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e88a7f55d8daf1f89e20b984448956b0 = $(`<div id="html_e88a7f55d8daf1f89e20b984448956b0" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 서울중앙의료의원</h4>             <p><strong>📍 주소:</strong><br>소공로 70 (충무로1가) 포스트타워 지하3층 서울중앙의료의원 울산광역시 동구 방어진순환도로 651 (일산동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 13과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.499997<br>                경도: 129.428251             </p>         </div>         </div>`)[0];
+                popup_2c6256e9bc45222b4bf88b7210d38367.setContent(html_e88a7f55d8daf1f89e20b984448956b0);
+            
+        
+
+        marker_87348b96382a1bc375d0720037161a26.bindPopup(popup_2c6256e9bc45222b4bf88b7210d38367)
+        ;
+
+        
+    
+    
+            marker_87348b96382a1bc375d0720037161a26.bindTooltip(
+                `<div>
+                     서울중앙의료의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_87348b96382a1bc375d0720037161a26.setIcon(icon_be50b2cf713c0640022812998a5c9c2b);
+            
+    
+            var marker_cc51bb0ad36aca736226b080f55c9900 = L.marker(
+                [35.49349589, 129.4264866],
+                {
+}
+            ).addTo(feature_group_6e3c709913f530bd0f8ae68d36b0e69a);
+        
+    
+            var icon_12d69ba5965c540c74af98f5f4e97587 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8ba422adc9d064b9466d47831cf7bb3b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f1bd5830af547cd78cc1a3e10687a755 = $(`<div id="html_f1bd5830af547cd78cc1a3e10687a755" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 권이비인후과의원</h4>             <p><strong>📍 주소:</strong><br>망우로 203, 2층 울산광역시 동구 방어진순환도로 577 (화정동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.493496<br>                경도: 129.426487             </p>         </div>         </div>`)[0];
+                popup_8ba422adc9d064b9466d47831cf7bb3b.setContent(html_f1bd5830af547cd78cc1a3e10687a755);
+            
+        
+
+        marker_cc51bb0ad36aca736226b080f55c9900.bindPopup(popup_8ba422adc9d064b9466d47831cf7bb3b)
+        ;
+
+        
+    
+    
+            marker_cc51bb0ad36aca736226b080f55c9900.bindTooltip(
+                `<div>
+                     권이비인후과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cc51bb0ad36aca736226b080f55c9900.setIcon(icon_12d69ba5965c540c74af98f5f4e97587);
+            
+    
+            var marker_7c2357d680e309bc26bca87110720c1e = L.marker(
+                [35.56440947, 129.3348597],
+                {
+}
+            ).addTo(feature_group_6e3c709913f530bd0f8ae68d36b0e69a);
+        
+    
+            var icon_ed1e0faef550227e5f27d5ecfef62bdf = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b0735bb6b7748a13ea9806be37dc821a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e16e184d21d97068e6ff70fa71e5521d = $(`<div id="html_e16e184d21d97068e6ff70fa71e5521d" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 서문365정형외과의원</h4>             <p><strong>📍 주소:</strong><br>한누리대로 2281 (대평동) SM메디컬센터 3층서문365정형외과 울산광역시 중구 번영로 475 (복산동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 25병상 | 진료과수: 10과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.564409<br>                경도: 129.334860             </p>         </div>         </div>`)[0];
+                popup_b0735bb6b7748a13ea9806be37dc821a.setContent(html_e16e184d21d97068e6ff70fa71e5521d);
+            
+        
+
+        marker_7c2357d680e309bc26bca87110720c1e.bindPopup(popup_b0735bb6b7748a13ea9806be37dc821a)
+        ;
+
+        
+    
+    
+            marker_7c2357d680e309bc26bca87110720c1e.bindTooltip(
+                `<div>
+                     서문365정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7c2357d680e309bc26bca87110720c1e.setIcon(icon_ed1e0faef550227e5f27d5ecfef62bdf);
+            
+    
+            var marker_c7a50c9751548b9134e08a3b9b6cb0c4 = L.marker(
+                [35.53735269, 129.3259195],
+                {
+}
+            ).addTo(feature_group_6e3c709913f530bd0f8ae68d36b0e69a);
+        
+    
+            var icon_85064c7d69782c1d2dd66973d9fd1b86 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_aa87671849924f8a4e117a81aef14213 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_962e389a1ede6ea3b3126749f30ad1c0 = $(`<div id="html_962e389a1ede6ea3b3126749f30ad1c0" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 이내과의원</h4>             <p><strong>📍 주소:</strong><br>조치원읍 조치원로 31 울산광역시 남구 삼산로 171 (달동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.537353<br>                경도: 129.325919             </p>         </div>         </div>`)[0];
+                popup_aa87671849924f8a4e117a81aef14213.setContent(html_962e389a1ede6ea3b3126749f30ad1c0);
+            
+        
+
+        marker_c7a50c9751548b9134e08a3b9b6cb0c4.bindPopup(popup_aa87671849924f8a4e117a81aef14213)
+        ;
+
+        
+    
+    
+            marker_c7a50c9751548b9134e08a3b9b6cb0c4.bindTooltip(
+                `<div>
+                     이내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c7a50c9751548b9134e08a3b9b6cb0c4.setIcon(icon_85064c7d69782c1d2dd66973d9fd1b86);
+            
+    
+            var marker_1b6d9addc71ba022c05f6a6d19879983 = L.marker(
+                [35.55658631, 129.3309706],
+                {
+}
+            ).addTo(feature_group_6e3c709913f530bd0f8ae68d36b0e69a);
+        
+    
+            var icon_006eeefc6a7e31f4cccbf1ded45d6c78 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_eb9979c091fbee3acce52be6d4794d8c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bb277db4ec22dab4dadcc7c8174e7f44 = $(`<div id="html_bb277db4ec22dab4dadcc7c8174e7f44" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 장현진정형외과의원</h4>             <p><strong>📍 주소:</strong><br>조치원로 62-1 울산광역시 중구 학성로 184 (학성동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 8과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.556586<br>                경도: 129.330971             </p>         </div>         </div>`)[0];
+                popup_eb9979c091fbee3acce52be6d4794d8c.setContent(html_bb277db4ec22dab4dadcc7c8174e7f44);
+            
+        
+
+        marker_1b6d9addc71ba022c05f6a6d19879983.bindPopup(popup_eb9979c091fbee3acce52be6d4794d8c)
+        ;
+
+        
+    
+    
+            marker_1b6d9addc71ba022c05f6a6d19879983.bindTooltip(
+                `<div>
+                     장현진정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1b6d9addc71ba022c05f6a6d19879983.setIcon(icon_006eeefc6a7e31f4cccbf1ded45d6c78);
+            
+    
+            var marker_39da325e37302f09ab6eb0f29291d6c6 = L.marker(
+                [35.53479012, 129.3287525],
+                {
+}
+            ).addTo(feature_group_6e3c709913f530bd0f8ae68d36b0e69a);
+        
+    
+            var icon_01f8b722270652d0842de51991163a15 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ac7c745f4fb08c7ea772b79da9a51df7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c8f0440bd381f8515f9cd8c5cc92371c = $(`<div id="html_c8f0440bd381f8515f9cd8c5cc92371c" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 배양규비뇨의학과의원</h4>             <p><strong>📍 주소:</strong><br>삼산로 171, 2층, 3층 울산광역시 남구 번영로107번길 1 (달동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 3병상 | 진료과수: 14과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.534790<br>                경도: 129.328753             </p>         </div>         </div>`)[0];
+                popup_ac7c745f4fb08c7ea772b79da9a51df7.setContent(html_c8f0440bd381f8515f9cd8c5cc92371c);
+            
+        
+
+        marker_39da325e37302f09ab6eb0f29291d6c6.bindPopup(popup_ac7c745f4fb08c7ea772b79da9a51df7)
+        ;
+
+        
+    
+    
+            marker_39da325e37302f09ab6eb0f29291d6c6.bindTooltip(
+                `<div>
+                     배양규비뇨의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_39da325e37302f09ab6eb0f29291d6c6.setIcon(icon_01f8b722270652d0842de51991163a15);
+            
+    
+            var marker_6fbec3dd694faed18e5785b2c4187c17 = L.marker(
+                [35.53879037, 129.3362838],
+                {
+}
+            ).addTo(feature_group_6e3c709913f530bd0f8ae68d36b0e69a);
+        
+    
+            var icon_dd8c477c667557e3b76b01166a112628 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e86de11823098204b6c7301eed9e0d5e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2e87948d866b6648c0d8a9a117bd986c = $(`<div id="html_2e87948d866b6648c0d8a9a117bd986c" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 신내과의원</h4>             <p><strong>📍 주소:</strong><br>방어진순환도로 651 (일산동) 3층 울산광역시 남구 삼산로 266 (삼산동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 24병상 | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.538790<br>                경도: 129.336284             </p>         </div>         </div>`)[0];
+                popup_e86de11823098204b6c7301eed9e0d5e.setContent(html_2e87948d866b6648c0d8a9a117bd986c);
+            
+        
+
+        marker_6fbec3dd694faed18e5785b2c4187c17.bindPopup(popup_e86de11823098204b6c7301eed9e0d5e)
+        ;
+
+        
+    
+    
+            marker_6fbec3dd694faed18e5785b2c4187c17.bindTooltip(
+                `<div>
+                     신내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6fbec3dd694faed18e5785b2c4187c17.setIcon(icon_dd8c477c667557e3b76b01166a112628);
+            
+    
+            var marker_c9ae96bed926c41ca4f66def3f645dd4 = L.marker(
+                [35.51318343, 129.4307844],
+                {
+}
+            ).addTo(feature_group_6e3c709913f530bd0f8ae68d36b0e69a);
+        
+    
+            var icon_7e16c409ab3af8aefdc11263ae911903 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_34ce0e66053f26cf9259ea4e7d1be2db = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5cecc39e68e532b3c5d2ce8af43a4805 = $(`<div id="html_5cecc39e68e532b3c5d2ce8af43a4805" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 백인정형외과의원</h4>             <p><strong>📍 주소:</strong><br>언양읍 남문길 12 울산광역시 동구 방어진순환도로 799 (전하동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 3병상 | 진료과수: 8과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.513183<br>                경도: 129.430784             </p>         </div>         </div>`)[0];
+                popup_34ce0e66053f26cf9259ea4e7d1be2db.setContent(html_5cecc39e68e532b3c5d2ce8af43a4805);
+            
+        
+
+        marker_c9ae96bed926c41ca4f66def3f645dd4.bindPopup(popup_34ce0e66053f26cf9259ea4e7d1be2db)
+        ;
+
+        
+    
+    
+            marker_c9ae96bed926c41ca4f66def3f645dd4.bindTooltip(
+                `<div>
+                     백인정형외과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c9ae96bed926c41ca4f66def3f645dd4.setIcon(icon_7e16c409ab3af8aefdc11263ae911903);
+            
+    
+            var marker_9ceb032e8928ef3b296ae6edc2a09044 = L.marker(
+                [35.56426701, 129.1225207],
+                {
+}
+            ).addTo(feature_group_6e3c709913f530bd0f8ae68d36b0e69a);
+        
+    
+            var icon_c3c62fee0f7f53795985d72e0fda4a5d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3e447941544696d607eddd0aa54e9c27 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6367eda8be5f5b4a49daa55e32ffd453 = $(`<div id="html_6367eda8be5f5b4a49daa55e32ffd453" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 하나가정의학과의원</h4>             <p><strong>📍 주소:</strong><br>청량읍 삼정로 90 울산광역시 울주군 남문길 12 (언양읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 9과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.564267<br>                경도: 129.122521             </p>         </div>         </div>`)[0];
+                popup_3e447941544696d607eddd0aa54e9c27.setContent(html_6367eda8be5f5b4a49daa55e32ffd453);
+            
+        
+
+        marker_9ceb032e8928ef3b296ae6edc2a09044.bindPopup(popup_3e447941544696d607eddd0aa54e9c27)
+        ;
+
+        
+    
+    
+            marker_9ceb032e8928ef3b296ae6edc2a09044.bindTooltip(
+                `<div>
+                     하나가정의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9ceb032e8928ef3b296ae6edc2a09044.setIcon(icon_c3c62fee0f7f53795985d72e0fda4a5d);
+            
+    
+            var marker_34c74df098af6255af550fb7d84201f3 = L.marker(
+                [35.55979041, 129.1209765],
+                {
+}
+            ).addTo(feature_group_6e3c709913f530bd0f8ae68d36b0e69a);
+        
+    
+            var icon_2d4e264c2f777e96b31cd84596f0b850 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e233144c9696cc4551b1aa7c9931e327 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0df687bb131cb7d74437f386296656c0 = $(`<div id="html_0df687bb131cb7d74437f386296656c0" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 태강내과의원</h4>             <p><strong>📍 주소:</strong><br>번영로 475 홈플러스울산점 5층 태강내과 울산광역시 울주군 중평로 53 (삼남읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 2과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.559790<br>                경도: 129.120977             </p>         </div>         </div>`)[0];
+                popup_e233144c9696cc4551b1aa7c9931e327.setContent(html_0df687bb131cb7d74437f386296656c0);
+            
+        
+
+        marker_34c74df098af6255af550fb7d84201f3.bindPopup(popup_e233144c9696cc4551b1aa7c9931e327)
+        ;
+
+        
+    
+    
+            marker_34c74df098af6255af550fb7d84201f3.bindTooltip(
+                `<div>
+                     태강내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_34c74df098af6255af550fb7d84201f3.setIcon(icon_2d4e264c2f777e96b31cd84596f0b850);
+            
+    
+            var marker_2c5f242550a3a7f5c98fe4f9b13a0125 = L.marker(
+                [35.56406619, 129.336573],
+                {
+}
+            ).addTo(feature_group_6e3c709913f530bd0f8ae68d36b0e69a);
+        
+    
+            var icon_880fb6548c1f89bd7accfd758ddddb77 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9b89aa8f37f21260b071634a8bf8caba = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_15f86baad98e627142d31cf376401857 = $(`<div id="html_15f86baad98e627142d31cf376401857" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 마음속내과의원</h4>             <p><strong>📍 주소:</strong><br>장제로 871 셀마파빌딩 3,4층 울산광역시 중구 번영로 484 (반구동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 2병상 | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.564066<br>                경도: 129.336573             </p>         </div>         </div>`)[0];
+                popup_9b89aa8f37f21260b071634a8bf8caba.setContent(html_15f86baad98e627142d31cf376401857);
+            
+        
+
+        marker_2c5f242550a3a7f5c98fe4f9b13a0125.bindPopup(popup_9b89aa8f37f21260b071634a8bf8caba)
+        ;
+
+        
+    
+    
+            marker_2c5f242550a3a7f5c98fe4f9b13a0125.bindTooltip(
+                `<div>
+                     마음속내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2c5f242550a3a7f5c98fe4f9b13a0125.setIcon(icon_880fb6548c1f89bd7accfd758ddddb77);
+            
+    
+            var marker_fbed4f02739de363e9301721e049eead = L.marker(
+                [35.58281564, 129.3590176],
+                {
+}
+            ).addTo(feature_group_6e3c709913f530bd0f8ae68d36b0e69a);
+        
+    
+            var icon_fe3eb4579b8f89067f2be3e600ae40c5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_47370d4d63f9e5849e0e846f3c802609 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6620a3850e554a746dcc6fb5a6ea562d = $(`<div id="html_6620a3850e554a746dcc6fb5a6ea562d" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 메가비뇨의학과의원</h4>             <p><strong>📍 주소:</strong><br>논고개로 114, 에이스타워 301~2호 울산광역시 북구 산업로 1007 (연암동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 2과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.582816<br>                경도: 129.359018             </p>         </div>         </div>`)[0];
+                popup_47370d4d63f9e5849e0e846f3c802609.setContent(html_6620a3850e554a746dcc6fb5a6ea562d);
+            
+        
+
+        marker_fbed4f02739de363e9301721e049eead.bindPopup(popup_47370d4d63f9e5849e0e846f3c802609)
+        ;
+
+        
+    
+    
+            marker_fbed4f02739de363e9301721e049eead.bindTooltip(
+                `<div>
+                     메가비뇨의학과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_fbed4f02739de363e9301721e049eead.setIcon(icon_fe3eb4579b8f89067f2be3e600ae40c5);
+            
+    
+            var marker_9fa318591cb1a48d8463a7375a85e159 = L.marker(
+                [35.53879037, 129.3362838],
+                {
+}
+            ).addTo(feature_group_6e3c709913f530bd0f8ae68d36b0e69a);
+        
+    
+            var icon_e31727d1cd2bef454dfc313e2537c920 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9213ec400eba6466252e8771804a40f4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_22d944f3c79efbfb9709de7373aca7ee = $(`<div id="html_22d944f3c79efbfb9709de7373aca7ee" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 동인천내과의원</h4>             <p><strong>📍 주소:</strong><br>송현로 1, 송현프라자 401호 울산광역시 남구 삼산로 266 (삼산동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: - | 진료과수: 4과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.538790<br>                경도: 129.336284             </p>         </div>         </div>`)[0];
+                popup_9213ec400eba6466252e8771804a40f4.setContent(html_22d944f3c79efbfb9709de7373aca7ee);
+            
+        
+
+        marker_9fa318591cb1a48d8463a7375a85e159.bindPopup(popup_9213ec400eba6466252e8771804a40f4)
+        ;
+
+        
+    
+    
+            marker_9fa318591cb1a48d8463a7375a85e159.bindTooltip(
+                `<div>
+                     동인천내과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9fa318591cb1a48d8463a7375a85e159.setIcon(icon_e31727d1cd2bef454dfc313e2537c920);
+            
+    
+            var marker_ff63ba2a2f75560394c74fda9f4e2ddf = L.marker(
+                [35.41029536, 129.283409],
+                {
+}
+            ).addTo(feature_group_6e3c709913f530bd0f8ae68d36b0e69a);
+        
+    
+            var icon_01c7d0aa64c056b78d1a9b0aba922a57 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "user-md",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7504dffd44b8f7885239c71aa3c69b37 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c389ff8eaac544424039d71cf74e295a = $(`<div id="html_c389ff8eaac544424039d71cf74e295a" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 눈애안과의원</h4>             <p><strong>📍 주소:</strong><br>독배로 40번길 11, 효명프라자 304~5호 울산광역시 울주군 온양로 105 (온양읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 1병상 | 진료과수: 1과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.410295<br>                경도: 129.283409             </p>         </div>         </div>`)[0];
+                popup_7504dffd44b8f7885239c71aa3c69b37.setContent(html_c389ff8eaac544424039d71cf74e295a);
+            
+        
+
+        marker_ff63ba2a2f75560394c74fda9f4e2ddf.bindPopup(popup_7504dffd44b8f7885239c71aa3c69b37)
+        ;
+
+        
+    
+    
+            marker_ff63ba2a2f75560394c74fda9f4e2ddf.bindTooltip(
+                `<div>
+                     눈애안과의원 (의원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ff63ba2a2f75560394c74fda9f4e2ddf.setIcon(icon_01c7d0aa64c056b78d1a9b0aba922a57);
+            
+    
+            feature_group_6e3c709913f530bd0f8ae68d36b0e69a.addTo(map_bf68a10575e5ecaf6d5213bb480ad1dc);
+        
+    
+            var feature_group_18da7bc510784e45e0733a513ea05117 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_abed588dab7e4361972bb3a0e0f36a20 = L.marker(
+                [35.49836577, 129.4277099],
+                {
+}
+            ).addTo(feature_group_18da7bc510784e45e0733a513ea05117);
+        
+    
+            var icon_584f4e02885a67f43164642c0825a515 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "heartbeat",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_64ad39bcce0d7bb14b96f1a83a05c3f0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9379a681c39883f01bcbc0e08d4b9ab4 = $(`<div id="html_9379a681c39883f01bcbc0e08d4b9ab4" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 이손요양병원</h4>             <p><strong>📍 주소:</strong><br>삼남읍 하방로 39 울산광역시 동구 방어진순환도로 633 (일산동)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 287병상 | 진료과수: 7과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.498366<br>                경도: 129.427710             </p>         </div>         </div>`)[0];
+                popup_64ad39bcce0d7bb14b96f1a83a05c3f0.setContent(html_9379a681c39883f01bcbc0e08d4b9ab4);
+            
+        
+
+        marker_abed588dab7e4361972bb3a0e0f36a20.bindPopup(popup_64ad39bcce0d7bb14b96f1a83a05c3f0)
+        ;
+
+        
+    
+    
+            marker_abed588dab7e4361972bb3a0e0f36a20.bindTooltip(
+                `<div>
+                     이손요양병원 (요양병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_abed588dab7e4361972bb3a0e0f36a20.setIcon(icon_584f4e02885a67f43164642c0825a515);
+            
+    
+            var marker_5ad49f2eef17b281aec8016a68cbf902 = L.marker(
+                [35.49573458, 129.2370071],
+                {
+}
+            ).addTo(feature_group_18da7bc510784e45e0733a513ea05117);
+        
+    
+            var icon_47da1bd666808d104c5c55bc7401e499 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "heartbeat",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_407fc75aefe8095aa8d24daa53c8d51e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_489407587aef056036201dc5155e13e5 = $(`<div id="html_489407587aef056036201dc5155e13e5" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px;">             <h4 style="color: #2E86AB; margin-bottom: 10px;">🏥 봄날요양병원</h4>             <p><strong>📍 주소:</strong><br>인주대로 806 (구월동) 울산광역시 울주군 삼정로 90 (청량읍)</p>             <p><strong>🏥 규모:</strong><br>                병상수: 189병상 | 진료과수: 15과             </p>             <p><strong>🌍 좌표:</strong><br>                위도: 35.495735<br>                경도: 129.237007             </p>         </div>         </div>`)[0];
+                popup_407fc75aefe8095aa8d24daa53c8d51e.setContent(html_489407587aef056036201dc5155e13e5);
+            
+        
+
+        marker_5ad49f2eef17b281aec8016a68cbf902.bindPopup(popup_407fc75aefe8095aa8d24daa53c8d51e)
+        ;
+
+        
+    
+    
+            marker_5ad49f2eef17b281aec8016a68cbf902.bindTooltip(
+                `<div>
+                     봄날요양병원 (요양병원)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5ad49f2eef17b281aec8016a68cbf902.setIcon(icon_47da1bd666808d104c5c55bc7401e499);
+            
+    
+            feature_group_18da7bc510784e45e0733a513ea05117.addTo(map_bf68a10575e5ecaf6d5213bb480ad1dc);
+        
+    
+            var layer_control_efb823140194d1ffac6de188adf0fb5e_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_b014402ef87718ce2608677fc7249f34,
+                    "VWorld \uae30\ubcf8\uc9c0\ub3c4 (\ud55c\uae00)" : tile_layer_40643d3454dab52b2c6aafb48f006f00,
+                },
+                overlays :  {
+                    "\uc885\ud569\ubcd1\uc6d0" : feature_group_816d8e26d4e834c955012c26cdfc30dd,
+                    "\ubcd1\uc6d0" : feature_group_613b857d63ef3c7ccd51bc17b683f3ea,
+                    "\uc758\uc6d0" : feature_group_6e3c709913f530bd0f8ae68d36b0e69a,
+                    "\uc694\uc591\ubcd1\uc6d0" : feature_group_18da7bc510784e45e0733a513ea05117,
+                },
+            };
+            let layer_control_efb823140194d1ffac6de188adf0fb5e = L.control.layers(
+                layer_control_efb823140194d1ffac6de188adf0fb5e_layers.base_layers,
+                layer_control_efb823140194d1ffac6de188adf0fb5e_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_bf68a10575e5ecaf6d5213bb480ad1dc);
+
+        
+</script>
+</html>

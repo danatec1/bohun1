@@ -11,13 +11,14 @@ from ..models.user import User
 
 
 class UserRepository:
-    def __init__(self, host='localhost', user='root',
+    def __init__(self, host='121.157.160.22', port=3306, user='root',
                  password=None, database='testdb'):
         # 환경변수에서 MySQL 비밀번호 가져오기 (기본값: zzaaqq)
         if password is None:
             password = os.environ.get('MYSQL_PASSWORD', 'zzaaqq')
         self.connection_config = {
             'host': host,
+            'port': port,
             'user': user,
             'password': password,
             'database': database,
