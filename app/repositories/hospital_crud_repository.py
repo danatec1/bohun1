@@ -11,7 +11,7 @@ class HospitalCrudRepository:
         self.connection_config = {
             'host': 'localhost',
             'user': 'root',
-            'password': 'Admin1',
+            'password': 'zzaaqq',
             'database': 'testdb',
             'charset': 'utf8mb4',
             'cursorclass': pymysql.cursors.DictCursor
@@ -36,11 +36,16 @@ class HospitalCrudRepository:
                     query += ' AND 종별 = %s'
                     params.append(filter_type)
                 
-                # 검색어 필터링 (요양기관명, 주소, 상세주소, 전화번호)
+                # 검색어 필터링 (요양기관명, 주소, 시군구, 상세주소, 전화번호)
                 if search:
-                    query += ' AND (요양기관명 LIKE %s OR 주소 LIKE %s OR 상세주소 LIKE %s OR 전화번호 LIKE %s)'
-                    search_param = f'%{search}%'
-                    params.extend([search_param, search_param, search_param, search_param])
+                    # If search term ends with '구' or '시', treat as 시군구 exact match
+                    if search.endswith('구') or search.endswith('시'):
+                        query += ' AND 시군구 = %s'
+                        params.append(search)
+                    else:
+                        query += ' AND (요양기관명 LIKE %s OR 주소 LIKE %s OR 시군구 LIKE %s OR 상세주소 LIKE %s OR 전화번호 LIKE %s)'
+                        search_param = f'%{search}%'
+                        params.extend([search_param, search_param, search_param, search_param, search_param])
                 
                 query += ' ORDER BY 연번'
                 

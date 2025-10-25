@@ -122,3 +122,8 @@ Thumbs.db
 
 # Uploads
 uploads/
+# Excel 임시파일
+~$*.xlsx
+# 기타 임시파일
+*.tmp
+*.bak
